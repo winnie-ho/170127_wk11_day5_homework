@@ -20,8 +20,16 @@ var requestComplete = function (){
   ResultInfo = JSON.parse(jsonString);
   var resultArray = ResultInfo;
   showRun(resultArray);
+  createMainMap();
 }
 
+var createMainMap = function(){
+  var centre = {lat: 55.9533, lng:-3.1883 };
+  var mapDiv = document.querySelector("#main-map");
+  var mainMap = new MapWrapper(centre, 12 );
+  mainMap.addMarker(centre);
+  mainMap.addClickEvent();
+}
 // var handleSearch = function(){
 //   var searchQuery = document.getElementById("search-query");
 //   var albumsDiv = document.getElementById("albums");
@@ -51,39 +59,33 @@ console.log(resultArray);
     parentBox.id = "parent_box"
     runsDiv.appendChild(parentBox);
 
-    var mapD = document.createElement("div");
-    mapD.id = "map"
-    this.googleMap = new google.maps.Map(mapD, {
-      center: {lat: 55.9533, lng:-3.1883 },
-      zoom: 13
-      });
+    // var mapD = document.createElement("div");
+    // mapD.id = "map"
+    // this.googleMap = new google.maps.Map(mapD, {
+    //   center: {lat: 55.9533, lng:-3.1883 },
+    //   zoom: 13
+    //   });
 
-    parentBox.appendChild(mapD);
+    // parentBox.appendChild(mapD);
 
     var sectionBox = document.createElement("div")
     sectionBox.id = "section_box"
     parentBox.appendChild(sectionBox);
 
-    var date = document.createElement("p");
-    date.innerText = "Date: " + run.start_date.substr(0,10);
-    sectionBox.appendChild(date);
+    var dateTitle = document.createElement("h3");
+    dateTitle.innerText = run.start_date.substr(0,10) + "    |    " +  run.name;
+    sectionBox.appendChild(dateTitle);
 
-    var title = document.createElement("p");
-    title.innerText = "Run: " + run.name;
-    sectionBox.appendChild(title);
-
-    var distance = document.createElement("p");
-    distance.innerText = "Distance: " + ((run.distance)/1000).toFixed(2) + " km";
-    sectionBox.appendChild(distance);
-
-    var time = document.createElement("p");
-    time.innerText = "Time: " + ((run.moving_time)/60).toFixed(2)+ "mins";    
-    sectionBox.appendChild(time);
+    var dtp = document.createElement("p");
+    dtp.innerText = "Distance: " + ((run.distance)/1000).toFixed(2) + " km   Time: " + ((run.moving_time)/60).toFixed(2)+ "mins    Pace: " + run.average_speed;
+    sectionBox.appendChild(dtp);
 
     var route = document.createElement("p");
     route.innerText = "Route: " + run.map.summary_polyline;
     sectionBox.appendChild(route);
     })
+
+
 }
 
 var addClickEvent = function(){

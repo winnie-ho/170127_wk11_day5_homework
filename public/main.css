@@ -2,7 +2,6 @@ body{
   justify-content: center;
   align-content: center;
   background-color: #EBF5FB;
-  height: 800px;
   display: flex;
   flex-direction: column;
 }
@@ -16,21 +15,22 @@ main{
 input{
   border-radius: 5px;
   width: 400px;
-  font-size: 12px;
+  font-size: 10px;
   margin: 10px;
 }
 
 
 h1{
-  font-family: "tahoma";
+  font-family: "Tradizional DEMO";
+  font-size: 80px;
   text-align: left;
   color: #1F618D  ;
-  margin-left: 16px
 }
 
 h3{
   font-family: "gill sans";
-  color: #1F618D  ;
+  color: #1F618D;
+  font-size: 12px;
 }
 
 p{
@@ -62,64 +62,68 @@ button{
 
 #header{
   display: flex;
-  text-align: center;
+  flex-direction: row;
   justify-content: flex-start;
-  flex-direction: row;
-  height: 600px;
+  align-items: center;
+  height: 120px;
   text-align: center;
+  border: red dashed 1px;
 }
 
-#search-area{
-  display: flex;
-  flex-direction: row;
-  justify-content: left;
-}
-
-#box{
-  display: flex;
-  flex-direction: column;
-}
 
 #image{
-  margin: 12px;
+  margin: 10px;
   border-radius: 150px;
 }
 
 
-
+#main{
+  border: green dashed 1px;
+  display: flex;
+  flex-direction: row;
+  height: 500px;
+}
 
 #runs{
   margin: auto;
   display: inline-flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: left;
+  border: blue dashed 1px;
+  width: 620px;
+  height: 500px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 #parent_box{
   display: flex;
   flex-direction: row;
-  align-content: space-between;
-  justify-content: space-around;
-  width: 700px;
-  height: 200px;
+  align-content: flex-start;
+  justify-content: flex-start;
+  align-items:center;
+  width: 500px;
+  height: 120px;
   border: solid 1px #1F618D;
-  border-radius: 5px;
-  margin-left: 200px;
-  margin: 10px;
-  padding: 10px;
+  border-radius: 2px;
+  margin: 2px;
 }
 
 #section_box{
-  width: 100px;
-  padding: 10px;
+  width: 400px;
+  padding: 5px;
   text-align: left;
 }
 
 
-
 #map {
-  width: 600px;
+  width: 280px;
   height: 100%;
-  margin: auto;
+}
+
+#main-map{
+  border: dashed red 1px;
+  width: 700px;
+  height: 100%;
 }
