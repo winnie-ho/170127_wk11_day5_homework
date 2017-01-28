@@ -28,14 +28,33 @@ var requestComplete = function (){
   nearMeButton.onclick = handleNearMeButton;
 
   showRun(resultArray);
-  runsNear(resultArray);
-
-
-    
-
+  showWeather(resultWeather)
 }
 
 
+var requestCompleteWeather = function (){
+  if (this.status !== 200) return;
+  var jsonString = this.responseText;
+  resultWeather = JSON.parse(jsonString);
+  var resultArray = resultWeather;
+  console.log(resultArray);
+}
+
+var showWeather = function(resultWeather){
+  var weatherDiv = document.querySelector("#weather");
+  var description = document.createElement("h3");
+  description.innerText = resultWeather.weather[0].description;
+  weatherDiv.appendChild(description);
+
+  var temp = document.createElement("p");
+  temp.innerText = "Temperature: " + (resultWeather.main.temp-273).toFixed(0) + "°C"
+  weatherDiv.appendChild(temp);
+
+  var wind = document.createElement("p");
+  wind.innerText = "Wind: " + (resultWeather.wind.speed) + "m/s"
+  weatherDiv.appendChild(wind);
+
+}
 // var handleSearch = function(){
 //   var searchQuery = document.getElementById("search-query");
 //   var albumsDiv = document.getElementById("albums");
@@ -53,21 +72,10 @@ var requestComplete = function (){
 // }
 
 
-
-
-var runsNear = function(resultArray, target){
-  var runsNearArray = [];
-    resultArray.forEach(function(run){
-      if (run.start_latlng[0] )
-      runsNearArray.push(run);
-  });
-}
-
-
 var showRun = function(resultArray){
 console.log(resultArray);
   var runsDiv = document.querySelector("#runs");
-
+    runsDiv.innerHTML = "";
     resultArray.forEach(function(run){
 
     var parentBox = document.createElement("div")
@@ -95,9 +103,9 @@ console.log(resultArray);
     dtp.innerText = "Distance: " + ((run.distance)/1000).toFixed(2) + " km   Time: " + ((run.moving_time)/60).toFixed(2)+ "mins    Pace: " + run.average_speed;
     sectionBox.appendChild(dtp);
 
-    var startPoint = document.createElement("p");
-    startPoint.innerText = "Start: " + run.start_latlng[0] + ", " + run.start_latlng[1];
-    sectionBox.appendChild(startPoint);
+    // var startPoint = document.createElement("p");
+    // startPoint.innerText = "Start: " + run.start_latlng[0] + ", " + run.start_latlng[1];
+    // sectionBox.appendChild(startPoint);
     
 
     // var route = document.createElement("p");
@@ -116,8 +124,12 @@ console.log(resultArray);
 
 //Running the app
 var app = function(){
-  var url = "https://www.strava.com/api/v3/athlete/activities?per_page=10&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
+  var url = "https://www.strava.com/api/v3/athlete/activities?per_page=50&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
   makeRequest(url, requestComplete)
+
+  var urlWeather = "http://api.openweathermap.org/data/2.5/weather?q=Edinburgh,uk&appid=b7114aca731d927ad002d0a518f38dfe"
+  makeRequest(urlWeather, requestCompleteWeather);
+
 }
 
 window.onload = app;
