@@ -27,8 +27,9 @@ var createMainMap = function(){
   var centre = {lat: 55.9533, lng:-3.1883 };
   var mapDiv = document.querySelector("#main-map");
   var mainMap = new MapWrapper(centre, 12 );
-  mainMap.addMarker(centre);
+  var centreMarker = mainMap.addMarker(centre);
   mainMap.addClickEvent();
+  mainMap.addInfoWindow(mainMap, centreMarker, "This is Edinburgh!");
 }
 // var handleSearch = function(){
 //   var searchQuery = document.getElementById("search-query");
@@ -73,20 +74,32 @@ console.log(resultArray);
     parentBox.appendChild(sectionBox);
 
     var dateTitle = document.createElement("h3");
-    dateTitle.innerText = run.start_date.substr(0,10) + "    |    " +  run.name;
+    dateTitle.innerText = run.start_date.substr(8,2) + "/" + run.start_date.substr(5,2) + "/"+ run.start_date.substr(0,4) + "    |    " +  run.name;
     sectionBox.appendChild(dateTitle);
 
     var dtp = document.createElement("p");
     dtp.innerText = "Distance: " + ((run.distance)/1000).toFixed(2) + " km   Time: " + ((run.moving_time)/60).toFixed(2)+ "mins    Pace: " + run.average_speed;
     sectionBox.appendChild(dtp);
 
-    var route = document.createElement("p");
-    route.innerText = "Route: " + run.map.summary_polyline;
-    sectionBox.appendChild(route);
-    })
+    var startPoint = document.createElement("p");
+    startPoint.innerText = "Start: " + run.start_latlng[0] + ", " + run.start_latlng[1];
+    sectionBox.appendChild(startPoint);
+    
+
+    // var route = document.createElement("p");
+    // route.innerText = "Route: " + run.map.summary_polyline;
+    // sectionBox.appendChild(route);
+
+    var detailButton = document.createElement("button");
+    detailButton.innerHTML = "View";
+    detailButton.style.color = "white";
+    sectionBox.appendChild(detailButton);
+    });
 
 
 }
+
+
 
 var addClickEvent = function(){
   google.maps.event.addListener(this.googleMap, "click", function(event){
@@ -102,4 +115,34 @@ var addMarker = function(coords){
   });
   return marker;
 }
+
+// var geoFindMe = function(){
+//   var output = document.querySelector("#near-me");
+
+//   if (!navigator.geolocation){
+//     output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
+//     return;
+//   }
+//   function success(position) {
+//     var latitude  = position.coords.latitude;
+//     var longitude = position.coords.longitude;
+
+//     output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
+//   }
+
+//   function error() {
+//     output.innerHTML = "Unable to retrieve your location";
+//   }
+//     var prettyCoords = "{lat:" + latitude + ", lng:" + longitude"}"
+//     console.log(prettyCoords);
+//     addMarker(prettyCoords);
+
+//     {lat: 55.9533, lng:-3.1883 }
+
+//   output.innerHTML = "<p>Locating…</p>";
+
+//   navigator.geolocation.getCurrentPosition(success, error);
+// }
+
+
 

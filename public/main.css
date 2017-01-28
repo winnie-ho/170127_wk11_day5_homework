@@ -27,6 +27,13 @@ h1{
   color: #1F618D  ;
 }
 
+h2{
+  font-family: "Tradizional DEMO";
+  font-size: 40px;
+  text-align: left;
+  color: #1F618D;
+}
+
 h3{
   font-family: "gill sans";
   color: #1F618D;
@@ -51,14 +58,22 @@ a:hover{
 }
 
 button{
-  width: 30px;
-  height: 26px;
+  width: 70px;
+  height: 16px;
   border-radius: 5px;
+  border: 0;
   background-color: #1F618D  ;
   font-family: "gill sans";
-  font-size: 14px;
+  font-size: 10px;
   margin-top: 10px;
+  color: white;
 }
+
+button:hover{
+  background-color: #3E9FDF;
+}
+
+
 
 #header{
   display: flex;
@@ -74,6 +89,15 @@ button{
 #image{
   margin: 10px;
   border-radius: 150px;
+}
+
+#info{
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  align-content: flex-start;
+  justify-content: space-around;
+  border: green 5px dashed;
 }
 
 
