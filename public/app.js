@@ -1,29 +1,4 @@
-var app = function(){
-  var url = "https://www.strava.com/api/v3/athlete/activities?per_page=10&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
-  makeRequest(url, requestComplete)
-
-
-    var centre = {lat: 55.9533, lng:-3.1883 };
-    var mapDiv = document.querySelector("#main-map");
-    var mainMap = new MapWrapper(centre, 12 );
-    var centreMarker = mainMap.addMarker(centre);
-    mainMap.addClickEvent();
-    mainMap.addInfoWindow(mainMap, centreMarker, "This is Edinburgh!");
-
-
-
-  
-  var handleNearMeButton = function(){
-    console.log("Near Me button clicked");
-    mainMap.geoLocate();
-  }
-
-  var nearMeButton = document.querySelector("#near-me");
-  nearMeButton.onclick = handleNearMeButton;
-}
-
-window.onload = app;
-
+// Methods
 var ResultInfo = null;
 
 var makeRequest = function (url, callback) {
@@ -38,11 +13,27 @@ var requestComplete = function (){
   var jsonString = this.responseText;
   ResultInfo = JSON.parse(jsonString);
   var resultArray = ResultInfo;
+  
+    var centre = {lat: 55.9533, lng:-3.1883 };
+    var mapDiv = document.querySelector("#main-map");
+    mapDiv.innerHTML = "";
+    var mainMap = new MapWrapper(centre, 14);
+  
+  var handleNearMeButton = function(){
+    console.log("Near Me button clicked");
+    mainMap.geoLocate(resultArray);
+  }
+
+  var nearMeButton = document.querySelector("#near-me");
+  nearMeButton.onclick = handleNearMeButton;
+
   showRun(resultArray);
+  runsNear(resultArray);
+
+
+    
+
 }
-
-
-
 
 
 // var handleSearch = function(){
@@ -62,6 +53,15 @@ var requestComplete = function (){
 // }
 
 
+
+
+var runsNear = function(resultArray, target){
+  var runsNearArray = [];
+    resultArray.forEach(function(run){
+      if (run.start_latlng[0] )
+      runsNearArray.push(run);
+  });
+}
 
 
 var showRun = function(resultArray){
@@ -109,26 +109,18 @@ console.log(resultArray);
     detailButton.style.color = "white";
     sectionBox.appendChild(detailButton);
     });
-
-
 }
 
 
 
-var addClickEvent = function(){
-  google.maps.event.addListener(this.googleMap, "click", function(event){
-    var coordsSelected = {lat: event.latLng.lat(), lng: event.latLng.lng()};
-    this.addMarker(coordsSelected);
-  }.bind(this));
+
+//Running the app
+var app = function(){
+  var url = "https://www.strava.com/api/v3/athlete/activities?per_page=10&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
+  makeRequest(url, requestComplete)
 }
 
-var addMarker = function(coords){
-  var marker = new google.maps.Marker({
-    position: coords,
-    map: this.googleMap
-  });
-  return marker;
-}
+window.onload = app;
 
 
 
