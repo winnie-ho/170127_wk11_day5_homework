@@ -40,7 +40,14 @@ MapWrapper.prototype = {
     })
   }, 
 
-  
+  geoLocate: function(){
+    navigator.geolocation.getCurrentPosition(function(position){
+      var centre = {lat: position.coords.latitude, lng: position.coords.longitude};
+      this.googleMap.setCenter(centre);
+      this.addMarker(centre);
+    }.bind(this));
+  }
+
 }
 
 

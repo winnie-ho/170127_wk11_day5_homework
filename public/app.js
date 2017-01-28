@@ -1,6 +1,25 @@
 var app = function(){
   var url = "https://www.strava.com/api/v3/athlete/activities?per_page=10&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
   makeRequest(url, requestComplete)
+
+
+    var centre = {lat: 55.9533, lng:-3.1883 };
+    var mapDiv = document.querySelector("#main-map");
+    var mainMap = new MapWrapper(centre, 12 );
+    var centreMarker = mainMap.addMarker(centre);
+    mainMap.addClickEvent();
+    mainMap.addInfoWindow(mainMap, centreMarker, "This is Edinburgh!");
+
+
+
+  
+  var handleNearMeButton = function(){
+    console.log("Near Me button clicked");
+    mainMap.geoLocate();
+  }
+
+  var nearMeButton = document.querySelector("#near-me");
+  nearMeButton.onclick = handleNearMeButton;
 }
 
 window.onload = app;
@@ -20,17 +39,12 @@ var requestComplete = function (){
   ResultInfo = JSON.parse(jsonString);
   var resultArray = ResultInfo;
   showRun(resultArray);
-  createMainMap();
 }
 
-var createMainMap = function(){
-  var centre = {lat: 55.9533, lng:-3.1883 };
-  var mapDiv = document.querySelector("#main-map");
-  var mainMap = new MapWrapper(centre, 12 );
-  var centreMarker = mainMap.addMarker(centre);
-  mainMap.addClickEvent();
-  mainMap.addInfoWindow(mainMap, centreMarker, "This is Edinburgh!");
-}
+
+
+
+
 // var handleSearch = function(){
 //   var searchQuery = document.getElementById("search-query");
 //   var albumsDiv = document.getElementById("albums");
@@ -116,33 +130,7 @@ var addMarker = function(coords){
   return marker;
 }
 
-// var geoFindMe = function(){
-//   var output = document.querySelector("#near-me");
 
-//   if (!navigator.geolocation){
-//     output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
-//     return;
-//   }
-//   function success(position) {
-//     var latitude  = position.coords.latitude;
-//     var longitude = position.coords.longitude;
-
-//     output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
-//   }
-
-//   function error() {
-//     output.innerHTML = "Unable to retrieve your location";
-//   }
-//     var prettyCoords = "{lat:" + latitude + ", lng:" + longitude"}"
-//     console.log(prettyCoords);
-//     addMarker(prettyCoords);
-
-//     {lat: 55.9533, lng:-3.1883 }
-
-//   output.innerHTML = "<p>Locating…</p>";
-
-//   navigator.geolocation.getCurrentPosition(success, error);
-// }
 
 
 
