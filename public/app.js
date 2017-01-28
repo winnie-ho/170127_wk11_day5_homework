@@ -55,6 +55,14 @@ var showWeather = function(resultWeather){
   weatherDiv.appendChild(wind);
 
 }
+
+var requestCompleteWeatherForecast = function (){
+  if (this.status !== 200) return;
+  var jsonString = this.responseText;
+  resultWeatherForecast = JSON.parse(jsonString);
+  var resultArray = resultWeatherForecast;
+  console.log(resultArray);
+}
 // var handleSearch = function(){
 //   var searchQuery = document.getElementById("search-query");
 //   var albumsDiv = document.getElementById("albums");
@@ -71,6 +79,11 @@ var showWeather = function(resultWeather){
 //   searchBox.value = text;
 // }
 
+// var showWeatherForecast = function(resultWeatherForecast){
+//   var forecastDiv = document.querySelector("#forecast");
+//   forecast = document.createElement("p");
+//   forecast.innerText = resultWeatherForecast.
+// }
 
 var showRun = function(resultArray){
 console.log(resultArray);
@@ -129,6 +142,9 @@ var app = function(){
 
   var urlWeather = "http://api.openweathermap.org/data/2.5/weather?q=Edinburgh,uk&appid=b7114aca731d927ad002d0a518f38dfe"
   makeRequest(urlWeather, requestCompleteWeather);
+
+  var urlWeatherForecast = "http://api.openweathermap.org/data/2.5/forecast?id=2650225&appid=b7114aca731d927ad002d0a518f38dfe"
+  makeRequest(urlWeatherForecast, requestCompleteWeatherForecast);
 
 }
 
