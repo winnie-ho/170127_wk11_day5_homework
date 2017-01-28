@@ -100,22 +100,28 @@ button:hover{
 
 
 #main{
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
+  justify-content: space-around;
+  align-content: flex-start;
+  align-items: flex-start;
   height: 500px;
 }
 
 #runs{
+  border: solid 1px #1F618D;
+  border-radius: 2px;
   margin: auto;
   display: inline-flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: left;
-  width: 320px;
+  width: 327px;
   height: 500px;
   overflow-y: scroll;
   overflow-x: hidden;
   padding: 5px;
+  margin: 10px;
 }
 
 #parent_box{
@@ -145,8 +151,11 @@ button:hover{
 }
 
 #main-map{
-  width: 650px;
+  width: 800px;
   height: 100%;
+  padding: 5px;
+  margin: 10px;
+
 }
 
 #weather{
@@ -158,24 +167,27 @@ button:hover{
 }
 
 #near-runs{
-  border: solid 1px #1F618D;
-  border-radius: 2px;
-  width: 400px;
-  display: flex;
+  width: 200px;
+  height: 500px;
+  display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 5px;
   margin: 5px;
-
   overflow-y: scroll;
   overflow-x: hidden;
 }
 
 #near-me-div{
+  border: solid 1px #1F618D;
+  border-radius: 2px;
   margin: 5px;
-  width: 150px;
+  width: 250px;
+  height: 500px;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: center;
+  padding: 5px;
+  margin: 10px;
 }
