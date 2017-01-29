@@ -29,7 +29,30 @@ var requestComplete = function (){
 
   showRun(resultArray);
   showWeather(resultWeather)
+
+
+  var dayArray = popDayArray(ResultInfo);
+  var distanceArray = popDistanceArray(ResultInfo);
+  new ColumnChart("THE MILES SO FAR...", "Distance (km)", distanceArray, dayArray);
 }
+
+var popDayArray = function(ResultInfo){
+  var dayArray = [];
+  for(var run of ResultInfo){
+    dayArray.push(run.start_date.substr(0,10));
+  }
+  return dayArray;
+}
+
+var popDistanceArray = function(ResultInfo){
+  var distanceArray = [];
+  for(var run of ResultInfo){
+    distanceArray.push(run.distance/1000);
+    console.log(run.distance);
+  }
+  return distanceArray;
+}
+
 
 
 var requestCompleteWeather = function (){
@@ -137,7 +160,7 @@ console.log(resultArray);
 
 //Running the app
 var app = function(){
-  var url = "https://www.strava.com/api/v3/athlete/activities?per_page=50&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
+  var url = "https://www.strava.com/api/v3/athlete/activities?per_page=200&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
   makeRequest(url, requestComplete)
 
   var urlWeather = "http://api.openweathermap.org/data/2.5/weather?q=Edinburgh,uk&appid=b7114aca731d927ad002d0a518f38dfe"
