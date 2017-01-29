@@ -136,7 +136,7 @@ console.log(resultArray);
     sectionBox.appendChild(dateTitle);
 
     var dtp = document.createElement("p");
-    dtp.innerText = "Distance: " + ((run.distance)/1000).toFixed(2) + " km   Time: " + ((run.moving_time)/60).toFixed(2)+ "mins    Pace: " + run.average_speed;
+    dtp.innerText = "Distance: " + ((run.distance)/1000).toFixed(2) + " km   Time: " + ((run.moving_time)/60).toFixed(2)+ "mins    Pace: " + run.average_speed + "m/s";
     sectionBox.appendChild(dtp);
 
     // var startPoint = document.createElement("p");
