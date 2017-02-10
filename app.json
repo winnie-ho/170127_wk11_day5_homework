@@ -1,0 +1,6 @@
+{
+    "name": "winsruns",
+    "description": "homework dashboard task",
+    "repository": "git@github.com:winnie-ho/170127_wk11_day5_homework.git" ,
+    "keywords": "["node", "express", "static"]",
+}
