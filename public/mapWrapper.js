@@ -56,6 +56,8 @@ MapWrapper.prototype = {
           var nearRunsInfo = document.createElement("p");
           nearRunsInfo.innerText = run.name + " | " + ((run.distance/1000).toFixed(2)) + "km";
           nearRuns.appendChild(nearRunsInfo);
+          var division = document.createElement("hr");
+          nearRuns.appendChild(division);
           console.log(run.start_latlng[0])
           console.log(position.coords.latitude);
           console.log(run.start_latlng[0]-position.coords.latitude)
@@ -67,6 +69,8 @@ MapWrapper.prototype = {
           var nearRunsInfo = document.createElement("p");
           nearRunsInfo.innerText = run.name + " | " + ((run.distance/1000).toFixed(2)) + "km";
           nearRuns.appendChild(nearRunsInfo);
+          var division = document.createElement("hr");
+          nearRuns.appendChild(division);
           console.log(run.start_latlng[1])
           console.log(position.coords.longitude);
           console.log(run.start_latlng[1]-position.coords.longitude);

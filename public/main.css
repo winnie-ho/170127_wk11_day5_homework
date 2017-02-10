@@ -24,7 +24,7 @@ h1{
   font-family: "Tradizional DEMO";
   font-size: 80px;
   text-align: left;
-  color: #1F618D  ;
+  color: #1F618D;
 }
 
 h2{
@@ -79,14 +79,14 @@ button:hover{
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: flex-start;
-  height: 300px;
+  align-items: center;
+  height: 200px;
   text-align: center;
 }
 
 
 #image{
-  margin: 10px;
+  margin: 20px;
   border-radius: 150px;
 }
 
@@ -123,7 +123,7 @@ button:hover{
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: left;
-  width: 327px;
+  width: 380px;
   height: 500px;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -137,7 +137,7 @@ button:hover{
   align-content: flex-start;
   justify-content: flex-start;
   align-items:center;
-  width: 300px;
+  width: 287px;
   height: 80px;
   border: solid 1px #1F618D;
   border-radius: 2px;
