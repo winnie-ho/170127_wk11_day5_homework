@@ -163,10 +163,10 @@ var app = function(){
   var url = "https://www.strava.com/api/v3/athlete/activities?per_page=200&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
   makeRequest(url, requestComplete)
 
-  var urlWeather = "http://api.openweathermap.org/data/2.5/weather?q=Edinburgh,uk&appid=b7114aca731d927ad002d0a518f38dfe"
+  var urlWeather = "//api.openweathermap.org/data/2.5/weather?q=Edinburgh,uk&appid=b7114aca731d927ad002d0a518f38dfe"
   makeRequest(urlWeather, requestCompleteWeather);
 
-  var urlWeatherForecast = "http://api.openweathermap.org/data/2.5/forecast?id=2650225&appid=b7114aca731d927ad002d0a518f38dfe"
+  var urlWeatherForecast = "//api.openweathermap.org/data/2.5/forecast?id=2650225&appid=b7114aca731d927ad002d0a518f38dfe"
   makeRequest(urlWeatherForecast, requestCompleteWeatherForecast);
 
 }
