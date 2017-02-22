@@ -18,7 +18,16 @@ var requestComplete = function (){
     var mapDiv = document.querySelector("#main-map");
     mapDiv.innerHTML = "";
     var mainMap = new MapWrapper(centre, 14);
-  
+
+  var handleViewButton = function(){
+    console.log("viewbutton clicked");
+    var runSelected = JSON.parse(event.target.value);
+    var runLine = runSelected.map.summary_polyline;
+    var startPoint = {lat: ((runSelected.start_latlng[0] + runSelected.end_latlng[0])/2), lng: ((runSelected.start_latlng[1] + runSelected.end_latlng[1])/2)};
+    mainMap.addPolyline(runLine, startPoint);
+  }
+
+
   var handleNearMeButton = function(){
     console.log("Near Me button clicked");
     mainMap.geoLocate(resultArray);
@@ -27,7 +36,7 @@ var requestComplete = function (){
   var nearMeButton = document.querySelector("#near-me");
   nearMeButton.onclick = handleNearMeButton;
 
-  showRun(resultArray);
+  showRun(resultArray, handleViewButton);
   showWeather(resultWeather)
 
 
@@ -48,7 +57,6 @@ var popDistanceArray = function(ResultInfo){
   var distanceArray = [];
   for(var run of ResultInfo){
     distanceArray.push(run.distance/1000);
-    console.log(run.distance);
   }
   return distanceArray;
 }
@@ -76,7 +84,6 @@ var showWeather = function(resultWeather){
   var wind = document.createElement("p");
   wind.innerText = "Wind: " + (resultWeather.wind.speed) + "m/s"
   weatherDiv.appendChild(wind);
-
 }
 
 var requestCompleteWeatherForecast = function (){
@@ -108,12 +115,11 @@ var requestCompleteWeatherForecast = function (){
 //   forecast.innerText = resultWeatherForecast.
 // }
 
-var showRun = function(resultArray){
-console.log(resultArray);
+var showRun = function(resultArray, handleViewButton){
+  console.log(resultArray);
   var runsDiv = document.querySelector("#runs");
     runsDiv.innerHTML = "";
     resultArray.forEach(function(run){
-
     var parentBox = document.createElement("div")
     parentBox.id = "parent_box"
     runsDiv.appendChild(parentBox);
@@ -150,10 +156,17 @@ console.log(resultArray);
 
     var detailButton = document.createElement("button");
     detailButton.innerHTML = "View";
+    detailButton.value = JSON.stringify(run);
     detailButton.style.color = "white";
     sectionBox.appendChild(detailButton);
-    });
+    detailButton.onclick = handleViewButton;
+
+    
+  });
+
 }
+
+
 
 
 
@@ -163,10 +176,10 @@ var app = function(){
   var url = "https://www.strava.com/api/v3/athlete/activities?per_page=200&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
   makeRequest(url, requestComplete)
 
-  var urlWeather = "//api.openweathermap.org/data/2.5/weather?q=Edinburgh,uk&appid=b7114aca731d927ad002d0a518f38dfe"
+  var urlWeather = "http://api.openweathermap.org/data/2.5/weather?q=Edinburgh,uk&appid=b7114aca731d927ad002d0a518f38dfe"
   makeRequest(urlWeather, requestCompleteWeather);
 
-  var urlWeatherForecast = "//api.openweathermap.org/data/2.5/forecast?id=2650225&appid=b7114aca731d927ad002d0a518f38dfe"
+  var urlWeatherForecast = "http://api.openweathermap.org/data/2.5/forecast?id=2650225&appid=b7114aca731d927ad002d0a518f38dfe"
   makeRequest(urlWeatherForecast, requestCompleteWeatherForecast);
 
 }

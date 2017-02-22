@@ -31,6 +31,26 @@ MapWrapper.prototype = {
   //   }.bind(this));
   // },
 
+
+addPolyline: function(run,startPoint){
+
+    var line = new google.maps.Polygon({
+      path: google.maps.geometry.encoding.decodePath(run),
+      geodesic: true,
+      strokeColor: '#FF0000',
+      strokeOpacity: 1.0,
+      strokeWeight: 2,
+      fillOpacity: 0.5,
+      map: this.googleMap
+    });
+
+    line.setMap(null);
+    line.setMap(this.googleMap);
+  this.googleMap.setCenter(startPoint); 
+
+  },
+
+
   addInfoWindow: function(map, marker, contentString){
     var infoWindow = new google.maps.InfoWindow({
           content: contentString
@@ -56,12 +76,10 @@ MapWrapper.prototype = {
           var nearRunsInfo = document.createElement("p");
           nearRunsInfo.innerText = run.name + " | " + ((run.distance/1000).toFixed(2)) + "km";
           nearRuns.appendChild(nearRunsInfo);
-          var division = document.createElement("hr");
-          nearRuns.appendChild(division);
-          console.log(run.start_latlng[0])
-          console.log(position.coords.latitude);
-          console.log(run.start_latlng[0]-position.coords.latitude)
-          console.log(run.name + "added");
+          // console.log(run.start_latlng[0])
+          // console.log(position.coords.latitude);
+          // console.log(run.start_latlng[0]-position.coords.latitude)
+          // console.log(run.name + "added");
 
         } else if (Math.sqrt(Math.pow((run.start_latlng[1] - position.coords.longitude),2)) < 0.005){
           var runMarker = this.addMarker({lat: run.start_latlng[0], lng: run.start_latlng[1]});
@@ -69,12 +87,10 @@ MapWrapper.prototype = {
           var nearRunsInfo = document.createElement("p");
           nearRunsInfo.innerText = run.name + " | " + ((run.distance/1000).toFixed(2)) + "km";
           nearRuns.appendChild(nearRunsInfo);
-          var division = document.createElement("hr");
-          nearRuns.appendChild(division);
-          console.log(run.start_latlng[1])
-          console.log(position.coords.longitude);
-          console.log(run.start_latlng[1]-position.coords.longitude);
-          console.log(run.name + "added");
+          // console.log(run.start_latlng[1])
+          // console.log(position.coords.longitude);
+          // console.log(run.start_latlng[1]-position.coords.longitude);
+          // console.log(run.name + "added");
         }
       }
     }.bind(this)); 
