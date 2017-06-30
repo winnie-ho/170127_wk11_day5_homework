@@ -8,6 +8,13 @@ var makeRequest = function (url, callback) {
   request.send();
 }
 
+var makeAuthRequest = function (url, callback) {
+  var request = new XMLHttpRequest();
+  request.open("GET", url);
+  request.onload = callback;
+  request.send();
+}
+
 var requestComplete = function (){
   if (this.status !== 200) return;
   var jsonString = this.responseText;
@@ -175,6 +182,10 @@ var showRun = function(resultArray, handleViewButton){
 var app = function(){
   var url = "https://www.strava.com/api/v3/athlete/activities?per_page=200&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
   makeRequest(url, requestComplete)
+
+//weather
+  // var url = "https://www.strava.com/api/v3/activities/123"
+  // makeRequest(url, requestComplete)
 
   var urlWeather = "http://api.openweathermap.org/data/2.5/weather?q=Edinburgh,uk&appid=b7114aca731d927ad002d0a518f38dfe"
   makeRequest(urlWeather, requestCompleteWeather);

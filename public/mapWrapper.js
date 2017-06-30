@@ -32,24 +32,20 @@ MapWrapper.prototype = {
   // },
 
 
-addPolyline: function(run,startPoint){
-
-    var line = new google.maps.Polygon({
+  addPolyline: function(run,startPoint){
+    var line = new google.maps.Polyline({
       path: google.maps.geometry.encoding.decodePath(run),
       geodesic: true,
       strokeColor: '#FF0000',
       strokeOpacity: 1.0,
       strokeWeight: 2,
-      fillOpacity: 0.5,
       map: this.googleMap
     });
 
     line.setMap(null);
     line.setMap(this.googleMap);
-  this.googleMap.setCenter(startPoint); 
-
+    this.googleMap.setCenter(startPoint); 
   },
-
 
   addInfoWindow: function(map, marker, contentString){
     var infoWindow = new google.maps.InfoWindow({
