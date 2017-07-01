@@ -1,13 +1,9 @@
-@font-face {
-    font-family: Tahoma;
-/*    src: url("/resources/tradizionalDEMO.ttf");
-*/}
 
 body{
   justify-content: center;
   align-content: center;
   background-color: #fff;
-  font-family: "Tahoma";
+  font-family: "gill sans";
 }
 
 main{
