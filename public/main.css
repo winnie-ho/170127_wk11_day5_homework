@@ -1,13 +1,13 @@
 @font-face {
-    font-family: Tradizional DEMO;
-    src: url("/resources/tradizionalDEMO.ttf");
-}
+    font-family: Tahoma;
+/*    src: url("/resources/tradizionalDEMO.ttf");
+*/}
 
 body{
   justify-content: center;
   align-content: center;
   background-color: #fff;
-  font-family: "Tradizional DEMO";
+  font-family: "Tahoma";
 }
 
 main{
@@ -25,14 +25,14 @@ input{
 
 
 h1{
-  font-size: 80px;
+  font-size: 60px;
   text-align: left;
   color: #1F618D;
   margin: 0px;
 }
 
 h2{
-  font-size: 40px;
+  font-size: 30px;
   text-align: left;
   color: #1F618D;
   margin-right: 10px;
