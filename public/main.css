@@ -1,6 +1,6 @@
 @font-face {
     font-family: Tradizional DEMO;
-    src: url("/resources/tradizionalDEMO.otf") format ("opentype");
+    src: url("/resources/tradizionalDEMO.ttf");
 }
 
 body{
