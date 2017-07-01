@@ -1,13 +1,10 @@
-@font-face {
-    font-family: Tradizional DEMO;
-    src: url("/resources/Tradizional DEMO.otf");
-}
 
 body{
   justify-content: center;
   align-content: center;
   background-color: #fff;
   font-family: "Tradizional DEMO";
+  display: block;
 }
 
 main{
@@ -202,10 +199,7 @@ button:hover{
   margin: 10px;
 }
 
-@media all and (max-width: 700px) {
-  body{
-    display: block;
-  }
+
 
   #header {
     display: block;
@@ -217,7 +211,7 @@ button:hover{
   }
 
   #info{
-    height: 40px;
+    height: 100px;
     width: auto;
   }
 
