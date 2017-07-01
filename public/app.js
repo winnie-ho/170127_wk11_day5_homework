@@ -79,18 +79,15 @@ var requestCompleteWeather = function (){
 }
 
 var showWeather = function(resultWeather){
-  var weatherDiv = document.querySelector("#weather");
-  var description = document.createElement("h3");
-  description.innerText = resultWeather.weather[0].description;
-  weatherDiv.appendChild(description);
+  var temperature = document.querySelector("#temperature");
+  temperature.innerText = (resultWeather.main.temp-273).toFixed(0) + "°C"
+  
+  var wind = document.querySelector("#wind");
+  wind.innerText = resultWeather.wind.speed + "m/s"
 
-  var temp = document.createElement("p");
-  temp.innerText = "Temperature: " + (resultWeather.main.temp-273).toFixed(0) + "°C"
-  weatherDiv.appendChild(temp);
-
-  var wind = document.createElement("p");
-  wind.innerText = "Wind: " + (resultWeather.wind.speed) + "m/s"
-  weatherDiv.appendChild(wind);
+  
+  var forecast = document.querySelector("#forecast");
+  forecast.innerText = resultWeather.weather[0].description;
 }
 
 var requestCompleteWeatherForecast = function (){
