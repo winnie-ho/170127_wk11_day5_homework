@@ -26,25 +26,25 @@ var requestComplete = function (){
     mapDiv.innerHTML = "";
     var mainMap = new MapWrapper(centre, 14);
 
-var handleViewButton = function(){
-  console.log("viewbutton clicked");
-  var runSelected = JSON.parse(event.target.value);
-  var runLine = runSelected.map.summary_polyline;
-  var startPoint = {lat: ((runSelected.start_latlng[0] + runSelected.end_latlng[0])/2), lng: ((runSelected.start_latlng[1] + runSelected.end_latlng[1])/2)};
-  mainMap.addPolyline(runLine, startPoint);
-}
+
+  var handleViewButton = function(){
+    console.log("viewbutton clicked");
+    var runSelected = JSON.parse(event.target.value);
+    var runLine = runSelected.map.summary_polyline;
+    var startPoint = {lat: ((runSelected.start_latlng[0] + runSelected.end_latlng[0])/2), lng: ((runSelected.start_latlng[1] + runSelected.end_latlng[1])/2)};
+    mainMap.addPolyline(runLine, startPoint);
+  }
 
 
-var handleNearMeButton = function(){
-  console.log("Near Me button clicked");
-  mainMap.geoLocate(resultArray);
-}
+  var handleNearMeButton = function(){
+    console.log("Near Me button clicked");
+    mainMap.geoLocate(resultArray);
+  }
 
   var nearMeButton = document.querySelector("#near-me");
   nearMeButton.onclick = handleNearMeButton;
 
   showRun(resultArray, handleViewButton);
-  showWeather(resultWeather)
 
 
   var dayArray = popDayArray(ResultInfo);
@@ -75,7 +75,8 @@ var requestCompleteWeather = function (){
   var jsonString = this.responseText;
   resultWeather = JSON.parse(jsonString);
   var resultArray = resultWeather;
-  console.log(resultArray);
+  console.log("complete weather", resultArray);
+  showWeather(resultWeather);
 }
 
 var showWeather = function(resultWeather){
@@ -92,17 +93,66 @@ var showWeather = function(resultWeather){
   forecast.innerText = resultWeather.weather[0].description;
 }
 
-var moreWeather = function(){
-  console.log("More weather button clicked");
-}
-
-var requestCompleteWeatherForecast = function (){
+var requestWeekWeatherForecast = function (){
   if (this.status !== 200) return;
   var jsonString = this.responseText;
-  resultWeatherForecast = JSON.parse(jsonString);
-  var resultArray = resultWeatherForecast;
-  console.log(resultArray);
+  resultWeekWeatherForecast = JSON.parse(jsonString);
+  var resultArray = resultWeekWeatherForecast;
+  console.log("week weather forecast", resultArray);
+  showWeekWeatherForecast(resultArray);
 }
+
+var showWeekWeatherForecast = function(resultWeekWeatherForecast){
+  console.log("WEEK WEATHER", resultWeekWeatherForecast.list);
+
+  for(var slot of resultWeekWeatherForecast.list){
+    var weekWeatherDiv = document.querySelector("#week-forecast");
+    var dateTime = document.createElement("div");
+    var time = document.createElement("p");
+    var description=document.createElement("div");
+    description.id="parent_box";
+    var forecast=document.createElement("p");
+    var temperature=document.createElement("p");
+    var wind=document.createElement("p");
+
+
+
+    dateTime.innerHTML=(slot.dt_txt).substr(0,10);
+    time.innerText=(slot.dt_txt).substr(11,16);
+    forecast.innerText=(slot.weather[0].description);
+    temperature.innerText=(slot.main.temp-273).toFixed(0) + "°C";
+    wind.innerText=((slot.wind.speed)*2.2369362920544).toFixed(0) + "mph";
+
+
+    description.appendChild(time);
+    description.appendChild(forecast);
+    description.appendChild(temperature);
+    description.appendChild(wind);
+    dateTime.appendChild(description);
+    weekWeatherDiv.appendChild(dateTime);
+  }
+
+
+
+
+
+}
+
+var moreWeather = function(){
+    var weekWeatherDiv = document.getElementById('week-forecast');
+    var weatherOption = document.getElementById('weather-option');
+
+    if (weekWeatherDiv.style.display === 'none') {
+        weekWeatherDiv.style.display = 'block';
+        weatherOption.innerText="–"
+    } else {
+        weekWeatherDiv.style.display = 'none';
+        weatherOption.innerText="+"
+    }
+}
+
+
+
 // var handleSearch = function(){
 //   var searchQuery = document.getElementById("search-query");
 //   var albumsDiv = document.getElementById("albums");
@@ -119,11 +169,7 @@ var requestCompleteWeatherForecast = function (){
 //   searchBox.value = text;
 // }
 
-// var showWeatherForecast = function(resultWeatherForecast){
-//   var forecastDiv = document.querySelector("#forecast");
-//   forecast = document.createElement("p");
-//   forecast.innerText = resultWeatherForecast.
-// }
+
 
 var showRun = function(resultArray, handleViewButton){
   console.log(resultArray);
@@ -193,8 +239,8 @@ var app = function(){
   var urlWeather = "http://api.openweathermap.org/data/2.5/weather?q=Edinburgh,uk&appid=b7114aca731d927ad002d0a518f38dfe"
   makeRequest(urlWeather, requestCompleteWeather);
 
-  var urlWeatherForecast = "http://api.openweathermap.org/data/2.5/forecast?id=2650225&appid=b7114aca731d927ad002d0a518f38dfe"
-  makeRequest(urlWeatherForecast, requestCompleteWeatherForecast);
+  var urlWeekWeatherForecast = "http://api.openweathermap.org/data/2.5/forecast?id=2650225&appid=b7114aca731d927ad002d0a518f38dfe"
+  makeRequest(urlWeekWeatherForecast, requestWeekWeatherForecast);
 
 }
 
