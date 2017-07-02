@@ -168,7 +168,7 @@ var showRun = function(resultArray, handleViewButton){
     detailButton.innerHTML = "View";
     detailButton.value = JSON.stringify(run);
     detailButton.style.color = "white";
-    sectionBox.appendChild(detailButton);
+    parentBox.appendChild(detailButton);
     detailButton.onclick = handleViewButton;
 
     
