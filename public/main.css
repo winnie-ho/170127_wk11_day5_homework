@@ -4,7 +4,8 @@ body{
   align-content: center;
   background-color: #fff;
   font-family: "gill sans";
-  color: white;
+  color: #1F618D;
+  margin: 0px;
 }
 
 main{
@@ -24,27 +25,23 @@ input{
 h1{
   font-size: 60px;
   text-align: left;
-  color: #1F618D;
   margin: 0px;
 }
 
 h2{
   font-size: 30px;
   text-align: left;
-  color: #1F618D;
   margin-right: 10px;
 }
 
 h3{
   font-family: "gill sans";
-  color: #1F618D;
   font-size: 12px;
 }
 
 p{
   font-family: "gill sans";
-  color: #1F618D;
-  font-size: 12px;
+  font-size: 8px;
 }
 
 a{
@@ -88,14 +85,13 @@ button:hover{
 .image-float{
   position: absolute;
   top: 0px;
-  left: 0px;
 }
 
-.title{
+#title{
   color: white;
   font-size: 30px;
-  top: 10px;
-  left: 20px;
+  top: 5px;
+  left: 10px;
 }
 
 
@@ -103,7 +99,6 @@ img{
   position: relative;
   max-width:100%;
   max-height:100%;
-  border-radius: 5px;
 }
 
 .icon{
@@ -112,7 +107,26 @@ img{
   margin: 0 5px;
 }
 
+#weather{
+  padding: 10px;
+  right: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
+}
+
+.data{
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  margin: 5px;
+}
+
+#totals{
+  top: 100px;
+  left: 50px;
+}
 
 
 #distance{
@@ -120,25 +134,19 @@ img{
   height: 300px;
 }
 
-
-#info{
-  height: 70px;
-  display: flex;
-  flex-direction: row;
-  align-content: flex-start;
-  justify-content: flex-start;
-}
-
-#weather{
+.option-more{
   padding: 5px;
-  top: 35px;
-  text-align: left;
+  font-size: 20px;
+  cursor: pointer;
 }
 
+.option-more:hover{
+  padding: 5px;
+  color: orange;
+}
 
 #main{
   display: flex;
-  flex-direction: row;
   justify-content: space-around;
   align-content: flex-start;
   align-items: flex-start;

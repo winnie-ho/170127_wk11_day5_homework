@@ -26,19 +26,19 @@ var requestComplete = function (){
     mapDiv.innerHTML = "";
     var mainMap = new MapWrapper(centre, 14);
 
-  var handleViewButton = function(){
-    console.log("viewbutton clicked");
-    var runSelected = JSON.parse(event.target.value);
-    var runLine = runSelected.map.summary_polyline;
-    var startPoint = {lat: ((runSelected.start_latlng[0] + runSelected.end_latlng[0])/2), lng: ((runSelected.start_latlng[1] + runSelected.end_latlng[1])/2)};
-    mainMap.addPolyline(runLine, startPoint);
-  }
+var handleViewButton = function(){
+  console.log("viewbutton clicked");
+  var runSelected = JSON.parse(event.target.value);
+  var runLine = runSelected.map.summary_polyline;
+  var startPoint = {lat: ((runSelected.start_latlng[0] + runSelected.end_latlng[0])/2), lng: ((runSelected.start_latlng[1] + runSelected.end_latlng[1])/2)};
+  mainMap.addPolyline(runLine, startPoint);
+}
 
 
-  var handleNearMeButton = function(){
-    console.log("Near Me button clicked");
-    mainMap.geoLocate(resultArray);
-  }
+var handleNearMeButton = function(){
+  console.log("Near Me button clicked");
+  mainMap.geoLocate(resultArray);
+}
 
   var nearMeButton = document.querySelector("#near-me");
   nearMeButton.onclick = handleNearMeButton;
@@ -90,6 +90,10 @@ var showWeather = function(resultWeather){
   
   const forecast = document.querySelector("#forecast");
   forecast.innerText = resultWeather.weather[0].description;
+}
+
+var moreWeather = function(){
+  console.log("More weather button clicked");
 }
 
 var requestCompleteWeatherForecast = function (){
