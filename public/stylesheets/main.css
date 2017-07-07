@@ -153,16 +153,6 @@ img{
   color: #3E9FDF;
 }
 
-#week-forecast{
-  display: flex;
-  flex-direction: row;
-  border: 1px solid #1F618D;
-  border-radius: 2px;
-  margin: 7px;
-  padding: 5px;
-  transition: border-color 1s, color 1s, opacity 1s;
-}
-
 #main{
   margin: 5px;
   display: flex;

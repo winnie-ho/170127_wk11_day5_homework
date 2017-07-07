@@ -3,16 +3,26 @@
   <head>
     <title>WIN RUNS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="./stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="./stylesheets/week-forecast.css">
+
+
 
     <script src = "app.js"></script>
-    <script type = "text/javascript" src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCxXMhBSrjeLubVwNJzRAFZedtQGdiCqiI&libraries=geometry"></script>
-    <script src = "app.js"></script>
-    <script src = "mapWrapper.js"></script>
+    <script src = "./components/weather.js"></script>
+    <script src = "./components/week-forecast.js"></script>
+    <script src = "./components/run-data.js"></script>
+    <script src = "./components/columnChart.js"></script>
+    <script src = "./components/mapWrapper.js"></script>
+    
     <script src = "http://code.highcharts.com/highcharts.js"></script>
-    <script src = "columnChart.js"></script>
+    <script type = "text/javascript" src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCxXMhBSrjeLubVwNJzRAFZedtQGdiCqiI&libraries=geometry"></script>
+    
   </head>
   <body> 
+
+
+
     <div id="header">
       <img src="./resources/DC_26.jpg" />
       <span id="title" class="image-float">WIN RUNS</span>
