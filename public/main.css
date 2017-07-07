@@ -125,6 +125,11 @@ img{
   margin: 5px;
 }
 
+#date-time{
+  font-size: 12px;
+  text-align: center;
+}
+
 #totals{
   top: 100px;
   left: 50px;
@@ -149,11 +154,13 @@ img{
 }
 
 #week-forecast{
+  display: flex;
+  flex-direction: row;
   border: 1px solid #1F618D;
   border-radius: 2px;
   margin: 7px;
   padding: 5px;
-  transition: border-color 0.15s, color 0.15s, opacity 0.15s;
+  transition: border-color 1s, color 1s, opacity 1s;
 }
 
 #main{
@@ -183,8 +190,7 @@ img{
 #parent_box{
   background-color: #1F618D;
   color: white;
-  display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-content: center;
   justify-content: space-between;
   align-items: center;

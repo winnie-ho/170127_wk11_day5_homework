@@ -108,6 +108,7 @@ var showWeekWeatherForecast = function(resultWeekWeatherForecast){
   for(var slot of resultWeekWeatherForecast.list){
     var weekWeatherDiv = document.querySelector("#week-forecast");
     var dateTime = document.createElement("div");
+    dateTime.id = "date-time"
     var time = document.createElement("p");
     var description=document.createElement("div");
     description.id="parent_box";
@@ -143,7 +144,7 @@ var moreWeather = function(){
     var weatherOption = document.getElementById('weather-option');
 
     if (weekWeatherDiv.style.display === 'none') {
-        weekWeatherDiv.style.display = 'block';
+        weekWeatherDiv.style.display = 'flex';
         weatherOption.innerText="–"
     } else {
         weekWeatherDiv.style.display = 'none';
