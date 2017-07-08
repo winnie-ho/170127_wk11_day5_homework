@@ -1,0 +1,32 @@
+#weather-now{
+  padding: 10px;
+  right: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.data{
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  margin: 5px;
+}
+
+.icon{
+  width: 20px;
+  height: auto;
+  margin: 0 5px;
+}
+
+.option-more{
+  padding: 5px;
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.option-more:hover{
+  padding: 5px;
+  color: #3E9FDF;
+}

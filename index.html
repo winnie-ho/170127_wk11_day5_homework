@@ -3,14 +3,15 @@
   <head>
     <title>WIN RUNS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!--import style sheets -->
     <link rel="stylesheet" type="text/css" href="./stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="./components/weather-now/weather-now.css">
     <link rel="stylesheet" type="text/css" href="./stylesheets/week-forecast.css">
 
-    <link rel="import" href="./components/weather-now.html">
-
-
+    <!--import js files-->
     <script src = "app.js"></script>
-    <script src = "./components/weather-now.js"></script>
+    <script src = "./components/weather-now/weather-now.js"></script>
     <script src = "./components/weather-forecast.js"></script>
     <script src = "./components/runs.js"></script>
     <script src = "./components/columnChart.js"></script>
@@ -20,19 +21,19 @@
     <script type = "text/javascript" src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCxXMhBSrjeLubVwNJzRAFZedtQGdiCqiI&libraries=geometry"></script>
     <script src="https://www.w3schools.com/lib/w3.js"></script>
   </head>
+
+
+
   <body> 
-
-
     <div id="header">
       <img src="./resources/DC_26.jpg" />
       <span id="title" class="image-float">WIN RUNS</span>
     </div>
 
-    <div w3-include-html="./components/weather-now.html"></div>
+    <div w3-include-html="./components/weather-now/weather-now.html" id="weather-now"></div>
+    <div w3-include-html="./components/weather-forecast.html" id="week-forecast" style="display: none"></div>
 
-    <div id="week-forecast" style="display: none">
 
-    </div>
 
 
     <div id = "main">

@@ -103,20 +103,9 @@ img{
   max-height:100%;
 }
 
-.icon{
-  width: 20px;
-  height: auto;
-  margin: 0 5px;
-}
 
-#weather{
-  padding: 10px;
-  right: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 
-}
+
 
 
 
@@ -136,17 +125,7 @@ img{
   height: 300px;
 }
 
-.option-more{
-  padding: 5px;
-  font-size: 20px;
-  cursor: pointer;
-  font-weight: bold;
-}
 
-.option-more:hover{
-  padding: 5px;
-  color: #3E9FDF;
-}
 
 #main{
   margin: 5px;
