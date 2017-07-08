@@ -7,3 +7,10 @@
   padding: 5px;
   transition: border-color 1s, color 1s, opacity 1s;
 }
+
+.data{
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  margin: 5px;
+}

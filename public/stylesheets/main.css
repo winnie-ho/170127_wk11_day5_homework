@@ -118,12 +118,7 @@ img{
 
 }
 
-.data{
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  margin: 5px;
-}
+
 
 #date-time{
   font-size: 12px;

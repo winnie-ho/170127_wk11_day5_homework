@@ -1,13 +1,11 @@
+var urlWeatherForecast = "http://api.openweathermap.org/data/2.5/forecast?id=2650225&appid=b7114aca731d927ad002d0a518f38dfe"
 
-var requestWeekWeatherForecast = function (){
+var weatherForecastResponse= function (){
   if (this.status !== 200) return;
-  var jsonString = this.responseText;
-  resultWeekWeatherForecast = JSON.parse(jsonString);
-  var resultArray = resultWeekWeatherForecast;
-  console.log("week weather forecast", resultArray);
-  showWeekWeatherForecast(resultArray);
+  result = JSON.parse(this.responseText);
+  console.log("week weather forecast", result);
+  showWeekWeatherForecast(result);
 }
-
 
 var showWeekWeatherForecast = function(resultWeekWeatherForecast){
   console.log("WEEK WEATHER", resultWeekWeatherForecast.list);

@@ -1,9 +1,13 @@
+var urlRuns = "https://www.strava.com/api/v3/athlete/activities?per_page=200&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
+
 var requestComplete = function (){
   if (this.status !== 200) return;
-  var jsonString = this.responseText;
-  ResultInfo = JSON.parse(jsonString);
-  var resultArray = ResultInfo;
+  result = JSON.parse(this.responseText);
+  console.log(result);
+  showRun(result, handleViewButton);
   
+
+
     var centre = {lat: 55.9533, lng:-3.1883 };
     var mapDiv = document.querySelector("#main-map");
     mapDiv.innerHTML = "";
@@ -21,17 +25,16 @@ var requestComplete = function (){
 
   var handleNearMeButton = function(){
     console.log("Near Me button clicked");
-    mainMap.geoLocate(resultArray);
+    mainMap.geoLocate(result);
   }
 
   var nearMeButton = document.querySelector("#near-me");
   nearMeButton.onclick = handleNearMeButton;
 
-  showRun(resultArray, handleViewButton);
 
 
-  var dayArray = popDayArray(ResultInfo);
-  var distanceArray = popDistanceArray(ResultInfo);
+  var dayArray = popDayArray(result);
+  var distanceArray = popDistanceArray(result);
   new ColumnChart("THE MILES SO FAR...", "Distance (km)", distanceArray, dayArray);
 }
 
@@ -51,11 +54,10 @@ var popDistanceArray = function(ResultInfo){
   return distanceArray;
 }
 
-var showRun = function(resultArray, handleViewButton){
-  console.log(resultArray);
+var showRun = function(result, handleViewButton){
   var runsDiv = document.querySelector("#runs");
     runsDiv.innerHTML = "";
-    resultArray.forEach(function(run){
+    result.forEach(function(run){
     var parentBox = document.createElement("div")
     parentBox.id = "parent_box"
     runsDiv.appendChild(parentBox);
