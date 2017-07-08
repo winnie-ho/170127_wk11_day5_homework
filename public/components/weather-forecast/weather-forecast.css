@@ -8,10 +8,16 @@
   transition: border-color 1s, color 1s, opacity 1s;
 }
 
-.time-snap{
+#date-time{
+  font-size: 12px;
+  text-align: center;
+}
+
+#time-snap{
+  display: flex;
+  flex-direction: column;
   background-color: #1F618D;
   color: white;
-  flex-direction: column;
   align-content: center;
   justify-content: space-between;
   align-items: center;
