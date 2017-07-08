@@ -1,0 +1,22 @@
+#weather-forecast{
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #1F618D;
+  border-radius: 2px;
+  margin: 7px;
+  padding: 5px;
+  transition: border-color 1s, color 1s, opacity 1s;
+}
+
+.time-snap{
+  background-color: #1F618D;
+  color: white;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+  border: solid 1px #1F618D;
+  border-radius: 2px;
+  margin: 2px;
+  padding: 0 20px;
+}

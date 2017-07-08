@@ -18,6 +18,17 @@ var showWeather = function(resultWeather){
   let msWind = resultWeather.wind.speed; 
   let mphWind = (2.2369362920544*msWind).toFixed(0);
   wind.innerText = mphWind + "mph"
+}
 
-  
+var moreWeather = function(){
+    var weekWeatherDiv = document.getElementById('weather-forecast');
+    var weatherOption = document.getElementById('weather-option');
+
+    if (weekWeatherDiv.style.display === 'none') {
+        weekWeatherDiv.style.display = 'flex';
+        weatherOption.innerText="–"
+    } else {
+        weekWeatherDiv.style.display = 'none';
+        weatherOption.innerText="+"
+    }
 }
