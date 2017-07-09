@@ -15,7 +15,7 @@ var showWeekWeatherForecast = function(resultWeekWeatherForecast){
     var timeSnap=document.createElement("div");
     timeSnap.id="time-snap";
     
-    if(parseInt((slot.dt_txt).substr(8,10)) % 2 === 0 ) {
+    if(parseInt((slot.dt_txt).substr(8,2)) % 2 === 0 ) {
       timeSnap.classList.add("even");
     } else {
       timeSnap.classList.add("odd");
@@ -26,9 +26,9 @@ var showWeekWeatherForecast = function(resultWeekWeatherForecast){
     var temperature=document.createElement("span");
     var wind=document.createElement("span");
 
-    dateTime.innerText=(slot.dt_txt).substr(0,10);
+    dateTime.innerText=(slot.dt_txt).substr(8,2) + " / " + (slot.dt_txt).substr(5,2);
 
-    time.innerText=(slot.dt_txt).substr(11,16);
+    time.innerText=(slot.dt_txt).substr(11,5);
     forecast.innerText=(slot.weather[0].description);
     temperature.innerText=(slot.main.temp-273).toFixed(0) + "°C";
     wind.innerText=((slot.wind.speed)*2.2369362920544).toFixed(0) + "mph";
