@@ -37,11 +37,17 @@ h2{
 h3{
   font-family: sans-serif;
   font-size: 14px;
+  margin: 0px;
 }
 
 p{
   font-family: "gill sans";
-  font-size: 12px;
+  font-size: 10px;
+}
+
+span{
+  font-family: "gill sans";
+  font-size: 14px;
 }
 
 a{
@@ -151,7 +157,7 @@ img{
   border: solid 1px #1F618D;
   border-radius: 2px;
   margin: 2px;
-  padding: 0 20px;
+  padding: 10px;
 }
 
 #section_box{
@@ -171,7 +177,7 @@ img{
   width: 800px;
   height: 100%;
   padding: 5px;
-  margin: 10px;
+  margin: 2px;
   border: 1px solid #1F618D;
   border-radius: 2px;
 }

@@ -99,12 +99,12 @@ var showRun = function(result, handleViewButton){
     // route.innerText = "Route: " + run.map.summary_polyline;
     // sectionBox.appendChild(route);
 
-    var detailButton = document.createElement("button");
-    detailButton.innerHTML = "View";
-    detailButton.value = JSON.stringify(run);
-    detailButton.style.color = "white";
-    parentBox.appendChild(detailButton);
-    detailButton.onclick = handleViewButton;
+    // var detailButton = document.createElement("button");
+    // detailButton.innerHTML = "View";
+    // detailButton.value = JSON.stringify(run);
+    // detailButton.style.color = "white";
+    // parentBox.appendChild(detailButton);
+    // detailButton.onclick = handleViewButton;
 
     
   });
