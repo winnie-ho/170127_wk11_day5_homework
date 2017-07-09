@@ -1,11 +1,12 @@
 #weather-forecast{
   display: flex;
   flex-direction: row;
-  border: 1px solid #1F618D;
   border-radius: 2px;
-  margin: 7px;
+  margin: 5px;
   padding: 5px;
   transition: border-color 1s, color 1s, opacity 1s;
+  overflow-y: hidden;
+  overflow-x: scroll;
 }
 
 #date-time{
@@ -16,13 +17,21 @@
 #time-snap{
   display: flex;
   flex-direction: column;
-  background-color: #1F618D;
-  color: white;
   align-content: center;
   justify-content: space-between;
   align-items: center;
   border: solid 1px #1F618D;
   border-radius: 2px;
   margin: 2px;
-  padding: 0 20px;
+  padding: 5px 10px;
+}
+
+.even{
+  background-color: #DBDCE0;
+  color: #1F618D;
+}
+
+.odd{
+  background-color: #1F618D;
+  color: white;
 }

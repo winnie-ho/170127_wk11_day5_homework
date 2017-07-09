@@ -8,14 +8,19 @@ var weatherForecastResponse= function (){
 }
 
 var showWeekWeatherForecast = function(resultWeekWeatherForecast){
-  console.log("WEEK WEATHER", resultWeekWeatherForecast.list);
-
   var weatherForecast=document.querySelector("#weather-forecast");
   for(var slot of resultWeekWeatherForecast.list){
     var dateTime=document.createElement("div");
     dateTime.id="date-time";
     var timeSnap=document.createElement("div");
     timeSnap.id="time-snap";
+    
+    if(parseInt((slot.dt_txt).substr(8,10)) % 2 === 0 ) {
+      timeSnap.classList.add("even");
+    } else {
+      timeSnap.classList.add("odd");
+    }
+
     var time=document.createElement("span");
     var forecast=document.createElement("span");
     var temperature=document.createElement("span");
@@ -34,12 +39,6 @@ var showWeekWeatherForecast = function(resultWeekWeatherForecast){
     timeSnap.appendChild(forecast);
     timeSnap.appendChild(temperature);
     timeSnap.appendChild(wind);
-
-    // time.innerHTML=(slot.dt_txt).substr(11,16);
-    // forecast.innerHTML=(slot.weather[0].description);
-    // temperature.innerHTML=(slot.main.temp-273).toFixed(0) + "°C";
-    // wind.innerHTML=((slot.wind.speed)*2.2369362920544).toFixed(0) + "mph";
-
   }
 }
 
