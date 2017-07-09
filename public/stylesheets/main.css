@@ -35,8 +35,8 @@ h2{
 }
 
 h3{
-  font-family: "gill sans";
-  font-size: 12px;
+  font-family: sans-serif;
+  font-size: 14px;
 }
 
 p{
@@ -155,7 +155,9 @@ img{
 }
 
 #section_box{
-  width: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   text-align: left;
 }
 

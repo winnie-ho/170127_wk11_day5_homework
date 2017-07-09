@@ -71,17 +71,24 @@ var showRun = function(result, handleViewButton){
 
     // parentBox.appendChild(mapD);
 
+    var dateTitle = document.createElement("h3");
+    dateTitle.innerText = run.start_date.substr(8,2) + "/" + run.start_date.substr(5,2) + "/"+ run.start_date.substr(0,4) + "    |    " +  run.name;
+    parentBox.appendChild(dateTitle);
+
     var sectionBox = document.createElement("div")
     sectionBox.id = "section_box"
     parentBox.appendChild(sectionBox);
 
-    var dateTitle = document.createElement("h3");
-    dateTitle.innerText = run.start_date.substr(8,2) + "/" + run.start_date.substr(5,2) + "/"+ run.start_date.substr(0,4) + "    |    " +  run.name;
-    sectionBox.appendChild(dateTitle);
+    var distance = document.createElement("span");
+    var time = document.createElement("span");
+    var pace = document.createElement("span");
 
-    var dtp = document.createElement("p");
-    dtp.innerText = "Distance: " + ((run.distance)/1000).toFixed(2) + " km   Time: " + ((run.moving_time)/60).toFixed(2)+ "mins    Pace: " + run.average_speed + "m/s";
-    sectionBox.appendChild(dtp);
+    distance.innerText = "Distance: " + ((run.distance)/1000).toFixed(2) + " km";
+    time.innerText = "Time: " + ((run.moving_time)/60).toFixed(2)+ "mins";
+    pace.innerText = "Pace: " + run.average_speed + "m/s";
+    sectionBox.appendChild(distance);
+    sectionBox.appendChild(time);
+    sectionBox.appendChild(pace);
 
     // var startPoint = document.createElement("p");
     // startPoint.innerText = "Start: " + run.start_latlng[0] + ", " + run.start_latlng[1];
