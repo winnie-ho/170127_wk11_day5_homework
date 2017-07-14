@@ -4,21 +4,14 @@ var requestComplete = function (){
   if (this.status !== 200) return;
   result = JSON.parse(this.responseText);
   console.log(result);
-  showRun(result, handleViewButton);
+  showRun(result, handleMapExpand);
   
+
   var centre = {lat: 55.9533, lng:-3.1883 };
   var mapDiv = document.querySelector("#main-map");
   mapDiv.innerHTML = "";
   var mainMap = new MapWrapper(centre, 14);
 
-
-  var handleViewButton = function(){
-    console.log("viewbutton clicked");
-    var runSelected = JSON.parse(event.target.value);
-    var runLine = runSelected.map.summary_polyline;
-    var startPoint = {lat: ((runSelected.start_latlng[0] + runSelected.end_latlng[0])/2), lng: ((runSelected.start_latlng[1] + runSelected.end_latlng[1])/2)};
-    mainMap.addPolyline(runLine, startPoint);
-  }
 
   var handleNearMeButton = function(){
     console.log("Near Me button clicked");
@@ -30,43 +23,49 @@ var requestComplete = function (){
 
 
 
-  var dayArray = popDayArray(result);
-  var distanceArray = popDistanceArray(result);
+  // var dayArray = popDayArray(result);
+  // var distanceArray = popDistanceArray(result);
   // new ColumnChart("THE MILES SO FAR...", "Distance (km)", distanceArray, dayArray);
 }
 
-var popDayArray = function(ResultInfo){
-  var dayArray = [];
-  for(var run of ResultInfo){
-    dayArray.push(run.start_date.substr(0,10));
-  }
-  return dayArray;
+var handleMapExpand = function(){
+  console.log("EXPANDED");
+  // route.style.display="block";
 }
 
-var popDistanceArray = function(ResultInfo){
-  var distanceArray = [];
-  for(var run of ResultInfo){
-    distanceArray.push(run.distance/1000);
-  }
-  return distanceArray;
+var handleViewButton = function(){
+  console.log("viewbutton clicked");
+  var runSelected = JSON.parse(event.target.value);
+  var runLine = runSelected.map.summary_polyline;
+  var startPoint = {lat: ((runSelected.start_latlng[0] + runSelected.end_latlng[0])/2), lng: ((runSelected.start_latlng[1] + runSelected.end_latlng[1])/2)};
+  mainMap.addPolyline(runLine, startPoint);
 }
 
-var showRun = function(result, handleViewButton){
+// var popDayArray = function(ResultInfo){
+//   var dayArray = [];
+//   for(var run of ResultInfo){
+//     dayArray.push(run.start_date.substr(0,10));
+//   }
+//   return dayArray;
+// }
+
+// var popDistanceArray = function(ResultInfo){
+//   var distanceArray = [];
+//   for(var run of ResultInfo){
+//     distanceArray.push(run.distance/1000);
+//   }
+//   return distanceArray;
+// }
+
+
+var showRun = function(result, handleMapExpand){
   var runsDiv = document.querySelector("#runs");
-    runsDiv.innerHTML = "";
-    result.forEach(function(run){
+  runsDiv.innerHTML = "";
+
+  result.forEach(function(run){
     var runBox = document.createElement("div")
     runBox.id = "run-box"
     runsDiv.appendChild(runBox);
-
-    // var mapD = document.createElement("div");
-    // mapD.id = "map"
-    // this.googleMap = new google.maps.Map(mapD, {
-    //   center: {lat: 55.9533, lng:-3.1883 },
-    //   zoom: 13
-    //   });
-
-    // parentBox.appendChild(mapD);
 
     var dateTitle = document.createElement("h3");
     dateTitle.innerText = run.start_date.substr(8,2) + "/" + run.start_date.substr(5,2) + "/"+ run.start_date.substr(0,4) + "     |     " +  run.name;
@@ -79,6 +78,9 @@ var showRun = function(result, handleViewButton){
     var distance = document.createElement("span");
     var time = document.createElement("span");
     var pace = document.createElement("span");
+    var route = document.createElement("div");
+    route.id = "route-map";
+    route.style.display = "none";
 
     distance.innerText = "Distance: " + ((run.distance)/1000).toFixed(2) + " km";
     time.innerText = "Time: " + ((run.moving_time)/60).toFixed(2)+ "mins";
@@ -86,10 +88,19 @@ var showRun = function(result, handleViewButton){
     runBoxDetail.appendChild(distance);
     runBoxDetail.appendChild(time);
     runBoxDetail.appendChild(pace);
+    runBoxDetail.appendChild(route);
 
     runBox.value = JSON.stringify(run);
-    runBox.onclick = handleViewButton;
+    runBox.onclick = handleMapExpand;
 
+      // var mapD = document.createElement("div");
+      // mapD.id = "map"
+      // this.googleMap = new google.maps.Map(mapD, {
+      //   center: {lat: 55.9533, lng:-3.1883 },
+      //   zoom: 13
+      //   });
+
+      // parentBox.appendChild(mapD);
 
 
 
@@ -111,5 +122,7 @@ var showRun = function(result, handleViewButton){
 
     
   });
+
+
 
 }

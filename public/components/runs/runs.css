@@ -36,7 +36,11 @@
   justify-content: space-between;
   text-align: left;
   pointer-events: none;
-  
+}
+
+#route-map{
+  height: 400px;
+  width: auto;
 }
 
 @media all and (max-width: 700px) {
