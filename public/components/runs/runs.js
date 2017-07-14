@@ -56,7 +56,7 @@ var showRun = function(result, handleViewButton){
     runsDiv.innerHTML = "";
     result.forEach(function(run){
     var runBox = document.createElement("div")
-    runBox.id = "parent_box"
+    runBox.id = "run-box"
     runsDiv.appendChild(runBox);
 
     // var mapD = document.createElement("div");
@@ -69,12 +69,12 @@ var showRun = function(result, handleViewButton){
     // parentBox.appendChild(mapD);
 
     var dateTitle = document.createElement("h3");
-    dateTitle.innerText = run.start_date.substr(8,2) + "/" + run.start_date.substr(5,2) + "/"+ run.start_date.substr(0,4) + "    |    " +  run.name;
+    dateTitle.innerText = run.start_date.substr(8,2) + "/" + run.start_date.substr(5,2) + "/"+ run.start_date.substr(0,4) + "     |     " +  run.name;
     runBox.appendChild(dateTitle);
 
-    var sectionBox = document.createElement("div")
-    sectionBox.id = "section_box"
-    runBox.appendChild(sectionBox);
+    var runBoxDetail = document.createElement("div")
+    runBoxDetail.id = "run-box__detail"
+    runBox.appendChild(runBoxDetail);
 
     var distance = document.createElement("span");
     var time = document.createElement("span");
@@ -83,9 +83,12 @@ var showRun = function(result, handleViewButton){
     distance.innerText = "Distance: " + ((run.distance)/1000).toFixed(2) + " km";
     time.innerText = "Time: " + ((run.moving_time)/60).toFixed(2)+ "mins";
     pace.innerText = "Pace: " + run.average_speed + "m/s";
-    sectionBox.appendChild(distance);
-    sectionBox.appendChild(time);
-    sectionBox.appendChild(pace);
+    runBoxDetail.appendChild(distance);
+    runBoxDetail.appendChild(time);
+    runBoxDetail.appendChild(pace);
+
+    runBox.value = JSON.stringify(run);
+    runBox.onclick = handleViewButton;
 
 
 
@@ -108,8 +111,5 @@ var showRun = function(result, handleViewButton){
 
     
   });
-    var handleRunBoxClick = function(){
-      console.log("THIS BUTTON WAS CLICKED");
-    }
 
 }
