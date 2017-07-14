@@ -17,7 +17,7 @@
 #time-snap{
   display: flex;
   width: 60px;
-  min-height: 100px;
+  min-height: 140px;
   flex-direction: column;
   align-content: center;
   justify-content: space-between;

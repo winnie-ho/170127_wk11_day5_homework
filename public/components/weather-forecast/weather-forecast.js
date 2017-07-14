@@ -23,6 +23,7 @@ var showWeekWeatherForecast = function(resultWeekWeatherForecast){
 
     var time=document.createElement("span");
     var forecast=document.createElement("span");
+    var icon=document.createElement("img");
     var temperature=document.createElement("span");
     var wind=document.createElement("span");
 
@@ -30,6 +31,7 @@ var showWeekWeatherForecast = function(resultWeekWeatherForecast){
 
     time.innerText=(slot.dt_txt).substr(11,5);
     forecast.innerText=(slot.weather[0].description);
+    icon.src="http://openweathermap.org/img/w/" + (slot.weather[0].icon) + ".png";
     temperature.innerText=(slot.main.temp-273).toFixed(0) + "°C";
     wind.innerText=((slot.wind.speed)*2.2369362920544).toFixed(0) + "mph";
 
@@ -37,6 +39,7 @@ var showWeekWeatherForecast = function(resultWeekWeatherForecast){
     dateTime.appendChild(timeSnap);
     timeSnap.appendChild(time);
     timeSnap.appendChild(forecast);
+    timeSnap.appendChild(icon);
     timeSnap.appendChild(temperature);
     timeSnap.appendChild(wind);
   }

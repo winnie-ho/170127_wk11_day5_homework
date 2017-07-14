@@ -6,12 +6,10 @@ var requestComplete = function (){
   console.log(result);
   showRun(result, handleViewButton);
   
-
-
-    var centre = {lat: 55.9533, lng:-3.1883 };
-    var mapDiv = document.querySelector("#main-map");
-    mapDiv.innerHTML = "";
-    var mainMap = new MapWrapper(centre, 14);
+  var centre = {lat: 55.9533, lng:-3.1883 };
+  var mapDiv = document.querySelector("#main-map");
+  mapDiv.innerHTML = "";
+  var mainMap = new MapWrapper(centre, 14);
 
 
   var handleViewButton = function(){
@@ -22,20 +20,19 @@ var requestComplete = function (){
     mainMap.addPolyline(runLine, startPoint);
   }
 
-
   var handleNearMeButton = function(){
     console.log("Near Me button clicked");
     mainMap.geoLocate(result);
   }
 
-  var nearMeButton = document.querySelector("#near-me");
-  nearMeButton.onclick = handleNearMeButton;
+  // var nearMeButton = document.querySelector("#near-me");
+  // nearMeButton.onclick = handleNearMeButton;
 
 
 
   var dayArray = popDayArray(result);
   var distanceArray = popDistanceArray(result);
-  new ColumnChart("THE MILES SO FAR...", "Distance (km)", distanceArray, dayArray);
+  // new ColumnChart("THE MILES SO FAR...", "Distance (km)", distanceArray, dayArray);
 }
 
 var popDayArray = function(ResultInfo){
@@ -58,9 +55,9 @@ var showRun = function(result, handleViewButton){
   var runsDiv = document.querySelector("#runs");
     runsDiv.innerHTML = "";
     result.forEach(function(run){
-    var parentBox = document.createElement("div")
-    parentBox.id = "parent_box"
-    runsDiv.appendChild(parentBox);
+    var runBox = document.createElement("div")
+    runBox.id = "parent_box"
+    runsDiv.appendChild(runBox);
 
     // var mapD = document.createElement("div");
     // mapD.id = "map"
@@ -73,11 +70,11 @@ var showRun = function(result, handleViewButton){
 
     var dateTitle = document.createElement("h3");
     dateTitle.innerText = run.start_date.substr(8,2) + "/" + run.start_date.substr(5,2) + "/"+ run.start_date.substr(0,4) + "    |    " +  run.name;
-    parentBox.appendChild(dateTitle);
+    runBox.appendChild(dateTitle);
 
     var sectionBox = document.createElement("div")
     sectionBox.id = "section_box"
-    parentBox.appendChild(sectionBox);
+    runBox.appendChild(sectionBox);
 
     var distance = document.createElement("span");
     var time = document.createElement("span");
@@ -89,6 +86,9 @@ var showRun = function(result, handleViewButton){
     sectionBox.appendChild(distance);
     sectionBox.appendChild(time);
     sectionBox.appendChild(pace);
+
+
+
 
     // var startPoint = document.createElement("p");
     // startPoint.innerText = "Start: " + run.start_latlng[0] + ", " + run.start_latlng[1];
@@ -108,5 +108,8 @@ var showRun = function(result, handleViewButton){
 
     
   });
+    var handleRunBoxClick = function(){
+      console.log("THIS BUTTON WAS CLICKED");
+    }
 
 }
