@@ -67,12 +67,21 @@ var showRun = function(result, handleMapExpand){
     runBox.id = "run-box"
     runsDiv.appendChild(runBox);
 
-    var dateTitle = document.createElement("p");
-    dateTitle.innerText = run.start_date.substr(8,2) + "/" + run.start_date.substr(5,2) + "/"+ run.start_date.substr(0,4) + "     |     " +  run.name;
+    var dateTitle = document.createElement("div");
+    var date = document.createElement("div");
+    var title = document.createElement("div");
+    dateTitle.classList.add("run-box__detail");
+
+    date.innerText = run.start_date.substr(8,2) + " / " + run.start_date.substr(5,2) + " / "+ run.start_date.substr(0,4);
+    title.innerText = run.name;
+    dateTitle.appendChild(title);
+    dateTitle.appendChild(date);
+
+
     runBox.appendChild(dateTitle);
 
     var runBoxDetail = document.createElement("div")
-    runBoxDetail.id = "run-box__detail"
+    runBoxDetail.classList.add("run-box__detail");
     runBox.appendChild(runBoxDetail);
 
     var distance = document.createElement("div");

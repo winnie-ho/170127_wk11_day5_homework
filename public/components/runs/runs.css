@@ -22,7 +22,7 @@
   border: solid 1px #1F618D;
   border-radius: 2px;
   margin: 2px;
-  padding: 10px;
+  padding: 5px;
   cursor: pointer;
 }
 
@@ -30,7 +30,8 @@
   background-color: #3E9FDF;
 }
 
-#run-box__detail{
+.run-box__detail{
+  padding: 5px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
