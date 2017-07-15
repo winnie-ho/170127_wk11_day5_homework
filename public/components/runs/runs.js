@@ -1,4 +1,4 @@
-var urlRuns = "https://www.strava.com/api/v3/athlete/activities?per_page=200&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
+var urlRuns = "https://www.strava.com/api/v3/athlete/activities?per_page=100&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
 
 var requestComplete = function (){
   if (this.status !== 200) return;
@@ -92,7 +92,25 @@ var showRun = function(result, handleMapExpand){
     timeIcon.src = "./resources/icon_time.png";
     timeIcon.classList.add("icon");
     var timeValue = document.createElement("div");
-    timeValue.innerText = ((run.moving_time)/60).toFixed(2)+ "mins";
+    var totalMinutes = ((run.moving_time)/60).toFixed(2);
+    var hours = Math.floor(totalMinutes/60);
+    var rawMinutes = (Math.floor(totalMinutes - (hours*60))).toFixed(0);
+    var minutes = rawMinutes;
+      if(rawMinutes < 10){
+        minutes = "0"+rawMinutes;
+      }
+    var rawSeconds = (((totalMinutes - (hours*60))-minutes)*60).toFixed(0);
+    var seconds = rawSeconds;
+      if(rawSeconds < 10){
+        seconds = "0"+rawSeconds
+      }
+
+
+    if (hours === 0) {
+      timeValue.innerText = minutes + ":" + seconds;
+    }else{
+      timeValue.innerText = hours + ":" + minutes + ":" + seconds;
+    }
     time.appendChild(timeIcon);
     time.appendChild(timeValue);
 
@@ -102,7 +120,13 @@ var showRun = function(result, handleMapExpand){
     paceIcon.src = "./resources/icon_pace.png";
     paceIcon.classList.add("icon");
     var paceValue = document.createElement("div");
-    paceValue.innerText = run.average_speed + "m/s";
+    var paceMinutes = (Math.floor(totalMinutes/(run.distance/1000))).toFixed(0) 
+    var rawPaceSeconds = (((totalMinutes/(run.distance/1000))-paceMinutes)*60).toFixed(0);
+    var paceSeconds = rawPaceSeconds;
+      if(rawPaceSeconds < 10){
+        paceSeconds = "0"+rawPaceSeconds;
+      }
+    paceValue.innerText = paceMinutes + ":" + paceSeconds + "min/km";
     pace.appendChild(paceIcon);
     pace.appendChild(paceValue);
 

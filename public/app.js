@@ -1,6 +1,6 @@
 //Running the app
 var app = function(){
-  var url = "https://www.strava.com/api/v3/athlete/activities?per_page=200&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
+  var url = "https://www.strava.com/api/v3/athlete/activities?per_page=10&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
   makeRequest(urlRuns, requestComplete)
 
   makeRequest(urlWeatherNow, weatherNowResponse);
