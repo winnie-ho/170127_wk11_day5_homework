@@ -4,19 +4,14 @@ var requestComplete = function (){
   if (this.status !== 200) return;
   result = JSON.parse(this.responseText);
   console.log(result);
-  showRun(result, handleMapExpand);
-  
-
-  var centre = {lat: 55.9533, lng:-3.1883 };
-  var mapDiv = document.querySelector("#main-map");
-  mapDiv.innerHTML = "";
-  var mainMap = new MapWrapper(centre, 14);
+  showRun(result, handleViewButton);
 
 
-  var handleNearMeButton = function(){
-    console.log("Near Me button clicked");
-    mainMap.geoLocate(result);
-  }
+
+  // var handleNearMeButton = function(){
+  //   console.log("Near Me button clicked");
+  //   mainMap.geoLocate(result);
+  // }
 
   // var nearMeButton = document.querySelector("#near-me");
   // nearMeButton.onclick = handleNearMeButton;
@@ -26,20 +21,21 @@ var requestComplete = function (){
   // var dayArray = popDayArray(result);
   // var distanceArray = popDistanceArray(result);
   // new ColumnChart("THE MILES SO FAR...", "Distance (km)", distanceArray, dayArray);
+  
+  var centre = {lat: 55.9533, lng:-3.1883 };
+  var mapDiv = document.querySelector("#main-map");
+  mapDiv.innerHTML = "";
+  var mainMap = new MapWrapper(centre, 14);
+
+  var handleViewButton = function(event){
+    console.log("viewbutton clicked");
+    var runSelected = JSON.parse(event.target.value);
+    var runLine = runSelected.map.summary_polyline;
+    var startPoint = {lat: ((runSelected.start_latlng[0] + runSelected.end_latlng[0])/2), lng: ((runSelected.start_latlng[1] + runSelected.end_latlng[1])/2)};
+    mainMap.addPolyline(runLine, startPoint);
+  }
 }
 
-var handleMapExpand = function(){
-  console.log("EXPANDED");
-  // route.style.display="block";
-}
-
-var handleViewButton = function(){
-  console.log("viewbutton clicked");
-  var runSelected = JSON.parse(event.target.value);
-  var runLine = runSelected.map.summary_polyline;
-  var startPoint = {lat: ((runSelected.start_latlng[0] + runSelected.end_latlng[0])/2), lng: ((runSelected.start_latlng[1] + runSelected.end_latlng[1])/2)};
-  mainMap.addPolyline(runLine, startPoint);
-}
 
 // var popDayArray = function(ResultInfo){
 //   var dayArray = [];
@@ -58,7 +54,7 @@ var handleViewButton = function(){
 // }
 
 
-var showRun = function(result, handleMapExpand){
+var showRun = function(result, handleViewButton){
   var runsDiv = document.querySelector("#runs");
   runsDiv.innerHTML = "";
 
@@ -69,10 +65,10 @@ var showRun = function(result, handleMapExpand){
 
     var dateTitle = document.createElement("div");
     var date = document.createElement("div");
-    var title = document.createElement("div");
+    var title = document.createElement("h4");
     dateTitle.classList.add("run-box__detail");
 
-    date.innerText = run.start_date.substr(8,2) + " / " + run.start_date.substr(5,2) + " / "+ run.start_date.substr(0,4);
+    date.innerText = run.start_date.substr(8,2) + " - " + run.start_date.substr(5,2) + " - "+ run.start_date.substr(0,4);
     title.innerText = run.name;
     dateTitle.appendChild(title);
     dateTitle.appendChild(date);
@@ -149,36 +145,26 @@ var showRun = function(result, handleMapExpand){
     runBoxDetail.appendChild(pace);
     runBoxDetail.appendChild(route);
 
-    runBox.value = JSON.stringify(run);
-    runBox.onclick = handleMapExpand;
-
-      // var mapD = document.createElement("div");
-      // mapD.id = "map"
-      // this.googleMap = new google.maps.Map(mapD, {
-      //   center: {lat: 55.9533, lng:-3.1883 },
-      //   zoom: 13
-      //   });
-
-      // parentBox.appendChild(mapD);
-
-
-
-    // var startPoint = document.createElement("p");
-    // startPoint.innerText = "Start: " + run.start_latlng[0] + ", " + run.start_latlng[1];
-    // sectionBox.appendChild(startPoint);
-    
-
-    // var route = document.createElement("p");
-    // route.innerText = "Route: " + run.map.summary_polyline;
-    // sectionBox.appendChild(route);
-
     // var detailButton = document.createElement("button");
-    // detailButton.innerHTML = "View";
+    // detailButton.innerHTML = "+";
     // detailButton.value = JSON.stringify(run);
     // detailButton.style.color = "white";
-    // parentBox.appendChild(detailButton);
+    // runBox.appendChild(detailButton);
     // detailButton.onclick = handleViewButton;
 
+
+    // var map = document.createElement("div");
+    // map.id = "map"
+    // this.googleMap = new google.maps.Map(map, {
+    //   center: {lat: 55.9533, lng:-3.1883 },
+    //   zoom: 13
+    //   });
+
+    // runBox.appendChild(map);
+    
+    // var runLine = run.map.summary_polyline;
+    // var startPoint = {lat: ((run.start_latlng[0] + run.end_latlng[0])/2), lng: ((run.start_latlng[1] + run.end_latlng[1])/2)};
+    // map.addPolyline(runLine, startPoint);
     
   });
 

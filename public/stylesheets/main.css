@@ -31,14 +31,14 @@ a:hover{
 }
 
 button{
-  width: 70px;
-  height: 16px;
+  width: 30px;
+  height: 30px;
   border-radius: 5px;
-  border: white 1px solid;
   background-color: #1F618D  ;
   font-family: "gill sans";
   font-size: 10px;
   color: white;
+  border: none;
 }
 
 button:hover{

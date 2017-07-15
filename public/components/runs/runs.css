@@ -23,7 +23,6 @@
   border-radius: 2px;
   margin: 2px;
   padding: 5px;
-  cursor: pointer;
 }
 
 #run-box:hover{
@@ -36,7 +35,10 @@
   flex-direction: row;
   justify-content: space-between;
   text-align: left;
-  pointer-events: none;
+}
+
+.run-box__detail h4 {
+  margin: -2px;
 }
 
 #route-map{
@@ -44,7 +46,7 @@
   width: auto;
 }
 
- .data-metric{
+.data-metric{
   display: flex;
   flex-direction: row;
   justify-content: center;
