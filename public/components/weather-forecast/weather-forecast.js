@@ -31,7 +31,7 @@ var showWeekWeatherForecast = function(resultWeekWeatherForecast){
 
     time.innerText=(slot.dt_txt).substr(11,5);
     forecast.innerText=(slot.weather[0].description);
-    icon.src="http://openweathermap.org/img/w/" + (slot.weather[0].icon) + ".png";
+    icon.src = "http://openweathermap.org/img/w/" + (slot.weather[0].icon) + ".png";
     temperature.innerText=(slot.main.temp-273).toFixed(0) + "°C";
     wind.innerText=((slot.wind.speed)*2.2369362920544).toFixed(0) + "mph";
 

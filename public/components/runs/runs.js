@@ -67,7 +67,7 @@ var showRun = function(result, handleMapExpand){
     runBox.id = "run-box"
     runsDiv.appendChild(runBox);
 
-    var dateTitle = document.createElement("h3");
+    var dateTitle = document.createElement("p");
     dateTitle.innerText = run.start_date.substr(8,2) + "/" + run.start_date.substr(5,2) + "/"+ run.start_date.substr(0,4) + "     |     " +  run.name;
     runBox.appendChild(dateTitle);
 
@@ -75,16 +75,42 @@ var showRun = function(result, handleMapExpand){
     runBoxDetail.id = "run-box__detail"
     runBox.appendChild(runBoxDetail);
 
-    var distance = document.createElement("span");
-    var time = document.createElement("span");
-    var pace = document.createElement("span");
+    var distance = document.createElement("div");
+    distance.classList.add("data-metric");
+    var distanceIcon = document.createElement("img");
+    distanceIcon.src = "./resources/icon_distance.png";
+    distanceIcon.classList.add("icon");
+    var distanceValue = document.createElement("div");
+    distanceValue.innerText = ((run.distance)/1000).toFixed(2) + " km";
+    distance.appendChild(distanceIcon);
+    distance.appendChild(distanceValue);
+
+
+    var time = document.createElement("div");
+    time.classList.add("data-metric");
+    var timeIcon = document.createElement("img");
+    timeIcon.src = "./resources/icon_time.png";
+    timeIcon.classList.add("icon");
+    var timeValue = document.createElement("div");
+    timeValue.innerText = ((run.moving_time)/60).toFixed(2)+ "mins";
+    time.appendChild(timeIcon);
+    time.appendChild(timeValue);
+
+    var pace = document.createElement("div");
+    pace.classList.add("data-metric");
+    var paceIcon = document.createElement("img");
+    paceIcon.src = "./resources/icon_pace.png";
+    paceIcon.classList.add("icon");
+    var paceValue = document.createElement("div");
+    paceValue.innerText = run.average_speed + "m/s";
+    pace.appendChild(paceIcon);
+    pace.appendChild(paceValue);
+
+
     var route = document.createElement("div");
     route.id = "route-map";
     route.style.display = "none";
 
-    distance.innerText = "Distance: " + ((run.distance)/1000).toFixed(2) + " km";
-    time.innerText = "Time: " + ((run.moving_time)/60).toFixed(2)+ "mins";
-    pace.innerText = "Pace: " + run.average_speed + "m/s";
     runBoxDetail.appendChild(distance);
     runBoxDetail.appendChild(time);
     runBoxDetail.appendChild(pace);
