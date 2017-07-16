@@ -11,6 +11,15 @@ var createNav = function(){
   wind.innerText = mphWind + "mph"
 }
 
-var handleLongButton = function(){
-    console.log("Long button clicked");
+var handleHomeButton = function(){
+    console.log("Home button clicked");
+}
+var handleRunClubButton = function(){
+    console.log("Run club button clicked");
+}
+var handleParkRunButton = function(){
+    console.log("Park Run button clicked");
+}
+var handleOtherButton = function(){
+    console.log("Other button clicked");
 }

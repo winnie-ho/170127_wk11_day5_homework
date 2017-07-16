@@ -3,7 +3,13 @@
   flex-direction: row;
   justify-content: space-around;
   width: auto;
-  padding: 5px;
+  padding: 0 5px;
+}
+
+.nav-icon{
+  width: auto;
+  height: 20px;
+  margin: 0 5px;
 }
 
 #home{
