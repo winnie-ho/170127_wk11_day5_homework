@@ -9,12 +9,14 @@
     <link rel="stylesheet" type="text/css" href="./components/weather-now/weather-now.css">
     <link rel="stylesheet" type="text/css" href="./components/weather-forecast/weather-forecast.css">
     <link rel="stylesheet" type="text/css" href="./components/runs/runs.css">
+    <link rel="stylesheet" type="text/css" href="./components/nav/nav.css">
 
     <!--import js files-->
     <script src = "app.js"></script>
     <script src = "./components/weather-now/weather-now.js"></script>
     <script src = "./components/weather-forecast/weather-forecast.js"></script>
     <script src = "./components/runs/runs.js"></script>
+    <script src = "./components/nav/nav.js"></script>
     <script src = "./components/columnChart.js"></script>
     <script src = "./components/mapWrapper.js"></script>
     
@@ -39,8 +41,9 @@
 
     <div id = "main">
       <div id="runs"></div>
-      <div id="main-map"></div>
+      <!-- <div id="main-map"></div> -->
     </div>
+    <div w3-include-html="./components/nav/nav.html" id="nav"></div>
       <!--<div id = "near-me-div">
         <button id = "near-me">Find</button>
         <p>RUNS NEAR BY:</p>

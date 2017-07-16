@@ -1,0 +1,31 @@
+#nav{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: auto;
+  padding: 10px;
+}
+
+#home{
+  cursor: pointer;
+}
+
+#run-club{
+  cursor: pointer;
+  
+}
+
+#park-run{
+  cursor: pointer;
+  
+}
+
+
+#long{
+  cursor: pointer;
+
+}
+
+.hover:hover{
+  color: #3E9FDF;
+}

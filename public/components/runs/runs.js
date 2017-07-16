@@ -22,10 +22,10 @@ var requestComplete = function (){
   // var distanceArray = popDistanceArray(result);
   // new ColumnChart("THE MILES SO FAR...", "Distance (km)", distanceArray, dayArray);
   
-  var centre = {lat: 55.9533, lng:-3.1883 };
-  var mapDiv = document.querySelector("#main-map");
-  mapDiv.innerHTML = "";
-  var mainMap = new MapWrapper(centre, 14);
+  // var centre = {lat: 55.9533, lng:-3.1883 };
+  // var mapDiv = document.querySelector("#main-map");
+  // mapDiv.innerHTML = "";
+  // var mainMap = new MapWrapper(centre, 14);
 
   var handleViewButton = function(event){
     console.log("viewbutton clicked");
