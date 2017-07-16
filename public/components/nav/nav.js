@@ -19,6 +19,7 @@ var handleRunClubButton = function(){
 }
 var handleParkRunButton = function(){
     console.log("Park Run button clicked");
+    showParkRun();
 }
 var handleOtherButton = function(){
     console.log("Other button clicked");

@@ -12,22 +12,22 @@
   margin: 0 5px;
 }
 
-#home{
+#home-button{
   cursor: pointer;
 }
 
-#run-club{
-  cursor: pointer;
-  
-}
-
-#park-run{
+#run-club{-button
   cursor: pointer;
   
 }
 
+#park-run-button{
+  cursor: pointer;
+  
+}
 
-#long{
+
+#other-button{
   cursor: pointer;
 
 }
