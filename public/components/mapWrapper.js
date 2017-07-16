@@ -57,7 +57,6 @@ MapWrapper.prototype = {
   }, 
 
   geoLocate: function(runArray){
-
     console.log(runArray);
     navigator.geolocation.getCurrentPosition(function(position) {
       var centre = {lat: position.coords.latitude, lng: position.coords.longitude}; 
