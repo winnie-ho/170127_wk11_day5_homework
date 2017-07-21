@@ -15,18 +15,71 @@ var computeParkRuns = function(result){
     }
   }
   console.log("PARK RUNS ARRAY", parkRuns);
-  displayParkRuns(parkRuns);
+  displayParkRunsDate(parkRuns);
+  displayParkRunsName(parkRuns);
+  displayParkRunsTime(parkRuns);
   return parkRuns;
 }
 
-var displayParkRuns = function(parkRuns) {
-  var parkRunDiv = document.getElementById("park-run");
+var displayParkRunsDate = function(parkRuns) {
+  var parkRunDiv = document.getElementById("park-run-date");
+  for (var run of parkRuns){
+    var date = document.createElement("div");
+    date.classList.add("park-run-data");
+    date.innerText = run.start_date.substr(8,2) + " - " + run.start_date.substr(5,2) + " - " + run.start_date.substr(0,4);
+    parkRunDiv.appendChild(date);
+  }
+}
+
+var displayParkRunsName = function(parkRuns) {
+  var parkRunDiv = document.getElementById("park-run-name");
   for (var run of parkRuns){
     var name = document.createElement("div");
-    name.innerText = run.start_date + " " + run.name + ", " + (run.elapsed_time)/60 ;
+    name.classList.add("park-run-data");
+    name.innerText = run.name;
     parkRunDiv.appendChild(name);
   }
 }
+
+var displayParkRunsTime = function(parkRuns) {
+  var parkRunDiv = document.getElementById("park-run-time");
+  for (var run of parkRuns){
+
+    var time = document.createElement("div");
+    time.classList.add("data-metric");
+    var timeIcon = document.createElement("img");
+    timeIcon.src = "./resources/icon_time.png";
+    timeIcon.classList.add("icon");
+    var timeValue = document.createElement("div");
+    var totalMinutes = ((run.moving_time)/60).toFixed(2);
+    var hours = Math.floor(totalMinutes/60);
+    var rawMinutes = (Math.floor(totalMinutes - (hours*60))).toFixed(0);
+    var minutes = rawMinutes;
+      if(rawMinutes < 10){
+        minutes = "0"+rawMinutes;
+      }
+    var rawSeconds = (((totalMinutes - (hours*60))-minutes)*60).toFixed(0);
+    var seconds = rawSeconds;
+      if(rawSeconds < 10){
+        seconds = "0"+rawSeconds
+      }
+
+
+    if (hours === 0) {
+      timeValue.innerText = minutes + ":" + seconds;
+    }else{
+      timeValue.innerText = hours + ":" + minutes + ":" + seconds;
+    }
+    time.appendChild(timeIcon);
+    time.appendChild(timeValue);
+
+    parkRunDiv.appendChild(time);
+    
+  }
+}
+    
+
+
 
 
 var handleParkRunButton = function() {

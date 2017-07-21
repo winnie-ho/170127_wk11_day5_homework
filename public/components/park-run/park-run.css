@@ -1,5 +1,13 @@
 #park-run{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center; 
+  padding: 10px;
+  color: white;
+  background-color: #1F618D;
+}
+
+.park-run-data{
+  display: flex;
+  flex-direction: column;
 }
