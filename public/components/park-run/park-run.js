@@ -27,7 +27,7 @@ var displayParkRunsDate = function(parkRuns) {
   for (var run of parkRuns){
     var date = document.createElement("div");
     date.classList.add("data-metric");
-    date.innerText = run.start_date.substr(8,2) + " - " + run.start_date.substr(5,2) + " - " + run.start_date.substr(0,4);
+    date.innerText = run.start_date.substr(8,2) + "-" + run.start_date.substr(5,2) + "-" + run.start_date.substr(0,4);
     parkRunDiv.appendChild(date);
   }
 }

@@ -68,7 +68,7 @@ var showRun = function(result, handleViewButton){
     var title = document.createElement("h4");
     dateTitle.classList.add("run-box__detail");
 
-    date.innerText = run.start_date.substr(8,2) + " - " + run.start_date.substr(5,2) + " - "+ run.start_date.substr(0,4);
+    date.innerText = run.start_date.substr(8,2) + "-" + run.start_date.substr(5,2) + "-"+ run.start_date.substr(0,4);
     title.innerText = run.name;
     dateTitle.appendChild(title);
     dateTitle.appendChild(date);
