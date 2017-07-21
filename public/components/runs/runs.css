@@ -49,9 +49,10 @@
 .data-metric{
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-content: center;
   align-items: center;
+  height: 25px;
+  margin: 5px;
 } 
 
 @media all and (max-width: 700px) {

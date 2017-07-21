@@ -18,6 +18,7 @@ var computeParkRuns = function(result){
   displayParkRunsDate(parkRuns);
   displayParkRunsName(parkRuns);
   displayParkRunsTime(parkRuns);
+  displayParkRunsPace(parkRuns);
   return parkRuns;
 }
 
@@ -25,7 +26,7 @@ var displayParkRunsDate = function(parkRuns) {
   var parkRunDiv = document.getElementById("park-run-date");
   for (var run of parkRuns){
     var date = document.createElement("div");
-    date.classList.add("park-run-data");
+    date.classList.add("data-metric");
     date.innerText = run.start_date.substr(8,2) + " - " + run.start_date.substr(5,2) + " - " + run.start_date.substr(0,4);
     parkRunDiv.appendChild(date);
   }
@@ -35,7 +36,7 @@ var displayParkRunsName = function(parkRuns) {
   var parkRunDiv = document.getElementById("park-run-name");
   for (var run of parkRuns){
     var name = document.createElement("div");
-    name.classList.add("park-run-data");
+    name.classList.add("data-metric");
     name.innerText = run.name;
     parkRunDiv.appendChild(name);
   }
@@ -73,8 +74,34 @@ var displayParkRunsTime = function(parkRuns) {
     time.appendChild(timeIcon);
     time.appendChild(timeValue);
 
-    parkRunDiv.appendChild(time);
-    
+    parkRunDiv.appendChild(time); 
+  }
+}
+
+var displayParkRunsPace = function(parkRuns) {
+  var parkRunDiv = document.getElementById("park-run-pace");
+  for (var run of parkRuns){
+    var pace = document.createElement("div");
+    pace.classList.add("data-metric");
+
+    var paceIcon = document.createElement("img");
+    paceIcon.src = "./resources/icon_pace.png";
+    paceIcon.classList.add("icon");
+    var totalMinutes = ((run.moving_time)/60).toFixed(2);
+    var paceValue = document.createElement("div");
+    var paceMinutes = (Math.floor(totalMinutes/(run.distance/1000))).toFixed(0) 
+    var rawPaceSeconds = (((totalMinutes/(run.distance/1000))-paceMinutes)*60).toFixed(0);
+    var paceSeconds = rawPaceSeconds;
+      if(rawPaceSeconds < 10){
+        paceSeconds = "0"+rawPaceSeconds;
+      }
+    paceValue.innerText = paceMinutes + ":" + paceSeconds + "min/km";
+    pace.appendChild(paceIcon);
+    pace.appendChild(paceValue);
+
+
+
+    parkRunDiv.appendChild(pace);
   }
 }
     

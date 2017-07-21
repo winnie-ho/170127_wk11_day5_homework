@@ -1,7 +1,7 @@
 #park-run{
   display: flex;
   flex-direction: row;
-  justify-content: center; 
+  justify-content: space-between; 
   padding: 10px;
   color: white;
   background-color: #1F618D;
@@ -10,4 +10,13 @@
 .park-run-data{
   display: flex;
   flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.park-run-row{
+  display: flex;
+  flex-direction: row;
+  font-size: 12px;
 }
