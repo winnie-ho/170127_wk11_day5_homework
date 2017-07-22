@@ -51,7 +51,7 @@ var displayRunClubRunsName = function(runClubRuns) {
   var runClubDiv = document.getElementById("run-club-name");
   for (var run of runClubRuns){
     var name = document.createElement("div");
-    name.classList.add("data-metric");
+    name.classList.add("data-metric", 'data-name');
     name.innerText = run.name;
     runClubDiv.appendChild(name);
   }

@@ -51,12 +51,20 @@
   align-content: center;
   align-items: center;
   height: 25px;
-  margin: 5px;
-} 
+  margin: 5px 2px;
+}
+
+.data-name{
+  max-width: auto;
+}
 
 @media all and (max-width: 700px) {
   body{
     display: block;
+  }
+
+  .data-name{
+    max-width: 100px;;
   }
 
 }
