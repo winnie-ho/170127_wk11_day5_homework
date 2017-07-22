@@ -36,7 +36,15 @@ var requestComplete = function (){
   }
 }
 
+var handleRunsButton = function() {
+    var runsDiv = document.getElementById('runs');
 
+    if (runsDiv.style.display === 'none') {
+        runsDiv.style.display = 'flex';
+    } else {
+        runsDiv.style.display = 'none';
+    } 
+}
 // var popDayArray = function(ResultInfo){
 //   var dayArray = [];
 //   for(var run of ResultInfo){
@@ -86,7 +94,7 @@ var showRun = function(result, handleViewButton){
     distanceIcon.src = "./resources/icon_distance.png";
     distanceIcon.classList.add("icon");
     var distanceValue = document.createElement("div");
-    distanceValue.innerText = ((run.distance)/1000).toFixed(2) + " km";
+    distanceValue.innerText = ((run.distance)/1000).toFixed(2) + "km";
     distance.appendChild(distanceIcon);
     distance.appendChild(distanceValue);
 
@@ -131,7 +139,7 @@ var showRun = function(result, handleViewButton){
       if(rawPaceSeconds < 10){
         paceSeconds = "0"+rawPaceSeconds;
       }
-    paceValue.innerText = paceMinutes + ":" + paceSeconds + "min/km";
+    paceValue.innerText = paceMinutes + ":" + paceSeconds + "/km";
     pace.appendChild(paceIcon);
     pace.appendChild(paceValue);
 

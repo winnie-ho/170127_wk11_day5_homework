@@ -7,6 +7,16 @@ var requestParkRunsComplete = function (){
   computeParkRuns(result);
 }
 
+var handleParkRunButton = function() {
+    var parkRunDiv = document.getElementById('park-run');
+
+    if (parkRunDiv.style.display === 'none') {
+        parkRunDiv.style.display = 'flex';
+    } else {
+        parkRunDiv.style.display = 'none';
+    } 
+}
+
 var computeParkRuns = function(result){
   var parkRuns = [];
   for (var run of result) {
@@ -95,7 +105,7 @@ var displayParkRunsPace = function(parkRuns) {
       if(rawPaceSeconds < 10){
         paceSeconds = "0"+rawPaceSeconds;
       }
-    paceValue.innerText = paceMinutes + ":" + paceSeconds + "min/km";
+    paceValue.innerText = paceMinutes + ":" + paceSeconds + "/km";
     pace.appendChild(paceIcon);
     pace.appendChild(paceValue);
 
@@ -109,13 +119,3 @@ var displayParkRunsPace = function(parkRuns) {
 
 
 
-var handleParkRunButton = function() {
-    var parkRunDiv = document.getElementById('park-run');
-
-    if (parkRunDiv.style.display === 'none') {
-        parkRunDiv.style.display = 'flex';
-    } else {
-        parkRunDiv.style.display = 'none';
-    }
-    
-}
