@@ -64,7 +64,7 @@ var displayRunClubRunsDistance = function(runClubRuns){
     distance.classList.add("data-metric");
     var distanceIcon = document.createElement("img");
     distanceIcon.src = "./resources/icon_distance.png";
-    distanceIcon.classList.add("icon");
+    distanceIcon.classList.add("icon-metric");
     var distanceValue = document.createElement("div");
     distanceValue.innerText = ((run.distance)/1000).toFixed(2) + "km";
     distance.appendChild(distanceIcon);
@@ -83,7 +83,7 @@ var displayRunClubRunsTime = function(runClubRuns) {
     time.classList.add("data-metric");
     var timeIcon = document.createElement("img");
     timeIcon.src = "./resources/icon_time.png";
-    timeIcon.classList.add("icon");
+    timeIcon.classList.add("icon-metric");
     var timeValue = document.createElement("div");
     var totalMinutes = ((run.moving_time)/60).toFixed(2);
     var hours = Math.floor(totalMinutes/60);
@@ -118,7 +118,7 @@ var displayRunClubRunsPace = function(runClubRuns) {
 
     var paceIcon = document.createElement("img");
     paceIcon.src = "./resources/icon_pace.png";
-    paceIcon.classList.add("icon");
+    paceIcon.classList.add("icon-metric");
     var totalMinutes = ((run.moving_time)/60).toFixed(2);
     var paceValue = document.createElement("div");
     var paceMinutes = (Math.floor(totalMinutes/(run.distance/1000))).toFixed(0) 
