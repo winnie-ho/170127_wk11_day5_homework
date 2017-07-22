@@ -8,13 +8,15 @@ var requestParkRunsComplete = function (){
 }
 
 var handleParkRunButton = function() {
-    var parkRunDiv = document.getElementById('park-run');
+  var parkRunDiv = document.getElementById('park-runs');
+  var runsDiv = document.getElementById('runs');
 
-    if (parkRunDiv.style.display === 'none') {
-        parkRunDiv.style.display = 'flex';
-    } else {
-        parkRunDiv.style.display = 'none';
-    } 
+  if (parkRunDiv.style.display === 'none') {
+      runsDiv.style.display = 'none';
+      parkRunDiv.style.display = 'flex';
+  } else {
+      parkRunDiv.style.display = 'none';
+  } 
 }
 
 var computeParkRuns = function(result){
