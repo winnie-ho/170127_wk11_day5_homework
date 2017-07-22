@@ -9,6 +9,8 @@ var app = function(){
 
   makeRequest(urlRuns, requestParkRunsComplete);
 
+  makeRequest(urlRuns, requestRunClubRunsComplete);
+
 //weather from strava api
   // var url = "https://www.strava.com/api/v3/activities/123"
   // makeRequest(url, requestComplete)

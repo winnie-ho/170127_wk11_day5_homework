@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="./components/runs/runs.css">
     <link rel="stylesheet" type="text/css" href="./components/nav/nav.css">
     <link rel="stylesheet" type="text/css" href="./components/park-runs/park-runs.css">
+    <link rel="stylesheet" type="text/css" href="./components/run-club/run-club.css">
 
     <!--import js files-->
     <script src = "app.js"></script>
@@ -19,6 +20,7 @@
     <script src = "./components/runs/runs.js"></script>
     <script src = "./components/nav/nav.js"></script>
     <script src = "./components/park-runs/park-runs.js"></script>
+    <script src = "./components/run-club/run-club.js"></script>
     <script src = "./components/columnChart.js"></script>
     <script src = "./components/mapWrapper.js"></script>
     
@@ -42,6 +44,12 @@
 
 
   <div id="page">
+    <div 
+      w3-include-html="./components/run-club/run-club.html" 
+      id="run-club" 
+      style="display: none">
+    </div>
+
     <div 
       w3-include-html="./components/park-runs/park-runs.html" 
       id="park-runs" 
