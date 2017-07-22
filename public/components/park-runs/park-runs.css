@@ -6,17 +6,3 @@
   color: white;
   background-color: #1F618D;
 }
-
-.park-run-data{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
-}
-
-.park-run-row{
-  display: flex;
-  flex-direction: row;
-  font-size: 14px;
-}

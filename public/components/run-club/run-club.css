@@ -1,0 +1,15 @@
+#run-club{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; 
+  padding: 5px;
+  color: white;
+  background-color: #1F618D;
+}
+
+@media all and (max-width: 700px) {
+  #run-club{
+    font-size: 10px;
+
+  }
+}

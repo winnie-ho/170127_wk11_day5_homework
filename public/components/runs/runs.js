@@ -37,11 +37,13 @@ var requestComplete = function (){
 }
 
 var handleRunsButton = function() {
-  var runsDiv = document.getElementById('runs');
+  var runClubDiv = document.getElementById('run-club');
   var parkRunsDiv = document.getElementById('park-runs');
+  var runsDiv = document.getElementById('runs');
     if (runsDiv.style.display === 'none') {
         runsDiv.style.display = 'flex';
         parkRunsDiv.style.display = 'none';
+        runClubDiv.style.display = 'none';
     } else {
         runsDiv.style.display = 'none';
     } 

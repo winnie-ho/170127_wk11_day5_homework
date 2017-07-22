@@ -8,10 +8,12 @@ var requestParkRunsComplete = function (){
 }
 
 var handleParkRunButton = function() {
+  var runClubDiv = document.getElementById('run-club');
   var parkRunDiv = document.getElementById('park-runs');
   var runsDiv = document.getElementById('runs');
 
   if (parkRunDiv.style.display === 'none') {
+      runClubDiv.style.display = 'none';
       runsDiv.style.display = 'none';
       parkRunDiv.style.display = 'flex';
   } else {
