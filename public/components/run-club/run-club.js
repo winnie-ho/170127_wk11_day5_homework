@@ -41,7 +41,7 @@ var displayRunClubRunsDate = function(runClubRuns) {
   var runClubDiv = document.getElementById("run-club-date");
   for (var run of runClubRuns){
     var date = document.createElement("div");
-    date.classList.add("data-metric");
+    date.classList.add("data-metric", 'data-long');
     date.innerText = run.start_date.substr(8,2) + "-" + run.start_date.substr(5,2) + "-" + run.start_date.substr(0,4);
     runClubDiv.appendChild(date);
   }
@@ -51,7 +51,7 @@ var displayRunClubRunsName = function(runClubRuns) {
   var runClubDiv = document.getElementById("run-club-name");
   for (var run of runClubRuns){
     var name = document.createElement("div");
-    name.classList.add("data-metric", 'data-name');
+    name.classList.add("data-metric", 'data-long');
     name.innerText = run.name;
     runClubDiv.appendChild(name);
   }

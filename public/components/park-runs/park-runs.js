@@ -40,7 +40,7 @@ var displayParkRunsDate = function(parkRuns) {
   var parkRunDiv = document.getElementById("park-run-date");
   for (var run of parkRuns){
     var date = document.createElement("div");
-    date.classList.add("data-metric");
+    date.classList.add('data-metric','data-long');
     date.innerText = run.start_date.substr(8,2) + "-" + run.start_date.substr(5,2) + "-" + run.start_date.substr(0,4);
     parkRunDiv.appendChild(date);
   }

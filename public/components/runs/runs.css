@@ -54,7 +54,7 @@
   margin: 5px 2px;
 }
 
-.data-name{
+.data-long{
   max-width: auto;
 }
 
@@ -63,8 +63,8 @@
     display: block;
   }
 
-  .data-name{
-    max-width: 100px;;
+  .data-long{
+    min-width: 60px;;
   }
 
 }
