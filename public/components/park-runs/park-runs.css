@@ -5,7 +5,7 @@
   padding: 5px;
   color: white;
   background-color: #1F618D;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 #park-run-result{
@@ -14,8 +14,8 @@
   flex-direction: column;
 }
 
-@media all and (max-width: 700px) {
-  #park-runs .heading{
+@media all and (max-width: 500px) {
+  #park-runs, .heading{
     font-size: 10px;
   }
 
