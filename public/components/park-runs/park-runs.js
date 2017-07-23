@@ -87,9 +87,6 @@ var displayParkRunsTime = function(fullParkRuns) {
 
     var time = document.createElement("div");
     time.classList.add("data-metric");
-    var timeIcon = document.createElement("img");
-    timeIcon.src = "./resources/icon_time.png";
-    timeIcon.classList.add("icon");
     var timeValue = document.createElement("div");
     var totalMinutes = ((run.moving_time)/60).toFixed(2);
     var hours = Math.floor(totalMinutes/60);
@@ -109,7 +106,6 @@ var displayParkRunsTime = function(fullParkRuns) {
     }else{
       timeValue.innerText = hours + ":" + minutes + ":" + seconds;
     }
-    time.appendChild(timeIcon);
     time.appendChild(timeValue);
 
     parkRunDiv.appendChild(time); 
@@ -122,9 +118,6 @@ var displayParkRunsPace = function(fullParkRuns) {
     var pace = document.createElement("div");
     pace.classList.add("data-metric");
 
-    var paceIcon = document.createElement("img");
-    paceIcon.src = "./resources/icon_pace.png";
-    paceIcon.classList.add("icon");
     var totalMinutes = ((run.moving_time)/60).toFixed(2);
     var paceValue = document.createElement("div");
     var paceMinutes = (Math.floor(totalMinutes/(run.distance/1000))).toFixed(0) 
@@ -134,7 +127,6 @@ var displayParkRunsPace = function(fullParkRuns) {
         paceSeconds = "0"+rawPaceSeconds;
       }
     paceValue.innerText = paceMinutes + ":" + paceSeconds + "/km";
-    pace.appendChild(paceIcon);
     pace.appendChild(paceValue);
 
     parkRunDiv.appendChild(pace);
