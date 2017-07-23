@@ -53,7 +53,7 @@ var displayData = function(fullParkRuns){
   displayParkRunsName(fullParkRuns);
   displayParkRunsTime(fullParkRuns);
   displayParkRunsPace(fullParkRuns);
-  displayParkRunsSeg(fullParkRuns);
+  displaySeg1(fullParkRuns);
 }
 
 var displayParkRunsDate = function(fullParkRuns) {
@@ -99,7 +99,6 @@ var displayParkRunsTime = function(fullParkRuns) {
         seconds = "0"+rawSeconds
       }
 
-
     if (hours === 0) {
       timeValue.innerText = minutes + ":" + seconds;
     }else{
@@ -133,21 +132,91 @@ var displayParkRunsPace = function(fullParkRuns) {
     pace.appendChild(paceIcon);
     pace.appendChild(paceValue);
 
-
-
     parkRunDiv.appendChild(pace);
   }
 }
 
-var displayParkRunsSeg = function(fullParkRuns) {
-  var parkRunDiv = document.getElementById("park-run-seg");
+var displaySeg1 = function(fullParkRuns) {
+  var parkRunSeg1 = document.getElementById("park-run-1");
+  var parkRunSeg2 = document.getElementById("park-run-2");
+  var parkRunSeg3= document.getElementById("park-run-3");
+  var parkRunSeg4= document.getElementById("park-run-4");
+  var parkRunSeg5= document.getElementById("park-run-5");
   for (var run of fullParkRuns){
     var seg1 = document.createElement("div");
+    var seg2 = document.createElement("div");
+    var seg3 = document.createElement("div");
+    var seg4 = document.createElement("div");
+    var seg5 = document.createElement("div");
     seg1.classList.add("data-metric");
-    seg1.innerText = run.segment_efforts[0].name;
-    parkRunDiv.appendChild(seg1);
+    seg2.classList.add("data-metric");
+    seg3.classList.add("data-metric");
+    seg4.classList.add("data-metric");
+    seg5.classList.add("data-metric");
+    for(var segment of run.segment_efforts){
+      switch (segment.name){
+        case "Edinburgh park run first km":
+          var totalSeconds = segment.moving_time;
+          var minutes = Math.floor(totalSeconds/60);
+          var rawSeconds = (Math.floor(totalSeconds-(minutes*60))).toFixed(0);
+          var seconds = rawSeconds;
+          if(rawSeconds < 10){
+            seconds = "0" + rawSeconds;
+          }
+          seg1.innerText = minutes + ":" + seconds;
+          break;
+        case "Edinburgh Parkrun 2nd Kilometre":
+          var totalSeconds = segment.moving_time;
+          var minutes = Math.floor(totalSeconds/60);
+          var rawSeconds = (Math.floor(totalSeconds-(minutes*60))).toFixed(0);
+          var seconds = rawSeconds;
+          if(rawSeconds < 10){
+            seconds = "0" + rawSeconds;
+          }
+          seg2.innerText = minutes + ":" + seconds;
+          break;
+        case "Edinburgh Parkrun 3rd Kilometre":
+          var totalSeconds = segment.moving_time;
+          var minutes = Math.floor(totalSeconds/60);
+          var rawSeconds = (Math.floor(totalSeconds-(minutes*60))).toFixed(0);
+          var seconds = rawSeconds;
+          if(rawSeconds < 10){
+            seconds = "0" + rawSeconds;
+          }
+          seg3.innerText = minutes + ":" + seconds;
+          break;
+        case "Edinburgh Parkrun 4th Kilometre":
+          var totalSeconds = segment.moving_time;
+          var minutes = Math.floor(totalSeconds/60);
+          var rawSeconds = (Math.floor(totalSeconds-(minutes*60))).toFixed(0);
+          var seconds = rawSeconds;
+          if(rawSeconds < 10){
+            seconds = "0" + rawSeconds;
+          }
+          seg4.innerText = minutes + ":" + seconds;
+          break;
+        case 'Edinburgh Parkrun 5th "Kilometre"':
+          var totalSeconds = segment.moving_time;
+          var minutes = Math.floor(totalSeconds/60);
+          var rawSeconds = (Math.floor(totalSeconds-(minutes*60))).toFixed(0);
+          var seconds = rawSeconds;
+          if(rawSeconds < 10){
+            seconds = "0" + rawSeconds;
+          }
+          seg5.innerText = minutes + ":" + seconds;
+          break;
+      }
+    }
+    parkRunSeg1.appendChild(seg1);
+    parkRunSeg2.appendChild(seg2);
+    parkRunSeg3.appendChild(seg3);
+    parkRunSeg4.appendChild(seg4);
+    parkRunSeg5.appendChild(seg5);
   }
 }
+
+
+
     
 
 
