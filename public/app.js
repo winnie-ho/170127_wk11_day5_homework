@@ -1,7 +1,7 @@
 //Running the app
 var app = function(){
   // weather now snapshot
-  makeRequest(urlWeatherNow, weatherNowResponse);
+  makeRequest(urlWeatherNow, showWeather);
 }
 
 window.onload = app;

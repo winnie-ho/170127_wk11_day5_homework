@@ -4,44 +4,8 @@ var userToken = "\?access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4";
 
 var urlRuns = "https://www.strava.com/api/v3/athlete/activities?per_page=200&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
 
-
-// var requestFullParkRunsComplete = function() {
-//   if (this.status !== 200) return;
-//   var result = JSON.parse(this.responseText);
-//   console.log("FULL PR RESULT", result);
-//   return result;
-// }
-
-//Get Strava activity by ID
-var getActivity = function(userToken, runId, callback){
-  var url = "https://www.strava.com/api/v3/activities/" + runId + userToken;
-  makeRequest(url, requestFullParkRunsComplete);
-}
-
-
-var requestParkRunsComplete = function (){
-  if (this.status !== 200) return;
-  result = JSON.parse(this.responseText);
-  computeParkRuns(result);
-}
-
-
-var computeParkRuns = function(result){
-  var parkRuns = [];
-  
-  for (var run of result) {
-    if (run.start_latitude === 55.98 && run.start_longitude === -3.29) {
-      parkRuns.push(run);
-    }
-  }
-  console.log("PARK RUN RUNS", parkRuns);
-  var fullParkRuns = computeFullParkRuns(parkRuns);
-  displayParkRunsDate(fullParkRuns);
-  displayParkRunsName(fullParkRuns);
-  displayParkRunsTime(fullParkRuns);
-  displayParkRunsPace(fullParkRuns);
-  return parkRuns;
-}
+var parkRuns = [];
+var fullParkRuns = [];
 
 var handleParkRunButton = function() {
   var runClubDiv = document.getElementById('run-club');
@@ -52,31 +16,48 @@ var handleParkRunButton = function() {
       runClubDiv.style.display = 'none';
       runsDiv.style.display = 'none';
       parkRunDiv.style.display = 'flex';
-      makeRequest(urlRuns, requestParkRunsComplete);
+      makeRequest(urlRuns, computeParkRuns);     
   } else {
       parkRunDiv.style.display = 'none';
   } 
 }
 
+var computeParkRuns = function(result){
+  
+  for (var run of result) {
+    if (run.start_latitude === 55.98 && run.start_longitude === -3.29) {
+      parkRuns.push(run);
+    }
+  }
+  console.log("PARK RUN RUNS", parkRuns);
+  computeFullParkRuns(parkRuns);
+}
+
+
+var pushFullPR = function(result){
+  fullParkRuns.push(result);
+  console.log("!!!!", fullParkRuns);
+  if(fullParkRuns.length === parkRuns.length){
+    displayData(fullParkRuns);
+  }
+}
 
 var computeFullParkRuns = function(parkRuns){
-  var fullParkRuns = [];
   for(var run of parkRuns){
-    var url = "https://www.strava.com/api/v3/activities/" + run.id + userToken;
-    var requestFullParkRunsComplete = function() {
-      if (this.status !== 200) return;
-      var result = JSON.parse(this.responseText);
-      fullParkRuns.push(result);
-    }
-    makeRequest(url, requestFullParkRunsComplete);
+    var activityUrl = "https://www.strava.com/api/v3/activities/" + run.id + userToken;
+    makeRequest(activityUrl, pushFullPR);
   }
-  console.log("FULL PARK RUNS ARRAY", fullParkRuns);
-  return fullParkRuns;
+}
+
+var displayData = function(fullParkRuns){
+  displayParkRunsDate(fullParkRuns);
+  displayParkRunsName(fullParkRuns);
+  displayParkRunsTime(fullParkRuns);
+  displayParkRunsPace(fullParkRuns);
 }
 
 var displayParkRunsDate = function(parkRuns) {
   var parkRunDiv = document.getElementById("park-run-date");
-  console.log("PARK RUNs", parkRuns);
   for (var run of parkRuns){
     var date = document.createElement("div");
     date.classList.add('data-metric','data-long');
