@@ -4,10 +4,12 @@ var handleRunClubButton = function() {
   var runClubDiv = document.getElementById('run-club');
   var runsDiv = document.getElementById('runs');
   var parkRunDiv = document.getElementById('park-runs');
+  var homeDiv = document.getElementById('home');
 
   if (runClubDiv.style.display === 'none') {
       runsDiv.style.display = 'none';
       parkRunDiv.style.display = 'none';
+      homeDiv.style.display = 'none';
       runClubDiv.style.display = 'flex';
       makeRequest(urlRuns, computeRunClubRuns);
   } else {

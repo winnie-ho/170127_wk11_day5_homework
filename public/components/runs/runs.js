@@ -4,9 +4,11 @@ var handleRunsButton = function() {
   var runClubDiv = document.getElementById('run-club');
   var parkRunsDiv = document.getElementById('park-runs');
   var runsDiv = document.getElementById('runs');
+  var homeDiv = document.getElementById('home');
     if (runsDiv.style.display === 'none') {
         parkRunsDiv.style.display = 'none';
         runClubDiv.style.display = 'none';
+        homeDiv.style.display = 'none';
         runsDiv.style.display = 'flex';
         makeRequest(urlRuns, showRun);
     } else {

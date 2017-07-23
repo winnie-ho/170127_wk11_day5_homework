@@ -11,10 +11,12 @@ var handleParkRunButton = function() {
   var runClubDiv = document.getElementById('run-club');
   var parkRunDiv = document.getElementById('park-runs');
   var runsDiv = document.getElementById('runs');
+  var homeDiv = document.getElementById('home');
 
   if (parkRunDiv.style.display === 'none') {
       runClubDiv.style.display = 'none';
       runsDiv.style.display = 'none';
+      homeDiv.style.display = 'none';
       parkRunDiv.style.display = 'flex';
       parkRuns = [];
       makeRequest(urlRuns, computeParkRuns);     
