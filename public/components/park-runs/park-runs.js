@@ -36,7 +36,6 @@ var computeParkRuns = function(result){
 
 var pushFullPR = function(result){
   fullParkRuns.push(result);
-  console.log("!!!!", fullParkRuns);
   if(fullParkRuns.length === parkRuns.length){
     displayData(fullParkRuns);
   }
@@ -54,11 +53,12 @@ var displayData = function(fullParkRuns){
   displayParkRunsName(fullParkRuns);
   displayParkRunsTime(fullParkRuns);
   displayParkRunsPace(fullParkRuns);
+  displayParkRunsSeg(fullParkRuns);
 }
 
-var displayParkRunsDate = function(parkRuns) {
+var displayParkRunsDate = function(fullParkRuns) {
   var parkRunDiv = document.getElementById("park-run-date");
-  for (var run of parkRuns){
+  for (var run of fullParkRuns){
     var date = document.createElement("div");
     date.classList.add('data-metric','data-long');
     date.innerText = run.start_date.substr(8,2) + "-" + run.start_date.substr(5,2) + "-" + run.start_date.substr(0,4);
@@ -66,9 +66,9 @@ var displayParkRunsDate = function(parkRuns) {
   }
 }
 
-var displayParkRunsName = function(parkRuns) {
+var displayParkRunsName = function(fullParkRuns) {
   var parkRunDiv = document.getElementById("park-run-name");
-  for (var run of parkRuns){
+  for (var run of fullParkRuns){
     var name = document.createElement("div");
     name.classList.add("data-metric");
     name.innerText = run.name;
@@ -76,9 +76,9 @@ var displayParkRunsName = function(parkRuns) {
   }
 }
 
-var displayParkRunsTime = function(parkRuns) {
+var displayParkRunsTime = function(fullParkRuns) {
   var parkRunDiv = document.getElementById("park-run-time");
-  for (var run of parkRuns){
+  for (var run of fullParkRuns){
 
     var time = document.createElement("div");
     time.classList.add("data-metric");
@@ -112,9 +112,9 @@ var displayParkRunsTime = function(parkRuns) {
   }
 }
 
-var displayParkRunsPace = function(parkRuns) {
+var displayParkRunsPace = function(fullParkRuns) {
   var parkRunDiv = document.getElementById("park-run-pace");
-  for (var run of parkRuns){
+  for (var run of fullParkRuns){
     var pace = document.createElement("div");
     pace.classList.add("data-metric");
 
@@ -136,6 +136,16 @@ var displayParkRunsPace = function(parkRuns) {
 
 
     parkRunDiv.appendChild(pace);
+  }
+}
+
+var displayParkRunsSeg = function(fullParkRuns) {
+  var parkRunDiv = document.getElementById("park-run-seg");
+  for (var run of fullParkRuns){
+    var seg1 = document.createElement("div");
+    seg1.classList.add("data-metric");
+    seg1.innerText = run.segment_efforts[0].name;
+    parkRunDiv.appendChild(seg1);
   }
 }
     
