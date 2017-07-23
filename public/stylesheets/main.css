@@ -70,6 +70,12 @@ button:hover{
   font-weight: bolder;
 }
 
+.heading{
+  font-weight: bold;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;  
+}
 
 img{
   position: relative;
