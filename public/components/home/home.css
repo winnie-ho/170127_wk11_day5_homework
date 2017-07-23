@@ -1,15 +1,28 @@
-#runs{
-  border-radius: 2px;
-  margin: auto;
-  display: block;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: left;
-  height: 700px;
-  overflow-y: scroll;
-  overflow-x: hidden;
+.home-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  padding: 5px;
+  width: 100%;
+
 }
 
+.total-item{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  height: 100px;
+  background-color: #1F618D;
+  width: 98%;
+  border-radius: 2px;
+  padding: 10px;
+  color: white;
+}
 #run-box{
   background-color: #1F618D;
   color: white;
