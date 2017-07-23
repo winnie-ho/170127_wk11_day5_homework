@@ -16,6 +16,7 @@ var handleParkRunButton = function() {
       runClubDiv.style.display = 'none';
       runsDiv.style.display = 'none';
       parkRunDiv.style.display = 'flex';
+      parkRuns = [];
       makeRequest(urlRuns, computeParkRuns);     
   } else {
       parkRunDiv.style.display = 'none';
@@ -36,6 +37,7 @@ var computeParkRuns = function(result){
 
 var pushFullPR = function(result){
   fullParkRuns.push(result);
+
   if(fullParkRuns.length === parkRuns.length){
     var sortedFullPR = fullParkRuns.sort(function(a,b){
       return b.upload_id - a.upload_id;
@@ -52,7 +54,7 @@ var computeFullParkRuns = function(parkRuns){
 }
 
 var displayData = function(fullParkRuns){
-  displayParkRunsDate(fullParkRuns);
+  displayParkRunsDate(fullParkRuns);  
   displayParkRunsName(fullParkRuns);
   displayParkRunsTime(fullParkRuns);
   displayParkRunsPace(fullParkRuns);
