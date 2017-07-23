@@ -1,3 +1,19 @@
+var urlWeatherForecast = "http://api.openweathermap.org/data/2.5/forecast?id=2650225&appid=b7114aca731d927ad002d0a518f38dfe"
+
+var moreWeather = function(){
+	var weekWeatherDiv = document.getElementById('weather-forecast');
+	var weatherOption = document.getElementById('weather-option');
+
+	if (weekWeatherDiv.style.display === 'none') {
+			weekWeatherDiv.style.display = 'flex';
+      makeRequest(urlWeatherForecast, showWeekWeatherForecast);
+			weatherOption.innerText="–"
+	} else {
+			weekWeatherDiv.style.display = 'none';
+			weatherOption.innerText="+"
+	}
+}
+
 var showWeekWeatherForecast = function(resultWeekWeatherForecast){
   var weatherForecast=document.querySelector("#weather-forecast");
   for(var slot of resultWeekWeatherForecast.list){
@@ -36,28 +52,7 @@ var showWeekWeatherForecast = function(resultWeekWeatherForecast){
   }
 }
 
-var urlWeatherForecast = "http://api.openweathermap.org/data/2.5/forecast?id=2650225&appid=b7114aca731d927ad002d0a518f38dfe"
 
-var weatherForecastResponse= function (){
-  if (this.status !== 200) return;
-  result = JSON.parse(this.responseText);
-  console.log("week weather forecast", result);
-  showWeekWeatherForecast(result);
-}
-
-var moreWeather = function(){
-	var weekWeatherDiv = document.getElementById('weather-forecast');
-	var weatherOption = document.getElementById('weather-option');
-
-	if (weekWeatherDiv.style.display === 'none') {
-			weekWeatherDiv.style.display = 'flex';
-      makeRequest(urlWeatherForecast, weatherForecastResponse);
-			weatherOption.innerText="–"
-	} else {
-			weekWeatherDiv.style.display = 'none';
-			weatherOption.innerText="+"
-	}
-}
 
 
 

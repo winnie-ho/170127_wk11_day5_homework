@@ -1,11 +1,18 @@
 var urlRuns = "https://www.strava.com/api/v3/athlete/activities?per_page=100&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
 
-var requestRunsComplete = function (){
-  if (this.status !== 200) return;
-  result = JSON.parse(this.responseText);
-  // console.log("RUNS CALL", result);
-  showRun(result, handleViewButton);
-
+var handleRunsButton = function() {
+  var runClubDiv = document.getElementById('run-club');
+  var parkRunsDiv = document.getElementById('park-runs');
+  var runsDiv = document.getElementById('runs');
+    if (runsDiv.style.display === 'none') {
+        parkRunsDiv.style.display = 'none';
+        runClubDiv.style.display = 'none';
+        runsDiv.style.display = 'flex';
+        makeRequest(urlRuns, showRun);
+    } else {
+        runsDiv.style.display = 'none';
+    } 
+}
 
 
   // var handleNearMeButton = function(){
@@ -27,30 +34,16 @@ var requestRunsComplete = function (){
   // mapDiv.innerHTML = "";
   // var mainMap = new MapWrapper(centre, 14);
 
-  var handleViewButton = function(event){
-    console.log("viewbutton clicked");
-    var runSelected = JSON.parse(event.target.value);
-    var runLine = runSelected.map.summary_polyline;
-    var startPoint = {lat: ((runSelected.start_latlng[0] + runSelected.end_latlng[0])/2), lng: ((runSelected.start_latlng[1] + runSelected.end_latlng[1])/2)};
-    mainMap.addPolyline(runLine, startPoint);
-  }
-}
+  // var handleViewButton = function(event){
+  //   console.log("viewbutton clicked");
+  //   var runSelected = JSON.parse(event.target.value);
+  //   var runLine = runSelected.map.summary_polyline;
+  //   var startPoint = {lat: ((runSelected.start_latlng[0] + runSelected.end_latlng[0])/2), lng: ((runSelected.start_latlng[1] + runSelected.end_latlng[1])/2)};
+  //   mainMap.addPolyline(runLine, startPoint);
+  // }
+// }
 
-makeRequest(urlRuns, requestRunsComplete)
 
-var handleRunsButton = function() {
-  var runClubDiv = document.getElementById('run-club');
-  var parkRunsDiv = document.getElementById('park-runs');
-  var runsDiv = document.getElementById('runs');
-    if (runsDiv.style.display === 'none') {
-        parkRunsDiv.style.display = 'none';
-        runClubDiv.style.display = 'none';
-        runsDiv.style.display = 'flex';
-        makeRequest(urlRuns, requestRunClubRunsComplete);
-    } else {
-        runsDiv.style.display = 'none';
-    } 
-}
 // var popDayArray = function(ResultInfo){
 //   var dayArray = [];
 //   for(var run of ResultInfo){
@@ -68,7 +61,7 @@ var handleRunsButton = function() {
 // }
 
 
-var showRun = function(result, handleViewButton){
+var showRun = function(result){
   var runsDiv = document.querySelector("#runs");
   runsDiv.innerHTML = "";
 
