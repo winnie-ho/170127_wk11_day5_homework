@@ -37,7 +37,10 @@ var computeParkRuns = function(result){
 var pushFullPR = function(result){
   fullParkRuns.push(result);
   if(fullParkRuns.length === parkRuns.length){
-    displayData(fullParkRuns);
+    var sortedFullPR = fullParkRuns.sort(function(a,b){
+      return b.upload_id - a.upload_id;
+    });
+    displayData(sortedFullPR);
   }
 }
 
@@ -53,7 +56,7 @@ var displayData = function(fullParkRuns){
   displayParkRunsName(fullParkRuns);
   displayParkRunsTime(fullParkRuns);
   displayParkRunsPace(fullParkRuns);
-  displaySeg1(fullParkRuns);
+  displaySeg(fullParkRuns);
 }
 
 var displayParkRunsDate = function(fullParkRuns) {
@@ -136,7 +139,7 @@ var displayParkRunsPace = function(fullParkRuns) {
   }
 }
 
-var displaySeg1 = function(fullParkRuns) {
+var displaySeg = function(fullParkRuns) {
   var parkRunSeg1 = document.getElementById("park-run-1");
   var parkRunSeg2 = document.getElementById("park-run-2");
   var parkRunSeg3= document.getElementById("park-run-3");
