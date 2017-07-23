@@ -1,9 +1,9 @@
 var urlRuns = "https://www.strava.com/api/v3/athlete/activities?per_page=100&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
 
-var requestComplete = function (){
+var requestRunsComplete = function (){
   if (this.status !== 200) return;
   result = JSON.parse(this.responseText);
-  console.log(result);
+  // console.log("RUNS CALL", result);
   showRun(result, handleViewButton);
 
 
@@ -36,14 +36,17 @@ var requestComplete = function (){
   }
 }
 
+makeRequest(urlRuns, requestRunsComplete)
+
 var handleRunsButton = function() {
   var runClubDiv = document.getElementById('run-club');
   var parkRunsDiv = document.getElementById('park-runs');
   var runsDiv = document.getElementById('runs');
     if (runsDiv.style.display === 'none') {
-        runsDiv.style.display = 'flex';
         parkRunsDiv.style.display = 'none';
         runClubDiv.style.display = 'none';
+        runsDiv.style.display = 'flex';
+        makeRequest(urlRuns, requestRunClubRunsComplete);
     } else {
         runsDiv.style.display = 'none';
     } 

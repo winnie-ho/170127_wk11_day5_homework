@@ -3,7 +3,7 @@ var urlRuns = "https://www.strava.com/api/v3/athlete/activities?per_page=200&acc
 var requestRunClubRunsComplete = function (){
   if (this.status !== 200) return;
   result = JSON.parse(this.responseText);
-  console.log(result);
+  // console.log("RUN CLUB CALL",result);
   computeRunClubRuns(result);
 }
 
@@ -28,7 +28,6 @@ var computeRunClubRuns = function(result){
       runClubRuns.push(run);
     }
   }
-  console.log("RUN CLUB RUNS ARRAY", runClubRuns);
   displayRunClubRunsDate(runClubRuns);
   displayRunClubRunsName(runClubRuns);
   displayRunClubRunsDistance(runClubRuns);

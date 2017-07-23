@@ -7,11 +7,12 @@
   background-color: #1F618D;
 }
 
-  .icon-metric{
-    height: 15px;
-    width: auto;
-    margin: 0 3px;
-  }
+.icon-metric{
+  height: 15px;
+  width: auto;
+  margin: 0 3px;
+}
+
 @media all and (max-width: 700px) {
   #run-club{
     font-size: 11px;

@@ -7,6 +7,8 @@ var weatherForecastResponse= function (){
   showWeekWeatherForecast(result);
 }
 
+makeRequest(urlWeatherForecast, weatherForecastResponse);
+
 var showWeekWeatherForecast = function(resultWeekWeatherForecast){
   var weatherForecast=document.querySelector("#weather-forecast");
   for(var slot of resultWeekWeatherForecast.list){
