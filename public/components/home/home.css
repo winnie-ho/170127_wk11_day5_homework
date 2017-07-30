@@ -6,10 +6,14 @@
   align-items: center;
   padding: 5px;
   width: 100%;
+}
 
+#distance{
+  width: 100%;
 }
 
 .total-item{
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -18,10 +22,15 @@
   margin: 5px;
   height: 100px;
   background-color: #1F618D;
-  width: 98%;
   border-radius: 2px;
   padding: 10px;
   color: white;
+}
+
+.total-item__child{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 #run-box{

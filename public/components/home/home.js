@@ -17,26 +17,53 @@ var handleHomeButton = function() {
 }
 
 var showDistance = function(result){
-  var distanceDiv = document.getElementById("total-distance");
+  var distanceDiv = document.getElementById("distance");
+  var monthDistanceDiv = document.getElementById("month-distance");
+  var yearDistanceDiv = document.getElementById("year-distance");
+  var totalDistanceDiv = document.getElementById("total-distance");
 
 
   var monthDistance = ((result.recent_run_totals.distance)/1000).toFixed(2);
-  var monthDistanceDiv = document.createElement("div");
-  monthDistanceDiv.innerHTML = "This month: " + monthDistance + "km";
-
   var yearDistance = ((result.ytd_run_totals.distance)/1000).toFixed(2);
-  var yearDistanceDiv = document.createElement("div");
-  yearDistanceDiv.innerHTML = "This year: " + yearDistance + "km";
-
   var totalDistance = ((result.all_run_totals.distance)/1000).toFixed(2);
-  var totalDistanceDiv = document.createElement("div");
+
+  monthDistanceDiv.innerHTML = "This month: " + monthDistance + "km";
+  yearDistanceDiv.innerHTML = "This year: " + yearDistance + "km";
   totalDistanceDiv.innerHTML = "All time: " + totalDistance + "km";
-
-  distanceDiv.appendChild(monthDistanceDiv);
-  distanceDiv.appendChild(yearDistanceDiv);
-  distanceDiv.appendChild(totalDistanceDiv);
-
+  showTime(result);
 }
 
+var showTime = function(result){
+  var timeDiv = document.getElementById("time");
+  var monthTimeDiv = document.getElementById("month-time");
+  var yearTimeDiv = document.getElementById("year-time");
+  var totalTimeDiv = document.getElementById("total-time");
+
+
+  var monthTime = ((result.recent_run_totals.moving_time)/3600).toFixed();
+  var yearTime = ((result.ytd_run_totals.moving_time)/3600).toFixed();
+  var totalTime = ((result.all_run_totals.moving_time)/3600).toFixed();
+
+  monthTimeDiv.innerHTML = "This month: " + monthTime + "hours";
+  yearTimeDiv.innerHTML = "This year: " + yearTime + "hours";
+  totalTimeDiv.innerHTML = "All time: " + totalTime + "hours";
+  showRuns(result);
+}
+
+var showRuns = function(result){
+  var runsDiv = document.getElementById("run-count");
+  var monthRunsDiv = document.getElementById("month-runs");
+  var yearRunsDiv = document.getElementById("year-runs");
+  var totalRunsDiv = document.getElementById("total-runs");
+
+
+  var monthRuns = result.recent_run_totals.count;
+  var yearRuns = result.ytd_run_totals.count;
+  var totalRuns = result.all_run_totals.count;
+
+  monthRunsDiv.innerHTML = "This month: " + monthRuns;
+  yearRunsDiv.innerHTML = "This year: " + yearRuns;
+  totalRunsDiv.innerHTML = "All time: " + totalRuns;
+}
 
 makeRequest(totalStatsUrl, showDistance);
