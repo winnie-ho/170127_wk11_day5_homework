@@ -3,7 +3,7 @@ var app = function(){
   // weather now snapshot
   makeRequest(urlWeatherNow, showWeather);
 
-  makeRequest(totalStatsUrl, requestComplete);
+  
 
 }
 
@@ -13,7 +13,10 @@ window.onload = app;
 
 //ACTIVITY PHOTO CALL
 // var photoURL = "https://www.strava.com/api/v3/activities/1091623854/photos?photo_sources=true&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
-// makeRequest(photoURL, requestTestComplete);
+//   var requestComplete = function(){
+//     console.log("Race list");
+//   }
+// makeRequest(photoURL, requestComplete);
 
 
 //weather from strava api
@@ -41,8 +44,26 @@ window.onload = app;
   // }
   // makeRequest(raceDetaillUrl, requestComplete);
 
-// Totals and stats per athlete
-  var totalStatsUrl = "https://www.strava.com/api/v3/athletes/3752965/stats\?access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
-  var requestComplete = function(){
-    console.log("Total Stats for Athlete");
-  }
+
+
+
+// Athlete friends
+  // var athleteFriendsUrl = "https://www.strava.com/api/v3/athlete/friends\?access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
+  // var requestComplete = function(){
+  //   console.log("List of athletes friends");
+  // }
+  // makeRequest(athleteFriendsUrl, requestComplete);
+
+// Athlete by id friends
+  // var athleteFriendsUrl = "https://www.strava.com/api/v3/athletes/11537738/friends\?access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
+  // var requestComplete = function(){
+  //   console.log("List of friends for athlete with id");
+  // }
+  // makeRequest(athleteFriendsUrl, requestComplete);
+
+// Activity kudos
+//   var activityKudosUrl = "https://www.strava.com/api/v3/activities/1099567918/kudos\?access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
+//   var requestComplete = function(){
+//     console.log("Kudos for a given activity");
+//   }
+// makeRequest(activityKudosUrl, requestComplete);

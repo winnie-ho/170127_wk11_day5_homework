@@ -1,5 +1,5 @@
-var urlRuns = "https://www.strava.com/api/v3/athlete/activities?per_page=100&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
-
+// Totals and stats per athlete
+var totalStatsUrl = "https://www.strava.com/api/v3/athletes/3752965/stats\?access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
 
 var handleHomeButton = function() {
   var runClubDiv = document.getElementById('run-club');
@@ -16,20 +16,27 @@ var handleHomeButton = function() {
     } 
 }
 
-
-
 var showDistance = function(result){
   var distanceDiv = document.getElementById("total-distance");
 
-  var totalDistanceRaw = result.reduce(function(sum, value) {
-    return sum + value.distance;
-  }, 0);
 
-  var totalDistance = (totalDistanceRaw/1000).toFixed(2);
+  var monthDistance = ((result.recent_run_totals.distance)/1000).toFixed(2);
+  var monthDistanceDiv = document.createElement("div");
+  monthDistanceDiv.innerHTML = "This month: " + monthDistance + "km";
 
-  console.log("DISTANCE", (totalDistance/1000).toFixed(2));
-  distanceDiv.innerText = "this year: " +  totalDistance + "km";
+  var yearDistance = ((result.ytd_run_totals.distance)/1000).toFixed(2);
+  var yearDistanceDiv = document.createElement("div");
+  yearDistanceDiv.innerHTML = "This year: " + yearDistance + "km";
+
+  var totalDistance = ((result.all_run_totals.distance)/1000).toFixed(2);
+  var totalDistanceDiv = document.createElement("div");
+  totalDistanceDiv.innerHTML = "All time: " + totalDistance + "km";
+
+  distanceDiv.appendChild(monthDistanceDiv);
+  distanceDiv.appendChild(yearDistanceDiv);
+  distanceDiv.appendChild(totalDistanceDiv);
+
 }
 
 
-makeRequest(urlRuns, showDistance);
+makeRequest(totalStatsUrl, showDistance);
