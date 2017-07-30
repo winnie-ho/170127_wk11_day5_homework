@@ -2,6 +2,9 @@
 var app = function(){
   // weather now snapshot
   makeRequest(urlWeatherNow, showWeather);
+
+  makeRequest(totalStatsUrl, requestComplete);
+
 }
 
 window.onload = app;
@@ -16,3 +19,30 @@ window.onload = app;
 //weather from strava api
   // var url = "https://www.strava.com/api/v3/activities/123"
   // makeRequest(url, requestComplete)
+
+//races from strava api
+  // var raceListUrl = "https://www.strava.com/api/v3/running_races?year=2017&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
+  // var requestComplete = function(){
+  //   console.log("Race list");
+  // }
+  // makeRequest(raceListUrl, requestComplete);
+
+  // var lapListUrl = "https://www.strava.com/api/v3/activities/1106619701/laps\?access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
+  // var requestComplete = function(){
+  //   console.log("Lap list");
+  // }
+  // makeRequest(lapListUrl, requestComplete);
+
+
+//race details from strava api
+  // var raceDetaillUrl = "https://www.strava.com/api/v3/running_races?id=1048&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
+  // var requestComplete = function(){
+  //   console.log("Race detail");
+  // }
+  // makeRequest(raceDetaillUrl, requestComplete);
+
+// Totals and stats per athlete
+  var totalStatsUrl = "https://www.strava.com/api/v3/athletes/3752965/stats\?access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
+  var requestComplete = function(){
+    console.log("Total Stats for Athlete");
+  }
