@@ -1,10 +1,10 @@
 var urlRuns = "https://www.strava.com/api/v3/athlete/activities?per_page=200&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
 
 var handleRunClubButton = function() {
-  var runClubDiv = document.getElementById('run-club');
-  var runsDiv = document.getElementById('runs');
-  var parkRunDiv = document.getElementById('park-runs');
-  var homeDiv = document.getElementById('home');
+  var runClubDiv = document.querySelector('#run-club');
+  var runsDiv = document.querySelector('#runs');
+  var parkRunDiv = document.querySelector('#park-runs');
+  var homeDiv = document.querySelector('#home');
 
   if (runClubDiv.style.display === 'none') {
       runsDiv.style.display = 'none';
@@ -20,7 +20,9 @@ var handleRunClubButton = function() {
 var computeRunClubRuns = function(result){
   var runClubRuns = [];
   for (var run of result) {
-    if (run.start_latitude === 55.95 && run.start_longitude === -3.21) {
+    if (55.94 < run.start_latitude < 55.95 &&
+       (run.start_longitude === -3.21 || run.start_longitude === -3.20) &&
+        (new Date (run.start_date_local)).getDay() === 1) {
       runClubRuns.push(run);
     }
   }
@@ -33,7 +35,7 @@ var computeRunClubRuns = function(result){
 }
 
 var displayRunClubRunsDate = function(runClubRuns) {
-  var runClubDiv = document.getElementById("run-club-date");
+  var runClubDiv = document.querySelector("#run-club-date");
   for (var run of runClubRuns){
     var date = document.createElement("div");
     date.classList.add("data-metric", 'data-long');
@@ -43,7 +45,7 @@ var displayRunClubRunsDate = function(runClubRuns) {
 }
 
 var displayRunClubRunsName = function(runClubRuns) {
-  var runClubDiv = document.getElementById("run-club-name");
+  var runClubDiv = document.querySelector("#run-club-name");
   for (var run of runClubRuns){
     var name = document.createElement("div");
     name.classList.add("data-metric", 'data-long');
@@ -53,7 +55,7 @@ var displayRunClubRunsName = function(runClubRuns) {
 }
 
 var displayRunClubRunsDistance = function(runClubRuns){
-  var runClubDiv = document.getElementById('run-club-distance');
+  var runClubDiv = document.querySelector('#run-club-distance');
   for (var run of runClubRuns){
     var distance = document.createElement("div");
     distance.classList.add("data-metric");
@@ -71,7 +73,7 @@ var displayRunClubRunsDistance = function(runClubRuns){
 
 
 var displayRunClubRunsTime = function(runClubRuns) {
-  var runClubDiv = document.getElementById("run-club-time");
+  var runClubDiv = document.querySelector("#run-club-time");
   for (var run of runClubRuns){
 
     var time = document.createElement("div");
