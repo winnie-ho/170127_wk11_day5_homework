@@ -9,7 +9,6 @@
 }
 
 #park-run-result{
-  border: red dashed 1px;
   display: flex;
   flex-direction: column;
 }
