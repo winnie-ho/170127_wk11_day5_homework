@@ -11,9 +11,7 @@ var handleRunsButton = function() {
         homeDiv.style.display = 'none';
         runsDiv.style.display = 'flex';
         makeRequest(urlRuns, showRun);
-    } else {
-        runsDiv.style.display = 'none';
-    } 
+    }
 }
 
 

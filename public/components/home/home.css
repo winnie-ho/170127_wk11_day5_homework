@@ -30,7 +30,7 @@
 .total-item__child{
   display: flex;
   flex-direction: column;
-  width: 100%;
+  justify-content: center;
 }
 
 #run-box{

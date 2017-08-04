@@ -20,9 +20,7 @@ var handleParkRunButton = function() {
       parkRunDiv.style.display = 'flex';
       parkRuns = [];
       makeRequest(urlRuns, computeParkRuns);     
-  } else {
-      parkRunDiv.style.display = 'none';
-  } 
+  }
 }
 
 var computeParkRuns = function(result){

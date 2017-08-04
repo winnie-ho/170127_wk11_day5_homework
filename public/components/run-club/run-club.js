@@ -12,9 +12,7 @@ var handleRunClubButton = function() {
       homeDiv.style.display = 'none';
       runClubDiv.style.display = 'flex';
       makeRequest(urlRuns, computeRunClubRuns);
-  } else {
-      runClubDiv.style.display = 'none';
-  } 
+  }
 }
 
 var computeRunClubRuns = function(result){

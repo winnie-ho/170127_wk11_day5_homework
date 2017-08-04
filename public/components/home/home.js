@@ -11,9 +11,7 @@ var handleHomeButton = function() {
         runClubDiv.style.display = 'none';
         runsDiv.style.display = 'none';
         homeDiv.style.display = 'flex';
-    } else {
-        homeDiv.style.display = 'none';
-    } 
+    }
 }
 
 var showDistance = function(result){
