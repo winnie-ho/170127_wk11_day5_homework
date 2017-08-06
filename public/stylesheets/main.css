@@ -7,6 +7,17 @@ body{
   margin: 0px;
 }
 
+#page{
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 800px;
+}
+
+#window{
+  height: 400px;
+  width: 100%;
+}
+
 main{
   display: flex;
   flex-direction: column;
@@ -47,13 +58,14 @@ button:hover{
 
 #header{
   display: flex;
-  position: relative;
+  position: fixed;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   text-align: center;
   width: 100%;
   height: auto;
+  z-index: -1;
 }
 
 .image-float{

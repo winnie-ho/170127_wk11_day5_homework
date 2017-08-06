@@ -36,18 +36,22 @@
 
 
   <body> 
-    <div w3-include-html="./components/nav/nav.html" id="nav"></div>
+
+  <div id="page">
+
     <div id="header">
       <img src="./resources/DC_26.jpg" />
       <span id="title" class="image-float">WIN RUNS</span>
     </div>
 
-    
+    <div id="window"></div>
+
+    <div w3-include-html="./components/nav/nav.html" id="nav"></div>
+
     <div w3-include-html="./components/weather-now/weather-now.html" id="weather-now"></div>
     <div id="weather-forecast" style="display: none"></div>
 
 
-  <div id="page">
     <div 
       w3-include-html="./components/home/home.html" 
       id="home" 
