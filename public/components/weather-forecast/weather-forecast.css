@@ -5,7 +5,7 @@
   transition: border-color 1s, color 1s, opacity 1s;
   overflow-y: hidden;
   overflow-x: scroll;
-  background-color: white;
+  /* background-color: white; */
   position: sticky;
   top: 80px;
 }
