@@ -3,14 +3,17 @@ var urlWeatherForecast = "http://api.openweathermap.org/data/2.5/forecast?id=265
 var moreWeather = function(){
 	var weekWeatherDiv = document.getElementById('weather-forecast');
 	var weatherOption = document.getElementById('weather-option');
+	var title = document.getElementById('title');
 
 	if (weekWeatherDiv.style.display === 'none') {
 			weekWeatherDiv.style.display = 'flex';
       makeRequest(urlWeatherForecast, showWeekWeatherForecast);
-			weatherOption.innerText="–"
+      weatherOption.innerText="–";
+      title.style.display = "none";
 	} else {
 			weekWeatherDiv.style.display = 'none';
 			weatherOption.innerText="+"
+      title.style.display = "block";
 	}
 }
 

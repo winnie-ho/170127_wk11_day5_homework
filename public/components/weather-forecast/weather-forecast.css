@@ -30,11 +30,11 @@
 }
 
 .even{
-  background-color: #DBDCE0;
+  background-color: rgba(219, 220, 224, 0.5);
   color: #1F618D;
 }
 
 .odd{
-  background-color: #1F618D;
+  background-color: rgba(31, 97, 141, 0.7);
   color: white;
 }
