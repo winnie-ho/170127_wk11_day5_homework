@@ -205,4 +205,12 @@ img{
   #title{
     font-size: 40px;
   }
+
+
+.heading{
+  font-weight: bold;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;  
+}
 }

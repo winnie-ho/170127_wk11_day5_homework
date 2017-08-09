@@ -1,6 +1,6 @@
 #runs{
   border-radius: 2px;
-  margin: auto;
+  margin-top: 10px;
   display: block;
   flex-direction: row;
   flex-wrap: wrap;
@@ -63,10 +63,4 @@
   .data-long{
     min-width: 60px;;
   }
-
-  #runs{
-    font-size: 12px;
-  }
-
-
 }

@@ -3,6 +3,7 @@
   flex-direction: row;
   justify-content: space-between; 
   padding: 5px 7px;
+  margin-top: 10px;
   color: white;
   background-color: rgba(31, 97, 141, 0.7);
   font-size: 14px;

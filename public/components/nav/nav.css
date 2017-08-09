@@ -12,7 +12,7 @@
 
 .nav-icon{
   width: auto;
-  height: 40px;
+  height: 30px;
   margin: 0 5px;
 
   animation-name: resize;
@@ -20,8 +20,8 @@
 }
 
 @keyframes resize {
-    from {height: 60px}
-    to {height: 40px }
+    from {height: 50px}
+    to {height: 30px }
 }
 
 #home-button{

@@ -3,12 +3,12 @@
 }
 
 .home-container{
-  height: 700px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   padding: 5px;
   width: 100%;
+  margin-top: 80px;
 }
 
 #distance{
@@ -23,10 +23,11 @@
   justify-content: center;
   align-items: center;
   margin: 5px;
-  height: 300px;
   border-radius: 2px;
   padding: 10px;
   color: white;
+  background-color: rgba(31, 97, 141, 0.7);
+
 }
 
 .total-item__child{
@@ -53,7 +54,7 @@
   max-width: auto;
 }
 
-@media all and (max-width: 700px) {
+@media all and (max-width: 500px) {
   body{
     display: block;
     font-size: 14px;
@@ -63,9 +64,14 @@
     min-width: 60px;;
   }
 
-  #runs{
-    font-size: 12px;
+  .home-container{
+    flex-direction: column;
+    align-items: center;
+    margin-left: 220px;
   }
 
+  .total-item{
+    margin: 2px;
+  }
 
 }
