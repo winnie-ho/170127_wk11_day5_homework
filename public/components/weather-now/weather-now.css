@@ -32,5 +32,6 @@
 
 .option-more:hover{
   padding: 5px;
-  color: #3E9FDF;
+  color: rgba(31, 97, 141, 1);
+;
 }
