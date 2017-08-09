@@ -85,5 +85,3 @@ var showRuns = function(result){
   yearRunsDiv.innerHTML = "This year: " + yearRuns;
   totalRunsDiv.innerHTML = "All time: " + totalRuns;
 }
-
-makeRequest(totalStatsUrl, showDistance);

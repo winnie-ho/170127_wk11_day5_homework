@@ -2,9 +2,7 @@
 var app = function(){
   // weather now snapshot
   makeRequest(urlWeatherNow, showWeather);
-
-  
-
+  makeRequest(totalStatsUrl, showDistance);
 }
 
 window.onload = app;
