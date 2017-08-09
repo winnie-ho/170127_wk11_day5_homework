@@ -6,6 +6,7 @@
     
     <!--import style sheets -->
     <link rel="stylesheet" type="text/css" href="./stylesheets/main.css">   
+    <link rel="stylesheet" type="text/css" href="./components/runs/runs.css">    
 
     <!--import js files-->
     <script src = "app.js"></script>
@@ -38,6 +39,7 @@
     <div w3-include-html="./components/nav/nav.html" id="nav"></div>
 
     <div w3-include-html="./components/weather-now/weather-now.html" id="weather-now"></div>
+
     <div id="weather-forecast" style="display: none"></div>
 
 
@@ -56,12 +58,13 @@
     <div 
       w3-include-html="./components/park-runs/park-runs.html" 
       id="park-runs" 
-       style="display: none">
+      style="display: none">
     </div>
 
     <div 
+      w3-include-html="./components/runs/runs.html" 
       id="runs"
-      style="display:none">
+      style="display: none">
     </div>
 
   </div>
