@@ -7,6 +7,7 @@
   color: white;
   background-color: rgba(31, 97, 141, 0.7);
   font-size: 14px;
+  height: 800px;
 }
 
 #park-run-result{
@@ -15,7 +16,7 @@
 }
 
 @media all and (max-width: 500px) {
-  #park-runs, .heading{
+  .heading{
     font-size: 14px;
   }
 
