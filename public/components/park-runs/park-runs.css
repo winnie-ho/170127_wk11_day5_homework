@@ -3,7 +3,6 @@
   flex-direction: row;
   justify-content: space-between; 
   padding: 5px;
-  margin-top: 20px;
   color: white;
   background-color: rgba(31, 97, 141, 0.7);
   font-size: 14px;
@@ -17,7 +16,7 @@
 
 @media all and (max-width: 500px) {
   .heading{
-    font-size: 14px;
+    font-size: 12px;
   }
 
   #park-run-name{
