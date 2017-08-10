@@ -1,3 +1,11 @@
+#home{
+  display: block;
+}
+
+.container{
+  width: 100%;
+}
+
 .year-totals{
   display: flex;
   width: 100%;
@@ -23,6 +31,19 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.week-activities{
+  flex-direction: column;
+  position: absolute;
+  top: 30%;
+}
+
+.week-activities>div{
+  background-color: rgba(31, 97, 141, 0.7);
+  padding: 15px;
+  margin: 5px;
+  border-radius: 2px;
 }
 
 @media all and (max-width: 500px) {
