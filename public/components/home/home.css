@@ -41,9 +41,33 @@
 
 .week-activities>div{
   background-color: rgba(31, 97, 141, 0.7);
-  padding: 15px;
+  padding: 10px;
   margin: 5px;
   border-radius: 2px;
+  display: flex;
+  flex-direction: row;
+}
+
+#mon{
+  width: 300px;
+}
+#tue{
+  width: 100px;
+}
+#wed{
+  width: 210px;
+}
+#thu{
+  width: 30px;;
+}
+#fri{
+  width: 100px;
+}
+#sat{
+  width: 140px;
+}
+#sun{
+  width: 30px;
 }
 
 @media all and (max-width: 500px) {
