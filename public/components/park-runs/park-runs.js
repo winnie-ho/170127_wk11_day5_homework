@@ -12,11 +12,8 @@ var handleParkRunButton = function() {
   var parkRunDiv = document.getElementById('park-runs');
   var runsDiv = document.getElementById('runs');
   var homeDiv = document.getElementById('home');
-  var title = document.getElementById('title');
-
 
   if (parkRunDiv.style.display === 'none') {
-      title.style.display = 'none';
       runClubDiv.style.display = 'none';
       runsDiv.style.display = 'none';
       homeDiv.style.display = 'none';

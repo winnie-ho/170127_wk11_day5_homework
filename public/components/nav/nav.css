@@ -15,14 +15,6 @@
   width: auto;
   height: 30px;
   margin: 0 5px;
-
-  animation-name: resize;
-  animation-duration: 2s;
-}
-
-@keyframes resize {
-    from {height: 50px}
-    to {height: 30px }
 }
 
 #home-button{
@@ -50,19 +42,7 @@
 }
 
 @media all and (max-width: 500px) {
-  .nav-icon{
-    height: 30px;
-
-    animation-name: resize;
-    animation-duration: 2s;
-  }
-
-  @keyframes resize {
-      from {height: 40px}
-      to {height: 30px }
-  }
-
-  
+ 
 
 
 }

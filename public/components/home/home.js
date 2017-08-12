@@ -6,16 +6,12 @@ var handleHomeButton = function() {
   var parkRunsDiv = document.getElementById('park-runs');
   var runsDiv = document.getElementById('runs');
   var homeDiv = document.getElementById('home');
-  var title = document.getElementById('title');
   var weatherForecast = document.getElementById('weather-forecast');
     if (homeDiv.style.display === 'none') {
         parkRunsDiv.style.display = 'none';
         runClubDiv.style.display = 'none';
         runsDiv.style.display = 'none';
         homeDiv.style.display = 'flex';
-        title.style.display = 'block';
-    }else if (weatherForecast === 'flex' && homeDiv === 'flex'){
-      title.style.display = 'none';
     }
 }
 
