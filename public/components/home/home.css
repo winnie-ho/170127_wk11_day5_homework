@@ -35,8 +35,6 @@
 
 .week-activities{
   flex-direction: column;
-  position: absolute;
-  top: 28%;
 }
 
 .week-activities>div{
