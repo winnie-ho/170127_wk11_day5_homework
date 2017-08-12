@@ -10,7 +10,7 @@
   display: flex;
   width: 100%;
   position: absolute;
-  bottom: 0px;
+  bottom: 12px;
 }
 
 .total-item{
@@ -35,7 +35,7 @@
 
 .week-activities{
   flex-direction: column;
-  margin-top: 120px;
+  margin-top: 60px;
 }
 
 .week-activities>div{
