@@ -10,7 +10,7 @@
   display: flex;
   width: 100%;
   position: absolute;
-  bottom: 12px;
+  bottom: 0px;
 }
 
 .total-item{
@@ -42,9 +42,16 @@
   background-color: rgba(31, 97, 141, 0.7);
   padding: 10px;
   margin: 5px;
-  border-radius: 2px;
+  margin-left: 0px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
   display: flex;
   flex-direction: row;
+
+  color: transparent;
+  animation-name: day-settle;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
 }
 
 #mon{
@@ -67,6 +74,17 @@
 }
 #sun{
   width: 30px;
+}
+
+@keyframes day-settle {
+    from {
+      width: 0px; 
+      color: transparent
+    }
+    to {
+      color: white;
+      background-color: rgba(31, 97, 141, 0.7);
+    }
 }
 
 @media all and (max-width: 500px) {
