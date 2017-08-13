@@ -38,3 +38,46 @@ var showRuns = function(result){
   var yearRuns = result.ytd_run_totals.count;
   yearRunsDiv.innerHTML = yearRuns + " runs";
 }
+
+// Last week of runs
+var urlLast7 = "https://www.strava.com/api/v3/athlete/activities?per_page=20&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
+
+var computeWeek = function(result){
+  let weekRuns = [];
+  let mon = result.find(run=>(new Date(run.start_date).getDay() === 1));
+  let monIndex = result.findIndex(run=>(new Date(run.start_date).getDay() === 1));
+
+  for (let i=0; i<=monIndex; i++){
+    weekRuns.push(result[i]);
+  }
+  renderWeek(weekRuns); 
+}
+
+var renderWeek = function(weekRuns){
+  for (let activity of weekRuns){
+    let activityDiv = document.createElement("div");
+    activityDiv.classList.add("day-activity");
+    
+    activityDiv.innerHTML = activity.name + "  " + (activity.distance/1000).toFixed(2) + "km  " ;
+
+    let dayIndex = new Date(activity.start_date).getDay();
+    
+    let dayLookUp = {
+      1: "mon",
+      2: "tue",
+      3: "wed",
+      4: "thu",
+      5: "fri",
+      6: "sat",
+      0: "sun"
+    }
+    let dayDiv = document.getElementById(dayLookUp[dayIndex]);
+    dayDiv.appendChild(activityDiv);
+
+    dayDiv.style.width = "100%";
+  }
+}
+
+
+
+const weekRuns = makeRequest(urlLast7, computeWeek);

@@ -52,28 +52,29 @@
   animation-name: day-settle;
   animation-duration: 2s;
   animation-fill-mode: forwards;
+  width: 38px;
+  height: 25px;
+  align-content: center;
+  align-items: center;
+}
+
+.day-activity{
+  margin: 0 30px;
 }
 
 #mon{
-  width: 300px;
 }
 #tue{
-  width: 100px;
 }
 #wed{
-  width: 210px;
 }
 #thu{
-  width: 30px;;
 }
 #fri{
-  width: 100px;
 }
 #sat{
-  width: 140px;
 }
 #sun{
-  width: 30px;
 }
 
 @keyframes day-settle {
