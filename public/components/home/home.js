@@ -42,17 +42,6 @@ var showRuns = function(result){
 // Last week of runs
 var urlLast7 = "https://www.strava.com/api/v3/athlete/activities?per_page=20&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
 
-var computeWeek = function(result){
-  let weekRuns = [];
-  let mon = result.find(run=>(new Date(run.start_date).getDay() === 1));
-  let monIndex = result.findIndex(run=>(new Date(run.start_date).getDay() === 1));
-
-  for (let i=0; i<=monIndex; i++){
-    weekRuns.push(result[i]);
-  }
-  renderWeek(weekRuns); 
-}
-
 var renderWeek = function(weekRuns){
   for (let activity of weekRuns){
     let activityDiv = document.createElement("div");
@@ -77,6 +66,18 @@ var renderWeek = function(weekRuns){
     dayDiv.style.width = "100%";
   }
 }
+
+var computeWeek = function(result){
+  let weekRuns = [];
+  let mon = result.find(run=>(new Date(run.start_date).getDay() === 1));
+  let monIndex = result.findIndex(run=>(new Date(run.start_date).getDay() === 1));
+
+  for (let i=0; i<=monIndex; i++){
+    weekRuns.push(result[i]);
+  }
+  renderWeek(weekRuns); 
+}
+
 
 
 
