@@ -77,8 +77,3 @@ var computeWeek = function(result){
   }
   renderWeek(weekRuns); 
 }
-
-
-
-
-makeRequest(urlLast7, computeWeek);
