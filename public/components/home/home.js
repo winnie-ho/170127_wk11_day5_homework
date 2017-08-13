@@ -81,4 +81,4 @@ var computeWeek = function(result){
 
 
 
-const weekRuns = makeRequest(urlLast7, computeWeek);
+makeRequest(urlLast7, computeWeek);
