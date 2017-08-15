@@ -35,7 +35,7 @@
 
 .week-activities{
   flex-direction: column;
-  margin-top: 60px;
+  margin-top: 35px;
 }
 
 .week-activities>div{
@@ -92,4 +92,8 @@
   body{
     font-size: 14px;
   }
+
+.week-activities{
+  margin-top: 0px;
+}
 }

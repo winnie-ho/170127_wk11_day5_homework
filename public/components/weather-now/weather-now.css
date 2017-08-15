@@ -6,6 +6,7 @@
   position: sticky;
   top: 60px;
   opacity: 50%;
+  margin-bottom: 20px;
 }
 
 .data{
@@ -32,5 +33,5 @@
 .option-more:hover{
   padding: 5px;
   color: rgba(31, 97, 141, 1);
-;
 }
+

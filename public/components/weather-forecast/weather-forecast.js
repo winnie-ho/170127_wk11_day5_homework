@@ -8,7 +8,6 @@ var moreWeather = function(){
 			weekWeatherDiv.style.display = 'flex';
       makeRequest(urlWeatherForecast, showWeekWeatherForecast);
       weatherOption.innerText="–";
-      title.style.display = "none";
 	} else {
 			weekWeatherDiv.style.display = 'none';
 			weatherOption.innerText="+"

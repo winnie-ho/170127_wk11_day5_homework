@@ -4,7 +4,6 @@
   justify-content: space-around;
   width: auto;
   padding: 5px 0;
-  padding-left: 50px;
   position: sticky;
   top: 0;
   /* background-color: white; */
@@ -41,8 +40,44 @@
   color: #3E9FDF;
 }
 
-@media all and (max-width: 500px) {
- 
+#title{
+  font-family: sans-serif;
+  color: transparent;
+  font-weight: lighter;
+  position: absolute;
+  padding: 3px;
 
+  top: 8px;
+  left: 0px;
+  font-size: 16px;
+  line-height: 90%;
+  word-spacing: 100vw; 
+
+  animation-name: title-settle;
+  animation-duration: 0.5s;
+  animation-delay: 2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes title-settle {
+    from {
+      width: 0px; 
+      color: transparent
+    }
+    to {
+      width: 45px; 
+      color: white;
+      background-color: rgba(31, 97, 141, 0.7);
+      border-top-right-radius: 2px;
+      border-bottom-right-radius: 2px;
+    }
+}
+
+
+/* responsive css  */
+@media all and (max-width: 400px) {
+  #title{
+     font-size: 16px; 
+  }
 
 }
