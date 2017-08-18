@@ -34,9 +34,9 @@
   position: absolute;
   padding: 3px;
   padding-left: 10px;
-
+  top: 0px;
   left: -5px;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 90%;
   word-spacing: 100vw; 
 
@@ -52,7 +52,7 @@
       color: transparent
     }
     to {
-      width: 45px; 
+      width: 60px; 
       color: white;
       background-color: rgba(31, 97, 141, 0.7);
       border-top-right-radius: 2px;
