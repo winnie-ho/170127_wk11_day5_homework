@@ -28,14 +28,11 @@ var computeParkRuns = function(result){
   computeFullParkRuns(parkRuns);
 }
 
-
 var pushFullPR = function(result){
   fullParkRuns.push(result);
 
   if(fullParkRuns.length === parkRuns.length){
-    var sortedFullPR = fullParkRuns.sort(function(a,b){
-      return b.upload_id - a.upload_id;
-    });
+    var sortedFullPR = fullParkRuns.sort((a, b) => b.upload_id - a.upload_id);
     displayData(sortedFullPR);
   }
 }
@@ -84,7 +81,7 @@ var displayParkRunsTime = function(fullParkRuns) {
     var rawMinutes = (Math.floor(totalMinutes - (hours*60))).toFixed(0);
     var minutes = rawMinutes;
       if(rawMinutes < 10){
-        minutes = "0"+rawMinutes;
+        minutes = "0" + rawMinutes;
       }
     var rawSeconds = (((totalMinutes - (hours*60))-minutes)*60).toFixed(0);
     var seconds = rawSeconds;

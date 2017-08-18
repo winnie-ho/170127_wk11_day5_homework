@@ -65,7 +65,7 @@ var showRun = function(result){
   var runsDiv = document.querySelector("#runs");
   runsDiv.innerHTML = "";
 
-  result.forEach(function(run){
+  result.forEach(run => {
     var runBox = document.createElement("div")
     runBox.id = "run-box"
     runsDiv.appendChild(runBox);

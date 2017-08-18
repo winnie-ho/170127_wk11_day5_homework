@@ -16,14 +16,9 @@ var handleRunClubButton = function() {
 }
 
 var computeRunClubRuns = function(result){
-  var runClubRuns = [];
-  for (var run of result) {
-    if (55.94 < run.start_latitude < 55.95 &&
-       (run.start_longitude === -3.21 || run.start_longitude === -3.20) &&
-        (new Date (run.start_date_local)).getDay() === 1) {
-      runClubRuns.push(run);
-    }
-  }
+
+  var runClubRuns = result.filter(run => (55.94 < run.start_latitude < 55.95 && (run.start_longitude === -3.21 || run.start_longitude === -3.20) && (new Date (run.start_date_local)).getDay() === 1));
+
   displayRunClubRunsDate(runClubRuns);
   displayRunClubRunsName(runClubRuns);
   displayRunClubRunsDistance(runClubRuns);
