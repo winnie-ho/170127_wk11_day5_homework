@@ -24,13 +24,7 @@ var handleParkRunButton = function() {
 }
 
 var computeParkRuns = function(result){
-  
-  for (var run of result) {
-    if (run.start_latitude === 55.98 && run.start_longitude === -3.29) {
-      parkRuns.push(run);
-    }
-  }
-  console.log("PARK RUN RUNS", parkRuns);
+  parkRuns = result.filter(run => run.start_latitude === 55.98 && run.start_longitude === -3.29);
   computeFullParkRuns(parkRuns);
 }
 
@@ -47,10 +41,7 @@ var pushFullPR = function(result){
 }
 
 var computeFullParkRuns = function(parkRuns){
-  for(var run of parkRuns){
-    var activityUrl = "https://www.strava.com/api/v3/activities/" + run.id + userToken;
-    makeRequest(activityUrl, pushFullPR);
-  }
+  parkRuns.forEach(run => makeRequest(("https://www.strava.com/api/v3/activities/" + run.id + userToken), pushFullPR))
 }
 
 var displayData = function(fullParkRuns){
