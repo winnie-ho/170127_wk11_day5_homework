@@ -1,9 +1,17 @@
 //Running the app
-var app = () => {
-  // weather now snapshot
+var urlRuns = "https://www.strava.com/api/v3/athlete/activities?per_page=100&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
+
+var responseRuns;
+
+const setRuns = (result) => {
+  responseRuns = result;
+  computeWeek(responseRuns);
+}
+
+const app = () => {
+  makeRequest(urlRuns, setRuns);
   makeRequest(urlWeatherNow, showWeather);
   makeRequest(totalStatsUrl, renderYearTotals);
-  makeRequest(urlLast7, computeWeek);
 }
 
 window.onload = app;

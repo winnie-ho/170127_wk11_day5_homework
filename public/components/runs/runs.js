@@ -1,6 +1,3 @@
-var urlRuns = "https://www.strava.com/api/v3/athlete/activities?per_page=100&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
-
-
   // var handleNearMeButton = function(){
   //   console.log("Near Me button clicked");
   //   mainMap.geoLocate(result);
@@ -47,11 +44,11 @@ var urlRuns = "https://www.strava.com/api/v3/athlete/activities?per_page=100&acc
 // }
 
 
-const showRun = (result) => {
+const showRun = (responseRuns) => {
   var runsDiv = document.querySelector("#runs");
   runsDiv.innerHTML = "";
 
-  result.forEach(run => {
+  responseRuns.forEach(run => {
     var runBox = document.createElement("div")
     runBox.id = "run-box"
     runsDiv.appendChild(runBox);

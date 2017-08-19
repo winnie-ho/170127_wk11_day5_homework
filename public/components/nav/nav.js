@@ -11,7 +11,6 @@ const handleNavButton = (page) => {
       runClub.style.display = 'none';
       parkRun.style.display = 'none';
       runs.style.display = 'none';
-      makeRequest(urlRuns, computeRunClubRuns);
       break;
 
     case "run-club-button":
@@ -19,7 +18,7 @@ const handleNavButton = (page) => {
       runClub.style.display = 'flex';
       parkRun.style.display = 'none';
       runs.style.display = 'none';
-      makeRequest(urlRuns, computeRunClubRuns);
+      computeRunClubRuns(responseRuns);
       break;
       
     case "park-run-button":
@@ -28,7 +27,7 @@ const handleNavButton = (page) => {
       parkRun.style.display = 'flex';
       parkRuns = [];
       runs.style.display = 'none';
-      makeRequest(urlRuns, computeParkRuns); 
+      computeParkRuns(responseRuns); 
       break;
 
     case "runs-button":
@@ -36,7 +35,7 @@ const handleNavButton = (page) => {
       runClub.style.display = 'none';
       parkRun.style.display = 'none';
       runs.style.display = 'flex';
-      makeRequest(urlRuns, showRun);  
+      showRun(responseRuns);  
       break;
 
   }

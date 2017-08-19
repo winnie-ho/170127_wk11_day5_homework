@@ -25,42 +25,31 @@ const showRuns = (result) => {
   yearRunsDiv.innerHTML = yearRuns + " runs";
 }
 
-// Last week of runs
-const urlLast7 = "https://www.strava.com/api/v3/athlete/activities?per_page=20&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
-
 const renderWeek = (weekRuns) => {
   for (let activity of weekRuns){
-    let activityDiv = document.createElement("div");
-    activityDiv.classList.add("day-activity");
-    
-    activityDiv.innerHTML = activity.name + "  " + (activity.distance/1000).toFixed(2) + "km  " ;
-
-    let dayIndex = new Date(activity.start_date).getDay();
+    let dayValue = new Date(activity.start_date).getDay();
     
     let dayLookUp = {
-      1: "mon",
-      2: "tue",
-      3: "wed",
-      4: "thu",
-      5: "fri",
-      6: "sat",
-      0: "sun"
+      1: "MON",
+      2: "TUE",
+      3: "WED",
+      4: "THU",
+      5: "FRI",
+      6: "SAT",
+      0: "SUN"
     }
-    let dayDiv = document.getElementById(dayLookUp[dayIndex]);
-    dayDiv.appendChild(activityDiv);
-
+    let dayDiv = document.getElementById(dayLookUp[dayValue]);
+    dayDiv.innerHTML = dayLookUp[dayValue] + " " + activity.name + "  " + (activity.distance/1000).toFixed(2) + "km  " ;
     dayDiv.style.width = "100%";
   }
 }
 
-const computeWeek = (result) => {
+const computeWeek = (responseRuns) => {
   let weekRuns = [];
-
-  let monIndex = result.findIndex(run=>(new Date(run.start_date).getDay() === 1));
+  let monIndex = responseRuns.findIndex(run=>(new Date(run.start_date).getDay() === 1));
 
   for (let i=0; i<=monIndex; i++){
-    weekRuns.push(result[i]);
+    weekRuns.push(responseRuns[i]);
   }
-
   renderWeek(weekRuns); 
 }

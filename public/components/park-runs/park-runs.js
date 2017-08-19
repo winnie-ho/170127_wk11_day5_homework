@@ -2,18 +2,16 @@
 const user = "a2ff6fffcab9df06d90661ad34b7e664690c4fc4";
 const userToken = "\?access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4";
 
-var urlRuns = "https://www.strava.com/api/v3/athlete/activities?per_page=200&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
-
 var parkRuns = [];
 var fullParkRuns = [];
 
-const computeParkRuns = (result) => {
-  parkRuns = result.filter(run => run.start_latitude === 55.98 && run.start_longitude === -3.29);
+const computeParkRuns = (runs) => {
+  parkRuns = runs.filter(run => run.start_latitude === 55.98 && run.start_longitude === -3.29);
   computeFullParkRuns(parkRuns);
 }
 
-const pushFullPR = (result) => {
-  fullParkRuns.push(result);
+const pushFullPR = (runs) => {
+  fullParkRuns.push(runs);
 
   if(fullParkRuns.length === parkRuns.length){
     const sortedFullPR = fullParkRuns.sort((a, b) => b.upload_id - a.upload_id);

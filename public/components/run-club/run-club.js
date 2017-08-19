@@ -1,8 +1,5 @@
-var urlRuns = "https://www.strava.com/api/v3/athlete/activities?per_page=200&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
-
-const computeRunClubRuns = (result) => {
-
-  const runClubRuns = result.filter(run => (55.94 < run.start_latitude < 55.95 && (run.start_longitude === -3.21 || run.start_longitude === -3.20) && (new Date (run.start_date_local)).getDay() === 1));
+const computeRunClubRuns = (responseRuns) => {
+  const runClubRuns = responseRuns.filter(run => (55.94 < run.start_latitude < 55.95 && (run.start_longitude === -3.21 || run.start_longitude === -3.20) && (new Date (run.start_date_local)).getDay() === 1));
 
   displayRunClubRunsDate(runClubRuns);
   displayRunClubRunsName(runClubRuns);
