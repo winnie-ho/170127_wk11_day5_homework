@@ -2,7 +2,7 @@ var urlRuns = "https://www.strava.com/api/v3/athlete/activities?per_page=200&acc
 
 const computeRunClubRuns = (result) => {
 
-  var runClubRuns = result.filter(run => (55.94 < run.start_latitude < 55.95 && (run.start_longitude === -3.21 || run.start_longitude === -3.20) && (new Date (run.start_date_local)).getDay() === 1));
+  const runClubRuns = result.filter(run => (55.94 < run.start_latitude < 55.95 && (run.start_longitude === -3.21 || run.start_longitude === -3.20) && (new Date (run.start_date_local)).getDay() === 1));
 
   displayRunClubRunsDate(runClubRuns);
   displayRunClubRunsName(runClubRuns);
@@ -13,9 +13,9 @@ const computeRunClubRuns = (result) => {
 }
 
 const displayRunClubRunsDate = (runClubRuns) => {
-  var runClubDiv = document.querySelector("#run-club-date");
-  for (var run of runClubRuns){
-    var date = document.createElement("div");
+  const runClubDiv = document.querySelector("#run-club-date");
+  for (const run of runClubRuns){
+    const date = document.createElement("div");
     date.classList.add("data-metric", 'data-long');
     date.innerText = run.start_date.substr(8,2) + "-" + run.start_date.substr(5,2) + "-" + run.start_date.substr(0,4);
     runClubDiv.appendChild(date);
@@ -23,9 +23,9 @@ const displayRunClubRunsDate = (runClubRuns) => {
 }
 
 const displayRunClubRunsName = (runClubRuns) => {
-  var runClubDiv = document.querySelector("#run-club-name");
-  for (var run of runClubRuns){
-    var name = document.createElement("div");
+  const runClubDiv = document.querySelector("#run-club-name");
+  for (const run of runClubRuns){
+    const name = document.createElement("div");
     name.classList.add("data-metric", 'data-long');
     name.innerText = run.name;
     runClubDiv.appendChild(name);
@@ -33,14 +33,14 @@ const displayRunClubRunsName = (runClubRuns) => {
 }
 
 const displayRunClubRunsDistance = (runClubRuns) => {
-  var runClubDiv = document.querySelector('#run-club-distance');
-  for (var run of runClubRuns){
-    var distance = document.createElement("div");
+  const runClubDiv = document.querySelector('#run-club-distance');
+  for (const run of runClubRuns){
+    const distance = document.createElement("div");
     distance.classList.add("data-metric");
-    var distanceIcon = document.createElement("img");
+    const distanceIcon = document.createElement("img");
     distanceIcon.src = "./resources/icon_distance.png";
     distanceIcon.classList.add("icon-metric");
-    var distanceValue = document.createElement("div");
+    const distanceValue = document.createElement("div");
     distanceValue.innerText = ((run.distance)/1000).toFixed(2) + "km";
     distance.appendChild(distanceIcon);
     distance.appendChild(distanceValue);
@@ -51,26 +51,26 @@ const displayRunClubRunsDistance = (runClubRuns) => {
 
 
 const displayRunClubRunsTime = (runClubRuns) => {
-  var runClubDiv = document.querySelector("#run-club-time");
-  for (var run of runClubRuns){
+  const runClubDiv = document.querySelector("#run-club-time");
+  for (const run of runClubRuns){
 
-    var time = document.createElement("div");
+    const time = document.createElement("div");
     time.classList.add("data-metric");
-    var timeIcon = document.createElement("img");
+    const timeIcon = document.createElement("img");
     timeIcon.src = "./resources/icon_time.png";
     timeIcon.classList.add("icon-metric");
-    var timeValue = document.createElement("div");
-    var totalMinutes = ((run.moving_time)/60).toFixed(2);
-    var hours = Math.floor(totalMinutes/60);
-    var rawMinutes = (Math.floor(totalMinutes - (hours*60))).toFixed(0);
-    var minutes = rawMinutes;
+    const timeValue = document.createElement("div");
+    const totalMinutes = ((run.moving_time)/60).toFixed(2);
+    const hours = Math.floor(totalMinutes/60);
+    const rawMinutes = (Math.floor(totalMinutes - (hours*60))).toFixed(0);
+    const minutes = rawMinutes;
       if(rawMinutes < 10){
         minutes = "0"+rawMinutes;
       }
-    var rawSeconds = (((totalMinutes - (hours*60))-minutes)*60).toFixed(0);
-    var seconds = rawSeconds;
+    const rawSeconds = (((totalMinutes - (hours*60))-minutes)*60).toFixed(0);
+    let seconds = rawSeconds;
       if(rawSeconds < 10){
-        seconds = "0"+rawSeconds
+        seconds = "0" + rawSeconds
       }
 
     if (hours === 0) {
@@ -86,19 +86,19 @@ const displayRunClubRunsTime = (runClubRuns) => {
 }
 
 const displayRunClubRunsPace = (runClubRuns) => {
-  var runClubDiv = document.getElementById("run-club-pace");
-  for (var run of runClubRuns){
-    var pace = document.createElement("div");
+  const runClubDiv = document.getElementById("run-club-pace");
+  for (const run of runClubRuns){
+    const pace = document.createElement("div");
     pace.classList.add("data-metric");
 
-    var paceIcon = document.createElement("img");
+    const paceIcon = document.createElement("img");
     paceIcon.src = "./resources/icon_pace.png";
     paceIcon.classList.add("icon-metric");
-    var totalMinutes = ((run.moving_time)/60).toFixed(2);
-    var paceValue = document.createElement("div");
-    var paceMinutes = (Math.floor(totalMinutes/(run.distance/1000))).toFixed(0) 
-    var rawPaceSeconds = (((totalMinutes/(run.distance/1000))-paceMinutes)*60).toFixed(0);
-    var paceSeconds = rawPaceSeconds;
+    const totalMinutes = ((run.moving_time)/60).toFixed(2);
+    const paceValue = document.createElement("div");
+    const paceMinutes = (Math.floor(totalMinutes/(run.distance/1000))).toFixed(0) 
+    const rawPaceSeconds = (((totalMinutes/(run.distance/1000))-paceMinutes)*60).toFixed(0);
+    let paceSeconds = rawPaceSeconds;
       if(rawPaceSeconds < 10){
         paceSeconds = "0"+rawPaceSeconds;
       }

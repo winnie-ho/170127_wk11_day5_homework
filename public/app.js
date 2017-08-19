@@ -1,10 +1,9 @@
 //Running the app
-var app = function(){
+var app = () => {
   // weather now snapshot
   makeRequest(urlWeatherNow, showWeather);
   makeRequest(totalStatsUrl, renderYearTotals);
   makeRequest(urlLast7, computeWeek);
-
 }
 
 window.onload = app;

@@ -1,6 +1,6 @@
 // userToken
-var user = "a2ff6fffcab9df06d90661ad34b7e664690c4fc4";
-var userToken = "\?access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4";
+const user = "a2ff6fffcab9df06d90661ad34b7e664690c4fc4";
+const userToken = "\?access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4";
 
 var urlRuns = "https://www.strava.com/api/v3/athlete/activities?per_page=200&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
 
@@ -16,7 +16,7 @@ const pushFullPR = (result) => {
   fullParkRuns.push(result);
 
   if(fullParkRuns.length === parkRuns.length){
-    var sortedFullPR = fullParkRuns.sort((a, b) => b.upload_id - a.upload_id);
+    const sortedFullPR = fullParkRuns.sort((a, b) => b.upload_id - a.upload_id);
     displayData(sortedFullPR);
   }
 }
