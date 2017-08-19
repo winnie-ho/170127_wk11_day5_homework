@@ -7,22 +7,6 @@ var urlRuns = "https://www.strava.com/api/v3/athlete/activities?per_page=200&acc
 var parkRuns = [];
 var fullParkRuns = [];
 
-const handleParkRunButton = () =>{
-  var runClubDiv = document.getElementById('run-club');
-  var parkRunDiv = document.getElementById('park-runs');
-  var runsDiv = document.getElementById('runs');
-  var homeDiv = document.getElementById('home');
-
-  if (parkRunDiv.style.display === 'none') {
-      runClubDiv.style.display = 'none';
-      runsDiv.style.display = 'none';
-      homeDiv.style.display = 'none';
-      parkRunDiv.style.display = 'flex';
-      parkRuns = [];
-      makeRequest(urlRuns, computeParkRuns);     
-  }
-}
-
 const computeParkRuns = (result) => {
   parkRuns = result.filter(run => run.start_latitude === 55.98 && run.start_longitude === -3.29);
   computeFullParkRuns(parkRuns);

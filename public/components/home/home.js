@@ -1,20 +1,6 @@
 // Totals and stats per athlete
 const totalStatsUrl = "https://www.strava.com/api/v3/athletes/3752965/stats\?access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
 
-const handleHomeButton = () => {
-  const runClubDiv = document.getElementById('run-club');
-  const parkRunsDiv = document.getElementById('park-runs');
-  const runsDiv = document.getElementById('runs');
-  const homeDiv = document.getElementById('home');
-  const weatherForecast = document.getElementById('weather-forecast');
-    if (homeDiv.style.display === 'none') {
-        parkRunsDiv.style.display = 'none';
-        runClubDiv.style.display = 'none';
-        runsDiv.style.display = 'none';
-        homeDiv.style.display = 'flex';
-    }
-}
-
 const renderYearTotals = result => {
   showDistance(result);
   showTime(result);

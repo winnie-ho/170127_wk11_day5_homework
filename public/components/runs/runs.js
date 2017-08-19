@@ -1,19 +1,5 @@
 var urlRuns = "https://www.strava.com/api/v3/athlete/activities?per_page=100&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
 
-const handleRunsButton = () => {
-  const runClubDiv = document.getElementById('run-club');
-  const parkRunsDiv = document.getElementById('park-runs');
-  const runsDiv = document.getElementById('runs');
-  const homeDiv = document.getElementById('home');
-    if (runsDiv.style.display === 'none') {
-        parkRunsDiv.style.display = 'none';
-        runClubDiv.style.display = 'none';
-        homeDiv.style.display = 'none';
-        runsDiv.style.display = 'flex';
-        makeRequest(urlRuns, showRun);
-    }
-}
-
 
   // var handleNearMeButton = function(){
   //   console.log("Near Me button clicked");
