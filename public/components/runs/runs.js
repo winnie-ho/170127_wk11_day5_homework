@@ -89,9 +89,8 @@ const showRun = (responseRuns) => {
     timeIcon.classList.add("icon");
     var timeValue = document.createElement("div");
     let rawTime = run.moving_time;
-    let renderedTime = renderTime(rawTime);
 
-    timeValue.innerText = renderedTime;
+    timeValue.innerText = renderTime(rawTime);
 
     time.appendChild(timeIcon);
     time.appendChild(timeValue);
@@ -102,8 +101,7 @@ const showRun = (responseRuns) => {
     paceIcon.src = "./resources/icon_pace.png";
     paceIcon.classList.add("icon");
     var paceValue = document.createElement("div");
-    let renderedPace = renderPace(rawTime, rawDistance);
-    paceValue.innerText = renderedPace;
+    paceValue.innerText = renderPace(rawTime, rawDistance);
     pace.appendChild(paceIcon);
     pace.appendChild(paceValue);
 

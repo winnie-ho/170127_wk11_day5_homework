@@ -8,27 +8,22 @@ const renderYearTotals = (result) => {
 }
 
 const showDistance = (result) => {
-  const yearDistanceDiv = document.getElementById("year-distance");
-  const yearDistance = ((result.ytd_run_totals.distance)/1000).toFixed(0);
-  yearDistanceDiv.innerHTML = yearDistance + " km";
+  const yearDistanceDiv = document.querySelector("#year-distance");
+  yearDistanceDiv.innerHTML = ((result.ytd_run_totals.distance)/1000).toFixed(0) + " km";
 }
 
 const showTime = (result) => {
-  const yearTimeDiv = document.getElementById("year-time");
-  const yearTime = ((result.ytd_run_totals.moving_time)/3600).toFixed();
-  yearTimeDiv.innerHTML = yearTime + " hours";
+  const yearTimeDiv = document.querySelector("#year-time");
+  yearTimeDiv.innerHTML = ((result.ytd_run_totals.moving_time)/3600).toFixed() + " hours";
 }
 
 const showRuns = (result) => {
-  const yearRunsDiv = document.getElementById("year-runs");
-  const yearRuns = result.ytd_run_totals.count;
-  yearRunsDiv.innerHTML = yearRuns + " runs";
+  const yearRunsDiv = document.querySelector("#year-runs");
+  yearRunsDiv.innerHTML = result.ytd_run_totals.count + " runs";
 }
 
 const renderWeek = (weekRuns) => {
-  for (let activity of weekRuns){
-    let dayValue = new Date(activity.start_date).getDay();
-    
+  for (let activity of weekRuns){    
     let dayLookUp = {
       1: "MON",
       2: "TUE",
@@ -40,10 +35,9 @@ const renderWeek = (weekRuns) => {
     }
     let rawTime = activity.moving_time;
     let rawDistance = activity.distance;
-    let renderedPace = renderPace(rawTime, rawDistance);
-    let renderedTime = renderTime(rawTime);
-    let dayDiv = document.getElementById(dayLookUp[dayValue]);
-    dayDiv.innerHTML = activity.name + "  " + (activity.distance/1000).toFixed(2) + "km,  " + renderedTime + ", " + renderedPace;
+
+    let dayDiv = document.getElementById(dayLookUp[new Date(activity.start_date).getDay()]);
+    dayDiv.innerHTML = activity.name + "  " + (activity.distance/1000).toFixed(2) + "km,  " + renderTime(rawTime) + ", " + renderPace(rawTime, rawDistance);
     dayDiv.style.width = "100%";
   }
 }

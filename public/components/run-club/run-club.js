@@ -59,9 +59,7 @@ const displayRunClubRunsTime = (runClubRuns) => {
     const timeValue = document.createElement("div");
 
     let rawTime = run.moving_time;
-    let renderedTime = renderTime(rawTime);
-
-    timeValue.innerText = renderedTime;
+    timeValue.innerText = renderTime(rawTime);
     time.appendChild(timeIcon);
     time.appendChild(timeValue);
 
@@ -81,10 +79,9 @@ const displayRunClubRunsPace = (runClubRuns) => {
 
     let rawTime = run.moving_time;
     let rawDistance = run.distance;
-    let renderedPace = renderPace(rawTime, rawDistance);
     const paceValue = document.createElement("div");
 
-    paceValue.innerText = renderedPace;
+    paceValue.innerText = renderPace(rawTime, rawDistance);
     pace.appendChild(paceIcon);
     pace.appendChild(paceValue);
 

@@ -59,11 +59,9 @@ const displayParkRunsTime = (fullParkRuns) => {
     time.classList.add("data-metric");
     var timeValue = document.createElement("div");
     let rawTime = run.moving_time;
-    let renderedTime = renderTime(rawTime);
 
-    timeValue.innerHTML = renderedTime;
+    timeValue.innerHTML = renderTime(rawTime);
     time.appendChild(timeValue);
-
     parkRunDiv.appendChild(time); 
   }
 }
@@ -76,12 +74,10 @@ const displayParkRunsPace = (fullParkRuns) => {
 
     let rawTime = run.moving_time;
     let rawDistance = run.distance;
-    let renderedPace = renderPace(rawTime, rawDistance);
     var paceValue = document.createElement("div");
 
-    paceValue.innerText = renderedPace;
+    paceValue.innerText = renderPace(rawTime, rawDistance);
     pace.appendChild(paceValue);
-
     parkRunDiv.appendChild(pace);
   }
 }

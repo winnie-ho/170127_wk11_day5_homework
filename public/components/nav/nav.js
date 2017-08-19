@@ -37,8 +37,5 @@ const handleNavButton = (page) => {
       runs.style.display = 'flex';
       showRun(responseRuns);  
       break;
-
   }
-
-
 }
