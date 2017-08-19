@@ -76,6 +76,7 @@ const showRun = (responseRuns) => {
     distanceIcon.src = "./resources/icon_distance.png";
     distanceIcon.classList.add("icon");
     var distanceValue = document.createElement("div");
+    let rawDistance = run.distance;
     distanceValue.innerText = ((run.distance)/1000).toFixed(2) + "km";
     distance.appendChild(distanceIcon);
     distance.appendChild(distanceValue);
@@ -87,25 +88,11 @@ const showRun = (responseRuns) => {
     timeIcon.src = "./resources/icon_time.png";
     timeIcon.classList.add("icon");
     var timeValue = document.createElement("div");
-    var totalMinutes = ((run.moving_time)/60).toFixed(2);
-    var hours = Math.floor(totalMinutes/60);
-    var rawMinutes = (Math.floor(totalMinutes - (hours*60))).toFixed(0);
-    var minutes = rawMinutes;
-      if(rawMinutes < 10){
-        minutes = "0"+rawMinutes;
-      }
-    var rawSeconds = (((totalMinutes - (hours*60))-minutes)*60).toFixed(0);
-    var seconds = rawSeconds;
-      if(rawSeconds < 10){
-        seconds = "0"+rawSeconds
-      }
+    let rawTime = run.moving_time;
+    let renderedTime = renderTime(rawTime);
 
+    timeValue.innerText = renderedTime;
 
-    if (hours === 0) {
-      timeValue.innerText = minutes + ":" + seconds;
-    }else{
-      timeValue.innerText = hours + ":" + minutes + ":" + seconds;
-    }
     time.appendChild(timeIcon);
     time.appendChild(timeValue);
 
@@ -115,13 +102,8 @@ const showRun = (responseRuns) => {
     paceIcon.src = "./resources/icon_pace.png";
     paceIcon.classList.add("icon");
     var paceValue = document.createElement("div");
-    var paceMinutes = (Math.floor(totalMinutes/(run.distance/1000))).toFixed(0) 
-    var rawPaceSeconds = (((totalMinutes/(run.distance/1000))-paceMinutes)*60).toFixed(0);
-    var paceSeconds = rawPaceSeconds;
-      if(rawPaceSeconds < 10){
-        paceSeconds = "0"+rawPaceSeconds;
-      }
-    paceValue.innerText = paceMinutes + ":" + paceSeconds + "/km";
+    let renderedPace = renderPace(rawTime, rawDistance);
+    paceValue.innerText = renderedPace;
     pace.appendChild(paceIcon);
     pace.appendChild(paceValue);
 

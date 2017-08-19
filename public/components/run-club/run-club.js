@@ -57,24 +57,11 @@ const displayRunClubRunsTime = (runClubRuns) => {
     timeIcon.src = "./resources/icon_time.png";
     timeIcon.classList.add("icon-metric");
     const timeValue = document.createElement("div");
-    const totalMinutes = ((run.moving_time)/60).toFixed(2);
-    const hours = Math.floor(totalMinutes/60);
-    const rawMinutes = (Math.floor(totalMinutes - (hours*60))).toFixed(0);
-    const minutes = rawMinutes;
-      if(rawMinutes < 10){
-        minutes = "0"+rawMinutes;
-      }
-    const rawSeconds = (((totalMinutes - (hours*60))-minutes)*60).toFixed(0);
-    let seconds = rawSeconds;
-      if(rawSeconds < 10){
-        seconds = "0" + rawSeconds
-      }
 
-    if (hours === 0) {
-      timeValue.innerText = minutes + ":" + seconds;
-    }else{
-      timeValue.innerText = hours + ":" + minutes + ":" + seconds;
-    }
+    let rawTime = run.moving_time;
+    let renderedTime = renderTime(rawTime);
+
+    timeValue.innerText = renderedTime;
     time.appendChild(timeIcon);
     time.appendChild(timeValue);
 
@@ -91,15 +78,13 @@ const displayRunClubRunsPace = (runClubRuns) => {
     const paceIcon = document.createElement("img");
     paceIcon.src = "./resources/icon_pace.png";
     paceIcon.classList.add("icon-metric");
-    const totalMinutes = ((run.moving_time)/60).toFixed(2);
+
+    let rawTime = run.moving_time;
+    let rawDistance = run.distance;
+    let renderedPace = renderPace(rawTime, rawDistance);
     const paceValue = document.createElement("div");
-    const paceMinutes = (Math.floor(totalMinutes/(run.distance/1000))).toFixed(0) 
-    const rawPaceSeconds = (((totalMinutes/(run.distance/1000))-paceMinutes)*60).toFixed(0);
-    let paceSeconds = rawPaceSeconds;
-      if(rawPaceSeconds < 10){
-        paceSeconds = "0"+rawPaceSeconds;
-      }
-    paceValue.innerText = paceMinutes + ":" + paceSeconds + "/km";
+
+    paceValue.innerText = renderedPace;
     pace.appendChild(paceIcon);
     pace.appendChild(paceValue);
 

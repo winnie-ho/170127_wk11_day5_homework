@@ -38,8 +38,12 @@ const renderWeek = (weekRuns) => {
       6: "SAT",
       0: "SUN"
     }
+    let rawTime = activity.moving_time;
+    let rawDistance = activity.distance;
+    let renderedPace = renderPace(rawTime, rawDistance);
+    let renderedTime = renderTime(rawTime);
     let dayDiv = document.getElementById(dayLookUp[dayValue]);
-    dayDiv.innerHTML = activity.name + "  " + (activity.distance/1000).toFixed(2) + "km  " ;
+    dayDiv.innerHTML = activity.name + "  " + (activity.distance/1000).toFixed(2) + "km,  " + renderedTime + ", " + renderedPace;
     dayDiv.style.width = "100%";
   }
 }
