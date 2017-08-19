@@ -33,6 +33,7 @@ const renderWeek = (weekRuns) => {
       6: "SAT",
       0: "SUN"
     }
+
     let rawTime = activity.moving_time;
     let rawDistance = activity.distance;
 

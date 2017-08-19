@@ -47,7 +47,7 @@
   flex-direction: row;
   align-content: center;
   align-items: center;
-  height: 25px;
+  height: 35px;
 }
 
 .data-long{
@@ -61,5 +61,9 @@
 
   .data-long{
     min-width: 60px;;
+  }
+
+  .data-metric{
+    font-size: 12px;
   }
 }

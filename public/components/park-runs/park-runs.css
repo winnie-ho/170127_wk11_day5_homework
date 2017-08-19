@@ -6,7 +6,7 @@
   color: white;
   background-color: rgba(31, 97, 141, 0.7);
   box-shadow: 0 0 30px 25px rgba(31, 97, 141, 0.7);
-  font-size: 14px;
+  font-size: 16px;
   height: 800px;
 }
 
@@ -17,7 +17,7 @@
 
 @media all and (max-width: 500px) {
   .heading{
-    font-size: 12px;
+    font-size: 14px;
   }
 
   #park-run-name{

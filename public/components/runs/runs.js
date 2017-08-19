@@ -75,12 +75,14 @@ const showRun = (responseRuns) => {
     var distanceIcon = document.createElement("img");
     distanceIcon.src = "./resources/icon_distance.png";
     distanceIcon.classList.add("icon");
+    
     var distanceValue = document.createElement("div");
     let rawDistance = run.distance;
     distanceValue.innerText = ((run.distance)/1000).toFixed(2) + "km";
+
+
     distance.appendChild(distanceIcon);
     distance.appendChild(distanceValue);
-
 
     var time = document.createElement("div");
     time.classList.add("data-metric");
