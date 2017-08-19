@@ -1,10 +1,10 @@
 var urlRuns = "https://www.strava.com/api/v3/athlete/activities?per_page=100&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
 
-var handleRunsButton = function() {
-  var runClubDiv = document.getElementById('run-club');
-  var parkRunsDiv = document.getElementById('park-runs');
-  var runsDiv = document.getElementById('runs');
-  var homeDiv = document.getElementById('home');
+const handleRunsButton = () => {
+  const runClubDiv = document.getElementById('run-club');
+  const parkRunsDiv = document.getElementById('park-runs');
+  const runsDiv = document.getElementById('runs');
+  const homeDiv = document.getElementById('home');
     if (runsDiv.style.display === 'none') {
         parkRunsDiv.style.display = 'none';
         runClubDiv.style.display = 'none';
@@ -61,7 +61,7 @@ var handleRunsButton = function() {
 // }
 
 
-var showRun = function(result){
+const showRun = (result) => {
   var runsDiv = document.querySelector("#runs");
   runsDiv.innerHTML = "";
 

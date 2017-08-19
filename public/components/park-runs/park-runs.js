@@ -7,7 +7,7 @@ var urlRuns = "https://www.strava.com/api/v3/athlete/activities?per_page=200&acc
 var parkRuns = [];
 var fullParkRuns = [];
 
-var handleParkRunButton = function() {
+const handleParkRunButton = () =>{
   var runClubDiv = document.getElementById('run-club');
   var parkRunDiv = document.getElementById('park-runs');
   var runsDiv = document.getElementById('runs');
@@ -23,12 +23,12 @@ var handleParkRunButton = function() {
   }
 }
 
-var computeParkRuns = function(result){
+const computeParkRuns = (result) => {
   parkRuns = result.filter(run => run.start_latitude === 55.98 && run.start_longitude === -3.29);
   computeFullParkRuns(parkRuns);
 }
 
-var pushFullPR = function(result){
+const pushFullPR = (result) => {
   fullParkRuns.push(result);
 
   if(fullParkRuns.length === parkRuns.length){
@@ -37,11 +37,11 @@ var pushFullPR = function(result){
   }
 }
 
-var computeFullParkRuns = function(parkRuns){
+const computeFullParkRuns = (parkRuns) => {
   parkRuns.forEach(run => makeRequest(("https://www.strava.com/api/v3/activities/" + run.id + userToken), pushFullPR))
 }
 
-var displayData = function(fullParkRuns){
+const displayData = (fullParkRuns) => {
   displayParkRunsDate(fullParkRuns);  
   displayParkRunsName(fullParkRuns);
   displayParkRunsTime(fullParkRuns);
@@ -49,7 +49,7 @@ var displayData = function(fullParkRuns){
   displaySeg(fullParkRuns);
 }
 
-var displayParkRunsDate = function(fullParkRuns) {
+const displayParkRunsDate = (fullParkRuns) => {
   var parkRunDiv = document.getElementById("park-run-date");
   for (var run of fullParkRuns){
     var date = document.createElement("div");
@@ -59,7 +59,7 @@ var displayParkRunsDate = function(fullParkRuns) {
   }
 }
 
-var displayParkRunsName = function(fullParkRuns) {
+const displayParkRunsName = (fullParkRuns) => {
   var parkRunDiv = document.getElementById("park-run-name");
   for (var run of fullParkRuns){
     var name = document.createElement("div");
@@ -69,7 +69,7 @@ var displayParkRunsName = function(fullParkRuns) {
   }
 }
 
-var displayParkRunsTime = function(fullParkRuns) {
+const displayParkRunsTime = (fullParkRuns) => {
   var parkRunDiv = document.getElementById("park-run-time");
   for (var run of fullParkRuns){
 
@@ -100,7 +100,7 @@ var displayParkRunsTime = function(fullParkRuns) {
   }
 }
 
-var displayParkRunsPace = function(fullParkRuns) {
+const displayParkRunsPace = (fullParkRuns) => {
   var parkRunDiv = document.getElementById("park-run-pace");
   for (var run of fullParkRuns){
     var pace = document.createElement("div");
@@ -121,7 +121,7 @@ var displayParkRunsPace = function(fullParkRuns) {
   }
 }
 
-var displaySeg = function(fullParkRuns) {
+const displaySeg = (fullParkRuns) => {
   var parkRunSeg1 = document.getElementById("park-run-1");
   var parkRunSeg2 = document.getElementById("park-run-2");
   var parkRunSeg3 = document.getElementById("park-run-3");

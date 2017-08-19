@@ -5,6 +5,7 @@
   padding: 5px;
   color: white;
   background-color: rgba(31, 97, 141, 0.7);
+  box-shadow: 0 0 30px 25px rgba(31, 97, 141, 0.7);
   font-size: 14px;
   height: 800px;
 }

@@ -62,21 +62,6 @@
   margin: 0 30px;
 }
 
-#mon{
-}
-#tue{
-}
-#wed{
-}
-#thu{
-}
-#fri{
-}
-#sat{
-}
-#sun{
-}
-
 @keyframes day-settle {
     from {
       width: 0px; 
