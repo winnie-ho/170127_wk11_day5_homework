@@ -38,7 +38,7 @@
   margin-top: 35px;
 }
 
-.week-activities>div{
+.day-title {
   background-color: rgba(31, 97, 141, 0.7);
   padding: 10px;
   margin: 5px;
@@ -52,15 +52,27 @@
   animation-name: day-settle;
   animation-duration: 2s;
   animation-fill-mode: forwards;
-  width: 38px;
   height: 25px;
   align-content: center;
-  align-items: center;
+  align-items: center; 
 }
 
 .day-activity{
   margin: 0 30px;
 }
+
+ .day-title > div{
+  display: flex;
+  flex-direction: row;
+  margin-left: 20px; 
+  align-items: center;
+  color: transparent;
+  animation-name: day-settle;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  align-content: center;
+  align-items: center;
+} 
 
 @keyframes day-settle {
     from {
@@ -68,8 +80,8 @@
       color: transparent
     }
     to {
+      width: 93vw;
       color: white;
-      background-color: rgba(31, 97, 141, 0.7);
     }
 }
 

@@ -39,7 +39,7 @@ const renderWeek = (weekRuns) => {
       0: "SUN"
     }
     let dayDiv = document.getElementById(dayLookUp[dayValue]);
-    dayDiv.innerHTML = dayLookUp[dayValue] + " " + activity.name + "  " + (activity.distance/1000).toFixed(2) + "km  " ;
+    dayDiv.innerHTML = activity.name + "  " + (activity.distance/1000).toFixed(2) + "km  " ;
     dayDiv.style.width = "100%";
   }
 }
