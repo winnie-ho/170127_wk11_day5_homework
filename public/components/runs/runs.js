@@ -45,77 +45,13 @@
 
 
 const showRun = (responseRuns) => {
-  var runsDiv = document.querySelector("#runs");
+  let runsDiv = document.querySelector("#runs");
   runsDiv.innerHTML = "";
 
   responseRuns.forEach(run => {
-    var runBox = document.createElement("div")
-    runBox.id = "run-box"
-    runsDiv.appendChild(runBox);
-
-    var dateTitle = document.createElement("div");
-    var date = document.createElement("div");
-    var title = document.createElement("h4");
-    dateTitle.classList.add("run-box__detail");
-
-    date.innerText = run.start_date.substr(8,2) + "-" + run.start_date.substr(5,2) + "-"+ run.start_date.substr(0,4);
-    title.innerText = run.name;
-    dateTitle.appendChild(title);
-    dateTitle.appendChild(date);
-
-
-    runBox.appendChild(dateTitle);
-
-    var runBoxDetail = document.createElement("div")
-    runBoxDetail.classList.add("run-box__detail");
-    runBox.appendChild(runBoxDetail);
-
-    var distance = document.createElement("div");
-    distance.classList.add("data-metric");
-    var distanceIcon = document.createElement("img");
-    distanceIcon.src = "./resources/icon_distance.png";
-    distanceIcon.classList.add("icon");
-    
-    var distanceValue = document.createElement("div");
-    let rawDistance = run.distance;
-    distanceValue.innerText = ((run.distance)/1000).toFixed(2) + "km";
-
-
-    distance.appendChild(distanceIcon);
-    distance.appendChild(distanceValue);
-
-    var time = document.createElement("div");
-    time.classList.add("data-metric");
-    var timeIcon = document.createElement("img");
-    timeIcon.src = "./resources/icon_time.png";
-    timeIcon.classList.add("icon");
-    var timeValue = document.createElement("div");
-    let rawTime = run.moving_time;
-
-    timeValue.innerText = renderTime(rawTime);
-
-    time.appendChild(timeIcon);
-    time.appendChild(timeValue);
-
-    var pace = document.createElement("div");
-    pace.classList.add("data-metric");
-    var paceIcon = document.createElement("img");
-    paceIcon.src = "./resources/icon_pace.png";
-    paceIcon.classList.add("icon");
-    var paceValue = document.createElement("div");
-    paceValue.innerText = renderPace(rawTime, rawDistance);
-    pace.appendChild(paceIcon);
-    pace.appendChild(paceValue);
-
-
-    var route = document.createElement("div");
-    route.id = "route-map";
-    route.style.display = "none";
-
-    runBoxDetail.appendChild(distance);
-    runBoxDetail.appendChild(time);
-    runBoxDetail.appendChild(pace);
-    runBoxDetail.appendChild(route);
+    let activitySummary = createActivitySummary(run.start_date, run.name, run.distance, run.moving_time); 
+    runsDiv.appendChild(activitySummary);
+  });
 
     // var detailButton = document.createElement("button");
     // detailButton.innerHTML = "+";
@@ -138,7 +74,7 @@ const showRun = (responseRuns) => {
     // var startPoint = {lat: ((run.start_latlng[0] + run.end_latlng[0])/2), lng: ((run.start_latlng[1] + run.end_latlng[1])/2)};
     // map.addPolyline(runLine, startPoint);
     
-  });
+  // });
 
 
 
