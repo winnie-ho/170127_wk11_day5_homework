@@ -1,0 +1,25 @@
+#run-box{
+  background-color: rgba(31, 97, 141, 0.7);
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 2px;
+  margin: 1px 2px;;
+  padding: 5px;
+}
+
+#run-box:hover{
+  background-color: rgba(31, 97, 141, 1);
+}
+
+.run-box__detail{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.run-box__detail h4 {
+  margin: -2px;
+}
