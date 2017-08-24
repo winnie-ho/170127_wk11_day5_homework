@@ -18,19 +18,13 @@
   align-content: center;
   align-items: center;
   height: 35px;
-}
-
-.data-long{
   max-width: auto;
 }
+
 
 @media all and (max-width: 700px) {
   body{
     display: block;
-  }
-
-  .data-long{
-    min-width: 60px;;
   }
 
   .data-metric{

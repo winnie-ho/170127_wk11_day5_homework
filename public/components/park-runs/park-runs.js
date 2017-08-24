@@ -33,28 +33,27 @@ const displayData = (fullParkRuns) => {
 
 const displayParkRunsDate = (fullParkRuns) => {
   var parkRunDiv = document.getElementById("park-run-date");
-  for (var run of fullParkRuns){
+  fullParkRuns.forEach(run => {
     var date = document.createElement("div");
     date.classList.add('data-metric','data-long');
     date.innerText = run.start_date.substr(8,2) + "-" + run.start_date.substr(5,2) + "-" + run.start_date.substr(0,4);
     parkRunDiv.appendChild(date);
-  }
+  })
 }
 
 const displayParkRunsName = (fullParkRuns) => {
   var parkRunDiv = document.getElementById("park-run-name");
-  for (var run of fullParkRuns){
+  fullParkRuns.forEach(run => {
     var name = document.createElement("div");
     name.classList.add("data-metric");
     name.innerText = run.name;
     parkRunDiv.appendChild(name);
-  }
+  })
 }
 
 const displayParkRunsTime = (fullParkRuns) => {
   var parkRunDiv = document.getElementById("park-run-time");
-  for (var run of fullParkRuns){
-
+  fullParkRuns.forEach(run => {
     var time = document.createElement("div");
     time.classList.add("data-metric");
     var timeValue = document.createElement("div");
@@ -63,12 +62,13 @@ const displayParkRunsTime = (fullParkRuns) => {
     timeValue.innerHTML = renderTime(rawTime);
     time.appendChild(timeValue);
     parkRunDiv.appendChild(time); 
-  }
+  })
 }
+
 
 const displayParkRunsPace = (fullParkRuns) => {
   var parkRunDiv = document.getElementById("park-run-pace");
-  for (var run of fullParkRuns){
+  fullParkRuns.forEach(run => {
     var pace = document.createElement("div");
     pace.classList.add("data-metric");
 
@@ -79,7 +79,7 @@ const displayParkRunsPace = (fullParkRuns) => {
     paceValue.innerText = renderPace(rawTime, rawDistance);
     pace.appendChild(paceValue);
     parkRunDiv.appendChild(pace);
-  }
+  })
 }
 
 const displaySeg = (fullParkRuns) => {
@@ -88,7 +88,7 @@ const displaySeg = (fullParkRuns) => {
   var parkRunSeg3 = document.getElementById("park-run-3");
   var parkRunSeg4 = document.getElementById("park-run-4");
   var parkRunSeg5 = document.getElementById("park-run-5");
-  for (var run of fullParkRuns){
+  fullParkRuns.forEach(run => {
     var seg1 = document.createElement("div");
     var seg2 = document.createElement("div");
     var seg3 = document.createElement("div");
@@ -219,7 +219,7 @@ const displaySeg = (fullParkRuns) => {
     parkRunSeg3.appendChild(seg3);
     parkRunSeg4.appendChild(seg4);
     parkRunSeg5.appendChild(seg5);
-  }
+  })
 }
 
 
