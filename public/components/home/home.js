@@ -44,11 +44,7 @@ const renderWeek = (weekRuns) => {
 }
 
 const computeWeek = (responseRuns) => {
-  let weekRuns = [];
-  let monIndex = responseRuns.findIndex(run=>(new Date(run.start_date).getDay() === 1));
-
-  for (let i=0; i<=monIndex; i++){
-    weekRuns.push(responseRuns[i]);
-  }
+  let monIndex = responseRuns.findIndex(run => (new Date(run.start_date).getDay() === 1));
+  let weekRuns = responseRuns.filter(run => responseRuns.indexOf(run) <= monIndex)
   renderWeek(weekRuns); 
 }
