@@ -49,7 +49,6 @@ const handleNavButton = (page) => {
       parkRun.style.display = 'none';
       runs.style.display = 'none';
       map.style.display = 'flex';
-      createMap();      
       break;
   }
 }
