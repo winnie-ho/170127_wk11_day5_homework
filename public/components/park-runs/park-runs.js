@@ -10,8 +10,8 @@ const computeParkRuns = (runs) => {
   computeFullParkRuns(parkRuns);
 }
 
-const pushFullPR = (runs) => {
-  fullParkRuns.push(runs);
+const pushFullPR = (run) => {
+  fullParkRuns.push(run);
 
   if(fullParkRuns.length === parkRuns.length){
     const sortedFullPR = fullParkRuns.sort((a, b) => b.upload_id - a.upload_id);

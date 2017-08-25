@@ -5,6 +5,7 @@ const createActivityDateTitle = (rawDate, rawTitle) => {
   const date = document.createElement("div");
   const title = document.createElement("h4");
   dateTitle.classList.add("run-box__detail");
+  date.classList.add("date-metric")
 
   date.innerHTML = rawDate.substr(8,2) + "-" + rawDate.substr(5,2) + "-"+ rawDate.substr(0,4);
   title.innerHTML = rawTitle;
@@ -59,9 +60,11 @@ const createActivityPace = (rawTime, rawDistance) => {
   return pace;
 }
 
-const createActivitySummary = (rawDate, rawTitle, rawDistance, rawTime) => {
+const createActivitySummary = (rawDate, rawTitle, rawDistance, rawTime, rawId) => {
   const activitySummary = document.createElement("div");
   activitySummary.id = "run-box";
+  activitySummary.activity_id = rawId;
+  activitySummary.onclick = viewRun;
 
   const runBoxDetail = document.createElement("div")
   runBoxDetail.classList.add("run-box__detail");
@@ -77,4 +80,16 @@ const createActivitySummary = (rawDate, rawTitle, rawDistance, rawTime) => {
   let children2 = [dateTitle, runBoxDetail];
   append(activitySummary, children2);
   return activitySummary;
+}
+
+const viewRun = (event) => {
+  const selectedRun = responseRuns.find(run => run.id === event.target.activity_id);
+  const runLine = selectedRun.map.summary_polyline;
+  const startPoint = {lat: ((selectedRun.start_latlng[0] + selectedRun.end_latlng[0])/2), lng: ((selectedRun.start_latlng[1] + selectedRun.end_latlng[1])/2)};
+  const map = document.querySelector("#map");
+  console.log("!", map);
+  handleNavButton("map");
+
+  
+  // map.addPolyline(runLine, startPoint);  
 }

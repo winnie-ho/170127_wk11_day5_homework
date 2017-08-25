@@ -7,10 +7,15 @@
   border-radius: 2px;
   margin: 1px 2px;;
   padding: 5px;
+  cursor: pointer;
 }
 
 #run-box:hover{
   background-color: rgba(31, 97, 141, 1);
+}
+
+#run-box * {
+  pointer-events: none;
 }
 
 .run-box__detail{
@@ -22,4 +27,9 @@
 
 .run-box__detail h4 {
   margin: -2px;
+  font-size: 14px;
+}
+
+.date-metric{
+  font-size: 12px;
 }

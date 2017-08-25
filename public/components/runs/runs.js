@@ -12,10 +12,6 @@
   // var distanceArray = popDistanceArray(result);
   // new ColumnChart("THE MILES SO FAR...", "Distance (km)", distanceArray, dayArray);
   
-  // var centre = {lat: 55.9533, lng:-3.1883 };
-  // var mapDiv = document.querySelector("#main-map");
-  // mapDiv.innerHTML = "";
-  // var mainMap = new MapWrapper(centre, 14);
 
   // var handleViewButton = function(event){
   //   console.log("viewbutton clicked");
@@ -49,7 +45,7 @@ const showRun = (responseRuns) => {
   runsDiv.innerHTML = "";
 
   responseRuns.forEach(run => {
-    let activitySummary = createActivitySummary(run.start_date, run.name, run.distance, run.moving_time); 
+    let activitySummary = createActivitySummary(run.start_date, run.name, run.distance, run.moving_time, run.id); 
     runsDiv.appendChild(activitySummary);
   });
 

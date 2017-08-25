@@ -9,24 +9,26 @@
     <link rel="stylesheet" type="text/css" href="./components/runs/runs.css">    
     <link rel="stylesheet" type="text/css" href="./components/run-club/run-club.css">    
     <link rel="stylesheet" type="text/css" href="./components/activity-summary/activity-summary.css">    
+    <link rel="stylesheet" type="text/css" href="./components/map/map.css">    
 
     <!--import js files-->
-    <script src = "app.js"></script>
-    <script src = "api-call.js"></script>
-    <script src = "./components/columnChart.js"></script>
-    <script src = "./components/mapWrapper.js"></script>
+    <script src="app.js"></script>
+    <script src="api-call.js"></script>
+    <script src="./components/columnChart.js"></script>
+    <script src="./components/mapWrapper.js"></script>
 
-    <script src = "./components/weather-now/weather-now.js"></script>
-    <script src = "./components/weather-forecast/weather-forecast.js"></script>
-    <script src = "./components/runs/runs.js"></script>
-    <script src = "./components/nav/nav.js"></script>
-    <script src = "./components/park-runs/park-runs.js"></script>
-    <script src = "./components/run-club/run-club.js"></script>
-    <script src = "./components/home/home.js"></script>
-    <script src = "./components/activity-summary/activity-summary.js"></script>
+    <script src="./components/weather-now/weather-now.js"></script>
+    <script src="./components/weather-forecast/weather-forecast.js"></script>
+    <script src="./components/runs/runs.js"></script>
+    <script src="./components/nav/nav.js"></script>
+    <script src="./components/park-runs/park-runs.js"></script>
+    <script src="./components/run-club/run-club.js"></script>
+    <script src="./components/home/home.js"></script>
+    <script src="./components/activity-summary/activity-summary.js"></script>
+    <script src="./components/map/map.js"></script>
     
-    <script src = "http://code.highcharts.com/highcharts.js"></script>
-    <script type = "text/javascript" src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCxXMhBSrjeLubVwNJzRAFZedtQGdiCqiI&libraries=geometry"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxXMhBSrjeLubVwNJzRAFZedtQGdiCqiI&libraries=geometry"></script>
     <script src="https://www.w3schools.com/lib/w3.js"></script>
   </head>
 
@@ -72,8 +74,13 @@
       style="display: none">
     </div>
 
+    <div 
+      w3-include-html="./components/map/map.html" 
+      id="map"
+      style="display: block">
+    </div>
+
   </div>
-      <!-- <div id="main-map"></div> -->
 
       <!--<div id = "near-me-div">
         <button id = "near-me">Find</button>

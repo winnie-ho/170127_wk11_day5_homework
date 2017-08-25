@@ -38,8 +38,10 @@ const renderWeek = (weekRuns) => {
     let rawDistance = activity.distance;
 
     let dayDiv = document.getElementById(dayLookUp[new Date(activity.start_date).getDay()]);
-    dayDiv.innerHTML = activity.name + "  " + (activity.distance/1000).toFixed(2) + "km,  " + renderTime(rawTime) + ", " + renderPace(rawTime, rawDistance);
-    dayDiv.style.width = "100%";
+    let dayDetail = document.createElement("div");
+    dayDetail.innerHTML = activity.name + "  " + (activity.distance/1000).toFixed(2) + "km,  " + renderTime(rawTime) + ", " + renderPace(rawTime, rawDistance);
+    dayDiv.classList.add("day-title--active");
+    dayDiv.appendChild(dayDetail);
   }
 }
 

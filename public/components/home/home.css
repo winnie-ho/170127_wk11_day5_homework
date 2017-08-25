@@ -23,7 +23,6 @@
   border-radius: 2px;
   padding: 5px;
   background-color: rgba(31, 97, 141, 0.7);
-
 }
 
 .total-item__child{
@@ -47,42 +46,53 @@
   border-bottom-right-radius: 2px;
   display: flex;
   flex-direction: row;
-
-  color: transparent;
+  color: white;
   animation-name: day-settle;
-  animation-duration: 2s;
+  animation-duration: 1s;
   animation-fill-mode: forwards;
   height: 25px;
   align-content: center;
-  align-items: center; 
+  align-items: center;
 }
 
 .day-activity{
   margin: 0 30px;
 }
 
- .day-title > div{
+.day-title--active{
   display: flex;
   flex-direction: row;
-  margin-left: 20px; 
   align-items: center;
   color: transparent;
-  animation-name: day-settle;
+  animation-name: day-settle--active;
   animation-duration: 2s;
   animation-fill-mode: forwards;
   align-content: center;
   align-items: center;
 } 
 
+.day-title--active > div{
+  margin-left: 20px;
+}
+
 @keyframes day-settle {
     from {
       width: 0px; 
-      color: transparent
     }
     to {
-      width: 93vw;
-      color: white;
+      width: 33px;
     }
+}
+
+@keyframes day-settle--active {
+  from {
+    width: 37px; 
+    color: transparent
+  }
+  to {
+    width: 95%;
+    color: white;
+  }
 }
 
 @media all and (max-width: 500px) {
