@@ -6,26 +6,27 @@
     
     <!--import style sheets -->
     <link rel="stylesheet" type="text/css" href="./stylesheets/main.css">   
-    <link rel="stylesheet" type="text/css" href="./components/runs/runs.css">    
-    <link rel="stylesheet" type="text/css" href="./components/run-club/run-club.css">    
+    <link rel="stylesheet" type="text/css" href="./pages/runs/runs.css">    
+    <link rel="stylesheet" type="text/css" href="./pages/run-club/run-club.css">    
     <link rel="stylesheet" type="text/css" href="./components/activity-summary/activity-summary.css">    
-    <link rel="stylesheet" type="text/css" href="./components/view-run/view-run.css">    
+    <link rel="stylesheet" type="text/css" href="./pages/view-run/view-run.css">    
 
     <!--import js files-->
     <script src="app.js"></script>
     <script src="api-call.js"></script>
+    
+    <script src="./pages/runs/runs.js"></script>
+    <script src="./pages/park-runs/park-runs.js"></script>
+    <script src="./pages/run-club/run-club.js"></script>
+    <script src="./pages/home/home.js"></script>
+    <script src="./pages/view-run/view-run.js"></script>
+
     <script src="./components/columnChart.js"></script>
     <script src="./components/mapWrapper.js"></script>
-
     <script src="./components/weather-now/weather-now.js"></script>
     <script src="./components/weather-forecast/weather-forecast.js"></script>
-    <script src="./components/runs/runs.js"></script>
     <script src="./components/nav/nav.js"></script>
-    <script src="./components/park-runs/park-runs.js"></script>
-    <script src="./components/run-club/run-club.js"></script>
-    <script src="./components/home/home.js"></script>
     <script src="./components/activity-summary/activity-summary.js"></script>
-    <script src="./components/view-run/view-run.js"></script>
     
     <script src="http://code.highcharts.com/highcharts.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxXMhBSrjeLubVwNJzRAFZedtQGdiCqiI&libraries=geometry"></script>
@@ -51,31 +52,31 @@
     </div>
 
     <div 
-      w3-include-html="./components/home/home.html" 
+      w3-include-html="./pages/home/home.html" 
       id="home" 
       style="display: flex">
     </div>
 
     <div 
-      w3-include-html="./components/run-club/run-club.html" 
+      w3-include-html="./pages/run-club/run-club.html" 
       id="run-club" 
       style="display: none">
     </div>
 
     <div 
-      w3-include-html="./components/park-runs/park-runs.html" 
+      w3-include-html="./pages/park-runs/park-runs.html" 
       id="park-runs" 
       style="display: none">
     </div>
 
     <div 
-      w3-include-html="./components/runs/runs.html" 
+      w3-include-html="./pages/runs/runs.html" 
       id="runs"
       style="display: none">
     </div>
 
     <div 
-      w3-include-html="./components/view-run/view-run.html" 
+      w3-include-html="./pages/view-run/view-run.html" 
       id="view-run"
       style="display: none">
     </div>
