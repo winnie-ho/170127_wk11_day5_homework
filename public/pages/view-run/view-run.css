@@ -15,8 +15,21 @@
   flex-direction: column;
 }
 
-#activity-info__primary-stats{
+.stats{
   display: flex;
   flex-direction: row;
-  justify-content: space-between
+  justify-content: space-around;
+}
+
+.icon-stat{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 27px;
+  justify-content: space-between;
+}
+
+.activity-icon{
+  height: 15px;
+  width: auto;
 }
