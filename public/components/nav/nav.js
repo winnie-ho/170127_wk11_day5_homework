@@ -1,5 +1,6 @@
 const handleNavButton = (page) => {
   const home = document.querySelector('#home');
+  const weatherNow = document.querySelector('#weather-now');
   const runClub = document.querySelector('#run-club');
   const parkRun = document.querySelector('#park-runs');
   const runs = document.querySelector('#runs');
@@ -9,6 +10,7 @@ const handleNavButton = (page) => {
   switch (page) {
     case "home-button":
       home.style.display = 'flex';
+      weatherNow.style.display = 'flex';
       runClub.style.display = 'none';
       parkRun.style.display = 'none';
       runs.style.display = 'none';
@@ -17,6 +19,7 @@ const handleNavButton = (page) => {
       
       case "run-club-button":
       home.style.display = 'none';
+      weatherNow.style.display = 'none';
       runClub.style.display = 'flex';
       parkRun.style.display = 'none';
       runs.style.display = 'none';
@@ -26,6 +29,7 @@ const handleNavButton = (page) => {
       
       case "park-run-button":
       home.style.display = 'none';
+      weatherNow.style.display = 'none';
       runClub.style.display = 'none';
       parkRun.style.display = 'flex';
       parkRuns = [];
@@ -36,15 +40,17 @@ const handleNavButton = (page) => {
       
       case "runs-button":
       home.style.display = 'none';
+      weatherNow.style.display = 'none';
       runClub.style.display = 'none';
       parkRun.style.display = 'none';
       runs.style.display = 'flex';
       viewRun.style.display = 'none';
       showRun(responseRuns);  
       break;
-
-    case "view-run":
+      
+      case "view-run":
       home.style.display = 'none';
+      weatherNow.style.display = 'none';
       runClub.style.display = 'none';
       parkRun.style.display = 'none';
       runs.style.display = 'none';
