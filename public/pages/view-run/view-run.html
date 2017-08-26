@@ -1,15 +1,18 @@
 <link rel="stylesheet" type="text/css" href="./pages/view-run/view-run.css">
 
 <div id="activity-info" class="run-box__detail" >
-  <div id="activity-info__date" class="data-metric"></div>
-  <div id="activity-info__title" class="heading"></div>
-  <div id="activity-info__primary-stats" class="stats">
+  
+  <div id="activity-info__header" class="row sb">
+    <div id="activity-info__title"></div>
+    <div id="activity-info__date" class="data-metric"></div>
+  </div>
+  <div id="activity-info__primary-stats" class="row sa">
     <div id="primary-stats__distance" class="data-metric"></div>
     <div id="primary-stats__time" class="data-metric"></div>
     <div id="primary-stats__pace" class="data-metric"></div>
   </div>
   
-  <div id="activity-info__secondary-stats" class="stats">
+  <div id="activity-info__secondary-stats" class="row sa">
     <div class="icon-stat">
       <img class="activity-icon" src="./resources/icon_like.png" class="nav-icon"/>
       <div id="secondary-stats__kudos" class="data-metric">

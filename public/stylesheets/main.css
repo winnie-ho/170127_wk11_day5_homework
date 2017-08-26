@@ -87,4 +87,26 @@ button:hover{
   margin: 10px;
 }
 
+.row{
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+}
+
+.col{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+
+.sb{
+  justify-content: space-between;
+}
+
+.sa{
+  justify-content: space-around;
+}
+
 
