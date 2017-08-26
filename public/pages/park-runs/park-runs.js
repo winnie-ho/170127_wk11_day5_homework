@@ -36,7 +36,7 @@ const displayParkRunsDate = (fullParkRuns) => {
   fullParkRuns.forEach(run => {
     var date = document.createElement("div");
     date.classList.add('data-metric','data-long');
-    date.innerText = run.start_date.substr(8,2) + "-" + run.start_date.substr(5,2) + "-" + run.start_date.substr(0,4);
+    date.innerText = renderDate(run.start_date);
     parkRunDiv.appendChild(date);
   })
 }
