@@ -60,7 +60,12 @@ const handleNavButton = (page) => {
       break;
 
       case "view-kudos":
-      kudosDetail.style.display = 'flex';
+      console.log("SHOW KUDOS");
+      if (kudosDetail.style.display === 'none') {
+        kudosDetail.style.display = 'flex';
+      } else {
+        kudosDetail.style.display = 'none';
+      }
       break;
   }
 }

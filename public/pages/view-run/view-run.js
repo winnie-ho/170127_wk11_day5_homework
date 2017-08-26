@@ -37,11 +37,15 @@ const renderKudosDetail = (rawKudos) => {
   kudosDetailDiv = document.querySelector("#kudos-detail");
   rawKudos.forEach(kudoser => {
     let kudoserPerson = document.createElement("div");
+    let kudoserName = document.createElement("span");
     let kudoserImage = document.createElement("img");
+    kudoserPerson.classList.add("row");
+    kudoserName.classList.add("data-metric");
     kudoserImage.src = kudoser.profile_medium;
     kudoserImage.classList.add("small-avatar");
-    kudoserPerson.innerHTML = kudoser.firstname;
-    kudosDetailDiv.appendChild(kudoserImage);
+    kudoserName.innerHTML = kudoser.firstname;
+    kudoserPerson.appendChild(kudoserImage);
+    kudoserPerson.appendChild(kudoserName);
     kudosDetailDiv.appendChild(kudoserPerson);
   });
 }

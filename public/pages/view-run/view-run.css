@@ -51,4 +51,18 @@
   height: 30px;
   width: 30px;
   border-radius: 50%;
+  margin-left: 15px;
+  margin-right: 3px;
+}
+
+@media all and (max-width: 400px) {
+  #kudos-detail{
+    flex-direction: column !important;
+    align-items: flex-start;
+    margin-left: 10px;
+  }
+
+  .data-metric{
+    font-size: 12px;
+  }
 }
