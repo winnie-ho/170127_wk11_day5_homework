@@ -7,7 +7,7 @@ const createActivityDateTitle = (rawDate, rawTitle) => {
   dateTitle.classList.add("run-box__detail");
   date.classList.add("date-metric")
 
-  date.innerHTML = rawDate.substr(8,2) + "-" + rawDate.substr(5,2) + "-"+ rawDate.substr(0,4);
+  date.innerHTML = renderDate(rawDate);
   title.innerHTML = rawTitle;
 
   let children = [title, date];
@@ -23,7 +23,7 @@ const createActivityDistance = (rawDistance) => {
   distanceIcon.src = "./resources/icon_distance.png";
   distanceIcon.classList.add("icon");
   
-  distanceValue.innerHTML = ((rawDistance)/1000).toFixed(2) + "km";
+  distanceValue.innerHTML = renderDistance(rawDistance);
 
   let children = [distanceIcon, distanceValue];
   append(distance, children);
@@ -60,7 +60,7 @@ const createActivityPace = (rawTime, rawDistance) => {
   return pace;
 }
 
-const createActivitySummary = (rawDate, rawTitle, rawDistance, rawTime, rawId) => {
+const createActivitySummary = (rawId, rawDate,rawTitle, rawDistance, rawTime) => {
   const activitySummary = document.createElement("div");
   activitySummary.id = "run-box";
   activitySummary.activity_id = rawId;
@@ -89,5 +89,5 @@ const viewRun = (event) => {
   handleNavButton("view-run");
   let map = createMap();
   map.addPolyline(runLine, startPoint); 
-  renderRunInfo(selectedRun.name); 
+  renderRunInfo(selectedRun.start_date, selectedRun.name, selectedRun.distance, selectedRun.moving_time); 
 }
