@@ -35,10 +35,11 @@ const renderRunInfo = (rawRun) => {
 
 const renderKudosDetail = (rawKudos) => {
   kudosDetailDiv = document.querySelector("#kudos-detail");
+  kudosDetailDiv.innerHTML = "";
   rawKudos.forEach(kudoser => {
-    let kudoserPerson = document.createElement("div");
-    let kudoserName = document.createElement("span");
-    let kudoserImage = document.createElement("img");
+    const kudoserPerson = document.createElement("div");
+    const kudoserName = document.createElement("span");
+    const kudoserImage = document.createElement("img");
     kudoserPerson.classList.add("row");
     kudoserName.classList.add("data-metric");
     kudoserImage.src = kudoser.profile_medium;
