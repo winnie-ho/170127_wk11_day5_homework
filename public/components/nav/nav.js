@@ -4,7 +4,7 @@ const handleNavButton = (page) => {
   const parkRun = document.querySelector('#park-runs');
   const runs = document.querySelector('#runs');
   const weatherForecast = document.querySelector('#weather-forecast');
-  const map = document.querySelector('#map');
+  const viewRun = document.querySelector('#view-run');
    
   switch (page) {
     case "home-button":
@@ -12,7 +12,7 @@ const handleNavButton = (page) => {
       runClub.style.display = 'none';
       parkRun.style.display = 'none';
       runs.style.display = 'none';
-      map.style.display = 'none';
+      viewRun.style.display = 'none';
       break;
       
       case "run-club-button":
@@ -20,7 +20,7 @@ const handleNavButton = (page) => {
       runClub.style.display = 'flex';
       parkRun.style.display = 'none';
       runs.style.display = 'none';
-      map.style.display = 'none';
+      viewRun.style.display = 'none';
       computeRunClubRuns(responseRuns);
       break;
       
@@ -30,7 +30,7 @@ const handleNavButton = (page) => {
       parkRun.style.display = 'flex';
       parkRuns = [];
       runs.style.display = 'none';
-      map.style.display = 'none';
+      viewRun.style.display = 'none';
       computeParkRuns(responseRuns); 
       break;
       
@@ -39,16 +39,16 @@ const handleNavButton = (page) => {
       runClub.style.display = 'none';
       parkRun.style.display = 'none';
       runs.style.display = 'flex';
-      map.style.display = 'none';
+      viewRun.style.display = 'none';
       showRun(responseRuns);  
       break;
 
-    case "map":
+    case "view-run":
       home.style.display = 'none';
       runClub.style.display = 'none';
       parkRun.style.display = 'none';
       runs.style.display = 'none';
-      map.style.display = 'flex';
+      viewRun.style.display = 'flex';
       break;
   }
 }
