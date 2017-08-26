@@ -89,5 +89,6 @@ const viewRun = (event) => {
   handleNavButton("view-run");
   let map = createMap();
   map.addPolyline(runLine, startPoint); 
-  renderRunInfo(selectedRun); 
+  fetchRun(selectedRun.id); 
+  fetchKudos(selectedRun.id);
 }

@@ -13,10 +13,12 @@
   </div>
   
   <div id="activity-info__secondary-stats" class="row sa">
-    <div class="icon-stat">
-      <img class="activity-icon" src="./resources/icon_like.png" class="nav-icon"/>
-      <div id="secondary-stats__kudos" class="data-metric">
+    <div class="col">
+      <div class="icon-stat" id = "view-kudos" onclick="handleNavButton(id)" >
+        <img class="activity-icon" src="./resources/icon_like.png" class="nav-icon"/>
+        <div id="secondary-stats__kudos" class="data-metric"></div>
       </div>
+      <div id="kudos-detail" class="row" hidden="true"></div>
     </div>
 
     <div id="secondary-stats__heartrate" class="data-metric"></div>

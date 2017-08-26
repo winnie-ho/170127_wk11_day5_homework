@@ -3,6 +3,15 @@ const createMap = () => {
   return new MapWrapper(centre, 14);
 }
 
+const fetchKudos = (runId) => {
+  const activityKudosUrl = "https://www.strava.com/api/v3/activities/" + runId + "/kudos" + userToken;
+  makeRequest(activityKudosUrl, renderKudosDetail);
+}
+
+const fetchRun = (runId) => {
+  makeRequest(("https://www.strava.com/api/v3/activities/" + runId + userToken), renderRunInfo);
+}
+
 const renderRunInfo = (rawRun) => {
   const dateDiv = document.querySelector("#activity-info__date");
   const titleDiv = document.querySelector("#activity-info__title");
@@ -22,4 +31,17 @@ const renderRunInfo = (rawRun) => {
   kudosDiv.innerHTML = rawRun.kudos_count;
   heartrateDiv.innerHTML = "♡" + rawRun.average_heartrate;
   cadenceDiv.innerHTML = "↻" + rawRun.average_cadence;
+}
+
+const renderKudosDetail = (rawKudos) => {
+  kudosDetailDiv = document.querySelector("#kudos-detail");
+  rawKudos.forEach(kudoser => {
+    let kudoserPerson = document.createElement("div");
+    let kudoserImage = document.createElement("img");
+    kudoserImage.src = kudoser.profile_medium;
+    kudoserImage.classList.add("small-avatar");
+    kudoserPerson.innerHTML = kudoser.firstname;
+    kudosDetailDiv.appendChild(kudoserImage);
+    kudosDetailDiv.appendChild(kudoserPerson);
+  });
 }

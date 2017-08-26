@@ -27,7 +27,6 @@
 #activity-info__title{
   font-size: 14px;
   font-weight: 600;
-  text-transform: uppercase;
 }
 
 .icon-stat{
@@ -36,9 +35,20 @@
   align-items: center;
   width: 27px;
   justify-content: space-between;
+  cursor: pointer;
 }
 
 .activity-icon{
   height: 15px;
   width: auto;
+}
+
+.icon-stat * {
+  pointer-events: none;
+}
+
+.small-avatar{
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
 }

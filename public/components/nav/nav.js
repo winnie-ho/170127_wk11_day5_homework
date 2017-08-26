@@ -6,6 +6,8 @@ const handleNavButton = (page) => {
   const runs = document.querySelector('#runs');
   const weatherForecast = document.querySelector('#weather-forecast');
   const viewRun = document.querySelector('#view-run');
+  const kudosDetail = document.querySelector('#kudos-detail');
+
    
   switch (page) {
     case "home-button":
@@ -55,6 +57,10 @@ const handleNavButton = (page) => {
       parkRun.style.display = 'none';
       runs.style.display = 'none';
       viewRun.style.display = 'flex';
+      break;
+
+      case "view-kudos":
+      kudosDetail.style.display = 'flex';
       break;
   }
 }
