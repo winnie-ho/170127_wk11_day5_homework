@@ -17,6 +17,7 @@ const handleNavButton = (page) => {
       parkRun.style.display = 'none';
       runs.style.display = 'none';
       viewRun.style.display = 'none';
+      kudosDetail.style.display = 'none';
       break;
       
       case "run-club-button":
@@ -26,6 +27,7 @@ const handleNavButton = (page) => {
       parkRun.style.display = 'none';
       runs.style.display = 'none';
       viewRun.style.display = 'none';
+      kudosDetail.style.display = 'none';
       computeRunClubRuns(responseRuns);
       break;
       
@@ -37,6 +39,7 @@ const handleNavButton = (page) => {
       parkRuns = [];
       runs.style.display = 'none';
       viewRun.style.display = 'none';
+      kudosDetail.style.display = 'none';
       computeParkRuns(responseRuns); 
       break;
       
@@ -47,6 +50,7 @@ const handleNavButton = (page) => {
       parkRun.style.display = 'none';
       runs.style.display = 'flex';
       viewRun.style.display = 'none';
+      kudosDetail.style.display = 'none';
       showRun(responseRuns);  
       break;
       
@@ -57,6 +61,7 @@ const handleNavButton = (page) => {
       parkRun.style.display = 'none';
       runs.style.display = 'none';
       viewRun.style.display = 'flex';
+      kudosDetail.style.display = 'none';
       break;
 
       case "view-kudos":
