@@ -9,7 +9,13 @@ const fetchKudos = (runId) => {
 }
 
 const fetchRun = (runId) => {
-  makeRequest(("https://www.strava.com/api/v3/activities/" + runId + userToken), renderRunInfo);
+  makeRequest(("https://www.strava.com/api/v3/activities/" + runId + userToken), renderViewRun);
+}
+
+const renderViewRun = (rawRun) => {
+  console.log("HERE");
+  renderRunInfo(rawRun);
+  renderLaps(rawRun);
 }
 
 const renderRunInfo = (rawRun) => {
@@ -29,8 +35,33 @@ const renderRunInfo = (rawRun) => {
   paceDiv.innerHTML = renderPace(rawRun.moving_time, rawRun.distance);
 
   kudosDiv.innerHTML = rawRun.kudos_count;
-  heartrateDiv.innerHTML = "♡" + rawRun.average_heartrate;
-  cadenceDiv.innerHTML = "↻" + rawRun.average_cadence;
+  heartrateDiv.innerHTML = "♡ " + rawRun.average_heartrate;
+  cadenceDiv.innerHTML = "↻ " + rawRun.average_cadence;
+}
+
+const renderLaps = (rawRun) => {
+  lapsDiv = document.querySelector("#laps");
+  lapsDiv.innerHTML = rawRun.laps.length;
+
+  lapsDetailDiv = document.querySelector("#laps-detail");
+  rawRun.laps.forEach(lap => {
+    const lapBox = document.createElement("div");
+    const lapNo = document.createElement("div");
+    const lapTime = document.createElement("div");
+    const lapPace = document.createElement("div");
+    lapBox.classList.add("row", "sa", "lap-box");
+    lapNo.classList.add("data-metric");
+    lapTime.classList.add("data-metric");
+    lapPace.classList.add("data-metric");
+    lapNo.innerHTML = lap.lap_index;
+    lapTime.innerHTML = renderTime(lap.moving_time);
+    lapPace.innerHTML = renderPace(lap.moving_time, lap.distance);
+    
+    lapBox.appendChild(lapNo);
+    lapBox.appendChild(lapTime);
+    lapBox.appendChild(lapPace);
+    lapsDetailDiv.appendChild(lapBox);
+  })
 }
 
 const renderKudosDetail = (rawKudos) => {

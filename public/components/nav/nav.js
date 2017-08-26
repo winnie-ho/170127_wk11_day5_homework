@@ -7,6 +7,7 @@ const handleNavButton = (page) => {
   const weatherForecast = document.querySelector('#weather-forecast');
   const viewRun = document.querySelector('#view-run');
   const kudosDetail = document.querySelector('#kudos-detail');
+  const lapsDetail = document.querySelector('#laps-detail');
 
    
   switch (page) {
@@ -18,6 +19,7 @@ const handleNavButton = (page) => {
       runs.style.display = 'none';
       viewRun.style.display = 'none';
       kudosDetail.style.display = 'none';
+      lapsDetail.style.display = 'none';
       break;
       
       case "run-club-button":
@@ -28,6 +30,7 @@ const handleNavButton = (page) => {
       runs.style.display = 'none';
       viewRun.style.display = 'none';
       kudosDetail.style.display = 'none';
+      lapsDetail.style.display = 'none';
       computeRunClubRuns(responseRuns);
       break;
       
@@ -40,6 +43,7 @@ const handleNavButton = (page) => {
       runs.style.display = 'none';
       viewRun.style.display = 'none';
       kudosDetail.style.display = 'none';
+      lapsDetail.style.display = 'none';
       computeParkRuns(responseRuns); 
       break;
       
@@ -51,6 +55,7 @@ const handleNavButton = (page) => {
       runs.style.display = 'flex';
       viewRun.style.display = 'none';
       kudosDetail.style.display = 'none';
+      lapsDetail.style.display = 'none';
       showRun(responseRuns);  
       break;
       
@@ -62,14 +67,22 @@ const handleNavButton = (page) => {
       runs.style.display = 'none';
       viewRun.style.display = 'flex';
       kudosDetail.style.display = 'none';
+      lapsDetail.style.display = 'none';
       break;
 
       case "view-kudos":
-      console.log("SHOW KUDOS");
       if (kudosDetail.style.display === 'none') {
         kudosDetail.style.display = 'flex';
       } else {
         kudosDetail.style.display = 'none';
+      }
+      break;
+
+      case "view-laps":
+      if (lapsDetail.style.display === 'none') {
+        lapsDetail.style.display = 'flex';
+      } else {
+        lapsDetail.style.display = 'none';
       }
       break;
   }
