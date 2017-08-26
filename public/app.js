@@ -8,6 +8,14 @@ const setRuns = (result) => {
   computeWeek(responseRuns);
 }
 
+const renderDate = (rawDate) => {
+  return rawDate.substr(8,2) + "-" + rawDate.substr(5,2) + "-"+ rawDate.substr(0,4);
+}
+
+const renderDistance = (rawDistance) => {
+  return ((rawDistance)/1000).toFixed(2) + "km";
+}
+
 const renderTime = (rawTime) => {
   const totalMinutes = (rawTime/60).toFixed(2);
   const hours = Math.floor(totalMinutes/60);
