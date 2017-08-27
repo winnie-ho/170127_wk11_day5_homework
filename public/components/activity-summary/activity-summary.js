@@ -91,4 +91,5 @@ const viewRun = (event) => {
   map.addPolyline(runLine, startPoint);
   fetchRun(selectedRun.id); 
   fetchKudos(selectedRun.id);
+  fetchComments(selectedRun.id);
 }

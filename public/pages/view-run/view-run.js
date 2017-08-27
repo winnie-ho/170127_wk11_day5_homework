@@ -1,19 +1,32 @@
+let kudos;
+let comments;
+
 const createMap = () => {
   const centre = { lat: 55.9533, lng:-3.1883 };
   return new MapWrapper(centre, 14);
-}
-
-const fetchKudos = (runId) => {
-  const activityKudosUrl = "https://www.strava.com/api/v3/activities/" + runId + "/kudos" + userToken;
-  makeRequest(activityKudosUrl, renderKudosDetail);
 }
 
 const fetchRun = (runId) => {
   makeRequest(("https://www.strava.com/api/v3/activities/" + runId + userToken), renderViewRun);
 }
 
+const fetchKudos = (runId) => {
+  const activityKudosUrl = "https://www.strava.com/api/v3/activities/" + runId + "/kudos" + userToken;
+  makeRequest(activityKudosUrl, setKudos);
+}
+
+const fetchComments = (runId) => {
+  const commentsUrl = "https://www.strava.com/api/v3/activities/" + runId + "/comments" + userToken;
+  makeRequest(commentsUrl, setComments);
+}
+
+const setKudos = (rawKudos) => (kudos = rawKudos);
+
+const setComments = (rawComments) => (comments = rawComments);
+
 const renderViewRun = (rawRun) => {
-  console.log("HERE");
+  renderKudosDetail(kudos);
+  renderComments(comments, kudos);
   renderRunInfo(rawRun);
   renderLaps(rawRun);
 }
@@ -74,6 +87,7 @@ const renderKudosDetail = (rawKudos) => {
     const kudoserImage = document.createElement("img");
     kudoserPerson.classList.add("row");
     kudoserName.classList.add("data-metric");
+    kudoserName.id = kudoser.id;
     kudoserImage.src = kudoser.profile_medium;
     kudoserImage.classList.add("small-avatar");
     kudoserName.innerHTML = kudoser.firstname;
@@ -81,4 +95,16 @@ const renderKudosDetail = (rawKudos) => {
     kudoserPerson.appendChild(kudoserName);
     kudosDetailDiv.appendChild(kudoserPerson);
   });
+}
+
+const renderComments = (comments, kudos) => {
+  comments.find(comment => {
+    return kudos.find(kudoser => {
+      if (kudoser.id === comment.athlete.id) {
+        let kudoserId = kudoser.id.toString();
+        let targetKudoser = document.getElementById(kudoserId);
+        targetKudoser.innerHTML = kudoser.firstname + ":  " + comment.text;
+      };
+    })
+  })
 }

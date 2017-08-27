@@ -69,10 +69,3 @@ window.onload = app;
   //   console.log("List of friends for athlete with id");
   // }
   // makeRequest(athleteFriendsUrl, requestComplete);
-
-// Activity kudos
-//   var activityKudosUrl = "https://www.strava.com/api/v3/activities/1099567918/kudos\?access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
-//   var requestComplete = function(){
-//     console.log("Kudos for a given activity");
-//   }
-// makeRequest(activityKudosUrl, requestComplete);
