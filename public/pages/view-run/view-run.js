@@ -44,6 +44,7 @@ const renderLaps = (rawRun) => {
   lapsDiv.innerHTML = rawRun.laps.length;
 
   lapsDetailDiv = document.querySelector("#laps-detail");
+  lapsDetailDiv.innerHTML = "";
   rawRun.laps.forEach(lap => {
     const lapBox = document.createElement("div");
     const lapNo = document.createElement("div");
