@@ -6,22 +6,10 @@ const createMap = () => {
   return new MapWrapper(centre, 14);
 }
 
-const fetchRun = (runId) => {
-  makeRequest(("https://www.strava.com/api/v3/activities/" + runId + userToken), renderViewRun);
-}
-
-const fetchKudos = (runId) => {
-  const activityKudosUrl = "https://www.strava.com/api/v3/activities/" + runId + "/kudos" + userToken;
-  makeRequest(activityKudosUrl, setKudos);
-}
-
-const fetchComments = (runId) => {
-  const commentsUrl = "https://www.strava.com/api/v3/activities/" + runId + "/comments" + userToken;
-  makeRequest(commentsUrl, setComments);
-}
-
+const fetchRun = (runId) => makeRequest(("https://www.strava.com/api/v3/activities/" + runId + userToken), renderViewRun);
+const fetchKudos = (runId) => makeRequest("https://www.strava.com/api/v3/activities/" + runId + "/kudos" + userToken, setKudos);
+const fetchComments = (runId) => makeRequest("https://www.strava.com/api/v3/activities/" + runId + "/comments" + userToken, setComments);
 const setKudos = (rawKudos) => (kudos = rawKudos);
-
 const setComments = (rawComments) => (comments = rawComments);
 
 const renderViewRun = (rawRun) => {
