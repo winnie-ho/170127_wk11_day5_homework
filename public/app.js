@@ -8,8 +8,6 @@ const setRuns = (result) => {
   computeWeek(responseRuns);
 }
 
-
-
 const app = () => {
   makeRequest(urlRuns, setRuns);
   makeRequest(urlWeatherNow, showWeather);

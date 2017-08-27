@@ -33,3 +33,10 @@
 .date-metric{
   font-size: 12px;
 }
+
+@media all and (max-width: 400px) {
+  .run-box__detail h4 {
+    max-width: 245px;
+  }
+
+}
