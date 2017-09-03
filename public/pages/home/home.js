@@ -38,15 +38,73 @@ const renderWeek = (weekRuns) => {
     let rawDistance = activity.distance;
 
     let dayDiv = document.getElementById(dayLookUp[new Date(activity.start_date).getDay()]);
+    console.log("DAY", dayDiv);
+
+    
     let dayDetail = document.createElement("div");
-    dayDetail.innerHTML = activity.name + "  " + (activity.distance/1000).toFixed(2) + "km,  " + renderTime(rawTime) + ", " + renderPace(rawTime, rawDistance);
+    dayDetail.innerHTML = dayDiv.id + " " + activity.name + "  " + (activity.distance/1000).toFixed(2) + "km,  " + renderTime(rawTime) + ", " + renderPace(rawTime, rawDistance);
+    
     dayDiv.classList.add("day-title--active");
     dayDiv.appendChild(dayDetail);
   }
 }
 
+let weekInViewIndex = 0;
+let weekSets = [];
 const computeWeek = (responseRuns) => {
-  let monIndex = responseRuns.findIndex(run => (new Date(run.start_date).getDay() === 1));
-  let weekRuns = responseRuns.filter(run => responseRuns.indexOf(run) <= monIndex)
-  renderWeek(weekRuns); 
+  let monIndexArray = responseRuns.filter(run => (new Date (run.start_date).getDay()===1));
+  
+  let firstIndex = 0;
+  monIndexArray.forEach(monRun => {
+    let secondIndex = responseRuns.findIndex(run => (run.id === monRun.id));
+    
+    let weekRuns = responseRuns.filter(run => {
+      if (firstIndex === 0) {
+        return (firstIndex <= responseRuns.indexOf(run) && responseRuns.indexOf(run) <= secondIndex);
+      }
+      return (firstIndex < responseRuns.indexOf(run) && responseRuns.indexOf(run) <= secondIndex);
+    });
+    weekSets.push(weekRuns);
+    firstIndex = secondIndex;
+  })
+  let weekInView = weekSets[weekInViewIndex];
+  console.log("!", weekSets)
+  renderWeek(weekInView);
+}
+
+
+const changeWeek = (num) => {
+  weekInViewIndex += num;
+  if (weekInViewIndex < 0) {
+    console.log("weekInViewIndex", weekInViewIndex);
+    weekInViewIndex = 0;
+    return;
+  }
+  let mon = document.querySelector("#MON");
+  let tue = document.querySelector("#TUE");
+  let wed = document.querySelector("#WED");
+  let thu = document.querySelector("#THU");
+  let fri = document.querySelector("#FRI");
+  let sat = document.querySelector("#SAT");
+  let sun = document.querySelector("#SUN");
+
+  mon.innerHTML = "";
+  tue.innerHTML = "";
+  wed.innerHTML = "";
+  thu.innerHTML = "";
+  fri.innerHTML = "";
+  sat.innerHTML = "";
+  sun.innerHTML = "";
+
+  mon.style.width = "0px";
+  tue.style.width = "0px";
+  wed.style.width = "0px";
+  thu.style.width = "0px";
+  fri.style.width = "0px";
+  sat.style.width = "0px";
+  sun.style.width = "0px";
+  
+
+  
+  renderWeek(weekSets[weekInViewIndex]);
 }
