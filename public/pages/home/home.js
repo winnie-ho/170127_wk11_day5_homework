@@ -1,6 +1,9 @@
 // Totals and stats per athlete
 const totalStatsUrl = "https://www.strava.com/api/v3/athletes/3752965/stats\?access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
 
+let weekInViewIndex = 0;
+let weekSets = [];
+
 const renderYearTotals = (result) => {
   showDistance(result);
   showTime(result);
@@ -34,6 +37,15 @@ const renderWeek = (weekRuns) => {
       0: "SUN"
     }
 
+    let weekInViewDiv = document.getElementById("dateInView");
+
+    if (weekInViewIndex === 0) {
+      weekInViewDiv.innerHTML = "THIS WEEK";
+    }else{
+      weekInViewDiv.innerHTML = "W/C: " + renderDate(activity.start_date);
+    }
+
+
     let rawTime = activity.moving_time;
     let rawDistance = activity.distance;
 
@@ -49,8 +61,7 @@ const renderWeek = (weekRuns) => {
   }
 }
 
-let weekInViewIndex = 0;
-let weekSets = [];
+
 const computeWeek = (responseRuns) => {
   let monIndexArray = responseRuns.filter(run => (new Date (run.start_date).getDay()===1));
   
@@ -104,7 +115,6 @@ const changeWeek = (num) => {
   sat.style.width = "0px";
   sun.style.width = "0px";
   
-
-  
   renderWeek(weekSets[weekInViewIndex]);
 }
+
