@@ -41,8 +41,8 @@ const renderWeek = (weekRuns) => {
 
     if (weekInViewIndex === 0) {
       weekInViewDiv.innerHTML = "THIS WEEK";
-    }else{
-      weekInViewDiv.innerHTML = "W/C: " + renderDate(activity.start_date);
+    } else {
+      weekInViewDiv.innerHTML = "WC: " + renderDate(activity.start_date);
     }
 
 
@@ -50,14 +50,10 @@ const renderWeek = (weekRuns) => {
     let rawDistance = activity.distance;
 
     let dayDiv = document.getElementById(dayLookUp[new Date(activity.start_date).getDay()]);
-    console.log("DAY", dayDiv);
-
     
-    let dayDetail = document.createElement("div");
-    dayDetail.innerHTML = dayDiv.id + " " + activity.name + "  " + (activity.distance/1000).toFixed(2) + "km,  " + renderTime(rawTime) + ", " + renderPace(rawTime, rawDistance);
+    dayDiv.innerHTML = activity.name + "<br>" + (activity.distance/1000).toFixed(2) + "km,  " + renderTime(rawTime) + ", " + renderPace(rawTime, rawDistance);
     
     dayDiv.classList.add("day-title--active");
-    dayDiv.appendChild(dayDetail);
   }
 }
 
@@ -79,7 +75,6 @@ const computeWeek = (responseRuns) => {
     firstIndex = secondIndex;
   })
   let weekInView = weekSets[weekInViewIndex];
-  console.log("!", weekSets)
   renderWeek(weekInView);
 }
 
@@ -87,9 +82,7 @@ const computeWeek = (responseRuns) => {
 const changeWeek = (num) => {
   weekInViewIndex += num;
   if (weekInViewIndex < 0) {
-    console.log("weekInViewIndex", weekInViewIndex);
     weekInViewIndex = 0;
-    return;
   }
   let mon = document.querySelector("#MON");
   let tue = document.querySelector("#TUE");
@@ -99,21 +92,20 @@ const changeWeek = (num) => {
   let sat = document.querySelector("#SAT");
   let sun = document.querySelector("#SUN");
 
-  mon.innerHTML = "";
+  mon.innerHTML = "";  
   tue.innerHTML = "";
   wed.innerHTML = "";
   thu.innerHTML = "";
   fri.innerHTML = "";
   sat.innerHTML = "";
   sun.innerHTML = "";
-
-  mon.style.width = "0px";
-  tue.style.width = "0px";
-  wed.style.width = "0px";
-  thu.style.width = "0px";
-  fri.style.width = "0px";
-  sat.style.width = "0px";
-  sun.style.width = "0px";
+  mon.classList.remove("day-title--active");
+  tue.classList.remove("day-title--active");
+  wed.classList.remove("day-title--active");
+  thu.classList.remove("day-title--active");
+  fri.classList.remove("day-title--active");
+  sat.classList.remove("day-title--active");
+  sun.classList.remove("day-title--active");
   
   renderWeek(weekSets[weekInViewIndex]);
 }

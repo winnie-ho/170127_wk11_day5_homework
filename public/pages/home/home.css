@@ -40,12 +40,18 @@
 
 .week-activities{
   flex-direction: column;
-  margin-top: 35px;
+  margin-top: 25px;
+}
+
+.day{
+  background-color: rgba(31, 97, 141, 0.7);
+  padding: 13.5px;
+  width: 24px;
 }
 
 .day-title {
   background-color: rgba(31, 97, 141, 0.7);
-  padding: 10px;
+  padding: 10px 0;
   margin: 5px;
   margin-left: 0px;
   border-top-right-radius: 2px;
@@ -59,6 +65,7 @@
   height: 25px;
   align-content: center;
   align-items: center;
+  width: 0px;
 }
 
 .day-activity{
@@ -75,6 +82,8 @@
   animation-fill-mode: forwards;
   align-content: center;
   align-items: center;
+  padding-left: 20px;
+  padding-right: 10px;
 } 
 
 .day-title--active > div{
@@ -86,7 +95,7 @@
       width: 0px; 
     }
     to {
-      width: 33px;
+      width: 10px;
     }
 }
 
@@ -96,7 +105,7 @@
     color: transparent
   }
   to {
-    width: 92%;
+    width: 79%;
     color: white;
   }
 }
@@ -106,7 +115,15 @@
     font-size: 14px;
   }
 
-.week-activities{
-  margin-top: 0px;
-}
+  .week-activities{
+    margin-top: 0px;
+  }
+
+  .day{
+    padding: 14.5px 9px;
+  }
+
+  .day-title{
+    margin: 2px 0;
+  }
 }
