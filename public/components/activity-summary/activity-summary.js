@@ -20,11 +20,13 @@ const createActivityDistance = (rawDistance) => {
   distance.classList.add("data-metric");
   const distanceValue = document.createElement("div");
   const distanceIcon = document.createElement("img");
-  distanceIcon.src = "./resources/icon_distance.png";
   distanceIcon.classList.add("icon");
   
-  distanceValue.innerHTML = renderDistance(rawDistance);
-
+  if (rawDistance) {
+    distanceValue.innerHTML = renderDistance(rawDistance);
+    distanceIcon.src = "./resources/icon_distance.png";
+  }
+  
   let children = [distanceIcon, distanceValue];
   append(distance, children);
   return distance;
@@ -37,9 +39,9 @@ const createActivityTime = (rawTime) => {
   const timeIcon = document.createElement("img");
   timeIcon.src = "./resources/icon_time.png";
   timeIcon.classList.add("icon");
-
+  
   timeValue.innerHTML = renderTime(rawTime);
-
+  
   let children = [timeIcon, timeValue];
   append(time, children);
   return time;
@@ -50,10 +52,12 @@ const createActivityPace = (rawTime, rawDistance) => {
   pace.classList.add("data-metric");
   const paceValue = document.createElement("div");
   const paceIcon = document.createElement("img");
-  paceIcon.src = "./resources/icon_pace.png";
   paceIcon.classList.add("icon");
-
-  paceValue.innerHTML = renderPace(rawTime, rawDistance);
+  
+  if (rawDistance) {
+    paceValue.innerHTML = renderPace(rawTime, rawDistance);
+    paceIcon.src = "./resources/icon_pace.png";
+  }
 
   let children = [paceIcon, paceValue];
   append(pace, children);
