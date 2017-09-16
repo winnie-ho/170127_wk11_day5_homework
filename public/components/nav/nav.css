@@ -67,7 +67,7 @@
   justify-content: center;
   width: 100%;
   position: absolute;
-  bottom: 30px;
+  bottom: 0px;
 }
 
 .bottom-nav__button{
