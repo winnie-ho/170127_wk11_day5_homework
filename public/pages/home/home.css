@@ -51,6 +51,7 @@
   width: 27px;
   height: 25px;
   margin: 2px 0;
+  pointer-events: none;
 }
 
 .day-title {
@@ -87,6 +88,7 @@
   align-items: center;
   padding-left: 20px;
   padding-right: 10px;
+  cursor: pointer;
 } 
 
 .day-title--active > div{

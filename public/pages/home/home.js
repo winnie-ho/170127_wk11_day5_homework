@@ -45,18 +45,17 @@ const renderWeek = (weekRuns) => {
       weekInViewDiv.innerHTML = "WC: " + renderDate(activity.start_date);
     }
 
-
     let rawTime = activity.moving_time;
     let rawDistance = activity.distance;
 
     let dayDiv = document.getElementById(dayLookUp[new Date(activity.start_date).getDay()]);
-    
     dayDiv.innerHTML = activity.name + "<br>" + (activity.distance/1000).toFixed(2) + "km,  " + renderTime(rawTime) + ", " + renderPace(rawTime, rawDistance);
     
+    dayDiv.activity_id = activity.id;    
     dayDiv.classList.add("day-title--active");
+    dayDiv.onclick = viewRun;
   }
 }
-
 
 const computeWeek = (responseRuns) => {
   let monIndexArray = responseRuns.filter(run => (new Date (run.start_date).getDay()===1));
