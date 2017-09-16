@@ -1,6 +1,5 @@
 const renderParkRunHome = (parkRuns) => {
   const lastPR = parkRuns[0];
-  console.log("last PR", lastPR);
   document.querySelector("#last-pr__date").innerHTML = "LAST RAN: " + renderDate(lastPR.start_date);
   document.querySelector("#last-pr__name").innerHTML = lastPR.name;
   document.querySelector("#last-pr__time").innerHTML = renderTime(lastPR.moving_time);
@@ -17,7 +16,6 @@ const computeLastPRContext = (parkRuns) => {
 }
 
 const showParkRunSplits = () => {
-  console.log("HELLO");
   handleNavButton("park-run-splits");
 }
 
