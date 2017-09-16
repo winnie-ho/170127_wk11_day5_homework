@@ -85,9 +85,14 @@ const createActivitySummary = (rawId, rawDate,rawTitle, rawDistance, rawTime) =>
 const viewRun = (event) => {
   const selectedRun = responseRuns.find(run => run.id === event.target.activity_id);
   const runLine = selectedRun.map.summary_polyline;
+  if(!selectedRun.summary_polyline){
+    return;
+  }
   const startPoint = {lat: ((selectedRun.start_latlng[0] + selectedRun.end_latlng[0])/2), lng: ((selectedRun.start_latlng[1] + selectedRun.end_latlng[1])/2)};
   handleNavButton("view-run");
   let map = createMap();
+
+
   map.addPolyline(runLine, startPoint);
   fetchRun(selectedRun.id); 
   fetchKudos(selectedRun.id);
