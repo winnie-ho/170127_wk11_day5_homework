@@ -31,9 +31,13 @@ const renderRunInfo = (rawRun) => {
 
   dateDiv.innerHTML = renderDate(rawRun.start_date);
   titleDiv.innerHTML = rawRun.name;
-  distanceDiv.innerHTML = renderDistance(rawRun.distance);
   timeDiv.innerHTML = renderTime(rawRun.moving_time);
+  distanceDiv.innerHTML = renderDistance(rawRun.distance);
   paceDiv.innerHTML = renderPace(rawRun.moving_time, rawRun.distance);
+  if (rawRun.distance === 0) {
+    distanceDiv.innerHTML = rawRun.description;
+    paceDiv.innerHTML = ""
+  }
 
   kudosDiv.innerHTML = rawRun.kudos_count;
   heartrateDiv.innerHTML = "♡ " + rawRun.average_heartrate;
@@ -49,17 +53,25 @@ const renderLaps = (rawRun) => {
   rawRun.laps.forEach(lap => {
     const lapBox = document.createElement("div");
     const lapNo = document.createElement("div");
+    const lapDistance = document.createElement("div");
     const lapTime = document.createElement("div");
     const lapPace = document.createElement("div");
     lapBox.classList.add("row", "sa", "lap-box");
     lapNo.classList.add("data-metric");
+    lapDistance.classList.add("data-metric");
     lapTime.classList.add("data-metric");
     lapPace.classList.add("data-metric");
     lapNo.innerHTML = lap.lap_index;
+    lapDistance.innerHTML = renderDistance(lap.distance);
     lapTime.innerHTML = renderTime(lap.moving_time);
     lapPace.innerHTML = renderPace(lap.moving_time, lap.distance);
-    
+    if (lap.distance === 0) {
+      lapDistance.innerHTML = 22.86 + "m";
+      lapPace.innerHTML = (lap.moving_time/22.86).toFixed(2) + " s/m";
+    }
+
     lapBox.appendChild(lapNo);
+    lapBox.appendChild(lapDistance);
     lapBox.appendChild(lapTime);
     lapBox.appendChild(lapPace);
     lapsDetailDiv.appendChild(lapBox);
