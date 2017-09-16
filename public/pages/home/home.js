@@ -49,8 +49,11 @@ const renderWeek = (weekRuns) => {
     let rawDistance = activity.distance;
 
     let dayDiv = document.getElementById(dayLookUp[new Date(activity.start_date).getDay()]);
+    if (activity.distance === 0) {
+      dayDiv.innerHTML = activity.name + "<br>" + renderTime(rawTime);
+    } else {
     dayDiv.innerHTML = activity.name + "<br>" + (activity.distance/1000).toFixed(2) + "km,  " + renderTime(rawTime) + ", " + renderPace(rawTime, rawDistance);
-    
+    }
     dayDiv.activity_id = activity.id;    
     dayDiv.classList.add("day-title--active");
     dayDiv.onclick = viewRun;
