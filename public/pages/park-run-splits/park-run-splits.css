@@ -1,0 +1,29 @@
+#park-run-splits{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; 
+  padding: 5px;
+  color: white;
+  background-color: rgba(31, 97, 141, 0.7);
+  box-shadow: 0 0 30px 25px rgba(31, 97, 141, 0.7);
+  font-size: 16px;
+  height: 800px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 85%;
+}
+
+#park-run-result{
+  display: flex;
+  flex-direction: column;
+}
+
+@media all and (max-width: 500px) {
+  .heading{
+    font-size: 14px;
+  }
+
+  #park-run-name{
+    display: none;
+  }
+}

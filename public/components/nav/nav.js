@@ -2,7 +2,8 @@ const handleNavButton = (page) => {
   const home = document.querySelector('#home');
   const weatherNow = document.querySelector('#weather-now');
   const runClub = document.querySelector('#run-club');
-  const parkRun = document.querySelector('#park-runs');
+  const parkRunHome = document.querySelector('#park-run-home');
+  const parkRunSplits = document.querySelector('#park-run-splits');
   const runs = document.querySelector('#runs');
   const weatherForecast = document.querySelector('#weather-forecast');
   const viewRun = document.querySelector('#view-run');
@@ -15,7 +16,8 @@ const handleNavButton = (page) => {
       home.style.display = 'flex';
       weatherNow.style.display = 'flex';
       runClub.style.display = 'none';
-      parkRun.style.display = 'none';
+      parkRunHome.style.display = 'none';
+      parkRunSplits.style.display = 'none';
       runs.style.display = 'none';
       viewRun.style.display = 'none';
       kudosDetail.style.display = 'none';
@@ -26,7 +28,8 @@ const handleNavButton = (page) => {
       home.style.display = 'none';
       weatherNow.style.display = 'none';
       runClub.style.display = 'flex';
-      parkRun.style.display = 'none';
+      parkRunHome.style.display = 'none';
+      parkRunSplits.style.display = 'none';
       runs.style.display = 'none';
       viewRun.style.display = 'none';
       kudosDetail.style.display = 'none';
@@ -34,24 +37,39 @@ const handleNavButton = (page) => {
       computeRunClubRuns(responseRuns);
       break;
       
-      case "park-run-button":
+      case "park-run-home-button":
       home.style.display = 'none';
       weatherNow.style.display = 'none';
       runClub.style.display = 'none';
-      parkRun.style.display = 'flex';
       parkRuns = [];
+      parkRunHome.style.display = 'flex';
+      parkRunSplits.style.display = 'none';      
       runs.style.display = 'none';
       viewRun.style.display = 'none';
       kudosDetail.style.display = 'none';
       lapsDetail.style.display = 'none';
-      computeParkRuns(responseRuns); 
+      computeParkRuns(responseRuns);
+      renderParkRunHome(parkRuns);
+      break;
+      
+      case "park-run-splits":
+      home.style.display = 'none';
+      weatherNow.style.display = 'none';
+      runClub.style.display = 'none';
+      parkRunHome.style.display = 'none';
+      parkRunSplits.style.display = 'flex';
+      runs.style.display = 'none';
+      viewRun.style.display = 'none';
+      kudosDetail.style.display = 'none';
+      lapsDetail.style.display = 'none';
       break;
       
       case "runs-button":
       home.style.display = 'none';
       weatherNow.style.display = 'none';
       runClub.style.display = 'none';
-      parkRun.style.display = 'none';
+      parkRunHome.style.display = 'none';
+      parkRunSplits.style.display = 'none';
       runs.style.display = 'flex';
       viewRun.style.display = 'none';
       kudosDetail.style.display = 'none';
@@ -59,11 +77,13 @@ const handleNavButton = (page) => {
       showRun(responseRuns);  
       break;
       
+      
       case "view-run":
       home.style.display = 'none';
       weatherNow.style.display = 'none';
       runClub.style.display = 'none';
-      parkRun.style.display = 'none';
+      parkRunHome.style.display = 'none';
+      parkRunSplits.style.display = 'none';
       runs.style.display = 'none';
       viewRun.style.display = 'flex';
       kudosDetail.style.display = 'none';
