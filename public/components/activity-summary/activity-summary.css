@@ -10,6 +10,10 @@
   cursor: pointer;
 }
 
+#activity-info__date{
+  min-width: 65px;
+}
+
 #run-box:hover{
   background-color: rgba(31, 97, 141, 1);
 }
