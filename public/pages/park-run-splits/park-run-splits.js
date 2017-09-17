@@ -48,8 +48,10 @@ const displayParkRunsDate = (sortedFullPR) => {
   var parkRunDiv = document.getElementById("park-run-date");
   sortedFullPR.forEach(run => {
     var date = document.createElement("div");
-    date.classList.add('data-metric','data-long');
+    date.classList.add("data-metric","data-long", "nav-button");
     date.innerText = renderDate(run.start_date);
+    date.activity_id = run.id;
+    date.onclick = viewRun;
     parkRunDiv.appendChild(date);
   })
 }
@@ -58,8 +60,10 @@ const displayParkRunsName = (sortedFullPR) => {
   var parkRunDiv = document.getElementById("park-run-name");
   sortedFullPR.forEach(run => {
     var name = document.createElement("div");
-    name.classList.add("data-metric");
+    name.classList.add("data-metric", "nav-button");
     name.innerText = run.name;
+    name.activity_id = run.id;
+    name.onclick = viewRun;
     parkRunDiv.appendChild(name);
   })
 }
@@ -71,7 +75,7 @@ const displayParkRunsTime = (sortedFullPR) => {
   
   sortedFullPR.forEach(run => {
     var time = document.createElement("div");
-    time.classList.add("data-metric");
+    time.classList.add("data-metric", "nav-button");
     
     if (run.moving_time === orderedFinishTimes[0]) {
       time.classList.add("first", "pb");
@@ -79,6 +83,8 @@ const displayParkRunsTime = (sortedFullPR) => {
     if (run.moving_time === orderedFinishTimes[1]) time.classList.add("second");
     if (run.moving_time === orderedFinishTimes[2]) time.classList.add("third");
     
+    time.activity_id = run.id;
+    time.onclick = viewRun;
     time.innerHTML = renderTime(run.moving_time);
     parkRunDiv.appendChild(time); 
   })
