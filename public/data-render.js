@@ -1,4 +1,24 @@
+const dayLookUp = {
+  1: "Monday",
+  2: "Tuesday",
+  3: "Wednesday",
+  4: "Thursday",
+  5: "Friday",
+  6: "Saturday",
+  0: "Sunday"
+}
+
 const renderDate = (rawDate) => {
+  const convertedRawDate = new Date(rawDate);
+  const today = new Date();
+  const yesterday = new Date(today - 86400000);
+  const lastWeek = new Date(today - (7*86400000));
+  todayDateOnly = today.getDate()+today.getMonth()+today.getFullYear();
+  yesterdayDateOnly = yesterday.getDate()+yesterday.getMonth()+yesterday.getFullYear();
+  rawDateOnly = convertedRawDate.getDate()+convertedRawDate.getMonth()+convertedRawDate.getFullYear();
+  if (rawDateOnly === todayDateOnly) return "Today";
+  if (rawDateOnly === yesterdayDateOnly) return "Yesterday";
+  if (convertedRawDate > lastWeek) return dayLookUp[convertedRawDate.getDay()];
   return rawDate.substr(8,2) + "-" + rawDate.substr(5,2) + "-"+ rawDate.substr(0,4);
 }
 
