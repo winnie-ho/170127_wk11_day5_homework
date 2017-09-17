@@ -1,27 +1,93 @@
-var ColumnChart = function(title, seriesName, dataArray, catArray){
-	var container = document.querySelector("#distance");
+var scatterChart = function(title, seriesName, dataArray, catArray){
+	var container = document.querySelector("#pr-matrix");
+	var dataArrayConvert = dataArray.map(run => run.moving_time);
 	var chart = new Highcharts.Chart({
 		chart: {
-			type: "column",
+			type: "scatter",
 			renderTo: container,
-			backgroundColor: "#EBF5FB"
+			backgroundColor: "rgba(0, 0, 0, 0)",
+			zoomType: "xy"
 		},
 		title: {
 			text: title,
-			style: {"fontSize": "12px", "color": "#1F618D"}
+			style: {
+				"fontSize": "12px",
+				 "color": "white"
+			}
 		},
 		series:[{
 			name: seriesName,
-			data: dataArray
+			data: dataArrayConvert,	
+			color: "white",		
+			style: {
+				"fontSize": "12px",
+				"color": "white"
+			},
 		}],
+		legend: {
+			color: 'white',
+			fill: 'white'
+		},
 		xAxis: {
-			categories: catArray,
-			title: {style: {"color": "#1F618D"}}
-		}, 
-		yAxis: {
-			ceiling: 60,
-			minorTickInterval: 10
+			title: {
+				enabled: true,
+				text: 'Date',
+				style: {
+					"fontSize": "12px",
+					"color": "white"
+				}
+			},
+			labels: {
+				style: {
+						color: 'white'
+				},
+			},
+			startOnTick: true,
+			endOnTick: true,
+			showLastLabel: true,
+	},
+	yAxis: {
+		title: {
+			enabled: true,
+			text: 'Time',
+			color: "white",
+			style: {
+				"fontSize": "12px",
+				"color": "white"
+			},
+		},
+		labels: {
+			style: {
+					color: 'white'
+			},
+		},
+		startOnTick: true,
+		endOnTick: true,
+		showLastLabel: true,
+	},
+	plotOptions: {
+		scatter: {
+			marker: {
+				radius: 5,
+				states: {
+					hover: {
+						enabled: true,
+						lineColor: 'rgb(100,100,100)'
+					}
+				}
+			},
+			states: {
+				hover: {
+					marker: {
+						enabled: false
+					}
+				}
+			},
+			tooltip: {
+				headerFormat: '<b>{series.name}</b><br>',
+				pointFormat: '{point.x}, {point.y} seconds'
+			}
 		}
-
+	},
 	});
 }

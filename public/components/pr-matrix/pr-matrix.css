@@ -1,0 +1,37 @@
+#pr-matrix{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px 0;
+  position: sticky;
+  top: 60px;
+  opacity: 50%;
+  margin-bottom: 20px;
+}
+
+.data{
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  margin: 5px;
+}
+
+.icon{
+  height: 20px;
+  width: auto;
+  margin: 0 5px;
+}
+
+.option-more{
+  margin-right:10px;
+  padding: 5px;
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.option-more:hover{
+  padding: 5px;
+  color: rgba(31, 97, 141, 1);
+}
+
