@@ -18,16 +18,23 @@
   flex-direction: column;
 }
 
+.pb{
+  border-bottom: 1px solid #35FF02;
+}
+
 .first{
-  color: #35FF02
+  color: #35FF02;
+  font-weight: bold;
 }
 
 .second{
   color: #EEFF00;
+  font-weight: bold;
 }
 
 .third{
   color: #FFA600;
+  font-weight: bold;
 }
 
 @media all and (max-width: 500px) {

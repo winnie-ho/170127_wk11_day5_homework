@@ -75,11 +75,13 @@ const displayParkRunsTime = (sortedFullPR) => {
   sortedFullPR.forEach(run => {
     var time = document.createElement("div");
     time.classList.add("data-metric");
-
-    if (run.moving_time === orderedFinishTimes[0]) time.classList.add("first");
+    
+    if (run.moving_time === orderedFinishTimes[0]) {
+      time.classList.add("first", "pb");
+    }
     if (run.moving_time === orderedFinishTimes[1]) time.classList.add("second");
     if (run.moving_time === orderedFinishTimes[2]) time.classList.add("third");
-
+    
     time.innerHTML = renderTime(run.moving_time);
     parkRunDiv.appendChild(time); 
   })
