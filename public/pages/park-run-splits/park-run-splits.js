@@ -29,12 +29,9 @@ const pushFullPR = (run) => {
     })
     displayData(sortedFullPR)
   }
-  console.log("FULL", fullParkRuns);
-  console.log("SORTED", sortedFullPR);
 }
 
 const displayData = (sortedFullPR) => {
-  console.log("DISPLAY", sortedFullPR);
   displayParkRunsDate(sortedFullPR);  
   displayParkRunsName(sortedFullPR);
   displayParkRunsTime(sortedFullPR);
