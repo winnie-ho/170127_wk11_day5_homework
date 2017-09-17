@@ -5,6 +5,7 @@ const renderParkRunHome = (parkRuns) => {
   document.querySelector("#last-pr__time").innerHTML = renderTime(lastPR.moving_time);
   document.querySelector("#last-pr__pace").innerHTML = renderPace(lastPR.moving_time, lastPR.distance);
   document.querySelector("#last-pr__context").innerHTML = computeLastPRContext(parkRuns);
+  document.querySelector("#pb").innerHTML = computePBContext(lastPR);
 }
 
 const computeLastPRContext = (parkRuns) => {
@@ -19,3 +20,8 @@ const showParkRunSplits = () => {
   handleNavButton("park-run-splits");
 }
 
+const computePBContext = (lastPR) => {
+  const pb = (22 * 60) + 54;
+  if (lastPR.moving_time < pb) return "New PB! " + renderTime(lastPR.moving_time);
+  return "PB remains at " + renderTime(pb);
+}
