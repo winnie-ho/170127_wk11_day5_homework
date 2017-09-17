@@ -18,6 +18,13 @@
   width: 100%;
 }
 
+.last-pr__summary{
+  height: 75px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
 #park-run-latest{
   align-items: flex-start;
   width: 100%;
