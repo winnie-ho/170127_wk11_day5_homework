@@ -61,6 +61,22 @@
   }
 }
 
+.splits-button{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 50px;
+  right: 5px;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.button-icon{
+  width: auto;
+  height: 20px;
+  margin: 0 5px;
+}
+
 
 /* responsive css  */
 @media all and (max-width: 400px) {
