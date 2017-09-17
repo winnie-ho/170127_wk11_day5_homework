@@ -18,6 +18,18 @@
   flex-direction: column;
 }
 
+.first{
+  color: #35FF02
+}
+
+.second{
+  color: #EEFF00;
+}
+
+.third{
+  color: #FFA600;
+}
+
 @media all and (max-width: 500px) {
   .heading{
     font-size: 14px;

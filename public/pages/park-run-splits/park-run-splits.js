@@ -53,11 +53,17 @@ const displayParkRunsName = (fullParkRuns) => {
 
 const displayParkRunsTime = (fullParkRuns) => {
   var parkRunDiv = document.getElementById("park-run-time");
+  let orderedPRTime = fullParkRuns.sort((a,b) => a.moving_time - b.moving_time);
+  
   fullParkRuns.forEach(run => {
     var time = document.createElement("div");
     time.classList.add("data-metric");
     var timeValue = document.createElement("div");
     let rawTime = run.moving_time;
+
+    if (rawTime === orderedPRTime[0].moving_time) timeValue.classList.add("first");
+    if (rawTime === orderedPRTime[1].moving_time) timeValue.classList.add("second");
+    if (rawTime === orderedPRTime[2].moving_time) timeValue.classList.add("third");
 
     timeValue.innerHTML = renderTime(rawTime);
     time.appendChild(timeValue);
@@ -102,115 +108,33 @@ const displaySeg = (fullParkRuns) => {
     for(var segment of run.segment_efforts){
       switch (segment.name){
         case "Edinburgh park run first km":
-          var totalSeconds = segment.moving_time;
-          var minutes = Math.floor(totalSeconds/60);
-          var rawSeconds = (Math.floor(totalSeconds-(minutes*60))).toFixed(0);
-          var seconds = rawSeconds;
-          if(rawSeconds < 10){
-            seconds = "0" + rawSeconds;
-          }
-
           var time = document.createElement("div");
-          time.innerHTML = minutes + ":" + seconds;
-
-          var avgHR = document.createElement("div");
-          avgHR.innerHTML = segment.average_heartrate;
-
-          var avgCadence = document.createElement("div");
-          avgCadence.innerHTML= segment.average_cadence;
-
+          time.innerHTML = renderTime(segment.moving_time);
           seg1.appendChild(time);
-          // seg1.appendChild(avgHR);
-          // seg1.appendChild(avgCadence);
-
           break;
-        case "Edinburgh Parkrun 2nd Kilometre":
-          var totalSeconds = segment.moving_time;
-          var minutes = Math.floor(totalSeconds/60);
-          var rawSeconds = (Math.floor(totalSeconds-(minutes*60))).toFixed(0);
-          var seconds = rawSeconds;
-          if(rawSeconds < 10){
-            seconds = "0" + rawSeconds;
-          }
-
-          var time = document.createElement("div");
-          time.innerHTML = minutes + ":" + seconds;
-
-          var avgHR = document.createElement("div");
-          avgHR.innerHTML = segment.average_heartrate;
-
-          var avgCadence = document.createElement("div");
-          avgCadence.innerHTML= segment.average_cadence;
-
-          seg2.appendChild(time);
-          // seg2.appendChild(avgHR);
-          // seg2.appendChild(avgCadence);
-          break;
-        case "Edinburgh Parkrun 3rd Kilometre":
-          var totalSeconds = segment.moving_time;
-          var minutes = Math.floor(totalSeconds/60);
-          var rawSeconds = (Math.floor(totalSeconds-(minutes*60))).toFixed(0);
-          var seconds = rawSeconds;
-          if(rawSeconds < 10){
-            seconds = "0" + rawSeconds;
-          }
-
-          var time = document.createElement("div");
-          time.innerHTML = minutes + ":" + seconds;
-
-          var avgHR = document.createElement("div");
-          avgHR.innerHTML = segment.average_heartrate;
-
-          var avgCadence = document.createElement("div");
-          avgCadence.innerHTML= segment.average_cadence;
-
-          seg3.appendChild(time);
-          // seg3.appendChild(avgHR);
-          // seg3.appendChild(avgCadence);
-          break;
-        case "Edinburgh Parkrun 4th Kilometre":
-          var totalSeconds = segment.moving_time;
-          var minutes = Math.floor(totalSeconds/60);
-          var rawSeconds = (Math.floor(totalSeconds-(minutes*60))).toFixed(0);
-          var seconds = rawSeconds;
-          if(rawSeconds < 10){
-            seconds = "0" + rawSeconds;
-          }
-
-          var time = document.createElement("div");
-          time.innerHTML = minutes + ":" + seconds;
-
-          var avgHR = document.createElement("div");
-          avgHR.innerHTML = segment.average_heartrate;
-
-          var avgCadence = document.createElement("div");
-          avgCadence.innerHTML= segment.average_cadence;
-
-          seg4.appendChild(time);
-          // seg4.appendChild(avgHR);
-          // seg4.appendChild(avgCadence);
-          break;
-        case 'Edinburgh Parkrun 5th "Kilometre"':
-          var totalSeconds = segment.moving_time;
-          var minutes = Math.floor(totalSeconds/60);
-          var rawSeconds = (Math.floor(totalSeconds-(minutes*60))).toFixed(0);
-          var seconds = rawSeconds;
-          if(rawSeconds < 10){
-            seconds = "0" + rawSeconds;
-          }
           
+        case "Edinburgh Parkrun 2nd Kilometre":
           var time = document.createElement("div");
-          time.innerHTML = minutes + ":" + seconds;
+          time.innerHTML = renderTime(segment.moving_time);
+          seg2.appendChild(time);
+          break;
+          
+        case "Edinburgh Parkrun 3rd Kilometre":
+          var time = document.createElement("div");
+          time.innerHTML = renderTime(segment.moving_time);
+          seg3.appendChild(time);
+          break;
 
-          var avgHR = document.createElement("div");
-          avgHR.innerHTML = segment.average_heartrate;
+        case "Edinburgh Parkrun 4th Kilometre":
+          var time = document.createElement("div");
+          time.innerHTML = renderTime(segment.moving_time);
+          seg4.appendChild(time);
+          break;
 
-          var avgCadence = document.createElement("div");
-          avgCadence.innerHTML= segment.average_cadence;
-
+        case 'Edinburgh Parkrun 5th "Kilometre"':
+          var time = document.createElement("div");
+          time.innerHTML = renderTime(segment.moving_time);
           seg5.appendChild(time);
-          // seg5.appendChild(avgHR);
-          // seg5.appendChild(avgCadence);
           break;
       }
     }
