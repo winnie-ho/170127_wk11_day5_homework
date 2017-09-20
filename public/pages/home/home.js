@@ -96,7 +96,7 @@ const computeWeek = (responseRuns) => {
   let marker1 = new Date().getTime();
   let marker2 = lastMonday;
 
-  for (let i = 0; i < 20; i ++ ) {
+  for (let i = 0; i < 60; i ++ ) {
     let weekRuns = responseRuns.filter(run => {
       return (new Date(run.start_date).getTime() < marker1) && (new Date(run.start_date).getTime() >= marker2);
     });
