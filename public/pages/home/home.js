@@ -37,13 +37,13 @@ const renderWeek = (weekRuns) => {
       0: "SUN"
     }
 
-    let weekInViewDiv = document.getElementById("dateInView");
+    // let weekInViewDiv = document.getElementById("dateInView");
 
-    if (weekInViewIndex === 0) {
-      weekInViewDiv.innerHTML = "THIS WEEK";
-    } else {
-      weekInViewDiv.innerHTML = "WC: " + renderDate(activity.start_date);
-    }
+    // if (weekInViewIndex === 0) {
+    //   weekInViewDiv.innerHTML = "THIS WEEK";
+    // } else {
+    //   weekInViewDiv.innerHTML = "WC: " + renderDate(activity.start_date);
+    // }
 
     let rawTime = activity.moving_time;
     let rawDistance = activity.distance;
@@ -62,21 +62,48 @@ const renderWeek = (weekRuns) => {
 }
 
 const computeWeek = (responseRuns) => {
+  const todayDateIndex = new Date().getDay();
+  const lastWeekDate = new Date().getTime() - (7 * 24 * 60 * 60 * 1000);
   let monIndexArray = responseRuns.filter(run => (new Date (run.start_date).getDay()===1));
   
-  let firstIndex = 0;
-  monIndexArray.forEach(monRun => {
-    let secondIndex = responseRuns.findIndex(run => (run.id === monRun.id));
+  console.log("TODAY DATE INDEX", todayDateIndex);
+  switch(todayDateIndex) {
+    case 0:
+      lastMonday = new Date().getTime() - (7 * 24 * 60 * 60 * 1000);
+      break;
+    case 1:
+      lastMonday = new Date().getTime() - (0 * 24 * 60 * 60 * 1000);
+      break;
+    case 2:
+      lastMonday = new Date().getTime() - (1 * 24 * 60 * 60 * 1000);
+      break;
+    case 3:
+      lastMonday = new Date().getTime() - (2 * 24 * 60 * 60 * 1000);
+      break;
+    case 4:
+      lastMonday = new Date().getTime() - (3 * 24 * 60 * 60 * 1000);
+      break;    
+    case 5:
+      lastMonday = new Date().getTime() - (4 * 24 * 60 * 60 * 1000);
+      break;    
+    case 6:
+      lastMonday = new Date().getTime() - (5 * 24 * 60 * 60 * 1000);
+      break;
+    case 7:
+      lastMonday = new Date().getTime() - (6 * 24 * 60 * 60 * 1000);
+      break;
+  }
+
+  const secondMonday = lastMonday - (7 * 24 * 60 * 60 * 1000);
     
-    let weekRuns = responseRuns.filter(run => {
-      if (firstIndex === 0) {
-        return (firstIndex <= responseRuns.indexOf(run) && responseRuns.indexOf(run) <= secondIndex);
-      }
-      return (firstIndex < responseRuns.indexOf(run) && responseRuns.indexOf(run) <= secondIndex);
-    });
-    weekSets.push(weekRuns);
-    firstIndex = secondIndex;
-  })
+  let weekRuns = responseRuns.filter(run => {
+    return new Date(run.start_date).getTime() > lastMonday;
+  });
+  console.log("WEEK RUNS", weekRuns);
+  
+  weekSets.push(weekRuns);
+  console.log("WEEK SETS", weekSets);
+
   let weekInView = weekSets[weekInViewIndex];
   renderWeek(weekInView);
 }
