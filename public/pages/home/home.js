@@ -37,13 +37,13 @@ const renderWeek = (weekRuns) => {
       0: "SUN"
     }
 
-    // let weekInViewDiv = document.getElementById("dateInView");
+    let weekInViewDiv = document.getElementById("dateInView");
 
-    // if (weekInViewIndex === 0) {
-    //   weekInViewDiv.innerHTML = "THIS WEEK";
-    // } else {
-    //   weekInViewDiv.innerHTML = "WC: " + renderDate(activity.start_date);
-    // }
+    if (weekInViewIndex === 0) {
+      weekInViewDiv.innerHTML = "THIS WEEK";
+    } else {
+      weekInViewDiv.innerHTML = "WC: " + renderDate(activity.start_date);
+    }
 
     let rawTime = activity.moving_time;
     let rawDistance = activity.distance;
@@ -62,47 +62,49 @@ const renderWeek = (weekRuns) => {
 }
 
 const computeWeek = (responseRuns) => {
-  const todayDateIndex = new Date().getDay();
-  const lastWeekDate = new Date().getTime() - (7 * 24 * 60 * 60 * 1000);
-  let monIndexArray = responseRuns.filter(run => (new Date (run.start_date).getDay()===1));
+  const timeNow = new Date();
+  const timeNowZeroed = timeNow.setHours(0,0,0,0);
+  const msInWeek = (24 * 60 * 60 * 1000);
   
-  console.log("TODAY DATE INDEX", todayDateIndex);
-  switch(todayDateIndex) {
+  switch(new Date().getDay()) {
     case 0:
-      lastMonday = new Date().getTime() - (7 * 24 * 60 * 60 * 1000);
+      lastMonday = timeNowZeroed - (7 * msInWeek);
       break;
     case 1:
-      lastMonday = new Date().getTime() - (0 * 24 * 60 * 60 * 1000);
+      lastMonday = timeNowZeroed - (0 * msInWeek);
       break;
     case 2:
-      lastMonday = new Date().getTime() - (1 * 24 * 60 * 60 * 1000);
+      lastMonday = timeNowZeroed - (1 * msInWeek);
       break;
     case 3:
-      lastMonday = new Date().getTime() - (2 * 24 * 60 * 60 * 1000);
+      lastMonday = timeNowZeroed - (2 * msInWeek);
       break;
     case 4:
-      lastMonday = new Date().getTime() - (3 * 24 * 60 * 60 * 1000);
+      lastMonday = timeNowZeroed - (3 * msInWeek);
       break;    
     case 5:
-      lastMonday = new Date().getTime() - (4 * 24 * 60 * 60 * 1000);
+      lastMonday = timeNowZeroed - (4 * msInWeek);
       break;    
     case 6:
-      lastMonday = new Date().getTime() - (5 * 24 * 60 * 60 * 1000);
+      lastMonday = timeNowZeroed - (5 * msInWeek);
       break;
     case 7:
-      lastMonday = new Date().getTime() - (6 * 24 * 60 * 60 * 1000);
+      lastMonday = timeNowZeroed - (6 * msInWeek);
       break;
   }
-
-  const secondMonday = lastMonday - (7 * 24 * 60 * 60 * 1000);
-    
-  let weekRuns = responseRuns.filter(run => {
-    return new Date(run.start_date).getTime() > lastMonday;
-  });
-  console.log("WEEK RUNS", weekRuns);
   
-  weekSets.push(weekRuns);
-  console.log("WEEK SETS", weekSets);
+  let marker1 = new Date().getTime();
+  let marker2 = lastMonday;
+
+  for (let i = 0; i < 20; i ++ ) {
+    let weekRuns = responseRuns.filter(run => {
+      return (new Date(run.start_date).getTime() < marker1) && (new Date(run.start_date).getTime() >= marker2);
+    });
+    
+    marker1 = marker2;
+    marker2 -= (7 * msInWeek);
+    weekSets.push(weekRuns);
+  }
 
   let weekInView = weekSets[weekInViewIndex];
   renderWeek(weekInView);
