@@ -50,7 +50,7 @@ const handleNavButton = (page) => {
       lapsDetail.style.display = 'none';
       computeParkRuns(responseRuns);
       renderParkRunHome(parkRuns);
-      scatterChart("Park Run Matrix", "Park Runs", parkRuns);
+      chart("Park Run Matrix", parkRuns);
       break;
       
       case "park-run-splits":

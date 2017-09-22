@@ -1,9 +1,16 @@
-var scatterChart = function(title, seriesName, dataArray, catArray){
+var chart = function(title, dataArray){
 	var container = document.querySelector("#pr-matrix");
-	var dataArrayConvert = dataArray.map(run => run.moving_time);
+	var sortedDataArray = dataArray.sort((a,b) => new Date(a.start_date) - new Date(b.start_date));
+
+
+	var dataArrayTime = sortedDataArray.map(run => run.moving_time);
+	let timeFormatted = dataArrayTime.map(time => renderTime(time));
+	var dataArrayDate = sortedDataArray.map(run => run.start_date);
+	let dateFormatted = dataArrayDate.map(date => renderDate(date));
+
 	var chart = new Highcharts.Chart({
 		chart: {
-			type: "scatter",
+			type: "line",
 			renderTo: container,
 			backgroundColor: "rgba(0, 0, 0, 0)",
 			zoomType: "xy"
@@ -15,19 +22,17 @@ var scatterChart = function(title, seriesName, dataArray, catArray){
 				 "color": "white"
 			}
 		},
-		series:[{
-			name: seriesName,
-			data: dataArrayConvert,	
-			color: "white",		
-			style: {
-				"fontSize": "12px",
-				"color": "white"
-			},
-		}],
-		legend: {
-			color: 'white',
-			fill: 'white'
-		},
+		series:[
+			{
+				name: "Time",
+				data: dataArrayTime,
+				color: "white",		
+				style: {
+					"fontSize": "12px",
+					"color": "white"
+				},
+			}
+		],
 		xAxis: {
 			title: {
 				enabled: true,
@@ -37,6 +42,7 @@ var scatterChart = function(title, seriesName, dataArray, catArray){
 					"color": "white"
 				}
 			},
+			categories: dateFormatted,
 			labels: {
 				style: {
 						color: 'white'
@@ -47,6 +53,7 @@ var scatterChart = function(title, seriesName, dataArray, catArray){
 			showLastLabel: true,
 	},
 	yAxis: {
+		gridLineWidth: 0.1,
 		title: {
 			enabled: true,
 			text: 'Time',
@@ -58,36 +65,13 @@ var scatterChart = function(title, seriesName, dataArray, catArray){
 		},
 		labels: {
 			style: {
-					color: 'white'
+				color: 'white'
 			},
+			categories: timeFormatted,		
 		},
 		startOnTick: true,
 		endOnTick: true,
 		showLastLabel: true,
-	},
-	plotOptions: {
-		scatter: {
-			marker: {
-				radius: 5,
-				states: {
-					hover: {
-						enabled: true,
-						lineColor: 'rgb(100,100,100)'
-					}
-				}
-			},
-			states: {
-				hover: {
-					marker: {
-						enabled: false
-					}
-				}
-			},
-			tooltip: {
-				headerFormat: '<b>{series.name}</b><br>',
-				pointFormat: '{point.x}, {point.y} seconds'
-			}
-		}
-	},
+	}
 	});
 }
