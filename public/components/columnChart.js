@@ -72,6 +72,9 @@ var chart = function(title, dataArray){
 		startOnTick: true,
 		endOnTick: true,
 		showLastLabel: true,
+	},
+	legend: {
+		itemStyle:{'color':'white'}
 	}
 	});
 }
