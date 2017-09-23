@@ -14,7 +14,7 @@
   
   <div id="activity-info__secondary-stats" class="row sa">
     <div class="col">
-      <div class="icon-stat" id="view-kudos" onclick="handleNavButton(id)" >
+      <div class="icon-stat" onclick="handleToggleButton('kudos-detail')" >
         <img class="activity-icon" src="./resources/icon_like.png" class="nav-icon"/>
         <div id="secondary-stats__kudos" class="data-metric"></div>
       </div>
@@ -26,13 +26,13 @@
   
   <div id="activity-info__laps" class="col sa">
     <div class="col">
-      <div class="icon-stat" id="view-laps" onclick="handleNavButton(id)"> 
+      <div class="icon-stat" onclick="handleToggleButton('laps-detail')"> 
         <img class="activity-icon" src="./resources/icon_laps.png" class="nav-icon"/>
         <div id="laps" class="data-metric"></div>
       </div>
     </div>
     
-    <div id="laps-detail" class="col sb"></div>
+    <div id="laps-detail" class="col sb" style="display: none"></div>
   </div>
 </div>
 

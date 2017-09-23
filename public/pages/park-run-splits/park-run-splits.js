@@ -2,8 +2,8 @@
 const user = "a2ff6fffcab9df06d90661ad34b7e664690c4fc4";
 const userToken = "\?access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4";
 
-var parkRuns = [];
-var fullParkRuns = [];
+let parkRuns = [];
+let fullParkRuns = [];
 
 const km1Segment = [];
 const km2Segment = [];
@@ -12,8 +12,12 @@ const km4Segment = [];
 const km5Segment = [];
 
 const computeParkRuns = (runs) => {
+  filterParkRuns(runs, computeFullParkRuns);
+}
+
+const filterParkRuns = (runs, cb) => {
   parkRuns = runs.filter(run => run.start_latitude === 55.98 && run.start_longitude === -3.29);
-  computeFullParkRuns(parkRuns);
+  cb(parkRuns)
 }
 
 const computeFullParkRuns = (parkRuns) => {
