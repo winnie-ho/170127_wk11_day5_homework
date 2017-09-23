@@ -39,7 +39,7 @@ const displayData = (sortedFullPR) => {
   displayParkRunsTime(sortedFullPR);
   displayParkRunsPace(sortedFullPR);
   prepareSeg(sortedFullPR);
-  renderAllSegs(kmSegs);
+  renderAllSegs(kmSegs, chart);
 }
 
 const displayParkRunsDate = (sortedFullPR) => {
@@ -127,12 +127,13 @@ const prepareSeg = (sortedFullPR) => {
   })
 }
 
-const renderAllSegs = (kmSegs) => {
+const renderAllSegs = (kmSegs, cb) => {
   let kmCounter = 1;
   kmSegs.forEach(kmSeg => {
     displayKmSeg(kmSeg, kmCounter)
     kmCounter ++;
   })
+  cb("Park Run Matrix", parkRuns);        
 }
 
 const displayKmSeg = (kmSegArray, kmNum) => {

@@ -23,7 +23,6 @@ const handleNavButton = (navId) => {
       if (parkRuns.length > 0) return;      
       computeParkRuns(responseRuns);      
       renderParkRunHome(parkRuns);
-      chart("Park Run Matrix", parkRuns);
     }
     if (navId === "run-club"){
       computeRunClubRuns(responseRuns)
