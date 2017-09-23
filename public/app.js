@@ -1,7 +1,7 @@
 //Running the app
-var urlRuns = "https://www.strava.com/api/v3/athlete/activities?per_page=100&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
+const urlRuns = "https://www.strava.com/api/v3/athlete/activities?per_page=100&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
 
-var responseRuns;
+let responseRuns;
 
 const setRuns = (result) => {
   responseRuns = result;
@@ -19,34 +19,34 @@ window.onload = app;
 
 
 //ACTIVITY PHOTO CALL
-// var photoURL = "https://www.strava.com/api/v3/activities/1091623854/photos?photo_sources=true&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
-//   var requestComplete = function(){
+// const photoURL = "https://www.strava.com/api/v3/activities/1091623854/photos?photo_sources=true&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
+//   const requestComplete = function(){
 //     console.log("Race list");
 //   }
 // makeRequest(photoURL, requestComplete);
 
 
 //weather from strava api
-  // var url = "https://www.strava.com/api/v3/activities/123"
+  // const url = "https://www.strava.com/api/v3/activities/123"
   // makeRequest(url, requestComplete)
 
 //races from strava api
-  // var raceListUrl = "https://www.strava.com/api/v3/running_races?year=2017&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
-  // var requestComplete = function(){
+  // const raceListUrl = "https://www.strava.com/api/v3/running_races?year=2017&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
+  // const requestComplete = function(){
   //   console.log("Race list");
   // }
   // makeRequest(raceListUrl, requestComplete);
 
-  // var lapListUrl = "https://www.strava.com/api/v3/activities/1106619701/laps\?access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
-  // var requestComplete = function(){
+  // const lapListUrl = "https://www.strava.com/api/v3/activities/1106619701/laps\?access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
+  // const requestComplete = function(){
   //   console.log("Lap list");
   // }
   // makeRequest(lapListUrl, requestComplete);
 
 
 //race details from strava api
-  // var raceDetaillUrl = "https://www.strava.com/api/v3/running_races?id=1048&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
-  // var requestComplete = function(){
+  // const raceDetaillUrl = "https://www.strava.com/api/v3/running_races?id=1048&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
+  // const requestComplete = function(){
   //   console.log("Race detail");
   // }
   // makeRequest(raceDetaillUrl, requestComplete);
@@ -55,15 +55,15 @@ window.onload = app;
 
 
 // Athlete friends
-  // var athleteFriendsUrl = "https://www.strava.com/api/v3/athlete/friends\?access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
-  // var requestComplete = function(){
+  // const athleteFriendsUrl = "https://www.strava.com/api/v3/athlete/friends\?access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
+  // const requestComplete = function(){
   //   console.log("List of athletes friends");
   // }
   // makeRequest(athleteFriendsUrl, requestComplete);
 
 // Athlete by id friends
-  // var athleteFriendsUrl = "https://www.strava.com/api/v3/athletes/11537738/friends\?access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
-  // var requestComplete = function(){
+  // const athleteFriendsUrl = "https://www.strava.com/api/v3/athletes/11537738/friends\?access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
+  // const requestComplete = function(){
   //   console.log("List of friends for athlete with id");
   // }
   // makeRequest(athleteFriendsUrl, requestComplete);

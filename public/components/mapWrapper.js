@@ -1,4 +1,4 @@
-var MapWrapper = function(coords, zoom) {
+const MapWrapper = function(coords, zoom) {
   const container = document.querySelector("#map");
     this.googleMap = new google.maps.Map(container, {
     center: coords,
@@ -24,7 +24,7 @@ MapWrapper.prototype = {
   //     console.log(event);
 
   //     console.log("coords selected are: " + event.latLng.lat(), event.latLng.lng());
-  //     var coordsSelected = {lat: event.latLng.lat(), lng: event.latLng.lng()};
+  //     const coordsSelected = {lat: event.latLng.lat(), lng: event.latLng.lng()};
 
   //     this.addMarker(coordsSelected);
 
@@ -33,7 +33,7 @@ MapWrapper.prototype = {
 
 
   addPolyline: function(run,startPoint){
-    var line = new google.maps.Polyline({
+    const line = new google.maps.Polyline({
       path: google.maps.geometry.encoding.decodePath(run),
       geodesic: true,
       strokeColor: '#FF0000',
@@ -48,7 +48,7 @@ MapWrapper.prototype = {
   },
 
   addInfoWindow: function(map, marker, contentString){
-    var infoWindow = new google.maps.InfoWindow({
+    const infoWindow = new google.maps.InfoWindow({
           content: contentString
         });
       marker.addListener("click", function(){
@@ -59,16 +59,16 @@ MapWrapper.prototype = {
   geoLocate: function(runArray){
     console.log(runArray);
     navigator.geolocation.getCurrentPosition(function(position) {
-      var centre = {lat: position.coords.latitude, lng: position.coords.longitude}; 
+      const centre = {lat: position.coords.latitude, lng: position.coords.longitude}; 
       this.googleMap.setCenter(centre); 
-      var marker = this.addMarker(centre);
-      var nearRuns = document.querySelector("#near-runs");
+      const marker = this.addMarker(centre);
+      const nearRuns = document.querySelector("#near-runs");
       this.addInfoWindow(this.googleMap, marker, "You Are Here")
-      for (var run of runArray){
+      for (let run of runArray){
         if (Math.sqrt(Math.pow((run.start_latlng[0] - position.coords.latitude),2))< 0.005){
-          var runMarker = this.addMarker({lat: run.start_latlng[0], lng: run.start_latlng[1]});
+          let runMarker = this.addMarker({lat: run.start_latlng[0], lng: run.start_latlng[1]});
           this.addInfoWindow(this.googleMap, runMarker, run.name);
-          var nearRunsInfo = document.createElement("p");
+          const nearRunsInfo = document.createElement("p");
           nearRunsInfo.innerText = run.name + " | " + ((run.distance/1000).toFixed(2)) + "km";
           nearRuns.appendChild(nearRunsInfo);
           // console.log(run.start_latlng[0])
@@ -77,9 +77,9 @@ MapWrapper.prototype = {
           // console.log(run.name + "added");
 
         } else if (Math.sqrt(Math.pow((run.start_latlng[1] - position.coords.longitude),2)) < 0.005){
-          var runMarker = this.addMarker({lat: run.start_latlng[0], lng: run.start_latlng[1]});
+          const runMarker = this.addMarker({lat: run.start_latlng[0], lng: run.start_latlng[1]});
           this.addInfoWindow(this.googleMap, runMarker, run.name);
-          var nearRunsInfo = document.createElement("p");
+          const nearRunsInfo = document.createElement("p");
           nearRunsInfo.innerText = run.name + " | " + ((run.distance/1000).toFixed(2)) + "km";
           nearRuns.appendChild(nearRunsInfo);
           // console.log(run.start_latlng[1])

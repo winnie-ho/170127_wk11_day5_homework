@@ -1,14 +1,14 @@
-var chart = function(title, dataArray){
-	var container = document.querySelector("#pr-matrix");
-	var sortedDataArray = dataArray.sort((a,b) => new Date(a.start_date) - new Date(b.start_date));
+const chart = function(title, dataArray){
+	const container = document.querySelector("#pr-matrix");
+	const sortedDataArray = dataArray.sort((a,b) => new Date(a.start_date) - new Date(b.start_date));
 
 
-	var dataArrayTime = sortedDataArray.map(run => run.moving_time);
-	let timeFormatted = dataArrayTime.map(time => renderTime(time));
-	var dataArrayDate = sortedDataArray.map(run => run.start_date);
-	let dateFormatted = dataArrayDate.map(date => renderDate(date));
+	const dataArrayTime = sortedDataArray.map(run => run.moving_time);
+	const timeFormatted = dataArrayTime.map(time => renderTime(time));
+	const dataArrayDate = sortedDataArray.map(run => run.start_date);
+	const dateFormatted = dataArrayDate.map(date => renderDate(date));
 
-	var chart = new Highcharts.Chart({
+	const chart = new Highcharts.Chart({
 		chart: {
 			type: "line",
 			renderTo: container,
