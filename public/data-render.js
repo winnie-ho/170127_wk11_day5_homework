@@ -8,18 +8,34 @@ const dayLookUp = {
   0: "Sunday"
 }
 
+const monthLookUp = {
+  01: "Jan",
+  02: "Feb",
+  03: "Mar",
+  04: "April",
+  05: "May",
+  06: "Jun",
+  07: "Jul",
+  08: "Aug",
+  09: "Sep",
+  10: "Oct",
+  11: "Nov",
+  12: "Dec"
+}
+
 const renderDate = (rawDate) => {
   const convertedRawDate = new Date(rawDate);
   const today = new Date();
   const yesterday = new Date(today - 86400000);
   const lastWeek = new Date(today - (7*86400000));
-  todayDateOnly = today.getDate()+"/"+(today.getMonth()+1)+"/"+today.getFullYear();
-  yesterdayDateOnly = yesterday.getDate()+"/"+(yesterday.getMonth()+1)+"/"+yesterday.getFullYear();
-  rawDateOnly = convertedRawDate.getDate()+"/"+(convertedRawDate.getMonth()+1)+"/"+convertedRawDate.getFullYear();
+  
+  todayDateOnly = today.getDate() + (today.getMonth()+1) + today.getFullYear();
+  yesterdayDateOnly = yesterday.getDate() + (yesterday.getMonth()+1)+ yesterday.getFullYear();
+  rawDateOnly = convertedRawDate.getDate() + (convertedRawDate.getMonth()+1) + convertedRawDate.getFullYear();
   if (rawDateOnly === todayDateOnly) return "Today";
   if (rawDateOnly === yesterdayDateOnly) return "Yesterday";
   if (convertedRawDate > lastWeek) return dayLookUp[convertedRawDate.getDay()];
-  return rawDate.substr(8,2) + "-" + rawDate.substr(5,2) + "-"+ rawDate.substr(0,4);
+  return rawDate.substr(8,2) + " " + monthLookUp[parseInt(rawDate.substr(5,2))] + " " + rawDate.substr(2,2);
 }
 
 const renderDistance = (rawDistance) => {
@@ -27,7 +43,7 @@ const renderDistance = (rawDistance) => {
 }
 
 const renderTime = (rawTime) => {
-  const totalMinutes = (rawTime/60).toFixed(2);
+  const totalMinutes = (rawTime/60).toFixed(2);[]
   const hours = Math.floor(totalMinutes/60);
   const rawMinutes = (Math.floor(totalMinutes - (hours*60))).toFixed(0);
   let minutes = rawMinutes;
