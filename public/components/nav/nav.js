@@ -42,7 +42,7 @@ const handleNavButton = (page) => {
       weatherNow.style.display = 'none';
       runClub.style.display = 'none';
       parkRuns = [];
-      parkRunHome.style.display = 'flex';
+      parkRunHome.style.display = 'block';
       parkRunSplits.style.display = 'none';      
       runs.style.display = 'none';
       viewRun.style.display = 'none';
