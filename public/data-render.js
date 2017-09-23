@@ -8,7 +8,7 @@ const dayLookUp = {
   0: "Sunday"
 }
 
-const monthLookUp = {
+const monthLookUpShort = {
   01: "Jan",
   02: "Feb",
   03: "Mar",
@@ -23,19 +23,38 @@ const monthLookUp = {
   12: "Dec"
 }
 
-const renderDate = (rawDate) => {
+const monthLookUpLong = {
+  01: "January",
+  02: "February",
+  03: "March",
+  04: "April",
+  05: "May",
+  06: "June",
+  07: "July",
+  08: "August",
+  09: "September",
+  10: "October",
+  11: "November",
+  12: "December"
+}
+
+const renderDate = (rawDate, format) => {
   const convertedRawDate = new Date(rawDate);
   const today = new Date();
   const yesterday = new Date(today - 86400000);
   const lastWeek = new Date(today - (7*86400000));
-  
-  todayDateOnly = today.getDate() + (today.getMonth()+1) + today.getFullYear();
-  yesterdayDateOnly = yesterday.getDate() + (yesterday.getMonth()+1)+ yesterday.getFullYear();
-  rawDateOnly = convertedRawDate.getDate() + (convertedRawDate.getMonth()+1) + convertedRawDate.getFullYear();
+
+  todayDateOnly = today.getDate() + "-" + (today.getMonth()+1) + "-" + today.getFullYear();
+  yesterdayDateOnly = yesterday.getDate() + "-" + (yesterday.getMonth()+1) + "-" + yesterday.getFullYear();
+  rawDateOnly = convertedRawDate.getDate() + "-" + (convertedRawDate.getMonth()+1) + "-" + convertedRawDate.getFullYear();
+
   if (rawDateOnly === todayDateOnly) return "Today";
   if (rawDateOnly === yesterdayDateOnly) return "Yesterday";
   if (convertedRawDate > lastWeek) return dayLookUp[convertedRawDate.getDay()];
-  return rawDate.substr(8,2) + " " + monthLookUp[parseInt(rawDate.substr(5,2))] + " " + rawDate.substr(2,2);
+  if (format === "long") {
+    return ordinalSuffixOf(rawDate.substr(8,2)) + " " + monthLookUpLong[parseInt(rawDate.substr(5,2))] + " " + rawDate.substr(0,4);
+  }
+  return rawDate.substr(8,2) + " " + monthLookUpShort[parseInt(rawDate.substr(5,2))] + " " + rawDate.substr(2,2);
 }
 
 const renderDistance = (rawDistance) => {

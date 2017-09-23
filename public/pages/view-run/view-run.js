@@ -29,7 +29,7 @@ const renderRunInfo = (rawRun) => {
   const heartrateDiv = document.querySelector("#secondary-stats__heartrate");
   const cadenceDiv = document.querySelector("#secondary-stats__cadence");
 
-  dateDiv.innerHTML = renderDate(rawRun.start_date);
+  dateDiv.innerHTML = renderDate(rawRun.start_date, "long");
   titleDiv.innerHTML = rawRun.name;
   timeDiv.innerHTML = renderTime(rawRun.moving_time);
   distanceDiv.innerHTML = renderDistance(rawRun.distance);

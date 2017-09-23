@@ -7,7 +7,7 @@ const createActivityDateTitle = (rawDate, rawTitle) => {
   dateTitle.classList.add("run-box__detail");
   date.classList.add("date-metric")
 
-  date.innerHTML = renderDate(rawDate);
+  date.innerHTML = renderDate(rawDate, "long");
   title.innerHTML = rawTitle;
 
   let children = [title, date];

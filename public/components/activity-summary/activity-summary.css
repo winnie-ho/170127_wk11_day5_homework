@@ -11,7 +11,8 @@
 }
 
 #activity-info__date{
-  min-width: 65px;
+  min-width: 95px;
+  justify-content: flex-end;
 }
 
 #run-box:hover{

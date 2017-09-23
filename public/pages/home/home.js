@@ -44,7 +44,7 @@ const renderWeek = (weekRuns) => {
     } else if (weekInViewIndex === 1 ) {
       weekInViewDiv.innerHTML = "LAST WEEK";
     } else {
-      weekInViewDiv.innerHTML = "WC: " + renderDate(activity.start_date);
+      weekInViewDiv.innerHTML = renderDate(activity.start_date, "long");
     }
 
     let rawTime = activity.moving_time;
