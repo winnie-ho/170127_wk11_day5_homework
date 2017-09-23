@@ -41,6 +41,8 @@ const renderWeek = (weekRuns) => {
 
     if (weekInViewIndex === 0) {
       weekInViewDiv.innerHTML = "THIS WEEK";
+    } else if (weekInViewIndex === 1 ) {
+      weekInViewDiv.innerHTML = "LAST WEEK";
     } else {
       weekInViewDiv.innerHTML = "WC: " + renderDate(activity.start_date);
     }
