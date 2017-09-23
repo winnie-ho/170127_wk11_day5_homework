@@ -93,16 +93,20 @@ const renderPace = (rawTime, rawDistance) => {
 }
 
 const ordinalSuffixOf = (num) => {
+  let digit = num;
   let j = num % 10;
   let k = num % 100;
+  if (num < 10) {
+    digit = num.toString().substr(1,1);
+  }
   if (j == 1 && k != 11) {
-      return num + "st";
+      return digit + "st";
   }
   if (j == 2 && k != 12) {
-      return num + "nd";
+      return digit + "nd";
   }
   if (j == 3 && k != 13) {
-      return num + "rd";
+      return digit + "rd";
   }
-  return num + "th";
+  return digit + "th";
 }
