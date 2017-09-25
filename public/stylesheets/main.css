@@ -48,6 +48,13 @@ button:hover{
   justify-content: center;  
 } 
 
+.truncate {
+  width: 98%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* landing section  */
 #page{
   background-image: url("../resources/DC_24.jpg");
