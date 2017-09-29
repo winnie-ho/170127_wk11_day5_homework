@@ -71,6 +71,11 @@
   font-size: 12px;
 }
 
+.graphs-button{
+  right: 40px;
+}
+
+
 .button-icon{
   width: auto;
   height: 25px;

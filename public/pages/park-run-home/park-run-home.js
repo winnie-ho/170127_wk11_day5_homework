@@ -25,6 +25,10 @@ const showParkRunSplits = () => {
   handleNavButton("park-run-splits");
 }
 
+const showParkRunGraphs = () => {
+  handleNavButton("park-run-graphs");
+}
+
 const computePBContext = (lastPR) => {
   const pb = (22 * 60) + 54;
   if (lastPR.moving_time < pb) return "New PB! " + renderTime(lastPR.moving_time);

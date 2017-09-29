@@ -4,6 +4,7 @@ const pages = [
   "run-club",
   "park-run-home",
   "park-run-splits",
+  "park-run-graphs",
   "runs",
   "weather-forecast",
   "view-run"
@@ -29,6 +30,9 @@ const handleNavButton = (navId) => {
     }
     if (navId === "runs"){
       showRun(responseRuns);  
+    }
+    if (navId === "park-run-graphs"){
+      kmChart(parkRuns);  
     }
   });
 }

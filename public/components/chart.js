@@ -7,11 +7,6 @@ const chart = function(title, dataArray){
 	const timeFormatted = dataArrayTime.map(time => renderTime(time));
 	const dataArrayDate = sortedDataArray.map(run => run.start_date);
 	const dateFormatted = dataArrayDate.map(date => renderDate(date));
-	const dataArrayKm1 = kmSegs[0].map(seg => seg.moving_time);
-	const dataArrayKm2 = kmSegs[1].map(seg => seg.moving_time);
-	const dataArrayKm3 = kmSegs[2].map(seg => seg.moving_time);
-	const dataArrayKm4 = kmSegs[3].map(seg => seg.moving_time);
-	const dataArrayKm5 = kmSegs[4].map(seg => seg.moving_time);
 
 	const chart = new Highcharts.Chart({
 		chart: {
@@ -35,51 +30,6 @@ const chart = function(title, dataArray){
 				style: {
 					"fontSize": "12px",
 					"color": "white"
-				},
-			},
-			{
-				name: "km 1",
-				data: dataArrayKm1,
-				color: "#f4a142",		
-				style: {
-					"fontSize": "12px",
-					"color": "#f4a142"
-				},
-			},
-			{
-				name: "km 2",
-				data: dataArrayKm2,
-				color: "#f1f441",		
-				style: {
-					"fontSize": "12px",
-					"color": "#f1f441"
-				},
-			},
-			{
-				name: "km 3",
-				data: dataArrayKm3,
-				color: "#4cf441",		
-				style: {
-					"fontSize": "12px",
-					"color": "#4cf441"
-				},
-			},
-			{
-				name: "km 4",
-				data: dataArrayKm4,
-				color: "#f441eb",		
-				style: {
-					"fontSize": "12px",
-					"color": "#f441eb"
-				},
-			},
-			{
-				name: "km 5",
-				data: dataArrayKm5,
-				color: "#54c6ff",		
-				style: {
-					"fontSize": "12px",
-					"color": "#54c6ff"
 				},
 			}
 		],
@@ -106,7 +56,7 @@ const chart = function(title, dataArray){
 		gridLineWidth: 0.1,
 		title: {
 			enabled: true,
-			text: 'Time',
+			text: 'Time (s)',
 			color: "white",
 			style: {
 				"fontSize": "12px",
