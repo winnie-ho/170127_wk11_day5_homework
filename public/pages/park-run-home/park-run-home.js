@@ -15,7 +15,7 @@ const renderParkRunHome = (parkRuns) => {
 
 const computeLastPRContext = (parkRuns) => {
   const lastPR = parkRuns[0];
-  const orderedPR = parkRuns.sort((a, b) => a.moving_time - b.moving_time);
+  const orderedPR = parkRuns.sort((a, b) => b.moving_time - a.moving_time);
   
   const lastPRRank = orderedPR.indexOf(lastPR)+1;
   return ordinalSuffixOf(lastPRRank) + " fastest this year";

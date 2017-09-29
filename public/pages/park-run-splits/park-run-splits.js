@@ -14,7 +14,8 @@ const computeParkRuns = (runs) => {
 }
 
 const filterParkRuns = (runs, cb) => {
-  parkRuns = runs.filter(run => run.start_latitude === 55.98 && run.start_longitude === -3.29);
+  let filteredRuns = runs.filter(run => run.start_latitude === 55.98 && run.start_longitude === -3.29);
+  parkRuns = filteredRuns.sort((a,b) => b.upload_id - a.upload_id);
   cb(parkRuns)
 }
 

@@ -96,7 +96,8 @@ const ordinalSuffixOf = (num) => {
   let digit = num;
   let j = num % 10;
   let k = num % 100;
-  if (num < 10) {
+
+  if (num < 10 && num.length === 2) {
     digit = num.toString().substr(1,1);
   }
   if (j == 1 && k != 11) {
