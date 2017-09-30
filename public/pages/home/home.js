@@ -38,6 +38,7 @@ const renderWeek = (weekRuns) => {
     }
 
     let weekInViewDiv = document.getElementById("dateInView");
+    weekInViewDiv.classList.add("heading");
 
     if (weekInViewIndex === 0) {
       weekInViewDiv.innerHTML = "THIS WEEK";
