@@ -8,6 +8,7 @@
   height: 85%;
   overflow-x: hidden;
   overflow-y: scroll;
+  margin-top: 20px;  
 }
 
 #park-run-logo{
