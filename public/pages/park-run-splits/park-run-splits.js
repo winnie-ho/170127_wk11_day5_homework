@@ -42,7 +42,7 @@ const displayData = (sortedFullPR) => {
   prepareKmSegs(fullParkRuns);
   computeOrderedKmTimes(kmSegs);
   renderKmSplits(sortedFullPR, sortedKmSegs);
-  chart("Park Run Matrix", parkRuns);        
+  parkRunChart("Park Run Matrix", parkRuns);        
 }
 
 const computeOrderedPRTimes = (parkRuns) => {

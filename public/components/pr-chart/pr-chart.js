@@ -1,5 +1,5 @@
-const chart = function(title, dataArray){
-	const container = document.querySelector("#pr-matrix");
+const parkRunChart = function(title, dataArray){
+	const container = document.querySelector("#pr-chart");
 	const sortedDataArray = dataArray.sort((a,b) => new Date(a.start_date) - new Date(b.start_date));
 
 
