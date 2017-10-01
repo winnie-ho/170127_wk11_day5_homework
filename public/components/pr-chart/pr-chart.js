@@ -1,4 +1,4 @@
-const parkRunChart = function(title, dataArray){
+const parkRunChart = function(dataArray){
 	const container = document.querySelector("#pr-chart");
 	const sortedDataArray = dataArray.sort((a,b) => new Date(a.start_date) - new Date(b.start_date));
 
@@ -16,7 +16,7 @@ const parkRunChart = function(title, dataArray){
 			zoomType: "xy"
 		},
 		title: {
-			text: title,
+			text: "Park Run Results",
 			style: {
 				"fontSize": "12px",
 				 "color": "white"

@@ -50,7 +50,7 @@ const displayData = (sortedFullPR) => {
   computeOrderedKmTimes(kmSegs, sortedKmSegs);
   computeOrderedKmTimes(kmLaps, sortedKmLaps);
   renderKmSplits(sortedFullPR, sortedKmSegs);
-  parkRunChart("Park Run Matrix", parkRuns);        
+  parkRunChart(parkRuns);        
 }
 
 const computeOrderedPRTimes = (parkRuns) => {

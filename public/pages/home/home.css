@@ -1,5 +1,8 @@
 #home{
   display: block;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 70%;
 }
 
 #week-header{
@@ -122,13 +125,5 @@
 
   .week-activities{
     margin-top: 0px;
-  }
-}
-
-@media all and (max-width: 320px) {
-  .container{
-    overflow-x: hidden;
-    overflow-y: scroll;
-    height: 325px;
   }
 }
