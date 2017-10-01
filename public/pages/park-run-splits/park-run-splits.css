@@ -16,14 +16,17 @@
 .spacer{
   min-width: 56px;
   text-align: center;
+  pointer-events: none;
 }
 
 .date-spacer{
   min-width: 100px;
+  pointer-events: none;
 }
 
 .name-spacer{
   min-width: 130px;
+  pointer-events: none;
 }
 
 #park-run-result{

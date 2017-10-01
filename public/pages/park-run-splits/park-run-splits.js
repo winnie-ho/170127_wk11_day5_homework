@@ -116,6 +116,10 @@ const prepareKmSegsFromAutoLap = (fullParkRuns) => {
 const renderKmSplits = (sortedFullPR, sortedKmSegs) => {
   sortedFullPR.forEach(run => {
     let splitDiv = document.createElement("div");
+    splitDiv.activity_id = run.id;
+    splitDiv.classList.add("row", "sb", "data-metric", "nav-button");
+    splitDiv.onclick = viewRun;
+
     let dateDiv = document.createElement("div");
     let nameDiv = document.createElement("div");
     let timeDiv = document.createElement("div");
@@ -128,10 +132,6 @@ const renderKmSplits = (sortedFullPR, sortedKmSegs) => {
     
     paceDiv.innerHTML = renderPace(run.moving_time, run.distance);
 
-    splitDiv.classList.add("row", "sb", "data-metric");
-    splitDiv.classList.add("nav-button");
-    splitDiv.activity_id = run.id;
-    splitDiv.onclick = viewRun;
 
     dateDiv.classList.add("date-spacer");
     nameDiv.classList.add("name-spacer");
@@ -165,6 +165,7 @@ const renderKmSplits = (sortedFullPR, sortedKmSegs) => {
         highlightTop3(sortedKmSegs[counter], kmSeg.moving_time, kmXTime);
       }
       
+      //Fix if Strava has missed 1 segment (can be calculated from full time).
       if ( !kmSeg && missing === 1 ) {
         let sumOfExisting = 0;
         
@@ -176,7 +177,6 @@ const renderKmSplits = (sortedFullPR, sortedKmSegs) => {
 
         kmXTime.innerHTML = renderTime(run.moving_time - sumOfExisting);
       }
-      
       
       splitDiv.appendChild(kmXTime);
       counter ++;
