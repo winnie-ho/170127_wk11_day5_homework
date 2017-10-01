@@ -4,10 +4,14 @@ const userToken = "\?access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4";
 
 let parkRuns = [];
 let fullParkRuns = [];
+let orderedPRTimes;
+let orderedKmTimes;
 
 const kmSegs = [
   [],[],[],[],[]
 ]
+
+let sortedKmSegs = [];
 
 const computeParkRuns = (runs) => {
   filterParkRuns(runs, computeFullParkRuns);
@@ -35,73 +39,49 @@ const pushFullPR = (run) => {
 }
 
 const displayData = (sortedFullPR) => {
-  displayParkRunsDate(sortedFullPR);  
-  displayParkRunsName(sortedFullPR);
-  displayParkRunsTime(sortedFullPR);
-  displayParkRunsPace(sortedFullPR);
-  prepareSeg(sortedFullPR);
-  renderAllSegs(kmSegs, chart);
+  // displayParkRunsDate(sortedFullPR);  
+  // displayParkRunsName(sortedFullPR);
+  // displayParkRunsTime(sortedFullPR);
+  // displayParkRunsPace(sortedFullPR);
+  // prepareSeg(sortedFullPR);
+  // renderAllSegs(kmSegs, chart);
+  computeOrderedPRTimes(parkRuns);
+  prepareKmSegs(fullParkRuns);
+  computeOrderedKmTimes(kmSegs);
+  renderKmSplits(sortedFullPR, sortedKmSegs);
+  chart("Park Run Matrix", parkRuns);        
 }
 
-const displayParkRunsDate = (sortedFullPR) => {
-  let parkRunDiv = document.getElementById("park-run-date");
-  sortedFullPR.forEach(run => {
-    let date = document.createElement("div");
-    date.classList.add("data-metric","data-long", "nav-button");
-    date.innerText = renderDate(run.start_date);
-    date.activity_id = run.id;
-    date.onclick = viewRun;
-    parkRunDiv.appendChild(date);
-  })
+const computeOrderedPRTimes = (parkRuns) => {
+  orderedPRTimes = parkRuns.sort((a,b) => a.moving_time - b.moving_time);
 }
 
-const displayParkRunsName = (sortedFullPR) => {
-  let parkRunDiv = document.getElementById("park-run-name");
-  sortedFullPR.forEach(run => {
-    let name = document.createElement("div");
-    name.classList.add("data-metric", "nav-button");
-    name.innerText = run.name;
-    name.activity_id = run.id;
-    name.onclick = viewRun;
-    parkRunDiv.appendChild(name);
-  })
-}
 
-const displayParkRunsTime = (sortedFullPR) => {
-  let parkRunDiv = document.getElementById("park-run-time");
-  const finishTimes = sortedFullPR.map(run => run.moving_time);
-  const orderedFinishTimes = finishTimes.sort((a,b) => a - b);
+
+const computeOrderedKmTimes = (kmSegs) => {
+  kmSegs.forEach(kmX => {
+    let orderedKmX = kmX.sort((a,b) => a.moving_time - b.moving_time);
+    sortedKmSegs.push(orderedKmX);
+  });
+  console.log("orderedKM", sortedKmSegs);
+};
+
   
-  sortedFullPR.forEach(run => {
-    let time = document.createElement("div");
-    time.classList.add("data-metric", "nav-button");
-    
-    if (run.moving_time === orderedFinishTimes[0]) {
-      time.classList.add("first", "pb");
+
+
+
+const highlightTop3 = (orderedTimes, time, timeDiv) => {
+  if (time === orderedTimes[0].moving_time) {
+      timeDiv.classList.add("first", "pb");
     }
-    if (run.moving_time === orderedFinishTimes[1]) time.classList.add("second");
-    if (run.moving_time === orderedFinishTimes[2]) time.classList.add("third");
-    
-    time.activity_id = run.id;
-    time.onclick = viewRun;
-    time.innerHTML = renderTime(run.moving_time);
-    parkRunDiv.appendChild(time); 
-  })
+  if (time === orderedTimes[1].moving_time) timeDiv.classList.add("second");
+  if (time === orderedTimes[2].moving_time) timeDiv.classList.add("third");
 }
 
 
-const displayParkRunsPace = (sortedFullPR) => {
-  let parkRunDiv = document.getElementById("park-run-pace");
-  sortedFullPR.forEach(run => {
-    let pace = document.createElement("div");
-    pace.classList.add("data-metric");
-    pace.innerText = renderPace(run.moving_time, run.distance);
-    parkRunDiv.appendChild(pace);
-  })
-}
 
-const prepareSeg = (sortedFullPR) => {
-  sortedFullPR.forEach(run => {
+const prepareKmSegs = (fullParkRuns) => {
+  fullParkRuns.forEach(run => {
     run.segment_efforts.forEach(segment => {
       switch (segment.name){
         case "Edinburgh park run first km":
@@ -128,28 +108,78 @@ const prepareSeg = (sortedFullPR) => {
   })
 }
 
-const renderAllSegs = (kmSegs, cb) => {
-  let kmCounter = 1;
-  kmSegs.forEach(kmSeg => {
-    displayKmSeg(kmSeg, kmCounter)
-    kmCounter ++;
-  })
-  cb("Park Run Matrix", parkRuns);        
-}
+// const renderAllSegs = (kmSegs, cb) => {
+//   let kmCounter = 1;
+//   kmSegs.forEach(kmSeg => {
+//     displayKmSeg(kmSeg, kmCounter)
+//     kmCounter ++;
+//   })
+// }
 
-const displayKmSeg = (kmSegArray, kmNum) => {
-  let segDiv = document.getElementById("park-run-" + kmNum);
-  const kmTimes = kmSegArray.map(run => run.moving_time);
-  const orderedKmTimes = kmTimes.sort((a,b) => a - b);
+// const displayKmSeg = (kmSegArray, kmNum) => {
+//   let segDiv = document.getElementById("park-run-" + kmNum);
+//   const kmTimes = kmSegArray.map(run => run.moving_time);
+//   const orderedKmTimes = kmTimes.sort((a,b) => a - b);
 
-  kmSegArray.forEach(seg => {
-    let time = document.createElement("div");
-    time.classList.add("data-metric");
-    time.innerHTML = renderTime(seg.moving_time);
+//   kmSegArray.forEach(seg => {
+//     let time = document.createElement("div");
+//     time.classList.add("data-metric");
+//     time.innerHTML = renderTime(seg.moving_time);
     
-    if (seg.moving_time === orderedKmTimes[0]) time.classList.add("first");
-    if (seg.moving_time === orderedKmTimes[1]) time.classList.add("second");
-    if (seg.moving_time === orderedKmTimes[2]) time.classList.add("third");
-    segDiv.appendChild(time);
+//     if (seg.moving_time === orderedKmTimes[0]) time.classList.add("first");
+//     if (seg.moving_time === orderedKmTimes[1]) time.classList.add("second");
+//     if (seg.moving_time === orderedKmTimes[2]) time.classList.add("third");
+//     segDiv.appendChild(time);
+//   })
+// };
+
+const renderKmSplits = (sortedFullPR, sortedKmSegs) => {
+  sortedFullPR.forEach(run => {
+    let splitDiv = document.createElement("div");
+    let dateDiv = document.createElement("div");
+    let nameDiv = document.createElement("div");
+    let timeDiv = document.createElement("div");
+    let paceDiv = document.createElement("div");
+
+    dateDiv.innerHTML = renderDate(run.start_date);
+    nameDiv.innerHTML = run.name;
+    timeDiv.innerHTML = renderTime(run.moving_time);
+    highlightTop3(orderedPRTimes, run.moving_time, timeDiv);
+    
+    paceDiv.innerHTML = renderPace(run.moving_time, run.distance);
+
+    splitDiv.classList.add("row", "sb", "data-metric");
+    splitDiv.classList.add("nav-button");
+    splitDiv.activity_id = run.id;
+    splitDiv.onclick = viewRun;
+
+    dateDiv.classList.add("date-spacer");
+    nameDiv.classList.add("name-spacer");
+    timeDiv.classList.add("spacer");
+    paceDiv.classList.add("spacer");
+
+    let children = [dateDiv, nameDiv, timeDiv, paceDiv]
+    append(splitDiv, children);
+
+    let km1Seg = run.segment_efforts.find(seg => seg.name === "Edinburgh park run first km");
+    let km2Seg = run.segment_efforts.find(seg => seg.name === "Edinburgh Parkrun 2nd Kilometre");
+    let km3Seg = run.segment_efforts.find(seg => seg.name === "Edinburgh Parkrun 3rd Kilometre");
+    let km4Seg = run.segment_efforts.find(seg => seg.name === "Edinburgh Parkrun 4th Kilometre");
+    let km5Seg = run.segment_efforts.find(seg => seg.name === 'Edinburgh Parkrun 5th "Kilometre"');
+
+    let kmSegArray = [km1Seg, km2Seg, km3Seg, km4Seg, km5Seg];
+
+    counter = 0;
+    kmSegArray.forEach(kmSeg => {
+      let kmXTime = document.createElement("div");
+      kmXTime.classList.add("spacer");
+      if ( kmSeg ) {
+        kmXTime.innerHTML = renderTime(kmSeg.moving_time);
+        highlightTop3(sortedKmSegs[counter], kmSeg.moving_time, kmXTime);
+      }
+      splitDiv.appendChild(kmXTime);
+      counter ++;
+    })
+    document.getElementById("park-run-splits").appendChild(splitDiv);
   })
-};
+}

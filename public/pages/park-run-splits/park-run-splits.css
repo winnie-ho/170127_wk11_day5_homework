@@ -1,7 +1,7 @@
 #park-run-splits{
   margin-top: 20px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between; 
   padding: 5px;
   color: white;
@@ -14,7 +14,16 @@
 }
 
 .spacer{
-  margin-top: 10px;
+  min-width: 56px;
+  text-align: center;
+}
+
+.date-spacer{
+  min-width: 100px;
+}
+
+.name-spacer{
+  min-width: 130px;
 }
 
 #park-run-result{
@@ -42,8 +51,20 @@
 }
 
 @media all and (max-width: 500px) {
+  .name-spacer{
+    display: none;
+  }
+
+  .date-spacer{
+    min-width: 60px;
+  }
+
   .heading{
     font-size: 14px;
+  }
+
+  .spacer{
+    min-width: 37px;
   }
 
   #park-run-name{
