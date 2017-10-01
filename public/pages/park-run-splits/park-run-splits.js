@@ -12,6 +12,12 @@ const kmSegs = [
 
 let sortedKmSegs = [];
 
+const kmLaps = [
+  [],[],[],[],[],[]
+]
+
+let sortedKmLaps = [];
+
 const computeParkRuns = (runs) => {
   filterParkRuns(runs, computeFullParkRuns);
 }
@@ -40,7 +46,9 @@ const pushFullPR = (run) => {
 const displayData = (sortedFullPR) => {
   computeOrderedPRTimes(parkRuns);
   prepareKmSegs(fullParkRuns);
-  computeOrderedKmTimes(kmSegs);
+  prepareKmSegsFromAutoLap(fullParkRuns);
+  computeOrderedKmTimes(kmSegs, sortedKmSegs);
+  computeOrderedKmTimes(kmLaps, sortedKmLaps);
   renderKmSplits(sortedFullPR, sortedKmSegs);
   parkRunChart("Park Run Matrix", parkRuns);        
 }
@@ -49,12 +57,10 @@ const computeOrderedPRTimes = (parkRuns) => {
   orderedPRTimes = parkRuns.sort((a,b) => a.moving_time - b.moving_time);
 }
 
-
-
-const computeOrderedKmTimes = (kmSegs) => {
-  kmSegs.forEach(kmX => {
+const computeOrderedKmTimes = (rawSplitsArray, sortedSplitsArray) => {
+  rawSplitsArray.forEach(kmX => {
     let orderedKmX = kmX.sort((a,b) => a.moving_time - b.moving_time);
-    sortedKmSegs.push(orderedKmX);
+    sortedSplitsArray.push(orderedKmX);
   });
 };
 
@@ -97,6 +103,16 @@ const prepareKmSegs = (fullParkRuns) => {
   })
 }
 
+const prepareKmSegsFromAutoLap = (fullParkRuns) => {
+  fullParkRuns.forEach(run => {
+    let counter = 0;
+    run.laps.forEach(lap => {
+      kmLaps[counter].push(lap)
+      counter ++;
+    })
+  })
+}
+
 const renderKmSplits = (sortedFullPR, sortedKmSegs) => {
   sortedFullPR.forEach(run => {
     let splitDiv = document.createElement("div");
@@ -132,15 +148,36 @@ const renderKmSplits = (sortedFullPR, sortedKmSegs) => {
     let km5Seg = run.segment_efforts.find(seg => seg.name === 'Edinburgh Parkrun 5th "Kilometre"');
 
     let kmSegArray = [km1Seg, km2Seg, km3Seg, km4Seg, km5Seg];
-
+    let missing = 0;
+    kmSegArray.forEach(kmSegArray => {
+      if (!kmSegArray) {
+        missing ++;
+      }
+    })
+    
     counter = 0;
     kmSegArray.forEach(kmSeg => {
       let kmXTime = document.createElement("div");
       kmXTime.classList.add("spacer");
+
       if ( kmSeg ) {
         kmXTime.innerHTML = renderTime(kmSeg.moving_time);
         highlightTop3(sortedKmSegs[counter], kmSeg.moving_time, kmXTime);
       }
+      
+      if ( !kmSeg && missing === 1 ) {
+        let sumOfExisting = 0;
+        
+        kmSegArray.forEach(kmSeg => {
+          if (kmSeg) {
+            sumOfExisting += kmSeg.moving_time
+          }
+        })
+
+        kmXTime.innerHTML = renderTime(run.moving_time - sumOfExisting);
+      }
+      
+      
       splitDiv.appendChild(kmXTime);
       counter ++;
     })
