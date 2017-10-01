@@ -6,7 +6,6 @@ let parkRuns = [];
 let fullParkRuns = [];
 let orderedPRTimes;
 let orderedKmTimes;
-
 const kmSegs = [
   [],[],[],[],[]
 ]
@@ -39,12 +38,6 @@ const pushFullPR = (run) => {
 }
 
 const displayData = (sortedFullPR) => {
-  // displayParkRunsDate(sortedFullPR);  
-  // displayParkRunsName(sortedFullPR);
-  // displayParkRunsTime(sortedFullPR);
-  // displayParkRunsPace(sortedFullPR);
-  // prepareSeg(sortedFullPR);
-  // renderAllSegs(kmSegs, chart);
   computeOrderedPRTimes(parkRuns);
   prepareKmSegs(fullParkRuns);
   computeOrderedKmTimes(kmSegs);
@@ -63,22 +56,18 @@ const computeOrderedKmTimes = (kmSegs) => {
     let orderedKmX = kmX.sort((a,b) => a.moving_time - b.moving_time);
     sortedKmSegs.push(orderedKmX);
   });
-  console.log("orderedKM", sortedKmSegs);
 };
 
-  
-
-
-
-const highlightTop3 = (orderedTimes, time, timeDiv) => {
+const highlightTop3 = (orderedTimes, time, timeDiv, pbClass) => {
   if (time === orderedTimes[0].moving_time) {
-      timeDiv.classList.add("first", "pb");
+      timeDiv.classList.add("first");
     }
+  if (pbClass && time === orderedTimes[0].moving_time){
+    timeDiv.classList.add("pb");
+  }
   if (time === orderedTimes[1].moving_time) timeDiv.classList.add("second");
   if (time === orderedTimes[2].moving_time) timeDiv.classList.add("third");
 }
-
-
 
 const prepareKmSegs = (fullParkRuns) => {
   fullParkRuns.forEach(run => {
@@ -108,31 +97,6 @@ const prepareKmSegs = (fullParkRuns) => {
   })
 }
 
-// const renderAllSegs = (kmSegs, cb) => {
-//   let kmCounter = 1;
-//   kmSegs.forEach(kmSeg => {
-//     displayKmSeg(kmSeg, kmCounter)
-//     kmCounter ++;
-//   })
-// }
-
-// const displayKmSeg = (kmSegArray, kmNum) => {
-//   let segDiv = document.getElementById("park-run-" + kmNum);
-//   const kmTimes = kmSegArray.map(run => run.moving_time);
-//   const orderedKmTimes = kmTimes.sort((a,b) => a - b);
-
-//   kmSegArray.forEach(seg => {
-//     let time = document.createElement("div");
-//     time.classList.add("data-metric");
-//     time.innerHTML = renderTime(seg.moving_time);
-    
-//     if (seg.moving_time === orderedKmTimes[0]) time.classList.add("first");
-//     if (seg.moving_time === orderedKmTimes[1]) time.classList.add("second");
-//     if (seg.moving_time === orderedKmTimes[2]) time.classList.add("third");
-//     segDiv.appendChild(time);
-//   })
-// };
-
 const renderKmSplits = (sortedFullPR, sortedKmSegs) => {
   sortedFullPR.forEach(run => {
     let splitDiv = document.createElement("div");
@@ -144,7 +108,7 @@ const renderKmSplits = (sortedFullPR, sortedKmSegs) => {
     dateDiv.innerHTML = renderDate(run.start_date);
     nameDiv.innerHTML = run.name;
     timeDiv.innerHTML = renderTime(run.moving_time);
-    highlightTop3(orderedPRTimes, run.moving_time, timeDiv);
+    highlightTop3(orderedPRTimes, run.moving_time, timeDiv, "true");
     
     paceDiv.innerHTML = renderPace(run.moving_time, run.distance);
 
