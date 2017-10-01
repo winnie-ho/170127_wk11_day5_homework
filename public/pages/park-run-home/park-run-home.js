@@ -1,3 +1,5 @@
+let pb = (22 * 60) + 54;
+
 const renderParkRunHome = (parkRuns) => {
   const lastPR = parkRuns[0];
   const finishTimes = parkRuns.map(run => run.moving_time);
@@ -33,12 +35,14 @@ const showParkRunGraphs = () => {
 }
 
 const computePBContext = (lastPR) => {
-  const pb = (22 * 60) + 54;
-  if (lastPR.moving_time < pb) return "New PB! " + renderTime(lastPR.moving_time);
-  return "Cramond Park Run PB remains at " + renderTime(pb);
+  if (lastPR.moving_time < pb) {
+    pb = lastPR.moving_time;
+    return "New PB! " + renderTime(lastPR.moving_time);
+  }
+  return "PB remains at " + renderTime(pb);
 }
 
 const computeYBContext = (lastPR, yearBest) => {
   if (lastPR.moving_time < yearBest) return "Fastest time this year! " + renderTime(lastPR.moving_time);
-  return "Year best remains at " + renderTime(yearBest);
+  return "Year best " + renderTime(yearBest);
 }
