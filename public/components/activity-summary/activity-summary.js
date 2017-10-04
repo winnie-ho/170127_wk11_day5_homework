@@ -7,11 +7,14 @@ const createActivityDateTitle = (rawDate, rawTitle) => {
   dateTitle.classList.add("run-box__detail");
   date.classList.add("date-metric")
 
-  date.innerHTML = renderDate(rawDate, "long");
+  if (window.innerWidth < 375) {
+    date.innerHTML = renderDate(rawDate);
+  } else {
+    date.innerHTML = renderDate(rawDate, "long");
+  }
   title.innerHTML = rawTitle;
 
-  let children = [title, date];
-  append(dateTitle, children);
+  append(dateTitle, [title, date]);
   return dateTitle;
 }
 
@@ -27,8 +30,7 @@ const createActivityDistance = (rawDistance) => {
     distanceIcon.src = "./resources/icon_distance.png";
   }
   
-  let children = [distanceIcon, distanceValue];
-  append(distance, children);
+  append(distance, [distanceIcon, distanceValue]);
   return distance;
 }
 
@@ -42,8 +44,7 @@ const createActivityTime = (rawTime) => {
   
   timeValue.innerHTML = renderTime(rawTime);
   
-  let children = [timeIcon, timeValue];
-  append(time, children);
+  append(time, [timeIcon, timeValue]);
   return time;
 }
 
@@ -59,8 +60,7 @@ const createActivityPace = (rawTime, rawDistance) => {
     paceIcon.src = "./resources/icon_pace.png";
   }
 
-  let children = [paceIcon, paceValue];
-  append(pace, children);
+  append(pace, [paceIcon, paceValue]);
   return pace;
 }
 
@@ -78,11 +78,9 @@ const createActivitySummary = (rawId, rawDate,rawTitle, rawDistance, rawTime) =>
   let time = createActivityTime(rawTime);
   let pace = createActivityPace(rawTime, rawDistance);
 
-  let children = [distance, time, pace];
-  append(runBoxDetail, children);
+  append(runBoxDetail, [distance, time, pace]);
 
-  let children2 = [dateTitle, runBoxDetail];
-  append(activitySummary, children2);
+  append(activitySummary, [dateTitle, runBoxDetail]);
   return activitySummary;
 }
 
