@@ -9,6 +9,8 @@ const createMap = () => {
 const fetchRun = (runId) => makeRequest(("https://www.strava.com/api/v3/activities/" + runId + userToken), renderViewRun);
 const fetchKudos = (runId) => makeRequest("https://www.strava.com/api/v3/activities/" + runId + "/kudos" + userToken, setKudos);
 const fetchComments = (runId) => makeRequest("https://www.strava.com/api/v3/activities/" + runId + "/comments" + userToken, setComments);
+
+
 const setKudos = (rawKudos) => (kudos = rawKudos);
 const setComments = (rawComments) => (comments = rawComments);
 
@@ -17,6 +19,7 @@ const renderViewRun = (rawRun) => {
   renderComments(comments, kudos);
   renderRunInfo(rawRun);
   renderLaps(rawRun);
+  renderPhotos(rawRun);
 }
 
 const renderRunInfo = (rawRun) => {
@@ -107,4 +110,10 @@ const renderComments = (comments, kudos) => {
       };
     })
   })
+}
+
+const renderPhotos = (rawRun) => {  
+  console.log("PHTO", rawRun)
+  let photo = document.getElementById("photos-detail");
+  photo.src = rawRun.photos.primary.urls["600"];
 }

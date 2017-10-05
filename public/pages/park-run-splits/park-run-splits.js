@@ -1,7 +1,3 @@
-// userToken
-const user = "a2ff6fffcab9df06d90661ad34b7e664690c4fc4";
-const userToken = "\?access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4";
-
 let parkRuns = [];
 let fullParkRuns = [];
 let orderedPRTimes;

@@ -90,9 +90,9 @@ const viewRun = (event) => {
   handleNavButton("view-run");
   let map;
   
-  fetchRun(selectedRun.id); 
   fetchKudos(selectedRun.id);
   fetchComments(selectedRun.id);
+  fetchRun(selectedRun.id); 
   if(selectedRun.map.summary_polyline){
     map = createMap();
     const startPoint = {lat: ((selectedRun.start_latlng[0] + selectedRun.end_latlng[0])/2), lng: ((selectedRun.start_latlng[1] + selectedRun.end_latlng[1])/2)};
