@@ -24,25 +24,24 @@
   </div>
   <div id="kudos-detail" class="row" style="display: none"></div>
   
-  <div id="activity-info__laps" class="col sa">
-    <div class="col">
-      <div class="icon-stat" onclick="handleToggleButton('laps-detail')"> 
-        <img class="activity-icon" src="./resources/icon_laps.png" class="nav-icon"/>
-        <div id="laps" class="data-metric"></div>
-      </div>
-    </div>
-    
-    <div id="laps-detail" class="col sb" style="display: none"></div>
-  </div>
+  <div id="activity-info__tertiary-stats" class="row sa">
 
-    <div class="col">
-      <div id="photos" class="icon-stat" onclick="handleToggleButton('photos-detail')"> 
-        <img class="activity-icon" src="./resources/icon_picture.png" class="nav-icon"/>
-        <div  class="data-metric"></div>
-      </div>
+    <div class="icon-stat" onclick="handleToggleButton('laps-detail')"> 
+      <img class="activity-icon" src="./resources/icon_laps.png" class="nav-icon"/>
+      <div id="laps" class="data-metric"></div>
     </div>
+
+    <div id="photos-button" style="display: none" class="icon-stat" onclick="handleToggleButton('photos-detail')"> 
+        <img class="activity-icon" src="./resources/icon_picture.png" class="nav-icon"/>
+        <div id="photos" class="data-metric"></div>
+      </div>
     
-    <img id="photos-detail" class="col sb" style="display: none">
+  </div>
+  <div id="laps-detail" class="col sb" style="display: none"></div>
+  <div id="photos-detail"class="col sb" style="display: none"></div>
+
+
+    
 </div>
 
 <div id="map"></div>

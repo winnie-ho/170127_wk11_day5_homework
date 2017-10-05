@@ -1,14 +1,15 @@
 let kudos;
 let comments;
+let urlRoot = "https://www.strava.com/api/v3/activities/";
 
 const createMap = () => {
   const centre = { lat: 55.9533, lng:-3.1883 };
   return new MapWrapper(centre, 14);
 }
 
-const fetchRun = (runId) => makeRequest(("https://www.strava.com/api/v3/activities/" + runId + userToken), renderViewRun);
-const fetchKudos = (runId) => makeRequest("https://www.strava.com/api/v3/activities/" + runId + "/kudos" + userToken, setKudos);
-const fetchComments = (runId) => makeRequest("https://www.strava.com/api/v3/activities/" + runId + "/comments" + userToken, setComments);
+const fetchRun = (runId) => makeRequest((urlRoot + runId + userToken), renderViewRun);
+const fetchKudos = (runId) => makeRequest(urlRoot + runId + "/kudos" + userToken, setKudos);
+const fetchComments = (runId) => makeRequest(urlRoot + runId + "/comments" + userToken, setComments);
 
 
 const setKudos = (rawKudos) => (kudos = rawKudos);
@@ -112,8 +113,20 @@ const renderComments = (comments, kudos) => {
   })
 }
 
-const renderPhotos = (rawRun) => {  
-  console.log("PHTO", rawRun)
-  let photo = document.getElementById("photos-detail");
-  photo.src = rawRun.photos.primary.urls["600"];
+const renderPhotos = (rawRun) => {
+  let photoDetailDiv = document.getElementById("photos-detail");
+  let photos = document.getElementById("photos");
+  let photosButton = document.getElementById("photos-button");
+  photoDetailDiv.innerHTML = "";
+  photos.innerHTML = rawRun.photos.count;
+  
+  if (rawRun.photos.count === 0){
+    document.getElementById("photos-button").style.display = "none";
+  } else if (rawRun.photos.count > 0) {
+    document.getElementById("photos-button").style.display = "flex";
+    let photo = document.createElement("img");
+    photo.classList.add("photo");
+    photo.src = rawRun.photos.primary.urls["600"];
+    photoDetailDiv.appendChild(photo);
+  }
 }
