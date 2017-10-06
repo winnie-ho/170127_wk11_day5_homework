@@ -3,8 +3,7 @@ const parkRunChart = function(dataArray){
 	const sortedDataArray = dataArray.sort((a,b) => new Date(a.start_date) - new Date(b.start_date));
 
 
-	const dataArrayTime = sortedDataArray.map(run => run.moving_time);
-	const timeFormatted = dataArrayTime.map(time => renderTime(time));
+	const dataArrayTime = sortedDataArray.map(run => run.moving_time*1000);
 	const dataArrayDate = sortedDataArray.map(run => run.start_date);
 	const dateFormatted = dataArrayDate.map(date => renderDate(date));
 
@@ -21,6 +20,14 @@ const parkRunChart = function(dataArray){
 				"fontSize": "12px",
 				 "color": "white"
 			}
+		},
+		tooltip: {
+			pointFormatter: function () {
+					var ser = this.series;
+					return '<span style="color:' + ser.color + '" >●</span> ' +
+									ser.name + ': <b>' +
+									Highcharts.dateFormat('%H:%M:%S', this.y) + '</b><br>';
+			},
 		},
 		series:[
 			{
@@ -53,6 +60,7 @@ const parkRunChart = function(dataArray){
 			showLastLabel: true,
 	},
 	yAxis: {
+		type: 'datetime',
 		gridLineWidth: 0.1,
 		title: {
 			enabled: true,
@@ -67,7 +75,6 @@ const parkRunChart = function(dataArray){
 			style: {
 				color: 'white'
 			},
-			categories: timeFormatted,		
 		},
 		startOnTick: true,
 		endOnTick: true,
