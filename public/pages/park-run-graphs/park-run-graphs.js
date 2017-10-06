@@ -3,15 +3,15 @@ const kmChart = function(dataArray){
 	const sortedDataArray = dataArray.sort((a,b) => new Date(a.start_date) - new Date(b.start_date));
 
 	const dataArrayTime = sortedDataArray.map(run => run.moving_time);
-	const timeFormatted = dataArrayTime.map(time => renderTime(time));
+
 	const dataArrayDate = sortedDataArray.map(run => run.start_date);
   const dateFormatted = dataArrayDate.map(date => renderDate(date));
   
-  const dataArrayKm1 = (kmSegs[0].sort((a,b) => new Date(a.start_date) - new Date(b.start_date))).map(seg => seg.moving_time);
-  const dataArrayKm2 = (kmSegs[1].sort((a,b) => new Date(a.start_date) - new Date(b.start_date))).map(seg => seg.moving_time);
-  const dataArrayKm3 = (kmSegs[2].sort((a,b) => new Date(a.start_date) - new Date(b.start_date))).map(seg => seg.moving_time);
-  const dataArrayKm4 = (kmSegs[3].sort((a,b) => new Date(a.start_date) - new Date(b.start_date))).map(seg => seg.moving_time);
-  const dataArrayKm5 = (kmSegs[4].sort((a,b) => new Date(a.start_date) - new Date(b.start_date))).map(seg => seg.moving_time);
+  const dataArrayKm1 = (kmSegs[0].sort((a,b) => new Date(a.start_date) - new Date(b.start_date))).map(seg => seg.moving_time*1000);
+  const dataArrayKm2 = (kmSegs[1].sort((a,b) => new Date(a.start_date) - new Date(b.start_date))).map(seg => seg.moving_time*1000);
+  const dataArrayKm3 = (kmSegs[2].sort((a,b) => new Date(a.start_date) - new Date(b.start_date))).map(seg => seg.moving_time*1000);
+  const dataArrayKm4 = (kmSegs[3].sort((a,b) => new Date(a.start_date) - new Date(b.start_date))).map(seg => seg.moving_time*1000);
+  const dataArrayKm5 = (kmSegs[4].sort((a,b) => new Date(a.start_date) - new Date(b.start_date))).map(seg => seg.moving_time*1000);
   
 	const chart = new Highcharts.Chart({
 		chart: {
@@ -26,6 +26,14 @@ const kmChart = function(dataArray){
 				"fontSize": "12px",
 				 "color": "white"
 			}
+		},
+		tooltip: {
+			pointFormatter: function () {
+					var ser = this.series;
+					return '<span style="color:' + ser.color + '" >●</span> ' +
+									ser.name + ': <b>' +
+									Highcharts.dateFormat('%H:%M:%S', this.y) + '</b><br>';
+			},
 		},
 		series:[
 			{
@@ -94,6 +102,7 @@ const kmChart = function(dataArray){
 			showLastLabel: true,
 	},
 	yAxis: {
+		type: 'datetime',		
 		gridLineWidth: 0.1,
 		title: {
 			enabled: true,
@@ -108,7 +117,6 @@ const kmChart = function(dataArray){
 			style: {
 				color: 'white'
 			},
-			categories: timeFormatted,		
 		},
 		startOnTick: true,
 		endOnTick: true,
