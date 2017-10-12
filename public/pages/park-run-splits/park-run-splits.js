@@ -6,22 +6,33 @@ const kmSegs = [
   [],[],[],[],[]
 ]
 
+let km1Seg = [];
+let km2Seg = [];
+let km3Seg = [];
+let km4Seg = [];
+let km5Seg = [];
+
+
 let sortedKmSegs = [];
 
-const kmLaps = [
-  [],[],[],[],[],[]
-]
-
-let sortedKmLaps = [];
+const km1Name = "Edinburgh park run first km";
+const km2Name= "Edinburgh Parkrun 2nd Kilometre";
+const km3Name= "Edinburgh Parkrun 3rd Kilometre";
+const km4Name= "Edinburgh Parkrun 4th Kilometre";
+const km5Name= 'Edinburgh Parkrun 5th "Kilometre"';
 
 const computeParkRuns = (runs) => {
-  filterParkRuns(runs, computeFullParkRuns);
+  filterParkRuns(runs, sortParkRuns);
 }
 
 const filterParkRuns = (runs, cb) => {
   let filteredRuns = runs.filter(run => run.start_latitude === 55.98 && run.start_longitude === -3.29);
-  parkRuns = filteredRuns.sort((a,b) => b.upload_id - a.upload_id);
-  cb(parkRuns)
+  cb(filteredRuns, computeFullParkRuns);
+}
+
+const sortParkRuns = (filteredRuns, cb) => {
+  parkRuns = filteredRuns.sort((a,b) => new Date(b.start_date) - new Date(a.start_date));
+  cb(parkRuns);
 }
 
 const computeFullParkRuns = (parkRuns) => {
@@ -33,7 +44,7 @@ const pushFullPR = (run) => {
   let sortedFullPR;
   if(fullParkRuns.length === parkRuns.length){
     sortedFullPR = fullParkRuns.sort((a, b) => {
-      return b.upload_id - a.upload_id;
+      return new Date(b.start_date) - new Date(a.start_date);
     })
     displayData(sortedFullPR)
   }
@@ -42,9 +53,8 @@ const pushFullPR = (run) => {
 const displayData = (sortedFullPR) => {
   computeOrderedPRTimes(parkRuns);
   prepareKmSegs(fullParkRuns);
-  prepareKmSegsFromAutoLap(fullParkRuns);
+  prepareGraphKmSegs(fullParkRuns);
   computeOrderedKmTimes(kmSegs, sortedKmSegs);
-  computeOrderedKmTimes(kmLaps, sortedKmLaps);
   renderKmSplits(sortedFullPR, sortedKmSegs);
   parkRunChart(parkRuns);        
 }
@@ -53,10 +63,10 @@ const computeOrderedPRTimes = (parkRuns) => {
   orderedPRTimes = parkRuns.sort((a,b) => a.moving_time - b.moving_time);
 }
 
-const computeOrderedKmTimes = (rawSplitsArray, sortedSplitsArray) => {
-  rawSplitsArray.forEach(kmX => {
+const computeOrderedKmTimes = (kmSegs, sortedKmSegs) => {
+  kmSegs.forEach(kmX => {
     let orderedKmX = kmX.sort((a,b) => a.moving_time - b.moving_time);
-    sortedSplitsArray.push(orderedKmX);
+    sortedKmSegs.push(orderedKmX);
   });
 };
 
@@ -73,40 +83,36 @@ const highlightTop3 = (orderedTimes, time, timeDiv, pbClass) => {
 
 const prepareKmSegs = (fullParkRuns) => {
   fullParkRuns.forEach(run => {
-    run.segment_efforts.forEach(segment => {
-      switch (segment.name){
-        case "Edinburgh park run first km":
-        kmSegs[0].push(segment);
-        break;
-        
-        case "Edinburgh Parkrun 2nd Kilometre":
-        kmSegs[1].push(segment);
-        break;
-        
-        case "Edinburgh Parkrun 3rd Kilometre":
-        kmSegs[2].push(segment);
-        break;
-        
-        case "Edinburgh Parkrun 4th Kilometre":
-        kmSegs[3].push(segment);
-        break;
-        
-        case 'Edinburgh Parkrun 5th "Kilometre"':
-        kmSegs[4].push(segment);
-        break;
-      }
-    })
+    let km1table = run.segment_efforts.find(segment => segment.name === km1Name);
+    let km2table = run.segment_efforts.find(segment => segment.name === km2Name);
+    let km3table = run.segment_efforts.find(segment => segment.name === km3Name);
+    let km4table = run.segment_efforts.find(segment => segment.name === km4Name);
+    let km5table = run.segment_efforts.find(segment => segment.name === km5Name);
+
+    km1table ? kmSegs[0].push(km1table) : kmSegs[0].push(run.start_date);
+    km2table ? kmSegs[1].push(km2table) : kmSegs[1].push(run.start_date);
+    km3table ? kmSegs[2].push(km3table) : kmSegs[2].push(run.start_date);
+    km4table ? kmSegs[3].push(km4table) : kmSegs[3].push(run.start_date);
+    km5table ? kmSegs[4].push(km5table) : kmSegs[4].push(run.start_date);
   })
 }
 
-const prepareKmSegsFromAutoLap = (fullParkRuns) => {
-  fullParkRuns.forEach(run => {
-    let counter = 0;
-    run.laps.forEach(lap => {
-      kmLaps[counter].push(lap)
-      counter ++;
-    })
-  })
+const prepareGraphKmSegs = (fullParkRuns) => {
+  let deepClone = fullParkRuns.slice();
+  reversed = deepClone.sort((a,b) => new Date(a.start_date) - new Date(b.start_date));
+  reversed.forEach(run => {
+    let km1 = run.segment_efforts.find(segment => segment.name === km1Name);
+    let km2 = run.segment_efforts.find(segment => segment.name === km2Name);
+    let km3 = run.segment_efforts.find(segment => segment.name === km3Name);
+    let km4 = run.segment_efforts.find(segment => segment.name === km4Name);
+    let km5 = run.segment_efforts.find(segment => segment.name === km5Name);
+    
+    km1 ? km1Seg.push(km1) : km1Seg.push(run.upload_id);
+    km2 ? km2Seg.push(km2) : km2Seg.push(run.upload_id);
+    km3 ? km3Seg.push(km3) : km3Seg.push(run.upload_id);
+    km4 ? km4Seg.push(km4) : km4Seg.push(run.upload_id);
+    km5 ? km5Seg.push(km5) : km5Seg.push(run.upload_id);
+  })  
 }
 
 const renderKmSplits = (sortedFullPR, sortedKmSegs) => {
@@ -137,11 +143,11 @@ const renderKmSplits = (sortedFullPR, sortedKmSegs) => {
     let children = [dateDiv, nameDiv, timeDiv, paceDiv]
     append(splitDiv, children);
 
-    let km1Seg = run.segment_efforts.find(seg => seg.name === "Edinburgh park run first km");
-    let km2Seg = run.segment_efforts.find(seg => seg.name === "Edinburgh Parkrun 2nd Kilometre");
-    let km3Seg = run.segment_efforts.find(seg => seg.name === "Edinburgh Parkrun 3rd Kilometre");
-    let km4Seg = run.segment_efforts.find(seg => seg.name === "Edinburgh Parkrun 4th Kilometre");
-    let km5Seg = run.segment_efforts.find(seg => seg.name === 'Edinburgh Parkrun 5th "Kilometre"');
+    let km1Seg = run.segment_efforts.find(seg => seg.name === km1Name);
+    let km2Seg = run.segment_efforts.find(seg => seg.name === km2Name);
+    let km3Seg = run.segment_efforts.find(seg => seg.name === km3Name);
+    let km4Seg = run.segment_efforts.find(seg => seg.name === km4Name);
+    let km5Seg = run.segment_efforts.find(seg => seg.name === km5Name);
 
     let kmSegArray = [km1Seg, km2Seg, km3Seg, km4Seg, km5Seg];
     let missing = 0;

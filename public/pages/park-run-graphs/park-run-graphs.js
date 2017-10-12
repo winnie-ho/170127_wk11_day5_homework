@@ -5,13 +5,13 @@ const kmChart = function(dataArray){
 	const dataArrayTime = sortedDataArray.map(run => run.moving_time);
 
 	const dataArrayDate = sortedDataArray.map(run => run.start_date);
-  const dateFormatted = dataArrayDate.map(date => renderDate(date));
-  
-  const dataArrayKm1 = (kmSegs[0].sort((a,b) => new Date(a.start_date) - new Date(b.start_date))).map(seg => seg.moving_time*1000);
-  const dataArrayKm2 = (kmSegs[1].sort((a,b) => new Date(a.start_date) - new Date(b.start_date))).map(seg => seg.moving_time*1000);
-  const dataArrayKm3 = (kmSegs[2].sort((a,b) => new Date(a.start_date) - new Date(b.start_date))).map(seg => seg.moving_time*1000);
-  const dataArrayKm4 = (kmSegs[3].sort((a,b) => new Date(a.start_date) - new Date(b.start_date))).map(seg => seg.moving_time*1000);
-  const dataArrayKm5 = (kmSegs[4].sort((a,b) => new Date(a.start_date) - new Date(b.start_date))).map(seg => seg.moving_time*1000);
+	const dateFormatted = dataArrayDate.map(date => renderDate(date));
+	  
+  const dataArrayKm1 = km1Seg.map(seg => seg.moving_time*1000);
+  const dataArrayKm2 = km2Seg.map(seg => seg.moving_time*1000);
+  const dataArrayKm3 = km3Seg.map(seg => seg.moving_time*1000);
+  const dataArrayKm4 = km4Seg.map(seg => seg.moving_time*1000);
+  const dataArrayKm5 = km5Seg.map(seg => seg.moving_time*1000);
   
 	const chart = new Highcharts.Chart({
 		chart: {
