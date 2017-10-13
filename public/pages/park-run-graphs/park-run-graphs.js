@@ -1,17 +1,10 @@
-const kmChart = function(dataArray){
+const kmChart = function(parkRuns){
 	const container = document.querySelector("#km-chart");
-	const sortedDataArray = dataArray.sort((a,b) => new Date(a.start_date) - new Date(b.start_date));
 
-	const dataArrayTime = sortedDataArray.map(run => run.moving_time);
-
-	const dataArrayDate = sortedDataArray.map(run => run.start_date);
-	const dateFormatted = dataArrayDate.map(date => renderDate(date));
-	  
-  const dataArrayKm1 = km1Seg.map(seg => seg.moving_time*1000);
-  const dataArrayKm2 = km2Seg.map(seg => seg.moving_time*1000);
-  const dataArrayKm3 = km3Seg.map(seg => seg.moving_time*1000);
-  const dataArrayKm4 = km4Seg.map(seg => seg.moving_time*1000);
-  const dataArrayKm5 = km5Seg.map(seg => seg.moving_time*1000);
+	const dateFormatted = parkRuns.map(run => run.start_date).map(date => renderDate(date));
+		
+	const kmDataArrays = [ km1Seg, km2Seg, km3Seg, km4Seg, km5Seg ];
+	const formattedKmDataArrays = kmDataArrays.map(array => array.map(seg => seg.moving_time * 1000))
   
 	const chart = new Highcharts.Chart({
 		chart: {
@@ -38,7 +31,7 @@ const kmChart = function(dataArray){
 		series:[
 			{
 				name: "km 1",
-				data: dataArrayKm1,
+				data: formattedKmDataArrays[0],
 				color: "#f4a142",		
 				style: {
 					"fontSize": "12px",
@@ -47,7 +40,7 @@ const kmChart = function(dataArray){
 			},
 			{
 				name: "km 2",
-				data: dataArrayKm2,
+				data: formattedKmDataArrays[1],
 				color: "#f1f441",		
 				style: {
 					"fontSize": "12px",
@@ -56,7 +49,7 @@ const kmChart = function(dataArray){
 			},
 			{
 				name: "km 3",
-				data: dataArrayKm3,
+				data: formattedKmDataArrays[2],
 				color: "#4cf441",		
 				style: {
 					"fontSize": "12px",
@@ -65,7 +58,7 @@ const kmChart = function(dataArray){
 			},
 			{
 				name: "km 4",
-				data: dataArrayKm4,
+				data: formattedKmDataArrays[3],
 				color: "#f441eb",		
 				style: {
 					"fontSize": "12px",
@@ -74,7 +67,7 @@ const kmChart = function(dataArray){
 			},
 			{
 				name: "km 5",
-				data: dataArrayKm5,
+				data: formattedKmDataArrays[4],
 				color: "#54c6ff",		
 				style: {
 					"fontSize": "12px",
