@@ -4,7 +4,11 @@ const kmChart = function(parkRuns){
 	const dateFormatted = parkRuns.map(run => run.start_date).map(date => renderDate(date));
 		
 	const kmDataArrays = [ km1Seg, km2Seg, km3Seg, km4Seg, km5Seg ];
-	const formattedKmDataArrays = kmDataArrays.map(array => array.map(seg => seg.moving_time * 1000))
+	const formattedKmDataArrays = kmDataArrays.map(array => array.map(seg => seg.moving_time * 1000));
+
+	console.log("KM SEGS", kmSegs);
+	console.log("KM SEGS IND", kmDataArrays);
+
   
 	const chart = new Highcharts.Chart({
 		chart: {

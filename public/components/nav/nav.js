@@ -22,8 +22,8 @@ const handleNavButton = (navId) => {
     if (navId === "park-run-home") {
       document.getElementById(navId).style.display = "block";
       if (parkRuns.length > 0) return;      
-      computeParkRuns(responseRuns);      
-      renderParkRunHome(parkRuns, orderedPRTimes);
+      computeParkRuns(responseRuns, computeFullParkRuns);      
+      renderParkRunHome(parkRuns, fastestPRTimes);
     }
     if (navId === "run-club"){
       computeRunClubRuns(responseRuns)

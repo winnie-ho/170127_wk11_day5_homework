@@ -1,6 +1,6 @@
 let parkRuns = [];
 let fullParkRuns = [];
-let orderedPRTimes;
+let fastestPRTimes;
 let orderedKmTimes;
 const kmSegs = [
   [],[],[],[],[]
@@ -21,17 +21,8 @@ const km3Name= "Edinburgh Parkrun 3rd Kilometre";
 const km4Name= "Edinburgh Parkrun 4th Kilometre";
 const km5Name= 'Edinburgh Parkrun 5th "Kilometre"';
 
-const computeParkRuns = (runs) => {
-  filterParkRuns(runs, sortParkRuns);
-}
-
-const filterParkRuns = (runs, cb) => {
-  let filteredRuns = runs.filter(run => run.start_latitude === 55.98 && run.start_longitude === -3.29);
-  cb(filteredRuns, computeFullParkRuns);
-}
-
-const sortParkRuns = (filteredRuns, cb) => {
-  parkRuns = filteredRuns.sort((a,b) => new Date(b.start_date) - new Date(a.start_date));
+const computeParkRuns = (runs, cb) => {
+  parkRuns = (runs.filter(run => run.start_latitude === 55.98 && run.start_longitude === -3.29)).sort((a,b) => new Date(b.start_date) - new Date(a.start_date));
   cb(parkRuns);
 }
 
@@ -41,65 +32,44 @@ const computeFullParkRuns = (parkRuns) => {
 
 const pushFullPR = (run) => {
   fullParkRuns.push(run);
-  let sortedFullPR;
   if(fullParkRuns.length === parkRuns.length){
-    sortedFullPR = fullParkRuns.sort((a, b) => {
-      return new Date(b.start_date) - new Date(a.start_date);
-    })
-    displayData(sortedFullPR)
+    fullParkRuns.sort((a, b) => new Date(b.start_date) - new Date(a.start_date));
+    displayData(fullParkRuns);
   }
 }
 
 const displayData = (sortedFullPR) => {
-  computeOrderedPRTimes(parkRuns);
+  computeFastestPRTimes(parkRuns);
   prepareKmSegs(fullParkRuns);
   prepareGraphKmSegs(fullParkRuns);
-  computeOrderedKmTimes(kmSegs, sortedKmSegs);
-  renderKmSplits(sortedFullPR, sortedKmSegs);
+  computeFastestKmTimes();
+  renderKmSplits(sortedFullPR);
   parkRunChart(parkRuns);        
 }
 
-const computeOrderedPRTimes = (parkRuns) => {
-  orderedPRTimes = parkRuns.sort((a,b) => a.moving_time - b.moving_time);
-}
-
-const computeOrderedKmTimes = (kmSegs, sortedKmSegs) => {
-  kmSegs.forEach(kmX => {
-    let orderedKmX = kmX.sort((a,b) => a.moving_time - b.moving_time);
-    sortedKmSegs.push(orderedKmX);
-  });
-};
-
-const highlightTop3 = (orderedTimes, time, timeDiv, pbClass) => {
-  if (time === orderedTimes[0].moving_time) {
-      timeDiv.classList.add("first");
-    }
-  if (pbClass && time === orderedTimes[0].moving_time){
-    timeDiv.classList.add("pb");
-  }
-  if (time === orderedTimes[1].moving_time) timeDiv.classList.add("second");
-  if (time === orderedTimes[2].moving_time) timeDiv.classList.add("third");
+const computeFastestPRTimes = (parkRuns) => {
+  fastestPRTimes = (parkRuns).slice().sort((a,b) => a.moving_time - b.moving_time);
 }
 
 const prepareKmSegs = (fullParkRuns) => {
+  console.log("PARK RUNS", parkRuns);
   fullParkRuns.forEach(run => {
-    let km1table = run.segment_efforts.find(segment => segment.name === km1Name);
-    let km2table = run.segment_efforts.find(segment => segment.name === km2Name);
-    let km3table = run.segment_efforts.find(segment => segment.name === km3Name);
-    let km4table = run.segment_efforts.find(segment => segment.name === km4Name);
-    let km5table = run.segment_efforts.find(segment => segment.name === km5Name);
-
-    km1table ? kmSegs[0].push(km1table) : kmSegs[0].push(run.start_date);
-    km2table ? kmSegs[1].push(km2table) : kmSegs[1].push(run.start_date);
-    km3table ? kmSegs[2].push(km3table) : kmSegs[2].push(run.start_date);
-    km4table ? kmSegs[3].push(km4table) : kmSegs[3].push(run.start_date);
-    km5table ? kmSegs[4].push(km5table) : kmSegs[4].push(run.start_date);
+    let km1 = run.segment_efforts.find(segment => segment.name === km1Name);
+    let km2 = run.segment_efforts.find(segment => segment.name === km2Name);
+    let km3 = run.segment_efforts.find(segment => segment.name === km3Name);
+    let km4 = run.segment_efforts.find(segment => segment.name === km4Name);
+    let km5 = run.segment_efforts.find(segment => segment.name === km5Name);
+    
+    km1 ? kmSegs[0].push(km1) : kmSegs[0].push(run.start_date);
+    km2 ? kmSegs[1].push(km2) : kmSegs[1].push(run.start_date);
+    km3 ? kmSegs[2].push(km3) : kmSegs[2].push(run.start_date);
+    km4 ? kmSegs[3].push(km4) : kmSegs[3].push(run.start_date);
+    km5 ? kmSegs[4].push(km5) : kmSegs[4].push(run.start_date);
   })
 }
 
 const prepareGraphKmSegs = (fullParkRuns) => {
-  let deepClone = fullParkRuns.slice();
-  reversed = deepClone.sort((a,b) => new Date(a.start_date) - new Date(b.start_date));
+  reversed = fullParkRuns.slice().sort((a,b) => new Date(a.start_date) - new Date(b.start_date));
   reversed.forEach(run => {
     let km1 = run.segment_efforts.find(segment => segment.name === km1Name);
     let km2 = run.segment_efforts.find(segment => segment.name === km2Name);
@@ -115,7 +85,22 @@ const prepareGraphKmSegs = (fullParkRuns) => {
   })  
 }
 
-const renderKmSplits = (sortedFullPR, sortedKmSegs) => {
+const computeFastestKmTimes = () => {
+  sortedKmSegs = kmSegs.slice().map(kmX => kmX.sort((a,b) => a.moving_time - b.moving_time));
+};
+
+const highlightTop3 = (orderedTimes, time, timeDiv, pbClass) => {
+  if (time === orderedTimes[0].moving_time) {
+      timeDiv.classList.add("first");
+  }
+  if (pbClass && time === orderedTimes[0].moving_time){
+    timeDiv.classList.add("pb");
+  }
+  if (time === orderedTimes[1].moving_time) timeDiv.classList.add("second");
+  if (time === orderedTimes[2].moving_time) timeDiv.classList.add("third");
+}
+
+const renderKmSplits = (sortedFullPR) => {
   sortedFullPR.forEach(run => {
     let splitDiv = document.createElement("div");
     splitDiv.activity_id = run.id;
@@ -130,7 +115,7 @@ const renderKmSplits = (sortedFullPR, sortedKmSegs) => {
     dateDiv.innerHTML = renderDate(run.start_date);
     nameDiv.innerHTML = run.name;
     timeDiv.innerHTML = renderTime(run.moving_time);
-    highlightTop3(orderedPRTimes, run.moving_time, timeDiv, "true");
+    highlightTop3(fastestPRTimes, run.moving_time, timeDiv, "true");
     
     paceDiv.innerHTML = renderPace(run.moving_time, run.distance);
 
