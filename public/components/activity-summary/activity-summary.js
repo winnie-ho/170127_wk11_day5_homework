@@ -3,9 +3,10 @@ const append = (container, childrenArray) => childrenArray.forEach(child => cont
 const createActivityDateTitle = (rawDate, rawTitle) => {
   const dateTitle = document.createElement("div");
   const date = document.createElement("div");
-  const title = document.createElement("h4");
+  const title = document.createElement("div");
   dateTitle.classList.add("run-box__detail");
-  date.classList.add("date-metric")
+  date.classList.add("date-metric", "date");
+  title.classList.add("activity-summary__heading", "truncate");
 
   if (window.innerWidth < 375) {
     date.innerHTML = renderDate(rawDate);

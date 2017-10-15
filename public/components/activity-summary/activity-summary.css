@@ -10,6 +10,11 @@
   cursor: pointer;
 }
 
+.activity-summary__heading{
+  font-size: 14px;
+  font-weight: bold;
+}
+
 #activity-info__date{
   min-width: 95px;
   justify-content: flex-end;
@@ -21,6 +26,11 @@
 
 #run-box * {
   pointer-events: none;
+}
+
+.date{
+  width: 200px;
+  text-align: right;
 }
 
 .run-box__detail{
@@ -40,8 +50,11 @@
 }
 
 @media all and (max-width: 400px) {
-  .run-box__detail h4 {
-    max-width: 245px;
+  .activity-summary__heading{
+    max-width: 235px;
   }
 
+  .date{
+    width: auto;
+  }
 }
