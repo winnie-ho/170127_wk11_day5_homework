@@ -87,7 +87,6 @@ const createActivitySummary = (rawId, rawDate,rawTitle, rawDistance, rawTime) =>
 const viewRun = (event) => {
   const selectedRun = responseRuns.find(run => run.id === event.target.activity_id);
   const runLine = selectedRun.map.summary_polyline;
-  handleNavButton("view-run");
   let map;
   
   fetchKudos(selectedRun.id);
@@ -100,4 +99,5 @@ const viewRun = (event) => {
   } else {
     document.querySelector("#map").innerHTML = "";
   }
+  handleNavButton("view-run");
 }
