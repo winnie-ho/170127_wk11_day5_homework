@@ -10,7 +10,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin: 10px;
+  margin: 0px 10px;
+  height: 40px;
 }
 
 .container{
