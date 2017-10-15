@@ -93,6 +93,7 @@ const viewRun = (event) => {
   fetchKudos(selectedRun.id);
   fetchComments(selectedRun.id);
   fetchRun(selectedRun.id); 
+  handleNavButton("view-run");
   if(selectedRun.map.summary_polyline){
     map = createMap();
     const startPoint = {lat: ((selectedRun.start_latlng[0] + selectedRun.end_latlng[0])/2), lng: ((selectedRun.start_latlng[1] + selectedRun.end_latlng[1])/2)};
@@ -100,5 +101,4 @@ const viewRun = (event) => {
   } else {
     document.querySelector("#map").innerHTML = "";
   }
-  handleNavButton("view-run");
 }
