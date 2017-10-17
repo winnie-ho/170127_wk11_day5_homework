@@ -119,28 +119,13 @@ const changeWeek = (num) => {
   if (weekInViewIndex < 0) {
     weekInViewIndex = 0;
   }
-  let mon = document.querySelector("#MON");
-  let tue = document.querySelector("#TUE");
-  let wed = document.querySelector("#WED");
-  let thu = document.querySelector("#THU");
-  let fri = document.querySelector("#FRI");
-  let sat = document.querySelector("#SAT");
-  let sun = document.querySelector("#SUN");
 
-  mon.innerHTML = "";  
-  tue.innerHTML = "";
-  wed.innerHTML = "";
-  thu.innerHTML = "";
-  fri.innerHTML = "";
-  sat.innerHTML = "";
-  sun.innerHTML = "";
-  mon.classList.remove("day-title--active");
-  tue.classList.remove("day-title--active");
-  wed.classList.remove("day-title--active");
-  thu.classList.remove("day-title--active");
-  fri.classList.remove("day-title--active");
-  sat.classList.remove("day-title--active");
-  sun.classList.remove("day-title--active");
+  let allDays = document.getElementsByClassName("day-title");
+
+  for (let day of allDays) {
+    day.innerHTML = "";
+    day.classList.remove("day-title--active");
+  }
   
   renderWeek(weekSets[weekInViewIndex]);
 }
