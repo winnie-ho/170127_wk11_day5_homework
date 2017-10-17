@@ -16,13 +16,13 @@ const moreWeather = () => {
 
 const showWeekWeatherForecast = (resultWeekWeatherForecast) => {
   const weatherForecast = document.querySelector("#weather-forecast");
-  for(const slot of resultWeekWeatherForecast.list){
-    const dateTime=document.createElement("div");
-    dateTime.id="date-time";
-    const timeSnap=document.createElement("div");
-    timeSnap.id="time-snap";
+  for (const slot of resultWeekWeatherForecast.list) {
+    const dateTime = document.createElement("div");
+    dateTime.id = "date-time";
+    const timeSnap = document.createElement("div");
+    timeSnap.id = "time-snap";
     
-    if(parseInt((slot.dt_txt).substr(8,2)) % 2 === 0 ) {
+    if (parseInt((slot.dt_txt).substr(8,2)) % 2 === 0) {
       timeSnap.classList.add("even");
     } else {
       timeSnap.classList.add("odd");
@@ -44,11 +44,7 @@ const showWeekWeatherForecast = (resultWeekWeatherForecast) => {
 
     weatherForecast.appendChild(dateTime);
     dateTime.appendChild(timeSnap);
-    timeSnap.appendChild(time);
-    timeSnap.appendChild(forecast);
-    timeSnap.appendChild(icon);
-    timeSnap.appendChild(temperature);
-    timeSnap.appendChild(wind);
+    append(timeSnap, [time, forecast, icon, temperature, wind])
   }
 }
 
