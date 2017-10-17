@@ -74,10 +74,7 @@ const renderLaps = (rawRun) => {
       lapPace.innerHTML = (lap.moving_time/22.86).toFixed(2) + " s/m";
     }
 
-    lapBox.appendChild(lapNo);
-    lapBox.appendChild(lapDistance);
-    lapBox.appendChild(lapTime);
-    lapBox.appendChild(lapPace);
+    append(lapBox, [lapNo, lapDistance, lapTime, lapPace]);
     lapsDetailDiv.appendChild(lapBox);
   })
 }
@@ -95,8 +92,7 @@ const renderKudosDetail = (rawKudos) => {
     kudoserImage.src = kudoser.profile_medium;
     kudoserImage.classList.add("small-avatar");
     kudoserName.innerHTML = kudoser.firstname;
-    kudoserPerson.appendChild(kudoserImage);
-    kudoserPerson.appendChild(kudoserName);
+    append(kudoserPerson, [kudoserImage, kudoserName]);
     kudosDetailDiv.appendChild(kudoserPerson);
   });
 }
