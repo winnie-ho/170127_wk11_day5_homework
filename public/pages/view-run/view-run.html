@@ -13,32 +13,32 @@
   </div>
   
   <div id="activity-info__secondary-stats" class="row sa">
-    <div class="col">
-      <div class="icon-stat" onclick="handleToggleButton('kudos-detail')" >
-        <img class="activity-icon" src="./resources/icon_like.png" class="nav-icon"/>
-        <div id="secondary-stats__kudos" class="data-metric"></div>
-      </div>
+    <div id="laps-button" class="icon-stat" onclick="handleToggleButton('laps-detail', 'laps-button')"> 
+      <img class="activity-icon" src="./resources/icon_laps.png" class="nav-icon"/>
+      <div id="laps" class="data-metric"></div>
     </div>
     <div id="secondary-stats__heartrate" class="data-metric"></div>
     <div id="secondary-stats__cadence" class="data-metric"></div>
   </div>
-  <div id="kudos-detail" class="row" style="display: none"></div>
+  
   
   <div id="activity-info__tertiary-stats" class="row sa">
-
-    <div class="icon-stat" onclick="handleToggleButton('laps-detail')"> 
-      <img class="activity-icon" src="./resources/icon_laps.png" class="nav-icon"/>
-      <div id="laps" class="data-metric"></div>
-    </div>
-
-    <div id="photos-button" style="display: none" class="icon-stat" onclick="handleToggleButton('photos-detail')"> 
-        <img class="activity-icon" src="./resources/icon_picture.png" class="nav-icon"/>
-        <div id="photos" class="data-metric"></div>
+    <div class="col">
+      <div id="kudos-button" class="icon-stat" onclick="handleToggleButton('kudos-detail', 'kudos-button')" >
+        <img class="activity-icon" src="./resources/icon_like.png" class="nav-icon"/>
+        <div id="secondary-stats__kudos" class="data-metric"></div>
       </div>
+    </div>
     
+    <div id="photos-button" style="display: none" class="icon-stat" onclick="handleToggleButton('photos-detail', 'photos-button')"> 
+      <img class="activity-icon" src="./resources/icon_picture.png" class="nav-icon"/>
+      <div id="photos" class="data-metric"></div>
+    </div>
   </div>
-  <div id="laps-detail" class="col sb" style="display: none"></div>
+
+  <div id="kudos-detail" class="row" style="display: none"></div>
   <div id="photos-detail"class="col sb" style="display: none"></div>
+  <div id="laps-detail" class="col sb" style="display: none"></div>
 
 
     

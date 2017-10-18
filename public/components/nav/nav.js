@@ -37,11 +37,14 @@ const handleNavButton = (navId) => {
   });
 }
 
-const handleToggleButton = (toggleId) => { 
+const handleToggleButton = (toggleId, id) => { 
+  let idTarget = document.getElementById(id);
   let target = document.getElementById(toggleId);
   if (target.style.display === 'none') {
+    idTarget.classList.add('button-active');
     target.style.display = "flex";
   } else if (target.style.display === 'flex') {
     target.style.display = "none";
+    idTarget.classList.remove('button-active');
   }
 }

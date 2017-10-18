@@ -48,6 +48,10 @@
   cursor: pointer;
 }
 
+.icon-stat:hover{
+  transform: scale(1.3);
+}
+
 .activity-icon{
   height: 13px;
   width: auto;
@@ -69,6 +73,14 @@
   width: 100vw;
 }
 
+#photos-detail{
+  margin-top: 10px;  
+}
+
+#kudos-detail{
+  margin-top: 10px;  
+}
+
 @media all and (max-width: 400px) {
   #kudos-detail{
     flex-direction: column !important;
@@ -78,5 +90,9 @@
 
   .data-metric{
     font-size: 12px;
+  }
+
+  .icon-stat:hover{
+    transform: none;
   }
 }
