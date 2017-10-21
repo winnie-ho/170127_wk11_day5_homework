@@ -3,9 +3,7 @@ let fullParkRuns = [];
 let fastestPRTimes;
 let orderedKmTimes;
 
-let kmSegments = [
-  [],[],[],[],[]
-]
+let kmSegments = [ [],[],[],[],[] ]
 
 let sortedKmSegs = [];
 
@@ -42,8 +40,7 @@ const displayData = (sortedFullPR) => {
 }
 
 const computeFastestPRTimes = (parkRuns) => {
-  let clone = parkRuns.slice()
-  let distanceCheck = clone.filter(run => run.distance > 5000);
+  let distanceCheck = parkRuns.slice().filter(run => run.distance > 5000);
   fastestPRTimes = distanceCheck.sort((a,b) => a.moving_time - b.moving_time);
 }
 
