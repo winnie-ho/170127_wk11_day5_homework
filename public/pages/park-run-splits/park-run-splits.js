@@ -9,11 +9,13 @@ let kmSegments = [
 
 let sortedKmSegs = [];
 
-const km1Name = "Edinburgh park run first km";
-const km2Name= "Edinburgh Parkrun 2nd Kilometre";
-const km3Name= "Edinburgh Parkrun 3rd Kilometre";
-const km4Name= "Edinburgh Parkrun 4th Kilometre";
-const km5Name= 'Edinburgh Parkrun 5th "Kilometre"';
+const segDict = {
+  1: "Edinburgh park run first km",
+  2: "Edinburgh Parkrun 2nd Kilometre",
+  3: "Edinburgh Parkrun 3rd Kilometre",
+  4: "Edinburgh Parkrun 4th Kilometre",
+  5: 'Edinburgh Parkrun 5th "Kilometre"'
+}
 
 const computeParkRuns = (runs, cb) => {
   parkRuns = (runs.filter(run => run.start_latitude === 55.98 && run.start_longitude === -3.29)).sort((a,b) => new Date(b.start_date) - new Date(a.start_date));
@@ -47,17 +49,10 @@ const computeFastestPRTimes = (parkRuns) => {
 
 const prepareKmSegs = (fullParkRuns, cb) => {
   fullParkRuns.forEach(run => {
-    let km1 = run.segment_efforts.find(segment => segment.name === km1Name);
-    let km2 = run.segment_efforts.find(segment => segment.name === km2Name);
-    let km3 = run.segment_efforts.find(segment => segment.name === km3Name);
-    let km4 = run.segment_efforts.find(segment => segment.name === km4Name);
-    let km5 = run.segment_efforts.find(segment => segment.name === km5Name);
-    
-    km1 ? kmSegments[0].push(km1) : kmSegments[0].push(run.start_date);
-    km2 ? kmSegments[1].push(km2) : kmSegments[1].push(run.start_date);
-    km3 ? kmSegments[2].push(km3) : kmSegments[2].push(run.start_date);
-    km4 ? kmSegments[3].push(km4) : kmSegments[3].push(run.start_date);
-    km5 ? kmSegments[4].push(km5) : kmSegments[4].push(run.start_date);
+    for (i = 1; i <= 5; i++) {
+      let kmSeg = run.segment_efforts.find(segment => segment.name === segDict[i]);
+      kmSeg ? kmSegments[i-1].push(kmSeg) : kmSegments[i-1].push(run.start_date);
+    }  
   })
 
   if (kmSegments[4].length === parkRuns.length) {
@@ -110,13 +105,12 @@ const renderKmSplits = (sortedFullPR) => {
     let children = [dateDiv, nameDiv, timeDiv, paceDiv]
     append(splitDiv, children);
 
-    let km1Seg = run.segment_efforts.find(seg => seg.name === km1Name);
-    let km2Seg = run.segment_efforts.find(seg => seg.name === km2Name);
-    let km3Seg = run.segment_efforts.find(seg => seg.name === km3Name);
-    let km4Seg = run.segment_efforts.find(seg => seg.name === km4Name);
-    let km5Seg = run.segment_efforts.find(seg => seg.name === km5Name);
+    let kmSegArray = [];
+    for (i = 1; i <= 5; i++) {
+      let kmSeg = run.segment_efforts.find(seg => seg.name === segDict[i]);
+      kmSegArray.push(kmSeg);
+    }
 
-    let kmSegArray = [km1Seg, km2Seg, km3Seg, km4Seg, km5Seg];
     let missing = 0;
     kmSegArray.forEach(kmSegArray => {
       if (!kmSegArray) {
