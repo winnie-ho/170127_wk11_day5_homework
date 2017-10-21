@@ -1,8 +1,14 @@
 let pb = (22 * 60) + 54;
 
+
+
 const renderParkRunHome = (parkRuns) => {
-  const lastPR = parkRuns[0];
-  const finishTimes = parkRuns.map(run => run.moving_time);
+
+  let clone = parkRuns.slice();
+	let distanceCheck = clone.filter(run => run.distance > 5000);
+
+  const lastPR = distanceCheck[0];
+  const finishTimes = distanceCheck.map(run => run.moving_time);
   const orderedFinishTimes = finishTimes.sort((a, b) => a - b);
   const yearBest = orderedFinishTimes[0];
 

@@ -1,6 +1,10 @@
 const parkRunChart = function(dataArray){
 	const container = document.querySelector("#pr-chart");
-	const sortedDataArray = dataArray.sort((a,b) => new Date(a.start_date) - new Date(b.start_date));
+
+	let clone = dataArray.slice();
+	let distanceCheck = clone.filter(run => run.distance > 5000);
+
+	const sortedDataArray = distanceCheck.sort((a,b) => new Date(a.start_date) - new Date(b.start_date));
 
 
 	const dataArrayTime = sortedDataArray.map(run => run.moving_time*1000);
