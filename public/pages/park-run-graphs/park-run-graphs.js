@@ -1,12 +1,12 @@
 const kmChart = function(parkRuns){
 	const container = document.querySelector("#km-chart");
 
-	const dateFormatted = parkRuns.map(run => run.start_date).map(date => renderDate(date));
+	const dateFormatted = parkRuns.slice().map(run => renderDate(run.start_date)).reverse();
 		
 	let clone = kmSegments.map(kmX => kmX.slice());
 	clone.map(kmX => kmX.reverse());
 	const formattedKmDataArrays = clone.map(array => array.map(seg => seg.moving_time * 1000));
- 
+	
 	const chart = new Highcharts.Chart({
 		chart: {
 			type: "line",
