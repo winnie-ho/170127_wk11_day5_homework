@@ -1,15 +1,10 @@
 const parkRunChart = function(dataArray){
 	const container = document.querySelector("#pr-chart");
 
-	let clone = dataArray.slice();
-	let distanceCheck = clone.filter(run => run.distance > 5000);
-
+	const distanceCheck = dataArray.slice().filter(run => run.distance > 5000);
 	const sortedDataArray = distanceCheck.sort((a,b) => new Date(a.start_date) - new Date(b.start_date));
-
-
-	const dataArrayTime = sortedDataArray.map(run => run.moving_time*1000);
-	const dataArrayDate = sortedDataArray.map(run => run.start_date);
-	const dateFormatted = dataArrayDate.map(date => renderDate(date));
+	const dataArrayTime = sortedDataArray.map(run => run.moving_time * 1000);
+	const dateFormatted = sortedDataArray.map(run => renderDate(run.start_date));
 
 	const chart = new Highcharts.Chart({
 		chart: {
