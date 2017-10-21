@@ -1,9 +1,7 @@
 const kmChart = function(parkRuns){
 	const container = document.querySelector("#km-chart");
-
 	const dateFormatted = parkRuns.slice().map(run => renderDate(run.start_date)).reverse();
-		
-	let clone = kmSegments.map(kmX => kmX.slice());
+	const clone = kmSegments.map(kmX => kmX.slice());
 	clone.map(kmX => kmX.reverse());
 	const formattedKmDataArrays = clone.map(array => array.map(seg => seg.moving_time * 1000));
 	
