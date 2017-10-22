@@ -1,11 +1,11 @@
 let parkRuns = [];
 let fullParkRuns = [];
-let fastestPRTimes;
+let fastestPR;
 let orderedKmTimes;
 
 let kmSegments = [ [],[],[],[],[] ]
 
-let sortedKmSegs = [];
+let fastestKmSegs = [];
 
 const segDict = {
   1: "Edinburgh park run first km",
@@ -15,15 +15,19 @@ const segDict = {
   5: 'Edinburgh Parkrun 5th "Kilometre"'
 }
 
+//Start here.
+//Computes all park runs in chron order.
 const computeParkRuns = (runs, cb) => {
   parkRuns = (runs.filter(run => run.start_latitude === 55.98 && run.start_longitude === -3.29)).sort((a,b) => new Date(b.start_date) - new Date(a.start_date));
   cb(parkRuns);
 }
 
+//Fetches full park run object.
 const computeFullParkRuns = (parkRuns) => {
   parkRuns.forEach(run => makeRequest(("https://www.strava.com/api/v3/activities/" + run.id + userToken), pushFullPR));
 }
 
+//Make an array of full park runs in chron order and initialise display.
 const pushFullPR = (run) => {
   fullParkRuns.push(run);
   if(fullParkRuns.length === parkRuns.length){
@@ -33,46 +37,47 @@ const pushFullPR = (run) => {
 }
 
 const displayData = (sortedFullPR) => {
-  computeFastestPRTimes(parkRuns);
-  prepareKmSegs(fullParkRuns, computeFastestKmTimes);
+  computeFastestPR(parkRuns);
+  prepareKmSegs(fullParkRuns);
   renderKmSplits(sortedFullPR);
   parkRunChart(parkRuns);        
 }
 
-const computeFastestPRTimes = (parkRuns) => {
-  let distanceCheck = parkRuns.slice().filter(run => run.distance > 5000);
-  fastestPRTimes = distanceCheck.sort((a,b) => a.moving_time - b.moving_time);
+//Computing global variable 'fastestPR' if 5km distance complete.
+const computeFastestPR = (parkRuns) => {
+  fastestPR = parkRuns.slice().filter(run => run.distance > 5000).sort((a,b) => a.moving_time - b.moving_time);
 }
 
-const prepareKmSegs = (fullParkRuns, cb) => {
+//Finds the segments for Cramond park run and populates kmSegments. Then sets fastestKmSegs.
+const prepareKmSegs = (fullParkRuns) => {
   fullParkRuns.forEach(run => {
     for (i = 1; i <= 5; i++) {
       let kmSeg = run.segment_efforts.find(segment => segment.name === segDict[i]);
-      kmSeg ? kmSegments[i-1].push(kmSeg) : kmSegments[i-1].push(run.start_date);
+      kmSeg ? kmSegments[i - 1].push(kmSeg) : kmSegments[i - 1].push(run.start_date);
     }  
-  })
+  });
 
   if (kmSegments[4].length === parkRuns.length) {
     let clone = kmSegments.map(kmX => kmX.slice());
-    cb(clone);
+    fastestKmSegs = clone.map(kmX => kmX.sort((a,b) => a.moving_time - b.moving_time));
   }
 }
 
-const computeFastestKmTimes = (clone) => {
-  sortedKmSegs = clone.map(kmX => kmX.sort((a,b) => a.moving_time - b.moving_time));
-};
-
+//Highlights the three fastest times and pb if applicable.
 const highlightTop3 = (orderedTimes, time, timeDiv, pbClass) => {
-  if (time === orderedTimes[0].moving_time) {
-      timeDiv.classList.add("first");
+  const classDict = {
+    1: "first",
+    2: "second",
+    3: "third"
   }
-  if (pbClass && time === orderedTimes[0].moving_time){
-    timeDiv.classList.add("pb");
+
+  for (i = 1; i <= 3; i ++ ){
+    if (time === orderedTimes[i].moving_time) timeDiv.classList.add(classDict[i]);
+    if (pbClass && time === orderedTimes[0].moving_time) timeDiv.classList.add("pb");
   }
-  if (time === orderedTimes[1].moving_time) timeDiv.classList.add("second");
-  if (time === orderedTimes[2].moving_time) timeDiv.classList.add("third");
 }
 
+//Renders the km split page.
 const renderKmSplits = (sortedFullPR) => {
   sortedFullPR.forEach(run => {
     let splitDiv = document.createElement("div");
@@ -89,10 +94,9 @@ const renderKmSplits = (sortedFullPR) => {
     nameDiv.innerHTML = run.name;
     timeDiv.innerHTML = renderTime(run.moving_time);
 
-    highlightTop3(fastestPRTimes, run.moving_time, timeDiv, "true");
+    highlightTop3(fastestPR, run.moving_time, timeDiv, "true");
     
     paceDiv.innerHTML = renderPace(run.moving_time, run.distance);
-
 
     dateDiv.classList.add("date-spacer");
     nameDiv.classList.add("name-spacer");
@@ -122,7 +126,7 @@ const renderKmSplits = (sortedFullPR) => {
 
       if ( kmSeg ) {
         kmXTime.innerHTML = renderTime(kmSeg.moving_time);
-        highlightTop3(sortedKmSegs[counter], kmSeg.moving_time, kmXTime);
+        highlightTop3(fastestKmSegs[counter], kmSeg.moving_time, kmXTime);
       }
       
       //Fix if Strava has missed 1 segment (can be calculated from full time).

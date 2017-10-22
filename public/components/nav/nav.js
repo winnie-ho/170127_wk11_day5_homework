@@ -23,7 +23,7 @@ const handleNavButton = (navId) => {
       document.getElementById(navId).style.display = "block";
       if (parkRuns.length > 0) return;      
       computeParkRuns(responseRuns, computeFullParkRuns);      
-      renderParkRunHome(parkRuns, fastestPRTimes);
+      renderParkRunHome(parkRuns, fastestPR);
     }
     if (navId === "run-club"){
       computeRunClubRuns(responseRuns)
