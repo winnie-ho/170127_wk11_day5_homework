@@ -44,8 +44,8 @@ const renderRunInfo = (rawRun) => {
   }
 
   kudosDiv.innerHTML = rawRun.kudos_count;
-  heartrateDiv.innerHTML = "♡ " + rawRun.average_heartrate;
-  cadenceDiv.innerHTML = "↻ " + rawRun.average_cadence;
+  rawRun.average_heartrate ? heartrateDiv.innerHTML = "♡ " + rawRun.average_heartrate : heartrateDiv.innerHTML = "♡ -";
+  rawRun.average_cadence ? cadenceDiv.innerHTML = "↻ " + rawRun.average_cadence : cadenceDiv.innerHTML = "↻ -";
 }
 
 const renderLaps = (rawRun) => {
