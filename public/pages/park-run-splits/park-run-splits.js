@@ -71,8 +71,8 @@ const highlightTop3 = (orderedTimes, time, timeDiv, pbClass) => {
     3: "third"
   }
 
-  for (i = 1; i <= 3; i ++ ){
-    if (time === orderedTimes[i].moving_time) timeDiv.classList.add(classDict[i]);
+  for (i = 0; i <= 2; i ++ ){
+    if (time === orderedTimes[i].moving_time) timeDiv.classList.add(classDict[i+1]);
     if (pbClass && time === orderedTimes[0].moving_time) timeDiv.classList.add("pb");
   }
 }
