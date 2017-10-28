@@ -12,16 +12,12 @@ const pages = [
 
 const handleNavButton = (navId) => { 
   pages.forEach(page => {
-    document.getElementById("background-image").classList.add("blur");
     document.getElementById(page).style.display = "none";
-    document.getElementById("background-image").classList.add("blur");
     if (page === navId){
       document.getElementById(navId).style.display = "flex";
     }
     if (navId === "home") {
-      document.getElementById("background-image").classList.remove("blur");
       document.getElementById("weather-now").style.display = "flex";
-      document.getElementById("background-image").classList.remove("blur");
     }
     if (navId === "park-run-home") {
       document.getElementById(navId).style.display = "block";

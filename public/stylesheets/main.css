@@ -58,17 +58,10 @@ button:hover{
   width: 100%;
   height: 100%;
   z-index: -1;
-}
-
-#background-image{
-  z-index: -10;
-  height: 100%;
-  width: auto;
-  position: absolute;
-}
-
-.blur{
-  filter: blur(2px);
+  background-image: url("../resources/DC_24.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
 }
 /* old features on hold  */
 
