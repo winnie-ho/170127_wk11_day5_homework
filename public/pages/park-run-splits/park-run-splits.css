@@ -10,7 +10,11 @@
   font-size: 16px;
   overflow-x: hidden;
   overflow-y: scroll;
-  height: 85%;
+  /* height: 85%; */
+}
+
+.split{
+  width: 100%;
 }
 
 .spacer{
@@ -27,6 +31,10 @@
 .name-spacer{
   min-width: 130px;
   pointer-events: none;
+  width: 20%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #park-run-result{
@@ -51,6 +59,12 @@
 .third{
   color: #FFA600;
   font-weight: bold;
+}
+
+#splits-container{
+  height: 85%;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 @media all and (max-width: 500px) {

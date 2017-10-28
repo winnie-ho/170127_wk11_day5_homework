@@ -82,7 +82,7 @@ const renderKmSplits = (sortedFullPR) => {
   sortedFullPR.forEach(run => {
     let splitDiv = document.createElement("div");
     splitDiv.activity_id = run.id;
-    splitDiv.classList.add("row", "sb", "data-metric", "nav-button");
+    splitDiv.classList.add("row", "sb", "data-metric", "nav-button", "split");
     splitDiv.onclick = viewRun;
 
     let dateDiv = document.createElement("div");
@@ -145,6 +145,6 @@ const renderKmSplits = (sortedFullPR) => {
       splitDiv.appendChild(kmXTime);
       counter ++;
     })
-    document.getElementById("park-run-splits").appendChild(splitDiv);
+    document.getElementById("splits-container").appendChild(splitDiv);
   })
 }
