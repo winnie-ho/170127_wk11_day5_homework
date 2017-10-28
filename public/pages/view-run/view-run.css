@@ -4,13 +4,11 @@
   font-size: 16px;
   height: 100%;
   position: relative;
-  /* z-index: -3; */
 }
 
 #map {
   width: 100vw;
   height: 100vh;
-  /* z-index: -1; */
 }
 
 #activity-info{
