@@ -16,11 +16,7 @@ const setKudos = (rawKudos) => (kudos = rawKudos);
 const setComments = (rawComments) => (comments = rawComments);
 
 const renderViewRun = (rawRun) => {
-<<<<<<< HEAD
   resetDetailsExpanded();
-=======
-  resetExpandedDetails();
->>>>>>> 7328f0264b96c4933a573d63df02c718e6e946fb
   renderKudosDetail(kudos);
   renderComments(comments, kudos);
   renderRunInfo(rawRun);
