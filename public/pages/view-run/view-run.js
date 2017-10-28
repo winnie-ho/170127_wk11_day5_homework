@@ -16,11 +16,22 @@ const setKudos = (rawKudos) => (kudos = rawKudos);
 const setComments = (rawComments) => (comments = rawComments);
 
 const renderViewRun = (rawRun) => {
+  resetDetailsExpanded();
   renderKudosDetail(kudos);
   renderComments(comments, kudos);
   renderRunInfo(rawRun);
   renderLaps(rawRun);
   renderPhotos(rawRun);
+}
+
+const resetDetailsExpanded = () => {
+  document.getElementById("laps-button").classList.remove("button-active");
+  document.getElementById("kudos-button").classList.remove("button-active");
+  document.getElementById("photos-button").classList.remove("button-active");
+
+  document.getElementById("laps-detail").style.display = "none";
+  document.getElementById("kudos-detail").style.display = "none";
+  document.getElementById("photos-detail").style.display = "none";
 }
 
 const renderRunInfo = (rawRun) => {
