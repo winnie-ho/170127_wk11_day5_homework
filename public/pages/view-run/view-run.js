@@ -11,7 +11,6 @@ const fetchRun = (runId) => makeRequest((urlRoot + runId + userToken), renderVie
 const fetchKudos = (runId) => makeRequest(urlRoot + runId + "/kudos" + userToken, setKudos);
 const fetchComments = (runId) => makeRequest(urlRoot + runId + "/comments" + userToken, setComments);
 
-
 const setKudos = (rawKudos) => (kudos = rawKudos);
 const setComments = (rawComments) => (comments = rawComments);
 
@@ -22,6 +21,19 @@ const renderViewRun = (rawRun) => {
   renderRunInfo(rawRun);
   renderLaps(rawRun);
   renderPhotos(rawRun);
+  handleNavButton("view-run");
+  renderMap(rawRun);
+}
+
+const renderMap = (rawRun) => {
+  document.querySelector("#map").innerHTML = "";  
+  const runLine = rawRun.map.summary_polyline;
+  if(runLine){
+    let map = createMap();
+    const startPoint = {lat: ((rawRun.start_latlng[0] + rawRun.end_latlng[0])/2), lng: ((rawRun.start_latlng[1] + rawRun.end_latlng[1])/2)};
+    map.addPolyline(runLine, startPoint);
+    google.maps.event.trigger(map, 'resize');
+  }
 }
 
 const resetDetailsExpanded = () => {
