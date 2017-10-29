@@ -5,9 +5,7 @@
   width: auto;
   z-index: 9999;
   padding: 5px 0;
-  position: sticky;
-  top: 0;
-  opacity: 50%;
+  position: relative;
 }
 
 .nav-icon{
