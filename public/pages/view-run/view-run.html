@@ -38,7 +38,15 @@
 
   <div id="kudos-detail" class="row" style="display: none"></div>
   <div id="photos-detail"class="col sb" style="display: none"></div>
-  <div id="laps-detail" class="col sb" style="display: none"></div>
+  <div id="laps-detail" class="col sb" style="display: none">
+    <div id="laps-list" class="col sb"></div>
+    <p id="laps-calc-result"></p>
+    <div id="laps-calc" class="row sb">
+      <input id="start-lap" placeholder="start">
+      <input id="end-lap" placeholder="end">
+      <button onclick="calcLapResult()">GO</button>
+    </div>
+  </div>
 
 </div>
 

@@ -1,6 +1,7 @@
 let kudos;
 let comments;
 let urlRoot = "https://www.strava.com/api/v3/activities/";
+let rawRunGlobal;
 
 const createMap = () => {
   const centre = { lat: 55.9533, lng:-3.1883 };
@@ -15,6 +16,7 @@ const setKudos = (rawKudos) => (kudos = rawKudos);
 const setComments = (rawComments) => (comments = rawComments);
 
 const renderViewRun = (rawRun) => {
+  rawRunGlobal = rawRun;
   resetDetailsExpanded();
   renderKudosDetail(kudos);
   renderComments(comments, kudos);
@@ -44,6 +46,11 @@ const resetDetailsExpanded = () => {
   document.getElementById("laps-detail").style.display = "none";
   document.getElementById("kudos-detail").style.display = "none";
   document.getElementById("photos-detail").style.display = "none";
+
+  document.getElementById("start-lap").value = "";
+  document.getElementById("end-lap").value = "";
+  document.getElementById("laps-calc-result").innerHTML = "Lap Calculator";
+  
 }
 
 const renderRunInfo = (rawRun) => {
@@ -75,7 +82,7 @@ const renderLaps = (rawRun) => {
   lapsDiv = document.querySelector("#laps");
   lapsDiv.innerHTML = rawRun.laps.length;
 
-  lapsDetailDiv = document.querySelector("#laps-detail");
+  lapsDetailDiv = document.querySelector("#laps-list");
   lapsDetailDiv.innerHTML = "";
   rawRun.laps.forEach(lap => {
     const lapBox = document.createElement("div");
@@ -148,4 +155,16 @@ const renderPhotos = (rawRun) => {
     photo.src = rawRun.photos.primary.urls["600"];
     photoDetailDiv.appendChild(photo);
   }
+}
+
+const calcLapResult = () => {
+  let start = document.getElementById("start-lap").value;
+  let end = document.getElementById("end-lap").value;
+
+  let laps = rawRunGlobal.laps;
+  let counter = 0;
+  for (i = start; i <= end; i ++) {
+    counter += laps[i-1].moving_time;
+  }
+  document.getElementById("laps-calc-result").innerText = "Total Time: " + renderTime(counter);
 }

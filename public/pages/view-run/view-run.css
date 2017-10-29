@@ -71,6 +71,14 @@
   width: 100vw;
 }
 
+#laps-calc{
+  width: 90%;
+}
+
+#laps-calc-result{
+  font-size: 14px;
+}
+
 #photos-detail{
   margin-top: 10px;  
 }
