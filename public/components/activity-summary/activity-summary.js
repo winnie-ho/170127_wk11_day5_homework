@@ -86,6 +86,7 @@ const createActivitySummary = (rawId, rawDate,rawTitle, rawDistance, rawTime) =>
 }
 
 const viewRun = (event) => {
+  document.querySelector("#map").innerHTML = "";
   const selectedRun = responseRuns.find(run => run.id === event.target.activity_id);
   const runLine = selectedRun.map.summary_polyline;
   let map;
@@ -94,11 +95,9 @@ const viewRun = (event) => {
   fetchComments(selectedRun.id);
   fetchRun(selectedRun.id); 
   handleNavButton("view-run");
-  if(selectedRun.map.summary_polyline){
+  if(selectedRun && runLine){
     map = createMap();
     const startPoint = {lat: ((selectedRun.start_latlng[0] + selectedRun.end_latlng[0])/2), lng: ((selectedRun.start_latlng[1] + selectedRun.end_latlng[1])/2)};
     map.addPolyline(runLine, startPoint);
-  } else {
-    document.querySelector("#map").innerHTML = "";
   }
 }
