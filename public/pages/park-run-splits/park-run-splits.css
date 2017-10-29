@@ -61,10 +61,9 @@
 .highlight-legend{
   display: flex;
   justify-content: space-around;
-  width: 100px;
+  width: 120px;
   position: absolute;
-  top: 39px;
-  right: 80px;
+  top: 40px;
 }
 
 #splits-container{
