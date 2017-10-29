@@ -89,14 +89,13 @@ const viewRun = (event) => {
   document.querySelector("#map").innerHTML = "";
   const selectedRun = responseRuns.find(run => run.id === event.target.activity_id);
   const runLine = selectedRun.map.summary_polyline;
-  let map;
   
   fetchKudos(selectedRun.id);
   fetchComments(selectedRun.id);
   fetchRun(selectedRun.id); 
   handleNavButton("view-run");
   if(selectedRun && runLine){
-    map = createMap();
+    let map = createMap();
     const startPoint = {lat: ((selectedRun.start_latlng[0] + selectedRun.end_latlng[0])/2), lng: ((selectedRun.start_latlng[1] + selectedRun.end_latlng[1])/2)};
     map.addPolyline(runLine, startPoint);
   }
