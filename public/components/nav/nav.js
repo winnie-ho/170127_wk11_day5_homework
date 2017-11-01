@@ -37,14 +37,23 @@ const handleNavButton = (navId) => {
   });
 }
 
+const detailedViews = [
+  "laps",
+  "photos",
+  "comments",
+  "kudos"
+]
+
 const handleToggleButton = (toggleId, id) => { 
+  detailedViews.forEach(detailedView => {
+    document.getElementById(detailedView+"-detail").style.display = "none";
+    document.getElementById(detailedView+"-button").classList.remove('button-active');
+  });
+
   let idTarget = document.getElementById(id);
   let target = document.getElementById(toggleId);
   if (target.style.display === 'none') {
     idTarget.classList.add('button-active');
     target.style.display = "flex";
-  } else if (target.style.display === 'flex') {
-    target.style.display = "none";
-    idTarget.classList.remove('button-active');
   }
 }

@@ -15,7 +15,7 @@
 }
 
 .nav-icon:hover{
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
 .nav-button{
@@ -24,7 +24,7 @@
 
 .button-active{
   background-color: #3E9FDF;
-  transform: scale(1.2);
+  transform: scale(1.1);
   padding: 0 7px;
   border-radius: 5px;
 }
