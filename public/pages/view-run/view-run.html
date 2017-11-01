@@ -23,11 +23,14 @@
   
   
   <div id="activity-info__tertiary-stats" class="row sa">
-    <div class="col">
-      <div id="kudos-button" class="icon-stat" onclick="handleToggleButton('kudos-detail', 'kudos-button')" >
-        <img class="activity-icon" src="./resources/icon_like.png" class="nav-icon"/>
-        <div id="secondary-stats__kudos" class="data-metric"></div>
-      </div>
+    <div id="comments-button" class="icon-stat" onclick="handleToggleButton('comments-detail', 'comments-button')" >
+      <img class="activity-icon" src="./resources/icon_comment.png" class="nav-icon"/>
+      <div id="secondary-stats__comments" class="data-metric"></div>
+    </div>
+
+    <div id="kudos-button" class="icon-stat" onclick="handleToggleButton('kudos-detail', 'kudos-button')" >
+      <img class="activity-icon" src="./resources/icon_like.png" class="nav-icon"/>
+      <div id="secondary-stats__kudos" class="data-metric"></div>
     </div>
     
     <div id="photos-button" style="display: none" class="icon-stat" onclick="handleToggleButton('photos-detail', 'photos-button')"> 
@@ -36,8 +39,10 @@
     </div>
   </div>
 
-  <div id="kudos-detail" class="row" style="display: none"></div>
-  <div id="photos-detail"class="col sb" style="display: none"></div>
+  <div id="kudos-detail" class="row" style="display: none">
+  </div>
+  <div id="comments-detail" class="col sb" style="display: none"></div>
+  <div id="photos-detail" class="col sb" style="display: none"></div>
   <div id="laps-detail" class="col sb" style="display: none">
     <div id="laps-list" class="col sb"></div>
     <p id="laps-calc-result"></p>

@@ -87,6 +87,16 @@
   margin-top: 10px;  
 }
 
+#comments-detail{
+  align-items: unset;
+  margin: 10px 0;
+}
+
+.comment-text{
+  height: auto;
+  padding: 10px;
+}
+
 @media all and (max-width: 400px) {
   #kudos-detail{
     flex-direction: column !important;

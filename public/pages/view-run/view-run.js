@@ -19,7 +19,7 @@ const renderViewRun = (rawRun) => {
   rawRunGlobal = rawRun;
   resetDetailsExpanded();
   renderKudosDetail(kudos);
-  renderComments(comments, kudos);
+  renderComments(rawRun, comments, kudos);
   renderRunInfo(rawRun);
   renderLaps(rawRun);
   renderPhotos(rawRun);
@@ -60,6 +60,7 @@ const renderRunInfo = (rawRun) => {
   const timeDiv = document.querySelector("#primary-stats__time");
   const paceDiv = document.querySelector("#primary-stats__pace");
   const kudosDiv = document.querySelector("#secondary-stats__kudos");
+  const commentsDiv = document.querySelector("#secondary-stats__comments");
   const heartrateDiv = document.querySelector("#secondary-stats__heartrate");
   const cadenceDiv = document.querySelector("#secondary-stats__cadence");
 
@@ -74,6 +75,7 @@ const renderRunInfo = (rawRun) => {
   }
 
   kudosDiv.innerHTML = rawRun.kudos_count;
+  commentsDiv.innerHTML = rawRun.comment_count;
   rawRun.average_heartrate ? heartrateDiv.innerHTML = "♡ " + rawRun.average_heartrate : heartrateDiv.innerHTML = "♡ -";
   rawRun.average_cadence ? cadenceDiv.innerHTML = "↻ " + rawRun.average_cadence : cadenceDiv.innerHTML = "↻ -";
 }
@@ -127,16 +129,27 @@ const renderKudosDetail = (rawKudos) => {
   });
 }
 
-const renderComments = (comments, kudos) => {
-  comments.find(comment => {
-    return kudos.find(kudoser => {
-      if (kudoser.id === comment.athlete.id) {
-        let kudoserId = kudoser.id.toString();
-        let targetKudoser = document.getElementById(kudoserId);
-        targetKudoser.innerHTML = kudoser.firstname + ":  " + comment.text;
-      };
-    })
-  })
+const renderComments = (rawRun, comments, kudos) => {
+  commentsDetailDiv = document.getElementById("comments-detail");
+  commentsDetailDiv.innerHTML = "";
+  if (rawRun.comment_count === 0){
+    document.getElementById("comments-button").style.display = "none";
+  } else if (rawRun.comment_count > 0) {
+    document.getElementById("comments-button").style.display = "flex";    
+    comments.forEach(comment => {
+      const commenter = document.createElement("div");
+      const commenterName = document.createElement("span");
+      const commenterImage = document.createElement("img");
+      commenter.classList.add("row");
+      commenterName.classList.add("data-metric", "comment-text");
+      commenter.id = comment.id;
+      commenterImage.src = comment.athlete.profile_medium;
+      commenterImage.classList.add("small-avatar");
+      commenterName.innerHTML = comment.athlete.firstname + ": " + comment.text;
+      append(commenter, [commenterImage, commenterName]);
+      commentsDetailDiv.appendChild(commenter);
+    });
+  }
 }
 
 const renderPhotos = (rawRun) => {
