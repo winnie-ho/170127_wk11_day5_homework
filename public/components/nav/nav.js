@@ -44,16 +44,21 @@ const detailedViews = [
   "kudos"
 ]
 
-const handleToggleButton = (toggleId, id) => { 
-  detailedViews.forEach(detailedView => {
-    document.getElementById(detailedView+"-detail").style.display = "none";
-    document.getElementById(detailedView+"-button").classList.remove('button-active');
-  });
-
+const handleToggleButton = (toggleId, id) => {
   let idTarget = document.getElementById(id);
   let target = document.getElementById(toggleId);
-  if (target.style.display === 'none') {
-    idTarget.classList.add('button-active');
-    target.style.display = "flex";
+  if (target.style.display === 'flex') {
+    target.style.display = "none";
+    idTarget.classList.remove('button-active');
+  } else if (target.style.display === 'none') {
+      detailedViews.forEach(detailedView => {
+      document.getElementById(detailedView+"-detail").style.display = "none";
+      document.getElementById(detailedView+"-button").classList.remove('button-active');
+    });
+      
+    if (target.style.display === 'none') {
+      target.style.display = "flex";
+      idTarget.classList.add('button-active');
+    }
   }
 }
