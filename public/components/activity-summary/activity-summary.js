@@ -90,4 +90,5 @@ const viewRun = (event) => {
   fetchKudos(selectedRun.id);
   fetchComments(selectedRun.id);
   fetchRun(selectedRun.id); 
+  fetchPhotos(selectedRun.id);
 }

@@ -1,5 +1,6 @@
 let kudos;
 let comments;
+let photos;
 let urlRoot = "https://www.strava.com/api/v3/activities/";
 let rawRunGlobal;
 
@@ -10,10 +11,12 @@ const createMap = () => {
 
 const fetchRun = (runId) => makeRequest((urlRoot + runId + userToken), renderViewRun);
 const fetchKudos = (runId) => makeRequest(urlRoot + runId + "/kudos" + userToken, setKudos);
+const fetchPhotos = (runId) => makeRequest((urlRoot + runId + "/photos?photo_sources=true&size=400&access_token=" + user), setPhotos);
 const fetchComments = (runId) => makeRequest(urlRoot + runId + "/comments" + userToken, setComments);
 
 const setKudos = (rawKudos) => (kudos = rawKudos);
 const setComments = (rawComments) => (comments = rawComments);
+const setPhotos = (rawPhotos) => (photos = rawPhotos);
 
 const renderViewRun = (rawRun) => {
   rawRunGlobal = rawRun;
@@ -22,7 +25,7 @@ const renderViewRun = (rawRun) => {
   renderComments(rawRun, comments, kudos);
   renderRunInfo(rawRun);
   renderLaps(rawRun);
-  renderPhotos(rawRun);
+  renderPhotos(rawRun, photos);
   handleNavButton("view-run");
   renderMap(rawRun);
 }
@@ -152,21 +155,22 @@ const renderComments = (rawRun, comments, kudos) => {
   }
 }
 
-const renderPhotos = (rawRun) => {
+const renderPhotos = (rawRun, photos) => {
   let photoDetailDiv = document.getElementById("photos-detail");
-  let photos = document.getElementById("photos");
+  let photosDiv = document.getElementById("photos");
   let photosButton = document.getElementById("photos-button");
   photoDetailDiv.innerHTML = "";
-  photos.innerHTML = rawRun.photos.count;
-  
+  photosDiv.innerHTML = rawRun.photos.count;
   if (rawRun.photos.count === 0){
     document.getElementById("photos-button").style.display = "none";
   } else if (rawRun.photos.count > 0) {
     document.getElementById("photos-button").style.display = "flex";
-    let photo = document.createElement("img");
-    photo.classList.add("photo");
-    photo.src = rawRun.photos.primary.urls["600"];
-    photoDetailDiv.appendChild(photo);
+    photos.forEach(photo => {
+      let img = document.createElement("img");
+      img.classList.add("photo");
+      img.src = photo.urls["400"];
+      photoDetailDiv.appendChild(img);
+    });
   }
 }
 
