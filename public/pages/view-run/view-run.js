@@ -85,10 +85,11 @@ const renderRunInfo = (rawRun) => {
 const renderLaps = (rawRun) => {
   lapsDiv = document.querySelector("#laps");
   lapsDiv.innerHTML = rawRun.laps.length;
-
   lapsDetailDiv = document.querySelector("#laps-list");
   lapsDetailDiv.innerHTML = "";
+  let counter = 1;
   rawRun.laps.forEach(lap => {
+    console.log("LAPS", rawRun.laps);
     const lapBox = document.createElement("div");
     const lapNo = document.createElement("div");
     const lapDistance = document.createElement("div");
@@ -99,7 +100,7 @@ const renderLaps = (rawRun) => {
     lapDistance.classList.add("data-metric");
     lapTime.classList.add("data-metric");
     lapPace.classList.add("data-metric");
-    lapNo.innerHTML = lap.lap_index;
+    lapNo.innerHTML = counter;
     lapDistance.innerHTML = renderDistance(lap.distance);
     lapTime.innerHTML = renderTime(lap.moving_time);
     lapPace.innerHTML = renderPace(lap.moving_time, lap.distance);
@@ -107,18 +108,21 @@ const renderLaps = (rawRun) => {
       lapDistance.innerHTML = 22.86 + "m";
       lapPace.innerHTML = (lap.moving_time/22.86).toFixed(2) + " s/m";
     }
-    lapBox.id = lap.lap_index;
+    lapBox.id = counter;
     lapBox.rawRun = rawRun;
     lapBox.onclick = selectLap;
     append(lapBox, [lapNo, lapDistance, lapTime, lapPace]);
     lapsDetailDiv.appendChild(lapBox);
+    counter ++;
   })
 }
 
 const selectLap = (event) => {
   numOfLaps = event.target.rawRun.laps.length;
   for (i = 1; i <= numOfLaps; i ++ ) {
-    document.getElementById(i.toString()).classList.remove("lap-selected");
+    let lapDivShow = document.getElementById(i);
+    console.log("ID", lapDivShow);
+    document.getElementById(i).classList.remove("lap-selected");
   }
   
   lapCount.push(event.target.id);
@@ -128,7 +132,6 @@ const selectLap = (event) => {
     document.getElementById(lap).classList.add("lap-selected");
   });
 }
-
 
 const calcLapResult = (event) => {
   let largest;
