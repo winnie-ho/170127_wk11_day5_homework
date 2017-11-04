@@ -89,7 +89,6 @@ const renderLaps = (rawRun) => {
   lapsDetailDiv.innerHTML = "";
   let counter = 1;
   rawRun.laps.forEach(lap => {
-    console.log("LAPS", rawRun.laps);
     const lapBox = document.createElement("div");
     const lapNo = document.createElement("div");
     const lapDistance = document.createElement("div");
@@ -121,7 +120,6 @@ const selectLap = (event) => {
   numOfLaps = event.target.rawRun.laps.length;
   for (i = 1; i <= numOfLaps; i ++ ) {
     let lapDivShow = document.getElementById(i);
-    console.log("ID", lapDivShow);
     document.getElementById(i).classList.remove("lap-selected");
   }
   
@@ -156,19 +154,24 @@ const calcLapResult = (event) => {
 const renderKudosDetail = (rawKudos) => {
   kudosDetailDiv = document.querySelector("#kudos-detail");
   kudosDetailDiv.innerHTML = "";
-  rawKudos.forEach(kudoser => {
-    const kudoserPerson = document.createElement("div");
-    const kudoserName = document.createElement("span");
-    const kudoserImage = document.createElement("img");
-    kudoserPerson.classList.add("row");
-    kudoserName.classList.add("data-metric");
-    kudoserName.id = kudoser.id;
-    kudoserImage.src = kudoser.profile_medium;
-    kudoserImage.classList.add("small-avatar");
-    kudoserName.innerHTML = kudoser.firstname;
-    append(kudoserPerson, [kudoserImage, kudoserName]);
-    kudosDetailDiv.appendChild(kudoserPerson);
-  });
+  if (rawKudos.length === 0) {
+    document.getElementById("kudos-button").style.display = "none";
+  } else if (rawKudos.length > 0) {
+    rawKudos.forEach(kudoser => {
+      document.getElementById("kudos-button").style.display = "flex";
+      const kudoserPerson = document.createElement("div");
+      const kudoserName = document.createElement("span");
+      const kudoserImage = document.createElement("img");
+      kudoserPerson.classList.add("row");
+      kudoserName.classList.add("data-metric");
+      kudoserName.id = kudoser.id;
+      kudoserImage.src = kudoser.profile_medium;
+      kudoserImage.classList.add("small-avatar");
+      kudoserName.innerHTML = kudoser.firstname;
+      append(kudoserPerson, [kudoserImage, kudoserName]);
+      kudosDetailDiv.appendChild(kudoserPerson);
+    });
+  }
 }
 
 const renderComments = (rawRun, comments, kudos) => {
