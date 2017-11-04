@@ -110,7 +110,7 @@
   #kudos-detail{
     flex-direction: column !important;
     align-items: flex-start;
-    margin-left: 10px;
+    margin: 15px 5px;
   }
 
   .data-metric{
