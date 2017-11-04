@@ -3,6 +3,8 @@ let comments;
 let photos;
 let urlRoot = "https://www.strava.com/api/v3/activities/";
 let rawRunGlobal;
+let lapCount = [];
+
 
 const createMap = () => {
   const centre = { lat: 55.9533, lng:-3.1883 };
@@ -50,8 +52,6 @@ const resetDetailsExpanded = () => {
   document.getElementById("kudos-detail").style.display = "none";
   document.getElementById("photos-detail").style.display = "none";
 
-  document.getElementById("start-lap").value = "";
-  document.getElementById("end-lap").value = "";
   document.getElementById("laps-calc-result").innerHTML = "Lap Calculator";
   
 }
@@ -108,10 +108,47 @@ const renderLaps = (rawRun) => {
       lapDistance.innerHTML = 22.86 + "m";
       lapPace.innerHTML = (lap.moving_time/22.86).toFixed(2) + " s/m";
     }
-
+    lapBox.id = lap.lap_index;
+    lapBox.rawRun = rawRun;
+    lapBox.onclick = selectLap;
     append(lapBox, [lapNo, lapDistance, lapTime, lapPace]);
     lapsDetailDiv.appendChild(lapBox);
   })
+}
+
+const selectLap = (event) => {
+  numOfLaps = event.target.rawRun.laps.length;
+  for (i = 1; i <= numOfLaps; i ++ ) {
+    document.getElementById(i.toString()).classList.remove("lap-selected");
+  }
+  
+  lapCount.push(event.target.id);
+  if (lapCount.length > 2) lapCount.splice(0,1);
+  if (lapCount.length == 2) calcLapResult(event);
+  lapCount.forEach(lap => {
+    document.getElementById(lap).classList.add("lap-selected");
+  });
+}
+
+
+const calcLapResult = (event) => {
+  let largest;
+  let smallest;
+
+  if (lapCount[0] > lapCount[1]) {
+    largest = lapCount[0];
+    smallest = lapCount[1];
+  } else {
+    largest = lapCount[1];
+    smallest = lapCount[0];
+  }
+
+  let laps = event.target.rawRun.laps;
+  let counter = 0;
+  for (i = smallest; i <= largest; i ++) {
+    counter += laps [i-1].moving_time;
+  }
+  document.getElementById("laps-calc-result").innerText = "Total Time: " + renderTime(counter);
 }
 
 const renderKudosDetail = (rawKudos) => {
@@ -172,16 +209,4 @@ const renderPhotos = (rawRun, photos) => {
       photoDetailDiv.appendChild(img);
     });
   }
-}
-
-const calcLapResult = () => {
-  let start = document.getElementById("start-lap").value;
-  let end = document.getElementById("end-lap").value;
-
-  let laps = rawRunGlobal.laps;
-  let counter = 0;
-  for (i = start; i <= end; i ++) {
-    counter += laps[i-1].moving_time;
-  }
-  document.getElementById("laps-calc-result").innerText = "Total Time: " + renderTime(counter);
 }

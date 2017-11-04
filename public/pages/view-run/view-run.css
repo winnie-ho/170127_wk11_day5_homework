@@ -69,6 +69,11 @@
 
 .lap-box{
   width: 100vw;
+  cursor: pointer;
+}
+
+.lap-box *{
+  pointer-events: none;
 }
 
 #laps-calc{
@@ -77,6 +82,10 @@
 
 #laps-calc-result{
   font-size: 14px;
+}
+
+.lap-selected{
+  background-color: #3E9FDF;
 }
 
 #photos-detail{
