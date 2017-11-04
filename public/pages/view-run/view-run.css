@@ -106,6 +106,10 @@
   padding: 10px;
 }
 
+#activity-info__tertiary-stats{
+  margin-bottom: 15px;
+}
+
 @media all and (max-width: 400px) {
   #kudos-detail{
     flex-direction: column !important;
