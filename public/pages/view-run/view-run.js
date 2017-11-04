@@ -51,7 +51,7 @@ const resetDetailsExpanded = () => {
   document.getElementById("laps-detail").style.display = "none";
   document.getElementById("kudos-detail").style.display = "none";
   document.getElementById("photos-detail").style.display = "none";
-  document.getElementById("laps-calc-result").innerHTML = "";
+  document.getElementById("laps-calc-result").innerHTML = "Select laps to compute";
   lapCount = [];  
 }
 
