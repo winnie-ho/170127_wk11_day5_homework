@@ -1,0 +1,27 @@
+<link rel="stylesheet" type="text/css" href="./pages/run-club-home/run-club-home.css">
+<link rel="stylesheet" type="text/css" href="./pages/run-club/run-club.css">    
+<script src="https://www.w3schools.com/lib/w3.js"></script>
+<script src=".pages/run-club/run-club.js"></script>
+
+<div id="rc-latest" class="row">
+  <img id="run4it-logo" src="../resources/icon_run4it.png"/> 
+
+  <div id="last-rc" class="col-left">
+    <div class="heading rc-heading">RUN CLUB</div>
+    <div id="last-rc__date"></div>
+    <div id="last-rc__name" class="last-rc__metric"></div>
+    <div class="last-rc__metric row sb">
+      <div id="last-rc__time"></div>
+      <div id="last-rc__pace"></div>
+    </div>
+  </div>
+</div>
+
+<div 
+  w3-include-html="./pages/run-club/run-club.html" 
+  id="run-club">
+</div>
+
+<script>
+  w3.includeHTML();
+</script>

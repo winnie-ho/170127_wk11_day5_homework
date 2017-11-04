@@ -1,4 +1,4 @@
-#park-run-home{
+#run-club-home{
   display: flex;
   flex-direction: column;
   color: white;
@@ -11,44 +11,48 @@
   margin-top: 20px;  
 }
 
-#park-run-logo{
-  height: 65px;
+#run4it-logo{
+  height: 25px;
   width: auto;
+  margin: 10px;
+  margin-top: 6px;
 }
 
-#last-pr{
+.rc-heading{
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+
+#last-rc{
   font-size: 14px;
   width: 100%;
 }
 
-.last-pr__summary{
+.last-rc__summary{
   height: 75px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
 
-#park-run-latest{
+#rc-latest{
   align-items: flex-start;
   width: 100%;
+  margin-bottom: 30px;
 }
 
-#last-pr__date{
+#last-rc__date{
   margin-bottom: 10px;
 }
 
-.last-pr__metric{
+.last-rc__metric{
   width: 225px;
   font-size: 25px;
 }
 
-#last-pr__pace{
+#last-rc__pace{
   margin-right: 10px;
-}
-
-#pr-chart{
-  position: relative;
-
 }
 
 @media all and (max-width: 500px) {

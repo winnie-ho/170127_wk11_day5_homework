@@ -1,7 +1,8 @@
 const pages = [
   "home",
   "weather-now",
-  "run-club",
+  "run-club-home",
+  // "run-club",
   "park-run-home",
   "park-run-splits",
   "park-run-graphs",
@@ -25,8 +26,10 @@ const handleNavButton = (navId) => {
       computeParkRuns(responseRuns, computeFullParkRuns);      
       renderParkRunHome(parkRuns, fastestPR);
     }
-    if (navId === "run-club"){
-      computeRunClubRuns(responseRuns)
+    if (navId === "run-club-home"){
+      document.getElementById(navId).style.display="block";
+      computeRunClubRuns(responseRuns);
+      renderRunClubHome(runClubRuns);
     }
     if (navId === "runs"){
       showRun(responseRuns);  
