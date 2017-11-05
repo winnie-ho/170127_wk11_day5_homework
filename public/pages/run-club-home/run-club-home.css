@@ -5,23 +5,41 @@
   background-color: rgba(31, 97, 141, 0.7);
   box-shadow: 0 0 30px 0025px rgba(31, 97, 141, 0.7);
   font-size: 16px;
-  height: 85%;
+  height: 90%;
   overflow-x: hidden;
   overflow-y: scroll;
   margin-top: 20px;  
 }
 
+#club-hero{
+  position: relative;
+  filter: drop-shadow(8px 8px 10px rgba(31, 97, 141, 0.9));  
+}
+
+#rc-image{
+  width: 100vw;
+  height: auto;
+}
+
+#rc-name-container{
+  z-index: 1;
+  position: absolute;
+  bottom: 12%;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
 #run4it-logo{
   height: 25px;
   width: auto;
-  margin: 10px;
-  margin-top: 6px;
+  z-index: 2;
+  margin: 0 5px;
 }
 
-.rc-heading{
+#rc-name{
   display: flex;
-  align-content: center;
-  align-items: center;
+  justify-content: center;
 }
 
 #last-rc{
@@ -37,9 +55,16 @@
 }
 
 #rc-latest{
-  align-items: flex-start;
+  justify-content: center;
   width: 100%;
   margin-bottom: 30px;
+  height: 100px;
+  display: flex;
+  filter: drop-shadow(8px 8px 10px rgba(31, 97, 141, 0.9));
+}
+
+#last-rc__name{
+  width: unset;
 }
 
 #last-rc__date{
@@ -47,8 +72,8 @@
 }
 
 .last-rc__metric{
-  width: 225px;
-  font-size: 25px;
+  width: 100%;
+  font-size: 22px;
 }
 
 #last-rc__pace{
@@ -56,5 +81,7 @@
 }
 
 @media all and (max-width: 500px) {
-
+  .rc-year-totals{
+    font-size: 14px;
+  }
 }

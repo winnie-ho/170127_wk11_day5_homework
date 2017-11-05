@@ -3,17 +3,39 @@
 <script src="https://www.w3schools.com/lib/w3.js"></script>
 <script src=".pages/run-club/run-club.js"></script>
 
-<div id="rc-latest" class="row">
-  <img id="run4it-logo" src="../resources/icon_run4it.png"/> 
+<div id="club-hero">
+  <img id="rc-image"/> 
+  <div id="rc-name-container" class="row"> 
+    <img id="run4it-logo" src="../resources/icon_run4it.png"/> 
+    <div id="rc-name" class="heading rc-heading"></div>
+  </div>
+</div>
 
-  <div id="last-rc" class="col-left">
-    <div class="heading rc-heading">RUN CLUB</div>
+
+
+<div class="rc-year-totals row">
+  <div class="total-item">RUNS
+    <div id="rc-year-runs" class="total-item__child"></div>
+  </div>
+
+  <div class="total-item">DISTANCE
+    <div id="rc-year-distance" class="total-item__child"></div>
+  </div>
+
+  <div class="total-item">TIME
+    <div id="rc-year-time" class="total-item__child"></div>
+  </div>
+</div>
+
+<div id="rc-latest" class="col">
+  <div id="last-rc" class="col">
     <div id="last-rc__date"></div>
-    <div id="last-rc__name" class="last-rc__metric"></div>
-    <div class="last-rc__metric row sb">
-      <div id="last-rc__time"></div>
-      <div id="last-rc__pace"></div>
-    </div>
+    <div id="last-rc__name" class="last-rc__metric sa"></div>
+  </div>
+  <div class="last-rc__metric row sa">
+    <div id="last-rc__distance"></div>
+    <div id="last-rc__time"></div>
+    <div id="last-rc__pace"></div>
   </div>
 </div>
 
