@@ -13,7 +13,7 @@ const createMap = () => {
 
 const fetchRun = (runId) => makeRequest((urlRoot + runId + userToken), renderViewRun);
 const fetchKudos = (runId) => makeRequest(urlRoot + runId + "/kudos" + userToken, setKudos);
-const fetchPhotos = (runId) => makeRequest((urlRoot + runId + "/photos?photo_sources=true&size=400&access_token=" + user), setPhotos);
+const fetchPhotos = (runId) => makeRequest((urlRoot + runId + "/photos?photo_sources=true&size=1000&access_token=" + user), setPhotos);
 const fetchComments = (runId) => makeRequest(urlRoot + runId + "/comments" + userToken, setComments);
 
 const setKudos = (rawKudos) => (kudos = rawKudos);
@@ -210,7 +210,7 @@ const renderPhotos = (rawRun, photos) => {
     photos.forEach(photo => {
       let img = document.createElement("img");
       img.classList.add("photo");
-      img.src = photo.urls["400"];
+      img.src = photo.urls["1000"];
       photoDetailDiv.appendChild(img);
     });
   }
