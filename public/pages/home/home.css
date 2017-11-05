@@ -92,13 +92,23 @@
   animation-fill-mode: forwards;
   align-content: center;
   align-items: center;
-  padding-left: 20px;
+  padding-left: 5px;
   padding-right: 10px;
   cursor: pointer;
+  overflow-x: scroll;
 } 
 
 .day-title--active > div{
   margin-left: 20px;
+}
+
+.day-num{
+  padding: 0 10px;
+  font-weight: bold;
+}
+
+.activity-div{
+  padding-right: 10px;
 }
 
 @keyframes day-settle {

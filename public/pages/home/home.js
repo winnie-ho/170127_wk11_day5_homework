@@ -26,40 +26,62 @@ const showRuns = (result) => {
 }
 
 const renderWeek = (weekRuns) => {
-  for (let activity of weekRuns){    
-    let dayLookUp = {
-      1: "MON",
-      2: "TUE",
-      3: "WED",
-      4: "THU",
-      5: "FRI",
-      6: "SAT",
-      0: "SUN"
-    }
+  let dayLookUp = {
+    1: "MON",
+    2: "TUE",
+    3: "WED",
+    4: "THU",
+    5: "FRI",
+    6: "SAT",
+    0: "SUN"
+  }
+  let weekInViewDiv = document.getElementById("dateInView");
+  weekInViewDiv.classList.add("heading");
 
-    let weekInViewDiv = document.getElementById("dateInView");
-    weekInViewDiv.classList.add("heading");
-
-    if (weekInViewIndex === 0) {
-      weekInViewDiv.innerHTML = "THIS WEEK";
-    } else if (weekInViewIndex === 1 ) {
-      weekInViewDiv.innerHTML = "LAST WEEK";
-    } else {
-      weekInViewDiv.innerHTML = renderDate(activity.start_date, "long");
-    }
+    weekRuns.forEach(activity => {
+      if (weekInViewIndex === 0) {
+        weekInViewDiv.innerHTML = "THIS WEEK";
+      } else if (weekInViewIndex === 1 ) {
+        weekInViewDiv.innerHTML = "LAST WEEK";
+      } else {
+        weekInViewDiv.innerHTML = renderDate(activity.start_date, "long");
+      }
 
     let rawTime = activity.moving_time;
     let rawDistance = activity.distance;
     let dayDiv = document.getElementById(dayLookUp[new Date(activity.start_date).getDay()]);
-
     dayDiv.activity_id = activity.id;    
     dayDiv.classList.add("day-title--active");
     dayDiv.onclick = viewRun;
-    
+
+
     if (activity.distance === 0) {
       dayDiv.innerHTML = activity.name + "<br>" + renderTime(rawTime);
     } else {
-    dayDiv.innerHTML = activity.name + "<br>" + (activity.distance/1000).toFixed(2) + "km,  " + renderTime(rawTime) + ", " + renderPace(rawTime, rawDistance);
+      let activityDiv = document.createElement("div");
+      activityDiv.classList.add("activity-div");
+      activityDiv.innerHTML = activity.name + "<br>" + (activity.distance/1000).toFixed(2) + "km,  " + renderTime(rawTime) + ", " + renderPace(rawTime, rawDistance);
+      dayDiv.appendChild(activityDiv);
+    }
+  });
+  computeDayNum();
+}
+
+const computeDayNum = () => {
+  let dayLookUp = {
+    1: "MON",
+    2: "TUE",
+    3: "WED",
+    4: "THU",
+    5: "FRI",
+    6: "SAT",
+    0: "SUN"
+  }
+  for (i = 0; i < 7; i ++) {
+    let dayDiv = document.getElementById(dayLookUp[i])
+    let activityNum = dayDiv.children.length;
+    if (activityNum > 1) {
+      let dayNumDiv = dayDiv.nextSibling.innerHTML = ">";
     }
   }
 }
