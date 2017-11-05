@@ -107,6 +107,7 @@
   padding: 0 10px;
   font-weight: bold;
   animation: blink-animation 1s steps(5, start) infinite;
+  -webkit-animation: blink-animation 1s steps(5, start) infinite;
 }
 
 @keyframes blink-animation {
