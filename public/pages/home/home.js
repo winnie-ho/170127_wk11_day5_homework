@@ -50,16 +50,15 @@ const renderWeek = (weekRuns) => {
     let rawTime = activity.moving_time;
     let rawDistance = activity.distance;
     let dayDiv = document.getElementById(dayLookUp[new Date(activity.start_date).getDay()]);
-    dayDiv.activity_id = activity.id;    
     dayDiv.classList.add("day-title--active");
-    dayDiv.onclick = viewRun;
-
-
+    
     if (activity.distance === 0) {
       dayDiv.innerHTML = activity.name + "<br>" + renderTime(rawTime);
     } else {
       let activityDiv = document.createElement("div");
       activityDiv.classList.add("activity-div");
+      activityDiv.activity_id = activity.id;  
+      activityDiv.onclick = viewRun;
       activityDiv.innerHTML = activity.name + "<br>" + (activity.distance/1000).toFixed(2) + "km,  " + renderTime(rawTime) + ", " + renderPace(rawTime, rawDistance);
       dayDiv.appendChild(activityDiv);
     }
