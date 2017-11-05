@@ -96,6 +96,7 @@
   padding-right: 10px;
   cursor: pointer;
   overflow-x: scroll;
+  overflow-y: hidden;
 } 
 
 .day-title--active > div{
@@ -105,6 +106,18 @@
 .day-num{
   padding: 0 10px;
   font-weight: bold;
+  animation: blink-animation 1s steps(5, start) infinite;
+}
+
+@keyframes blink-animation {
+  to {
+    color: #3E9FDF;
+  }
+}
+@-webkit-keyframes blink-animation {
+  to {
+    color: white;
+  }
 }
 
 .activity-div{
