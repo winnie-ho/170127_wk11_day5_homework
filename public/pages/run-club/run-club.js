@@ -7,7 +7,7 @@ const computeRunClubRuns = (responseRuns) => {
   runClubDiv.innerHTML = "";
 
   runClubRuns.forEach(run => {
-    let activitySummary = createActivitySummary(run.id,run.start_date, run.name, run.distance, run.moving_time); 
+    let activitySummary = createActivitySummary(run.id,run.start_date, run.name, run.distance, run.moving_time, run.type); 
     runClubDiv.appendChild(activitySummary);
   });
 }

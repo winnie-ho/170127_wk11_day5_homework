@@ -49,7 +49,7 @@ const createActivityTime = (rawTime) => {
   return time;
 }
 
-const createActivityPace = (rawTime, rawDistance) => {
+const createActivityPace = (rawTime, rawDistance, type) => {
   const pace = document.createElement("div");
   pace.classList.add("data-metric");
   const paceValue = document.createElement("div");
@@ -58,14 +58,16 @@ const createActivityPace = (rawTime, rawDistance) => {
   
   if (rawDistance) {
     paceValue.innerHTML = renderPace(rawTime, rawDistance);
-    paceIcon.src = "./resources/icon_pace.png";
   }
+
+  if (type == "Run") paceIcon.src = "./resources/icon_pace.png";
+  if (type == "Ride") paceIcon.src = "./resources/icon_bike.png";
 
   append(pace, [paceIcon, paceValue]);
   return pace;
 }
 
-const createActivitySummary = (rawId, rawDate,rawTitle, rawDistance, rawTime) => {
+const createActivitySummary = (rawId, rawDate,rawTitle, rawDistance, rawTime, type) => {
   const activitySummary = document.createElement("div");
   activitySummary.id = "run-box";
   activitySummary.activity_id = rawId;
@@ -77,7 +79,7 @@ const createActivitySummary = (rawId, rawDate,rawTitle, rawDistance, rawTime) =>
   let dateTitle = createActivityDateTitle(rawDate, rawTitle);
   let distance = createActivityDistance(rawDistance);
   let time = createActivityTime(rawTime);
-  let pace = createActivityPace(rawTime, rawDistance);
+  let pace = createActivityPace(rawTime, rawDistance, type);
 
   append(runBoxDetail, [distance, time, pace]);
 
