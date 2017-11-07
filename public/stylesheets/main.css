@@ -41,9 +41,11 @@ button:hover{
 }
 
 .heading{
+  font-family: sans-serif;
   font-weight: bold;
   font-size: 14px;
   margin: 10px 0;
+  color: white;
 } 
 
 .truncate {

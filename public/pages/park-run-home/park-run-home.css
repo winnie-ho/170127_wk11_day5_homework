@@ -11,6 +11,17 @@
   margin-top: 20px;  
 }
 
+.pr-select{
+  margin-left: -5px;
+  cursor: pointer;
+  background-color: rgba(31, 97, 141, 0);
+  border: none;
+}
+
+.pr-select:hover{
+  background-color: #3E9FDF;
+}
+
 #park-run-logo{
   height: 65px;
   width: auto;
