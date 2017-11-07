@@ -78,6 +78,7 @@ const computeDayNum = () => {
   }
   for (i = 0; i < 7; i ++) {
     let dayDiv = document.getElementById(dayLookUp[i])
+    dayDiv.nextSibling.innerHTML = "";
     let activityNum = dayDiv.children.length;
     if (activityNum > 1) {
       let dayNumDiv = dayDiv.nextSibling.innerHTML = ">";
