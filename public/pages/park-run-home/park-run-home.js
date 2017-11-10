@@ -10,13 +10,15 @@ const renderParkRunHome = (parkRuns) => {
   const orderedFinishTimes = finishTimes.sort((a, b) => a - b);
   const yearBest = orderedFinishTimes[0];
 
-  document.querySelector("#last-pr__date").innerHTML = "LAST RAN: " + renderDate(lastPR.start_date);
-  document.querySelector("#last-pr__name").innerHTML = lastPR.name;
-  document.querySelector("#last-pr__time").innerHTML = renderTime(lastPR.moving_time);
-  document.querySelector("#last-pr__pace").innerHTML = renderPace(lastPR.moving_time, lastPR.distance);
-  document.querySelector("#last-pr__context").innerHTML = computeLastPRContext(parkRuns);
-  document.querySelector("#pb").innerHTML = computePBContext(lastPR);
-  document.querySelector("#year-best").innerHTML = computeYBContext(lastPR, yearBest);
+  if (lastPR) {
+    document.querySelector("#last-pr__date").innerHTML = "LAST RAN: " + renderDate(lastPR.start_date);
+    document.querySelector("#last-pr__name").innerHTML = lastPR.name;
+    document.querySelector("#last-pr__time").innerHTML = renderTime(lastPR.moving_time);
+    document.querySelector("#last-pr__pace").innerHTML = renderPace(lastPR.moving_time, lastPR.distance);
+    document.querySelector("#last-pr__context").innerHTML = computeLastPRContext(parkRuns);
+    document.querySelector("#pb").innerHTML = computePBContext(lastPR);
+    document.querySelector("#year-best").innerHTML = computeYBContext(lastPR, yearBest);
+  }
 }
 
 const computeLastPRContext = (parkRuns) => {

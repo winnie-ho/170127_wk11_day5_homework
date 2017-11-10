@@ -1,3 +1,9 @@
+let parkRunDict = {
+  edinburghCramond: [55.98, -3.29],
+  edinburghPortobello: [55.95, -3.12],
+  run4it: [55.95, -3.21]
+}
+let parkRunLocation = [55.98, -3.29];
 let parkRuns = [];
 let fullParkRuns = [];
 let fastestPR;
@@ -15,15 +21,24 @@ const segDict = {
   5: 'Edinburgh Parkrun 5th "Kilometre"'
 }
 
+const setParkRunLocation = (event) => {
+  let selectedPRLocation = document.getElementById("selectedPRLocation").value;
+  parkRunLocation = parkRunDict[selectedPRLocation]
+  computeParkRuns(responseRuns, computeFullParkRuns);
+  renderParkRunHome(parkRuns, fastestPR);
+}
+
 //Start here.
 //Computes all park runs in chron order.
 const computeParkRuns = (runs, cb) => {
-  parkRuns = (runs.filter(run => run.start_latitude === 55.98 && run.start_longitude === -3.29)).sort((a,b) => new Date(b.start_date) - new Date(a.start_date));
+  parkRuns = [];
+  parkRuns = (runs.filter(run => run.start_latitude === parkRunLocation[0] && run.start_longitude === parkRunLocation[1])).sort((a,b) => new Date(b.start_date) - new Date(a.start_date));
   cb(parkRuns);
 }
 
 //Fetches full park run object.
 const computeFullParkRuns = (parkRuns) => {
+  fullParkRuns = [];
   parkRuns.forEach(run => makeRequest(("https://www.strava.com/api/v3/activities/" + run.id + userToken), pushFullPR));
 }
 

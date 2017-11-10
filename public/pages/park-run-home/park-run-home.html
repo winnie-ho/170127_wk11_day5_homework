@@ -5,9 +5,10 @@
 
 
   <div id="last-pr" class="col-left">
-    <select class="heading pr-select">
-      <option>CRAMOND PARK RUN</option>
-      <option>PORTOBELLO PARK RUN</option>
+    <select id="selectedPRLocation" class="heading pr-select" onchange="setParkRunLocation()">
+      <option value="edinburghCramond">CRAMOND PARK RUN</option>
+      <option value="edinburghPortobello">PORTOBELLO PARK RUN</option>
+      <option value="run4it">RUN 4 IT</option>
     </select>
     <div id="last-pr__date"></div>
     <div id="last-pr__name" class="last-pr__metric"></div>
