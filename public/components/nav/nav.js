@@ -26,11 +26,11 @@ const handleNavButton = (navId) => {
       renderParkRunHome(parkRuns, fastestPR);
     }
     if (navId === "run-club-home"){
-      document.getElementById(navId).style.display="block";
       fetchRunClub();
       // fetchRunClubMembers();    
       computeRunClubRuns(responseRuns);
       renderRunClubHome(runClubRuns);
+      document.getElementById(navId).style.display="block";
     }
     if (navId === "runs"){
       showRun(responseRuns);  
