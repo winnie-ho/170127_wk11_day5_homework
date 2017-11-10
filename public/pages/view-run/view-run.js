@@ -52,6 +52,7 @@ const resetDetailsExpanded = () => {
   document.getElementById("kudos-detail").style.display = "none";
   document.getElementById("photos-detail").style.display = "none";
   document.getElementById("laps-calc-result").innerHTML = "Select laps to compute";
+  document.getElementById("laps-calc-result").classList.remove("lap-result-active");
   lapCount = [];  
 }
 
@@ -144,11 +145,23 @@ const calcLapResult = (event) => {
   }
 
   let laps = event.target.rawRun.laps;
-  let counter = 0;
+  let counterLaps = 0;
+  let counterTime = 0;
+  let counterDistance = 0;
   for (i = smallest; i <= largest; i ++) {
-    counter += laps [i-1].moving_time;
+    counterLaps ++;
+    counterTime += laps [i-1].moving_time;
+    counterDistance += laps [i-1].distance;
   }
-  document.getElementById("laps-calc-result").innerText = "Total Time: " + renderTime(counter);
+  let counterLapsDiv = document.createElement("div");
+  counterLapsDiv.innerHTML = counterLaps;
+  let counterDistanceDiv = createActivityDistance(counterDistance);
+  let counterTimeDiv = createActivityTime(counterTime);
+  let counterPaceDiv = createActivityPace(counterTime, counterDistance);
+  let container = document.getElementById("laps-calc-result");
+  container.classList.add("lap-result-active");
+  container.innerHTML = '';
+  append(container, [counterLapsDiv, counterDistanceDiv, counterTimeDiv, counterPaceDiv]);
 }
 
 const renderKudosDetail = (rawKudos) => {
