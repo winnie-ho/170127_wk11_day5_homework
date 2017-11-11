@@ -21,6 +21,12 @@
   max-width: auto;
 }
 
+.month-summary {
+  background: white;
+  color: rgba(31, 97, 141, 0.9);
+  text-align: center;
+}
+
 
 @media all and (max-width: 700px) {
   body{
