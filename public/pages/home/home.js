@@ -35,18 +35,19 @@ const renderWeek = (weekRuns) => {
     6: "SAT",
     0: "SUN"
   }
+
   let weekInViewDiv = document.getElementById("dateInView");
-  weekInViewDiv.classList.add("heading");
+    if (weekInViewIndex <= 0) {
+      weekInViewDiv.innerHTML = "THIS WEEK";
+    }
+    if (weekInViewIndex === 1 ) {
+      weekInViewDiv.innerHTML = "LAST WEEK";
+    } 
+    if (weekInViewIndex > 1) {
+      weekInViewDiv.innerHTML = renderDate(weekRuns[0].start_date, "long");
+    }
 
     weekRuns.forEach(activity => {
-      if (weekInViewIndex === 0) {
-        weekInViewDiv.innerHTML = "THIS WEEK";
-      } else if (weekInViewIndex === 1 ) {
-        weekInViewDiv.innerHTML = "LAST WEEK";
-      } else {
-        weekInViewDiv.innerHTML = renderDate(activity.start_date, "long");
-      }
-
     let rawTime = activity.moving_time;
     let rawDistance = activity.distance;
     let dayDiv = document.getElementById(dayLookUp[new Date(activity.start_date).getDay()]);
