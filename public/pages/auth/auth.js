@@ -8,6 +8,7 @@ let userToken;
 
 const authProcess = () => {
   setAuthCode();
+  toggleHomePage();
 }
 
 const setAuthCode = () => {
@@ -47,4 +48,16 @@ const tokenExchange = () => {
 const setUserToken = (result) => {
   user = result.access_token;
   userToken = "\?access_token=" + result.access_token;
+  const urlRuns = "https://www.strava.com/api/v3/athlete/activities?per_page=100&access_token=" + user;
+  makeRequest(urlRuns, setRuns);
+}
+
+const toggleHomePage = () => {
+  if (authCode) {
+    document.getElementById("home").style.display = "flex";
+    document.getElementById("auth").style.display = "none";
+  } else {
+    document.getElementById("home").style.display = "none";
+    document.getElementById("auth").style.display = "flex";
+  }
 }
