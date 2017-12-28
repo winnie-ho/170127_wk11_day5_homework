@@ -1,4 +1,5 @@
 const pages = [
+  "auth",
   "home",
   "weather-now",
   "run-club-home",

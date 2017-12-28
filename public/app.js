@@ -1,7 +1,3 @@
-// userToken
-const user = "a2ff6fffcab9df06d90661ad34b7e664690c4fc4";
-const userToken = "\?access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4";
-
 //Running the app
 const urlRuns = "https://www.strava.com/api/v3/athlete/activities?per_page=100&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
 
@@ -13,17 +9,33 @@ const setRuns = (result) => {
 }
 
 const app = () => {
+  authProcess();
   makeRequest(urlRuns, setRuns);
   makeRequest(urlWeatherNow, showWeather);
   makeRequest(totalStatsUrl, renderYearTotals);
 }
+
 
 window.onload = app;
 
 
 
 
+//activity stream from strava api
+// const urlStream = "https://www.strava.com/api/v3/activities/1310865546/streams/latlng,time,heartrate"+userToken;
+// const streamComplete = () => {
+//   console.log("FINISHING STREAM");  
+// }
+// makeRequest(urlStream, streamComplete);
 
+
+
+//activities from those user follows from strava api
+// const urlFollowing = "https://www.strava.com/api/v3/activities/following?per_page=100&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
+// makeRequest(urlFollowing, followingComplete)
+// const followingComplete = () => {
+//   console.log("FINISHING FOLLOWING");  
+// }
 
 //weather from strava api
   // const url = "https://www.strava.com/api/v3/activities/123"

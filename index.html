@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="./components/activity-summary/activity-summary.css">    
     <link rel="stylesheet" type="text/css" href="./components/nav/nav.css">    
     <link rel="stylesheet" type="text/css" href="./pages/view-run/view-run.css">    
+    <link rel="stylesheet" type="text/css" href="./pages/auth/auth.css">    
 
     <!--import js files-->
     <script src="app.js"></script>
@@ -24,6 +25,7 @@
     <script src="./pages/run-club/run-club.js"></script>
     <script src="./pages/run-club-home/run-club-home.js"></script>
     <script src="./pages/home/home.js"></script>
+    <script src="./pages/auth/auth.js"></script>
     <script src="./pages/view-run/view-run.js"></script>
     
     <script src="./components/pr-chart/pr-chart.js"></script>
@@ -57,9 +59,15 @@
     </div>
 
     <div 
+      w3-include-html="./pages/auth/auth.html" 
+      id="auth" 
+      style="display: flex">
+    </div>
+
+    <div 
       w3-include-html="./pages/home/home.html" 
       id="home" 
-      style="display: flex">
+      style="display: none">
     </div>
 
     <div 
