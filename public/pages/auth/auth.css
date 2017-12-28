@@ -3,11 +3,24 @@
   align-content: stretch;
   justify-content: center;
   align-items: center;
-  margin-top: 30%;
+  margin-top: 15%;
 }
 
 #auth img {
   height: 15px;
   width: auto;
   padding: 5px;
+}
+
+.auth-button{
+  height: auto;
+  border-radius: 5px;
+  background-color: #1F618D  ;
+  font-family: "gill sans";
+  font-size: 10px;
+  color: white;
+  border: none;
+  padding: 12px;
+  display: block;
+  align-items: center;
 }
