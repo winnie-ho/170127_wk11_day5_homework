@@ -1,5 +1,5 @@
 // Totals and stats per athlete
-const totalStatsUrl = "https://www.strava.com/api/v3/athletes/3752965/stats\?access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4"
+const totalStatsUrl = "https://www.strava.com/api/v3/athletes/3752965/stats" + userToken;
 
 let weekInViewIndex = 0;
 let weekSets = [];
