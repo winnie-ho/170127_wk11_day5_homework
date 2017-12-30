@@ -25,8 +25,8 @@ const setAuthCode = () => {
 }
 
 const login = (cb) => {
-  // const redirect_url = "http://winsruns.herokuapp.com";
-  const redirect_url = "http://localhost:3000";
+  const redirect_url = "http://winsruns.herokuapp.com";
+  // const redirect_url = "http://localhost:3000";
   const url="https://www.strava.com/oauth/authorize?client_id=" + client_id + "&response_type=code&redirect_uri=" + redirect_url + "&scope=write&state=mystate&approval_prompt=force";
   
   window.location = url;
