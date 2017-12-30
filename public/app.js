@@ -10,14 +10,20 @@ const setRuns = (result) => {
 
 const app = () => {
   authProcess();
-  makeRequest(urlWeatherNow, showWeather);
-  makeRequest(totalStatsUrl, renderYearTotals);
 }
 
 
 window.onload = app;
 
 
+
+
+//activity stream from strava api
+// const urlFollowing = "https://www.strava.com/api/v3/activities/following"+userToken;
+// const followingComplete = () => {
+//   console.log("FINISHING following");  
+// }
+// makeRequest(urlFollowing, followingComplete);
 
 
 //activity stream from strava api

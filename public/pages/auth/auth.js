@@ -4,6 +4,7 @@ const client_secret = "63fec0d321558ea536b0be0f155c6adf29b7b278";
 
 let user;
 let userToken;
+let athleteId;
 
 
 const authProcess = () => {
@@ -24,7 +25,8 @@ const setAuthCode = () => {
 }
 
 const login = (cb) => {
-  const redirect_url = "http://winsruns.herokuapp.com";
+  // const redirect_url = "http://winsruns.herokuapp.com";
+  const redirect_url = "http://localhost:3000";
   const url="https://www.strava.com/oauth/authorize?client_id=" + client_id + "&response_type=code&redirect_uri=" + redirect_url + "&scope=write&state=mystate&approval_prompt=force";
   
   window.location = url;
@@ -48,8 +50,12 @@ const tokenExchange = () => {
 const setUserToken = (result) => {
   user = result.access_token;
   userToken = "\?access_token=" + result.access_token;
+  athleteId = result.athlete.id;
   const urlRuns = "https://www.strava.com/api/v3/athlete/activities?per_page=100&access_token=" + user;
   makeRequest(urlRuns, setRuns);
+  makeRequest(urlWeatherNow, showWeather);
+  const totalStatsUrl = "https://www.strava.com/api/v3/athletes/" + athleteId + "/stats" + userToken;
+  makeRequest(totalStatsUrl, renderYearTotals);
 }
 
 const toggleHomePage = () => {
