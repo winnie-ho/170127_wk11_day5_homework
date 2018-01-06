@@ -18,15 +18,15 @@
 #time-snap{
   display: flex;
   width: 60px;
-  min-height: 140px;
+  min-height: 120px;
   flex-direction: column;
   align-content: center;
   justify-content: space-between;
   align-items: center;
   border: solid 1px #1F618D;
   border-radius: 2px;
-  margin: 2px;
-  padding: 5px 10px;
+  margin: 6px 2px;
+  padding: 5px 5px;
 }
 
 .even{

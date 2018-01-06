@@ -34,7 +34,7 @@ const showWeekWeatherForecast = (resultWeekWeatherForecast) => {
     const temperature = document.createElement("span");
     const wind = document.createElement("span");
 
-    dateTime.innerText = (slot.dt_txt).substr(8,2) + " / " + (slot.dt_txt).substr(5,2);
+    dateTime.innerText = renderDate(slot.dt_txt);
 
     time.innerText = (slot.dt_txt).substr(11,5);
     forecast.innerText = (slot.weather[0].description);
