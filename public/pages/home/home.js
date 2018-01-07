@@ -55,10 +55,10 @@ const renderWeek = (weekRuns) => {
     let activityDiv = document.createElement("div");
     activityDiv.activity_id = activity.id;  
     activityDiv.onclick = viewRun;
+    activityDiv.classList.add("activity-div");
     if (activity.distance === 0) {
       activityDiv.innerHTML = activity.name + "<br>" + renderTime(rawTime);
     } else {
-      activityDiv.classList.add("activity-div");
       activityDiv.innerHTML = activity.name + "<br>" + (activity.distance/1000).toFixed(2) + "km,  " + renderTime(rawTime) + ", " + renderPace(rawTime, rawDistance);
     }
     dayDiv.appendChild(activityDiv);
