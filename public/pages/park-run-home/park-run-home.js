@@ -1,4 +1,15 @@
-let pb = (22 * 60) + 54;
+let pb;
+
+const getSelectedPRPB = () => {
+  let selectedPRPBurl = "https://www.strava.com/api/v3/segments/" + parkRunId + "/all_efforts?athlete_id=" + athleteId + "&access_token=" + user;
+
+  makeRequest(selectedPRPBurl, selectedPRPBComplete);
+}
+
+const selectedPRPBComplete = (selectedPRPBResponse) => {
+  pb = selectedPRPBResponse.slice().sort((a, b) => a.moving_time - b.moving_time)[0].moving_time;
+  renderParkRunHome(parkRuns, fastestPR);
+}
 
 const renderParkRunHome = (parkRuns) => {
 

@@ -16,8 +16,6 @@ const app = () => {
 window.onload = app;
 
 
-
-
 //activity stream from strava api
 // const urlFollowing = "https://www.strava.com/api/v3/activities/following"+userToken;
 // const followingComplete = () => {

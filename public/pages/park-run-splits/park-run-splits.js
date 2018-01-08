@@ -1,9 +1,19 @@
 let parkRunDict = {
-  edinburghCramond: [55.98, -3.29],
-  edinburghPortobello: [55.95, -3.12],
-  run4it: [55.95, -3.21]
+  edinburghCramond: {
+    startCoords: [55.98, -3.29],
+    segmentId: "1531025"
+  },
+  edinburghPortobello: {
+    startCoords: [55.95, -3.12],
+    segmentId: "33096224149"
+  },
+  run4it: {
+    startCoords: [55.95, -3.21],
+    segmentId: ""
+  }
 }
-let parkRunLocation = [55.98, -3.29];
+let parkRunLocation = parkRunDict["edinburghCramond"].startCoords;
+let parkRunId= parkRunDict["edinburghCramond"].segmentId;
 let parkRuns = [];
 let fullParkRuns = [];
 let fastestPR;
@@ -23,7 +33,7 @@ const segDict = {
 
 const setParkRunLocation = (event) => {
   let selectedPRLocation = document.getElementById("selectedPRLocation").value;
-  parkRunLocation = parkRunDict[selectedPRLocation]
+  parkRunLocation = parkRunDict[selectedPRLocation].startCoords;
   computeParkRuns(responseRuns, computeFullParkRuns);
   renderParkRunHome(parkRuns, fastestPR);
 }
