@@ -1,17 +1,23 @@
 let parkRunDict = {
   edinburghCramond: {
     startCoords: [55.98, -3.29],
-    segmentId: "1531025"
+    segmentId: "1531025",
+    segDict: {
+      1: "Edinburgh park run first km",
+      2: "Edinburgh Parkrun 2nd Kilometre",
+      3: "Edinburgh Parkrun 3rd Kilometre",
+      4: "Edinburgh Parkrun 4th Kilometre",
+      5: 'Edinburgh Parkrun 5th "Kilometre"'
+    }
   },
   edinburghPortobello: {
     startCoords: [55.95, -3.12],
-    segmentId: "33096224149"
-  },
-  run4it: {
-    startCoords: [55.95, -3.21],
-    segmentId: ""
+    segmentId: "33096224149",
+    segDict: {
+    }
   }
 }
+//default loction set to Cramond before being set by user.
 let parkRunLocation = parkRunDict["edinburghCramond"].startCoords;
 let parkRunId= parkRunDict["edinburghCramond"].segmentId;
 let parkRuns = [];
@@ -23,7 +29,7 @@ let kmSegments = [ [],[],[],[],[] ]
 
 let fastestKmSegs = [];
 
-const segDict = {
+let segDict = {
   1: "Edinburgh park run first km",
   2: "Edinburgh Parkrun 2nd Kilometre",
   3: "Edinburgh Parkrun 3rd Kilometre",
@@ -34,6 +40,8 @@ const segDict = {
 const setParkRunLocation = (event) => {
   let selectedPRLocation = document.getElementById("selectedPRLocation").value;
   parkRunLocation = parkRunDict[selectedPRLocation].startCoords;
+  segDict = parkRunDict[selectedPRLocation].segDict;
+  console.log("SET PR", parkRunLocation, segDict);
   computeParkRuns(responseRuns, computeFullParkRuns);
   renderParkRunHome(parkRuns, fastestPR);
 }
