@@ -11,33 +11,34 @@ const pages = [
   "view-run"
 ];
 
-const handleNavButton = (navId) => { 
-  pages.forEach(page => {
-    document.getElementById(page).style.display = "none";
-    if (page === navId){
-      document.getElementById(navId).style.display = "flex";
-    }
-    if (navId === "home") {
+const handleNavButton = (navId) => {
+  resetPages(navId);
+  
+  switch(navId) {
+    case "home":
       document.getElementById("weather-now").style.display = "flex";
-    }
-    if (navId === "park-run-home") {
+    case "park-run-home":
       document.getElementById(navId).style.display = "block";
-      if (parkRuns.length > 0) return;
-      getSelectedPRPB(); 
       computeParkRuns(responseRuns, computeFullParkRuns);      
-    }
-    if (navId === "run-club-home"){
+    case "run-club-home":
       fetchRunClub();
       // fetchRunClubMembers();    
       computeRunClubRuns(responseRuns);
       renderRunClubHome(runClubRuns);
       document.getElementById(navId).style.display="block";
-    }
-    if (navId === "runs"){
-      showRun(responseRuns);  
-    }
-    if (navId === "park-run-graphs"){
-      kmChart(parkRuns);  
+    case "runs": 
+      showRun(responseRuns);
+    case "park-run-graphs":
+      kmChart(parkRuns);
+    default:
+      document.getElementById(navId).style.display = "flex";
+  }
+}
+
+const resetPages = (navId) => {
+  pages.forEach(page => {
+    if (page !== navId) {
+      document.getElementById(page).style.display="none";
     }
   });
 }
