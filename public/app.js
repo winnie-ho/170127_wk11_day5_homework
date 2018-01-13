@@ -1,6 +1,5 @@
 //Running the app
 
-
 let responseRuns;
 
 const setRuns = (result) => {
@@ -10,6 +9,7 @@ const setRuns = (result) => {
 
 const app = () => {
   authProcess();
+  renderParkRunOptions();
 }
 
 
