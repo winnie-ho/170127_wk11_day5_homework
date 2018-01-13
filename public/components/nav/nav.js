@@ -20,16 +20,20 @@ const handleNavButton = (navId) => {
       document.getElementById("weather-now").style.display = "flex";
     case "park-run-home":
       initParkRun();
+      break;
     case "run-club-home":
       fetchRunClub();
       // fetchRunClubMembers();    
       computeRunClubRuns(responseRuns);
       renderRunClubHome(runClubRuns);
+      break;
     case "runs": 
       showRun(responseRuns);
     case "park-run-graphs":
       kmChart(parkRuns);
+      break;
     default:
+      return;
   }
 }
 
