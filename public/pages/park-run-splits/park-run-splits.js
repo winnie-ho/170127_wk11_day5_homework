@@ -52,7 +52,7 @@ const setParkRunLocation = (event) => {
 const computeParkRuns = (runs, cb) => {
   parkRuns = [];
   fullParkRuns = [];
-  kmSegments = [ [],[],[],[],[] ]
+  kmSegments = [ [],[],[],[],[] ];
   fastestKmSegs = [];
   
   parkRuns = (runs.filter(run => run.start_latitude === parkRunLocation[0] && run.start_longitude === parkRunLocation[1])).sort((a,b) => new Date(b.start_date) - new Date(a.start_date));
