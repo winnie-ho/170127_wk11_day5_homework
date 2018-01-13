@@ -72,6 +72,10 @@
   overflow-x: hidden;
 }
 
+#pr-table-nav{
+  margin-bottom: 15px;
+}
+
 @media all and (max-width: 500px) {
   .highlight-legend{
       font-size: 12px;
