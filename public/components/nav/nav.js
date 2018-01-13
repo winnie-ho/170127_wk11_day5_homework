@@ -17,7 +17,7 @@ const handleNavButton = (navId) => {
   
   switch(navId) {
     case "home":
-      document.getElementById("weather-now").style.display = "block";
+      document.getElementById("weather-now").style.display = "flex";
     case "park-run-home":
       computeParkRuns(responseRuns, computeFullParkRuns);      
     case "run-club-home":
