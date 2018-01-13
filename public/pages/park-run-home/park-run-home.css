@@ -11,11 +11,12 @@
   margin-top: 20px;  
 }
 
-.pr-select{
+#park-run-select{
   margin-left: -5px;
   cursor: pointer;
   background-color: rgba(31, 97, 141, 0);
   border: none;
+  text-transform: uppercase;
 }
 
 .pr-select:hover{

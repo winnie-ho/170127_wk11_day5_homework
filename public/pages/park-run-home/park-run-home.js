@@ -1,7 +1,7 @@
 let pb;
 
 const renderParkRunOptions = () => {
-  let parkRunSelect = document.getElementById("parkRunSelect");
+  let parkRunSelect = document.getElementById("park-run-select");
   parkRunDict.forEach(parkRun => {
     let option = document.createElement("option");
     option.value = parkRun.name;
