@@ -10,7 +10,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin: 0px 10px;
+  margin: 10px;
   height: 40px;
 }
 
@@ -130,6 +130,7 @@
 
 .activity-div:hover{
   background-color: rgba(31, 97, 141, 1);
+  box-shadow: 0 0 15px 15px rgba(31, 97, 141, 0.7);
 }
 
 .activity-div{
