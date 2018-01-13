@@ -13,25 +13,23 @@ const pages = [
 
 const handleNavButton = (navId) => {
   resetPages(navId);
+  document.getElementById(navId).style.display = "block";
   
   switch(navId) {
     case "home":
-      document.getElementById("weather-now").style.display = "flex";
+      document.getElementById("weather-now").style.display = "block";
     case "park-run-home":
-      document.getElementById(navId).style.display = "block";
       computeParkRuns(responseRuns, computeFullParkRuns);      
     case "run-club-home":
       fetchRunClub();
       // fetchRunClubMembers();    
       computeRunClubRuns(responseRuns);
       renderRunClubHome(runClubRuns);
-      document.getElementById(navId).style.display="block";
     case "runs": 
       showRun(responseRuns);
     case "park-run-graphs":
       kmChart(parkRuns);
     default:
-      document.getElementById(navId).style.display = "flex";
   }
 }
 

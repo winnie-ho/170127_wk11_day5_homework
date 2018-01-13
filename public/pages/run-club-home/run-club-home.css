@@ -1,5 +1,5 @@
 #run-club-home{
-  display: flex;
+  display: block;
   flex-direction: column;
   color: white;
   background-color: rgba(31, 97, 141, 0.7);
