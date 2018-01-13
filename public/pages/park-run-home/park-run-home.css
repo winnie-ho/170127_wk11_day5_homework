@@ -57,9 +57,17 @@
   margin-right: 10px;
 }
 
-#pr-chart{
-  position: relative;
+.loading-pr{
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  margin-top: 25%;
+}
 
+#empty-pr{
+  text-align: center;
+  position: relative;
+  top: 20%;
 }
 
 @media all and (max-width: 500px) {

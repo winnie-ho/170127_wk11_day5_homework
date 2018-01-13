@@ -43,6 +43,7 @@ const setParkRunLocation = (event) => {
   segDict = parkRunDict[selectedPRLocation].segDict;
   console.log("SET PR", parkRunLocation, segDict);
   computeParkRuns(responseRuns, computeFullParkRuns);
+  PRcheckDone();
   renderParkRunHome(parkRuns, fastestPR);
 }
 
@@ -50,6 +51,10 @@ const setParkRunLocation = (event) => {
 //Computes all park runs in chron order.
 const computeParkRuns = (runs, cb) => {
   parkRuns = [];
+  fullParkRuns = [];
+  kmSegments = [ [],[],[],[],[] ]
+  fastestKmSegs = [];
+  
   parkRuns = (runs.filter(run => run.start_latitude === parkRunLocation[0] && run.start_longitude === parkRunLocation[1])).sort((a,b) => new Date(b.start_date) - new Date(a.start_date));
   cb(parkRuns);
 }
@@ -59,6 +64,23 @@ const computeFullParkRuns = (parkRuns) => {
   fullParkRuns = [];
   parkRuns.forEach(run => makeRequest(("https://www.strava.com/api/v3/activities/" + run.id + userToken), pushFullPR));
 }
+
+//Function to check if park runs is empty and trigger UI zero display
+const PRcheckDone = () => {
+  if (parkRuns.length === 0) {
+    document.getElementById("empty-pr").style.display = "block";
+    document.getElementById("pr-chart").style.display = "none";
+  } else {
+    document.getElementById("empty-pr").style.display = "none";
+    document.getElementById("pr-chart").style.display = "block";
+    let prChart = document.getElementById("pr-chart");
+    let loadMsg = document.createElement("div");
+    loadMsg.innerText = "PARK RUNS LOADING";
+    loadMsg.classList.add("loading-pr");
+    prChart.appendChild(loadMsg);
+  }
+}
+
 
 //Make an array of full park runs in chron order and initialise display.
 const pushFullPR = (run) => {
