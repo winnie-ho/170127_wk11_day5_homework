@@ -62,6 +62,20 @@
   display: flex;
   justify-content: center;
   margin-top: 25%;
+  color:#fff;
+	-webkit-animation: flash linear 0.8s infinite;
+	animation: flash linear 0.8s infinite;
+}
+
+@-webkit-keyframes flash {
+	0% { opacity: 1; } 
+	50% { opacity: .1; } 
+	100% { opacity: 1; }
+}
+@keyframes flash {
+	0% { opacity: 1; } 
+	50% { opacity: .1; } 
+	100% { opacity: 1; }
 }
 
 #empty-pr{
