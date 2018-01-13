@@ -1,5 +1,15 @@
 let pb;
 
+const renderParkRunOptions = () => {
+  let parkRunSelect = document.getElementById("parkRunSelect");
+  parkRunDict.forEach(parkRun => {
+    let option = document.createElement("option");
+    option.value = parkRun.name;
+    option.textContent = parkRun.name;
+    parkRunSelect.appendChild(option);
+  });
+}
+
 const getSelectedPRPB = () => {
   let selectedPRPBurl = "https://www.strava.com/api/v3/segments/" + parkRunId + "/all_efforts?athlete_id=" + athleteId + "&access_token=" + user;
 

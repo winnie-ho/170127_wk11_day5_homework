@@ -19,7 +19,7 @@ const handleNavButton = (navId) => {
     case "home":
       document.getElementById("weather-now").style.display = "flex";
     case "park-run-home":
-      computeParkRuns(responseRuns, computeFullParkRuns);      
+      initParkRun();
     case "run-club-home":
       fetchRunClub();
       // fetchRunClubMembers();    
