@@ -51,7 +51,7 @@ const setUserToken = (result) => {
   user = result.access_token;
   userToken = "\?access_token=" + result.access_token;
   athleteId = result.athlete.id;
-  const urlRuns = "https://www.strava.com/api/v3/athlete/activities?per_page=100&access_token=" + user;
+  const urlRuns = "https://www.strava.com/api/v3/athlete/activities?per_page=200&access_token=" + user;
   makeRequest(urlRuns, setRuns);
   makeRequest(urlWeatherNow, showWeather);
   const totalStatsUrl = "https://www.strava.com/api/v3/athletes/" + athleteId + "/stats" + userToken;
