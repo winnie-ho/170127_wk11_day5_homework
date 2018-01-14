@@ -58,7 +58,9 @@ const renderKmSplits = (sortedFullPR) => {
     nameDiv.innerHTML = run.name;
     timeDiv.innerHTML = renderTime(run.moving_time);
     
-    highlightTop3(fastestPR, run.moving_time, timeDiv, "true");
+    if(sortedFullPR.length >= 3) {
+      highlightTop3(fastestPR, run.moving_time, timeDiv, "true");
+    }
     
     paceDiv.innerHTML = renderPace(run.moving_time, run.distance);
 

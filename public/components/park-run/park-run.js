@@ -20,6 +20,14 @@ const parkRunDict = [
     segDict: {
     },
     default: false
+  },
+  {
+    name: "Inverness",
+    startCoords: [57.46, -4.24],
+    segmentId: "11829562",
+    segDict: {
+    },
+    default: false
   }
 ]
 // --------------------------------------------------------
@@ -36,7 +44,6 @@ const initParkRun = () => {
   computeParkRuns(responseRuns, computeFullParkRuns);   
   renderParkRunOptions();   
   PRcheckDone();
-  getSelectedPRPB(); 
   parkRunChart(parkRuns);  
   computeFastestPR(parkRuns);
 }
@@ -52,6 +59,7 @@ const setParkRunLocation = () => {
 const computeParkRuns = (runs, cb) => {
   parkRuns = [];
   fullParkRuns = [];
+  getSelectedPRPB(); 
   
   parkRuns = (runs.filter(run => run.start_latitude === parkRun.startCoords[0] && run.start_longitude === parkRun.startCoords[1])).sort((a,b) => new Date(b.start_date) - new Date(a.start_date));
 

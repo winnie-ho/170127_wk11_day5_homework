@@ -17,12 +17,12 @@ const getSelectedPRPB = () => {
   let selectedPRPBurl = "https://www.strava.com/api/v3/segments/" + parkRun.segmentId + "/all_efforts?athlete_id=" + athleteId + "&access_token=" + user;
 
   makeRequest(selectedPRPBurl, selectedPRPBComplete);
-  renderParkRunHome(parkRuns);
 }
 
 const selectedPRPBComplete = (selectedPRPBResponse) => {
   if (selectedPRPBResponse.length === 0) return;
   pb = selectedPRPBResponse.slice().sort((a, b) => a.moving_time - b.moving_time)[0].moving_time;
+  renderParkRunHome(parkRuns);
 }
 
 const renderParkRunHome = (parkRuns) => {
