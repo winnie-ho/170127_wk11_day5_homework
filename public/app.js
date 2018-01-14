@@ -9,7 +9,6 @@ const setRuns = (result) => {
 
 const app = () => {
   authProcess();
-  renderParkRunOptions();
 }
 
 

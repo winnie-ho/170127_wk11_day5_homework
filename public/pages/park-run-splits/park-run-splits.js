@@ -1,117 +1,25 @@
-let parkRunDict = {
-  edinburghCramond: {
-    startCoords: [55.98, -3.29],
-    segmentId: "1531025",
-    segDict: {
-      1: "Edinburgh park run first km",
-      2: "Edinburgh Parkrun 2nd Kilometre",
-      3: "Edinburgh Parkrun 3rd Kilometre",
-      4: "Edinburgh Parkrun 4th Kilometre",
-      5: 'Edinburgh Parkrun 5th "Kilometre"'
-    }
-  },
-  edinburghPortobello: {
-    startCoords: [55.95, -3.12],
-    segmentId: "33096224149",
-    segDict: {
-    }
-  }
-}
-//default loction set to Cramond before being set by user.
-let parkRunLocation = parkRunDict["edinburghCramond"].startCoords;
-let parkRunId= parkRunDict["edinburghCramond"].segmentId;
-let parkRuns = [];
-let fullParkRuns = [];
-let fastestPR;
-let orderedKmTimes;
-
 let kmSegments = [ [],[],[],[],[] ]
-
 let fastestKmSegs = [];
 
-let segDict = {
-  1: "Edinburgh park run first km",
-  2: "Edinburgh Parkrun 2nd Kilometre",
-  3: "Edinburgh Parkrun 3rd Kilometre",
-  4: "Edinburgh Parkrun 4th Kilometre",
-  5: 'Edinburgh Parkrun 5th "Kilometre"'
-}
-
-const setParkRunLocation = (event) => {
-  let selectedPRLocation = document.getElementById("selectedPRLocation").value;
-  parkRunLocation = parkRunDict[selectedPRLocation].startCoords;
-  segDict = parkRunDict[selectedPRLocation].segDict;
-  console.log("SET PR", parkRunLocation, segDict);
-  computeParkRuns(responseRuns, computeFullParkRuns);
-  PRcheckDone();
-  renderParkRunHome(parkRuns, fastestPR);
-}
-
-//Start here.
-//Computes all park runs in chron order.
-const computeParkRuns = (runs, cb) => {
-  parkRuns = [];
-  fullParkRuns = [];
-  kmSegments = [ [],[],[],[],[] ];
-  fastestKmSegs = [];
+const initParkRunSplits = () => {
+  kmSegments = [ [],[],[],[],[] ]
+  document.getElementById("km-chart").innerHTML="";
+  document.getElementById("splits-container").innerHTML="";
   
-  parkRuns = (runs.filter(run => run.start_latitude === parkRunLocation[0] && run.start_longitude === parkRunLocation[1])).sort((a,b) => new Date(b.start_date) - new Date(a.start_date));
-  cb(parkRuns);
-}
-
-//Fetches full park run object.
-const computeFullParkRuns = (parkRuns) => {
-  fullParkRuns = [];
-  parkRuns.forEach(run => makeRequest(("https://www.strava.com/api/v3/activities/" + run.id + userToken), pushFullPR));
-}
-
-//Function to check if park runs is empty and trigger UI zero display
-const PRcheckDone = () => {
-  if (parkRuns.length === 0) {
-    document.getElementById("empty-pr").style.display = "block";
-    document.getElementById("pr-chart").style.display = "none";
-  } else {
-    document.getElementById("empty-pr").style.display = "none";
-    document.getElementById("pr-chart").style.display = "block";
-    let prChart = document.getElementById("pr-chart");
-    let loadMsg = document.createElement("div");
-    loadMsg.innerText = "PARK RUNS LOADING";
-    loadMsg.classList.add("loading-pr");
-    prChart.appendChild(loadMsg);
-  }
-}
-
-
-//Make an array of full park runs in chron order and initialise display.
-const pushFullPR = (run) => {
-  fullParkRuns.push(run);
-  if(fullParkRuns.length === parkRuns.length){
-    fullParkRuns.sort((a, b) => new Date(b.start_date) - new Date(a.start_date));
-    displayData(fullParkRuns);
-  }
-}
-
-const displayData = (sortedFullPR) => {
-  computeFastestPR(parkRuns);
+  fastestKmSegs = [];
   prepareKmSegs(fullParkRuns);
-  renderKmSplits(sortedFullPR);
-  parkRunChart(parkRuns);        
-}
-
-//Computing global variable 'fastestPR' if 5km distance complete.
-const computeFastestPR = (parkRuns) => {
-  fastestPR = parkRuns.slice().filter(run => run.distance > 5000).sort((a,b) => a.moving_time - b.moving_time);
+  renderKmSplits(fullParkRuns);
 }
 
 //Finds the segments for Cramond park run and populates kmSegments. Then sets fastestKmSegs.
 const prepareKmSegs = (fullParkRuns) => {
   fullParkRuns.forEach(run => {
     for (i = 1; i <= 5; i++) {
-      let kmSeg = run.segment_efforts.find(segment => segment.name === segDict[i]);
+      let kmSeg = run.segment_efforts.find(segment => segment.name === parkRun.segDict[i]);
       kmSeg ? kmSegments[i - 1].push(kmSeg) : kmSegments[i - 1].push(run.start_date);
     }  
   });
-
+  
   if (kmSegments[4].length === parkRuns.length) {
     let clone = kmSegments.map(kmX => kmX.slice());
     fastestKmSegs = clone.map(kmX => kmX.sort((a,b) => a.moving_time - b.moving_time));
@@ -120,12 +28,13 @@ const prepareKmSegs = (fullParkRuns) => {
 
 //Highlights the three fastest times and pb if applicable.
 const highlightTop3 = (orderedTimes, time, timeDiv, pbClass) => {
+  if (!orderedTimes) return; 
   const classDict = {
     1: "first",
     2: "second",
     3: "third"
   }
-
+  
   for (i = 0; i <= 2; i ++ ){
     if (time === orderedTimes[i].moving_time) timeDiv.classList.add(classDict[i+1]);
     if (pbClass && time === orderedTimes[0].moving_time) timeDiv.classList.add("pb");
@@ -139,16 +48,16 @@ const renderKmSplits = (sortedFullPR) => {
     splitDiv.activity_id = run.id;
     splitDiv.classList.add("row", "sb", "data-metric", "nav-button", "split");
     splitDiv.onclick = viewRun;
-
+    
     let dateDiv = document.createElement("div");
     let nameDiv = document.createElement("div");
     let timeDiv = document.createElement("div");
     let paceDiv = document.createElement("div");
-
+    
     dateDiv.innerHTML = renderDate(run.start_date);
     nameDiv.innerHTML = run.name;
     timeDiv.innerHTML = renderTime(run.moving_time);
-
+    
     highlightTop3(fastestPR, run.moving_time, timeDiv, "true");
     
     paceDiv.innerHTML = renderPace(run.moving_time, run.distance);
@@ -163,7 +72,7 @@ const renderKmSplits = (sortedFullPR) => {
 
     let kmSegArray = [];
     for (i = 1; i <= 5; i++) {
-      let kmSeg = run.segment_efforts.find(seg => seg.name === segDict[i]);
+      let kmSeg = run.segment_efforts.find(seg => seg.name === parkRun.segDict[i]);
       kmSegArray.push(kmSeg);
     }
 

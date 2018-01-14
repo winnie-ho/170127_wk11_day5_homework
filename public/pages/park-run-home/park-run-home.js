@@ -2,27 +2,30 @@ let pb;
 
 const renderParkRunOptions = () => {
   let parkRunSelect = document.getElementById("park-run-select");
+  if (parkRunSelect.length > 0) {
+    return;
+  }
   parkRunDict.forEach(parkRun => {
     let option = document.createElement("option");
     option.value = parkRun.name;
-    option.textContent = parkRun.name;
+    option.label = parkRun.name;
     parkRunSelect.appendChild(option);
   });
 }
 
 const getSelectedPRPB = () => {
-  let selectedPRPBurl = "https://www.strava.com/api/v3/segments/" + parkRunId + "/all_efforts?athlete_id=" + athleteId + "&access_token=" + user;
+  let selectedPRPBurl = "https://www.strava.com/api/v3/segments/" + parkRun.segmentId + "/all_efforts?athlete_id=" + athleteId + "&access_token=" + user;
 
   makeRequest(selectedPRPBurl, selectedPRPBComplete);
+  renderParkRunHome(parkRuns);
 }
 
 const selectedPRPBComplete = (selectedPRPBResponse) => {
+  if (selectedPRPBResponse.length === 0) return;
   pb = selectedPRPBResponse.slice().sort((a, b) => a.moving_time - b.moving_time)[0].moving_time;
-  renderParkRunHome(parkRuns, fastestPR);
 }
 
 const renderParkRunHome = (parkRuns) => {
-
   let clone = parkRuns.slice();
 	let distanceCheck = clone.filter(run => run.distance > 5000);
 
@@ -39,6 +42,16 @@ const renderParkRunHome = (parkRuns) => {
     document.querySelector("#last-pr__context").innerHTML = computeLastPRContext(parkRuns);
     document.querySelector("#pb").innerHTML = computePBContext(lastPR);
     document.querySelector("#year-best").innerHTML = computeYBContext(lastPR, yearBest);
+  }
+  
+  if (parkRuns.length === 0) {
+    document.querySelector("#last-pr__date").innerHTML = "";
+    document.querySelector("#last-pr__name").innerHTML = "";
+    document.querySelector("#last-pr__time").innerHTML = "";
+    document.querySelector("#last-pr__pace").innerHTML = "";
+    document.querySelector("#last-pr__context").innerHTML = "";
+    document.querySelector("#pb").innerHTML = "";
+    document.querySelector("#year-best").innerHTML = "";
   }
 }
 
@@ -68,7 +81,6 @@ const showParkRunGraphs = () => {
 
 const computePBContext = (lastPR) => {
   if (lastPR.moving_time < pb && lastPR.distance >= 5000) {
-    pb = lastPR.moving_time;
     return "NEW PB! " + renderTime(lastPR.moving_time);
   }
   return "PB remains at " + renderTime(pb);
