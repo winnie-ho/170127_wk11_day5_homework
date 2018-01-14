@@ -66,6 +66,13 @@
   border-radius: 50%;
 }
 
+.v-small-avatar{
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  margin: 5px 10px;
+}
+
 .lap-box{
   width: 100vw;
   cursor: pointer;
@@ -119,12 +126,12 @@
 
 #comments-detail{
   align-items: unset;
-  margin: 10px 0;
+  margin: 5px 0;
 }
 
 .comment-text{
   height: auto;
-  padding: 10px;
+  padding: 10px 0px;
 }
 
 #activity-info__tertiary-stats{

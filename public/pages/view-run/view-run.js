@@ -202,7 +202,7 @@ const renderComments = (rawRun, comments, kudos) => {
       commenterName.classList.add("data-metric", "comment-text");
       commenter.id = comment.id;
       commenterImage.src = comment.athlete.profile_medium;
-      commenterImage.classList.add("small-avatar");
+      commenterImage.classList.add("v-small-avatar");
       commenterName.innerHTML = comment.athlete.firstname + ": " + comment.text;
       append(commenter, [commenterImage, commenterName]);
       commentsDetailDiv.appendChild(commenter);
