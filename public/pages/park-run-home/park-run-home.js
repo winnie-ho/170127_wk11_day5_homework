@@ -8,7 +8,7 @@ const renderParkRunOptions = () => {
   parkRunDict.forEach(parkRun => {
     let option = document.createElement("option");
     option.value = parkRun.name;
-    option.label = parkRun.name;
+    option.text = parkRun.name;
     parkRunSelect.appendChild(option);
   });
 }
