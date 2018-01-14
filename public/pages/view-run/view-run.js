@@ -175,8 +175,8 @@ const renderKudosDetail = (rawKudos) => {
       const kudoserPerson = document.createElement("div");
       const kudoserName = document.createElement("span");
       const kudoserImage = document.createElement("img");
-      kudoserPerson.classList.add("row");
-      kudoserName.classList.add("data-metric");
+      kudoserPerson.classList.add("centre");
+      kudoserName.classList.add("data-metric", "centre");
       kudoserName.id = kudoser.id;
       kudoserImage.src = kudoser.profile_medium;
       kudoserImage.classList.add("small-avatar");

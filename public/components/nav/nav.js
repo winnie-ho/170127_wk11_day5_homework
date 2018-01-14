@@ -55,7 +55,7 @@ const detailedViews = [
 const handleToggleButton = (toggleId, id) => {
   let idTarget = document.getElementById(id);
   let target = document.getElementById(toggleId);
-  if (target.style.display === 'flex') {
+  if (target.style.display === 'flex' || target.style.display === "grid") {
     target.style.display = "none";
     idTarget.classList.remove('button-active');
   } else if (target.style.display === 'none') {
@@ -66,6 +66,11 @@ const handleToggleButton = (toggleId, id) => {
       
     if (target.style.display === 'none') {
       target.style.display = "flex";
+      idTarget.classList.add('button-active');
+    }
+    
+    if (toggleId === "kudos-detail") {
+      target.style.display = "grid";
       idTarget.classList.add('button-active');
     }
   }
