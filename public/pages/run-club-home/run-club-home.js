@@ -13,13 +13,14 @@ const fetchRunClub = () => {
   makeRequest(("https://www.strava.com/api/v3/clubs/" + runClubId + userToken), renderRunClubData);
 }
 
-// const fetchRunClubMembers = () => {
-//   const runClubId = "163071";
-//   makeRequest(("https://www.strava.com/api/v3/clubs/" + runClubId + "/members" + userToken), renderRunClubData);
-// }
+const fetchRunClubMembers = () => {
+  const runClubId = "163071";
+  makeRequest(("https://www.strava.com/api/v3/clubs/" + runClubId + "/members?per_page=200&access_token=" + user), renderRunClubMembers);
+}
 
 const renderRunClubData = (runClubData) => {
-  console.log("RUN CLUBS RUNS", runClubRuns);
+  if (!runClubData) return;
+
   document.getElementById("rc-name").innerHTML = (runClubData.name).toUpperCase();
   document.getElementById("rc-image").src = runClubData.cover_photo;
   document.getElementById("rc-year-runs").innerHTML = runClubRuns.length;
@@ -29,4 +30,8 @@ const renderRunClubData = (runClubData) => {
   document.getElementById("rc-year-time").innerHTML = renderTime(runClubRuns.reduce((sum, value) => {
     return sum + value.moving_time;
   }, 0));
+}
+
+const renderRunClubMembers = (runClubMembers) => {
+  console.log(runClubMembers);
 }

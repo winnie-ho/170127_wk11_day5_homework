@@ -23,7 +23,7 @@ const handleNavButton = (navId) => {
       break;
     case "run-club-home":
       fetchRunClub();
-      // fetchRunClubMembers();    
+      fetchRunClubMembers();    
       computeRunClubRuns(responseRuns);
       renderRunClubHome(runClubRuns);
       break;
