@@ -165,4 +165,10 @@
   .week-activities{
     margin-top: 0px;
   }
+
+}
+@media all and (max-height: 568px) {
+  .year-totals {
+    display: none;
+  }
 }
