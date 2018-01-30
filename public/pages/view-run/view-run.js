@@ -108,6 +108,11 @@ const renderLaps = (rawRun) => {
       lapDistance.innerHTML = 22.86 + "m";
       lapPace.innerHTML = (lap.moving_time/22.86).toFixed(2) + " s/m";
     }
+
+    if((lap.moving_time/60/lap.distance*1000) < 5) {
+      lapBox.classList.add("effort");
+    }
+    
     lapBox.id = counter;
     lapBox.rawRun = rawRun;
     lapBox.onclick = selectLap;

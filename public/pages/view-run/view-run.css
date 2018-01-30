@@ -138,6 +138,11 @@
   margin-bottom: 10px;
 }
 
+.effort {
+  background-color: rgba(31, 97, 141, 1);
+
+}
+
 @media all and (max-width: 400px) {
   #kudos-detail{
     grid-template-columns: 80px 80px 80px 80px;
