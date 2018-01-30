@@ -16,16 +16,16 @@
   filter: drop-shadow(8px 8px 10px rgba(31, 97, 141, 0.9));  
 }
 
-#rc-image{
-  width: 100vw;
-  height: auto;
+#rc-image {
+  display: none;
 }
 
 #rc-name-container{
   z-index: 1;
-  position: absolute;
+  position: relative;
   bottom: 12%;
   width: 100vw;
+  height: 55px;
   display: flex;
   justify-content: center;
 }
@@ -82,5 +82,16 @@
 @media all and (max-width: 500px) {
   .rc-year-totals{
     font-size: 14px;
+  }
+
+  #rc-image{
+    display: block;
+    width: 100vw;
+    height: auto;
+  }
+
+  #rc-name-container{
+    position: absolute;
+    height: unset;
   }
 }
