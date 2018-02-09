@@ -76,6 +76,10 @@
   margin-bottom: 15px;
 }
 
+#splits-header{
+  margin-bottom: 10px;
+}
+
 @media all and (max-width: 500px) {
   .highlight-legend{
       font-size: 12px;
