@@ -82,13 +82,17 @@
   pointer-events: none;
 }
 
+.effort {
+  background-color: rgba(31, 97, 141, 1);
+}
+
 #laps-calc{
   width: 90%;
 }
 
 #laps-calc-result{
   font-size: 12px !important;
-  background-color: rgba(31, 97, 141, 0.9);
+  background-color: rgba(62, 159, 223, 0.9)!important;
   width: 100%;
   margin-bottom: 20px;
   height: 50px;
@@ -138,10 +142,6 @@
   margin-bottom: 10px;
 }
 
-.effort {
-  background-color: rgba(31, 97, 141, 1);
-
-}
 
 @media all and (max-width: 400px) {
   #kudos-detail{
