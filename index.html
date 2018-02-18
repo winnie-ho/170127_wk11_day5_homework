@@ -2,7 +2,10 @@
 <html>
   <head>
     <title>WinRuns</title>
-   
+    <script src="https://unpkg.com/vue"></script>
+
+    <meta charset="UTF-8">
+
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="viewport" content="initial-scale=1, user-scalable=0, maximum-scale=1.0">
@@ -83,17 +86,21 @@
     
     <!--import style sheets -->
     <link rel="stylesheet" type="text/css" href="./stylesheets/main.css">   
+    <link rel='stylesheet' type='text/css' href='./components/weather-now/weather-now.css'>
+    <link rel='stylesheet' type='text/css' href='./components/weather-forecast/weather-forecast.css'>
     <link rel="stylesheet" type="text/css" href="./pages/runs/runs.css">    
     <link rel="stylesheet" type="text/css" href="./pages/run-club/run-club.css">    
     <link rel="stylesheet" type="text/css" href="./pages/run-club-home/run-club-home.css">    
     <link rel="stylesheet" type="text/css" href="./components/activity-summary/activity-summary.css">    
     <link rel="stylesheet" type="text/css" href="./components/nav/nav.css">    
     <link rel="stylesheet" type="text/css" href="./pages/view-run/view-run.css">    
-    <link rel="stylesheet" type="text/css" href="./pages/auth/auth.css">    
+    <link rel="stylesheet" type="text/css" href="./pages/auth/auth.css">
+  
 
     <!--import js files-->
     <script src="app.js"></script>
     <script src="api-call.js"></script>
+    <script src="config.js"></script>
     
     <script src="./pages/runs/runs.js"></script>
     <script src="./pages/park-run-home/park-run-home.js"></script>
@@ -108,8 +115,6 @@
     <script src="./components/pr-chart/pr-chart.js"></script>
     <script src="./components/mapWrapper.js"></script>
     <script src="./data-render.js"></script>
-    <script src="./components/weather-now/weather-now.js"></script>
-    <script src="./components/weather-forecast/weather-forecast.js"></script>
     <script src="./components/nav/nav.js"></script>
     <script src="./components/activity-summary/activity-summary.js"></script>
     <script src="./components/park-run/park-run.js"></script>
@@ -117,7 +122,7 @@
     <script src="http://code.highcharts.com/highcharts.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxXMhBSrjeLubVwNJzRAFZedtQGdiCqiI&libraries=geometry"></script>
     <script src="https://www.w3schools.com/lib/w3.js"></script>
-
+    
     <!-- ADSENSE -->
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
@@ -125,78 +130,80 @@
         google_ad_client: "ca-pub-8086060288165019",
         enable_page_level_ads: true
       });
-    </script>
+      </script>
+    
+    <script src="./components/weather-now/weather-now.js"></script>
+    <script src="./components/weather-forecast/weather-forecast.js"></script>
+
   </head>
 
 
 
   <body> 
+    
+    <div id="page">  
+      <div w3-include-html="./components/nav/nav.html" id="nav"></div>
+      
+      <weather-now ref="weatherNow"></weather-now>
+      
+      <weather-forecast ref="weatherForecast" style="display: none"></weather-forecast>
+      <!-- <div 
+        id="weather-forecast" 
+        style="display: none">
+      </div> -->
+    
+      <div 
+        w3-include-html="./pages/home/home.html" 
+        id="home" 
+        style="display: flex">
+      </div>
 
-  <div id="page">
-    <div w3-include-html="./components/nav/nav.html" id="nav"></div>
+      <div 
+        w3-include-html="./pages/auth/auth.html" 
+        id="auth" 
+        style="display: flex">
+      </div>
 
-    <div w3-include-html="./components/weather-now/weather-now.html" 
-      id="weather-now">
+      <div 
+        w3-include-html="./pages/run-club-home/run-club-home.html" 
+        id="run-club-home" 
+        style="display: none">
+      </div>
+
+      <div 
+        w3-include-html="./pages/park-run-home/park-run-home.html" 
+        id="park-run-home" 
+        style="display: none">
+      </div>
+
+      <div 
+        w3-include-html="./pages/park-run-splits/park-run-splits.html" 
+        id="park-run-splits" 
+        style="display: none">
+      </div>
+
+      <div 
+        w3-include-html="./pages/park-run-graphs/park-run-graphs.html" 
+        id="park-run-graphs" 
+        style="display: none">
+      </div>
+
+      <div 
+        w3-include-html="./pages/runs/runs.html" 
+        id="runs"
+        style="display: none">
+      </div>
+
+      <div 
+        w3-include-html="./pages/view-run/view-run.html" 
+        id="view-run"
+        style="display: none">
+      </div>
+
     </div>
+    <script>w3.includeHTML();</script>
+    <script src="./pages/page.js"></script>
 
-    <div 
-      w3-include-html="./components/weather-forecast/weather-forecast.html" 
-      id="weather-forecast" 
-      style="display: none">
-    </div>
-
-    <div 
-      w3-include-html="./pages/home/home.html" 
-      id="home" 
-      style="display: flex">
-    </div>
-
-    <div 
-      w3-include-html="./pages/auth/auth.html" 
-      id="auth" 
-      style="display: flex">
-    </div>
-
-    <div 
-      w3-include-html="./pages/run-club-home/run-club-home.html" 
-      id="run-club-home" 
-      style="display: none">
-    </div>
-
-    <div 
-      w3-include-html="./pages/park-run-home/park-run-home.html" 
-      id="park-run-home" 
-      style="display: none">
-    </div>
-
-    <div 
-      w3-include-html="./pages/park-run-splits/park-run-splits.html" 
-      id="park-run-splits" 
-      style="display: none">
-    </div>
-
-    <div 
-      w3-include-html="./pages/park-run-graphs/park-run-graphs.html" 
-      id="park-run-graphs" 
-      style="display: none">
-    </div>
-
-    <div 
-      w3-include-html="./pages/runs/runs.html" 
-      id="runs"
-      style="display: none">
-    </div>
-
-    <div 
-      w3-include-html="./pages/view-run/view-run.html" 
-      id="view-run"
-      style="display: none">
-    </div>
-
-  </div>
-
-    <script>
-    w3.includeHTML();
-    </script>
   </body>
 </html>
+  
