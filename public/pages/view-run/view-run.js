@@ -28,7 +28,7 @@ const renderViewRun = (rawRun) => {
   renderRunInfo(rawRun);
   renderLaps(rawRun);
   renderPhotos(rawRun, photos);
-  handleNavButton("view-run");
+  page.$refs.navBar.handleNavButton("view-run");
   renderMap(rawRun);
 }
 

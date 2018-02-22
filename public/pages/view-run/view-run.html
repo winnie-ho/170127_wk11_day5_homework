@@ -13,7 +13,7 @@
   </div>
   
   <div id="activity-info__secondary-stats" class="row sa">
-    <div id="laps-button" class="icon-stat" onclick="handleToggleButton('laps-detail', 'laps-button')"> 
+    <div id="laps-button" class="icon-stat" onclick="page.$refs.navBar.handleToggleButton('laps-detail', 'laps-button')"> 
       <img class="activity-icon" src="./resources/icon_laps.png" class="nav-icon"/>
       <div id="laps" class="data-metric"></div>
     </div>
@@ -23,17 +23,17 @@
   
   
   <div id="activity-info__tertiary-stats" class="row sa">
-    <div id="comments-button" class="icon-stat" onclick="handleToggleButton('comments-detail', 'comments-button')" >
+    <div id="comments-button" class="icon-stat" onclick="page.$refs.navBar.handleToggleButton('comments-detail', 'comments-button')" >
       <img class="activity-icon" src="./resources/icon_comment.png" class="nav-icon"/>
       <div id="secondary-stats__comments" class="data-metric"></div>
     </div>
 
-    <div id="kudos-button" class="icon-stat" onclick="handleToggleButton('kudos-detail', 'kudos-button')" >
+    <div id="kudos-button" class="icon-stat" onclick="page.$refs.navBar.handleToggleButton('kudos-detail', 'kudos-button')" >
       <img class="activity-icon" src="./resources/icon_like.png" class="nav-icon"/>
       <div id="secondary-stats__kudos" class="data-metric"></div>
     </div>
     
-    <div id="photos-button" style="display: none" class="icon-stat" onclick="handleToggleButton('photos-detail', 'photos-button')"> 
+    <div id="photos-button" style="display: none" class="icon-stat" onclick="page.$refs.navBar.handleToggleButton('photos-detail', 'photos-button')"> 
       <img class="activity-icon" src="./resources/icon_picture.png" class="nav-icon"/>
       <div id="photos" class="data-metric"></div>
     </div>

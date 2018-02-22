@@ -71,14 +71,6 @@ const computeLastPRContext = (parkRuns) => {
   return ordinalSuffixOf(lastPRRank) + " fastest this year";
 }
 
-const showParkRunSplits = () => {
-  handleNavButton("park-run-splits");
-}
-
-const showParkRunGraphs = () => {
-  handleNavButton("park-run-graphs");
-}
-
 const computePBContext = (lastPR) => {
   if (lastPR.moving_time < pb && lastPR.distance >= 5000) {
     return "NEW PB! " + renderTime(lastPR.moving_time);

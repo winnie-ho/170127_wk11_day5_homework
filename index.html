@@ -115,7 +115,6 @@
     <script src="./components/pr-chart/pr-chart.js"></script>
     <script src="./components/mapWrapper.js"></script>
     <script src="./data-render.js"></script>
-    <script src="./components/nav/nav.js"></script>
     <script src="./components/activity-summary/activity-summary.js"></script>
     <script src="./components/park-run/park-run.js"></script>
     
@@ -132,6 +131,7 @@
       });
       </script>
     
+    <script src="./components/nav/nav.js"></script>
     <script src="./components/weather-now/weather-now.js"></script>
     <script src="./components/weather-forecast/weather-forecast.js"></script>
 
@@ -142,10 +142,8 @@
   <body> 
     
     <div id="page">  
-      <div w3-include-html="./components/nav/nav.html" id="nav"></div>
-      
+      <nav-bar ref="navBar"></nav-bar>
       <weather-now ref="weatherNow"></weather-now>
-      
       <weather-forecast ref="weatherForecast" style="display: none"></weather-forecast>
 
     
