@@ -42,14 +42,6 @@ let navBar = Vue.component('nav-bar', {
     }
   },
 
-  mounted() {
-    makeRequest(config.urlWeatherNow, (response => {
-      this.description = response.weather[0].description;
-      this.temperature = (response.main.temp-273).toFixed(0) + "°C";
-      this.wind = (2.2369362920544 * response.wind.speed).toFixed(0) + "mph";
-    }));
-  },
-
   methods: {
     resetPages: (navId) => {
       page.$refs.navBar.pages.forEach(page => {
@@ -86,17 +78,16 @@ let navBar = Vue.component('nav-bar', {
     },
 
     handleToggleButton: (toggleId, id) => {
-      console.log("TOGGLE");
       let idTarget = document.getElementById(id);
       let target = document.getElementById(toggleId);
       if (target.style.display === 'flex' || target.style.display === "grid") {
         target.style.display = "none";
         idTarget.classList.remove('button-active');
       } else if (target.style.display === 'none') {
-          page.$refs.navBar.detailedViews.forEach(detailedView => {
-          document.getElementById(detailedView+"-detail").style.display = "none";
-          document.getElementById(detailedView+"-button").classList.remove('button-active');
-        });
+        page.$refs.navBar.detailedViews.forEach(detailedView => {
+        document.getElementById(detailedView+"-detail").style.display = "none";
+        document.getElementById(detailedView+"-button").classList.remove('button-active');
+      });
           
         if (target.style.display === 'none') {
           target.style.display = "flex";
