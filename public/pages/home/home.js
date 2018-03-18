@@ -93,10 +93,10 @@ const computeWeek = (responseRuns) => {
   
   switch(new Date().getDay()) {
     case 0:
-      lastMonday = timeNowZeroed - (7 * msInWeek);
+      lastMonday = timeNowZeroed - (6 * msInWeek);
       break;
     case 1:
-      lastMonday = timeNowZeroed - (0 * msInWeek);
+      lastMonday = timeNowZeroed - (7 * msInWeek);
       break;
     case 2:
       lastMonday = timeNowZeroed - (1 * msInWeek);
@@ -112,9 +112,6 @@ const computeWeek = (responseRuns) => {
       break;    
     case 6:
       lastMonday = timeNowZeroed - (5 * msInWeek);
-      break;
-    case 7:
-      lastMonday = timeNowZeroed - (6 * msInWeek);
       break;
   }
   
